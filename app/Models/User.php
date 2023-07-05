@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function favoriteLeagues()
+    {
+        return $this->hasMany(FavoriteLeague::class);
+    }
+
+    public function favoriteteams()
+    {
+        return $this->hasMany(FavoriteTeam::class);
+    }
 }
