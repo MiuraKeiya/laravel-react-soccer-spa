@@ -10,9 +10,9 @@ class FixturesResult extends Model
     use HasFactory;
 
     protected $fillable = [
-        'team_id',
-        'league_id',
-        'date',
+        // 'team_id',
+        // 'league_id',
+        // 'date',
         'json_result',
     ];
 
