@@ -1,3 +1,9 @@
+import { FixtureResult } from "../HomeComponents/FixtureResult";
+
 export const Home = () => {
-    return <div>home</div>;
+    return (
+        <div>
+            <FixtureResult />
+        </div>
+    );
 };
