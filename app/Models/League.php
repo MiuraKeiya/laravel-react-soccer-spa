@@ -23,4 +23,9 @@ class League extends Model
     {
       return $this->hasMany(FavoriteLeague::class);
     }
+
+    public function fixturesResults()
+    {
+      return $this->hasMany(FixturesResult::class);
+    }
 }

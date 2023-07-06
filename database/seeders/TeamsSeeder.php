@@ -27,7 +27,7 @@ class TeamsSeeder extends Seeder
       foreach ($leagueIds as $leagueId) {
         $response = $client->request(
           'GET',
-          "https://" . env('API_HOST') . "/v3/teams?league={$leagueId}&season=2023",
+          "https://" . env('API_HOST') . "/v3/teams?league={$leagueId}&season=2022",
           ['headers' => [
               'X-RapidAPI-Host' => env('API_HOST'),
               'X-RapidAPI-Key' => env('API_KEY'),

@@ -40,11 +40,6 @@ class LeaguesSeeder extends Seeder
           'id' => '61',
           'league_name' => 'Ligue 1',
         ]);
-
-        League::create([
-          'id' => '98',
-          'league_name' => 'J1 League',
-        ]);
       }
     }
 }

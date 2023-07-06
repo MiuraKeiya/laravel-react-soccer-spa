@@ -24,4 +24,9 @@ class Team extends Model
     {
         return $this->hasMany(FavoriteTeam::class);
     }
+
+    public function fixturesResults()
+    {
+      return $this->hasMany(FixturesResult::class);
+    }
 }
