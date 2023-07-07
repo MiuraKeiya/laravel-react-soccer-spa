@@ -23,4 +23,9 @@ class FavoriteTeam extends Model
     {
       return $this->belongsTo(Team::class, 'team_id', 'id');
     }
+
+    public function previousTeam()
+    {
+      return $this->belongsTo(PreviousTeam::class, 'previous_team_id', 'id');
+    }
 }
