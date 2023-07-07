@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavoriteLeague;
+use App\Models\FixturesResult;
 use App\Services\LeagueService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeagueController extends Controller
 {
@@ -18,12 +20,14 @@ class LeagueController extends Controller
 
     public function matchSchedule()
     {
-        try {
-          $schedule = $this->leagueService->matchSchedule();
-        } catch (Exception $error) {
-          return response()->json(['message' => '試合日程の取得に失敗しました'], 400);
-        }
+      $results = DB::table('fixtures_results')
+      ->select('json_result')
+      ->selectSub(function ($query) {
+          $query->selectRaw('ROW_NUMBER() OVER (PARTITION BY league_id ORDER BY date ASC)');
+      }, 'row_num')
+      ->whereRaw('(SELECT row_num) <= 10')
+      ->get();
 
-        return response()->json($schedule, 200);
+        return response()->json($results);
     }
 }
