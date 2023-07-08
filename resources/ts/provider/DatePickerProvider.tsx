@@ -4,7 +4,7 @@ import axios from "axios";
 export const DatePickerContext = createContext([]);
 
 export const DatePickerProvider = ({ children }) => {
-    // 試合が行われる日付を格納
+    // 今シーズンの試合が行われる日付を格納
     const [fixtureDate, setFixtureDate] = useState([]);
 
     // 初回マウント時に実行
@@ -12,7 +12,7 @@ export const DatePickerProvider = ({ children }) => {
         getDate();
     }, []);
 
-    // 試合の日付を取得
+    // 今シーズンの試合の日付を取得
     const getDate = async () => {
         try {
             const response = await axios.get("/api/date");

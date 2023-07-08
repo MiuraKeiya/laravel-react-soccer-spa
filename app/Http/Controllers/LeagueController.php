@@ -18,19 +18,26 @@ class LeagueController extends Controller
       $this->leagueService = $leagueService;
     }
 
-    public function matchSchedule()
+    public function matchSchedule(Request $request)
     {
-        $results = DB::table('fixtures_results')
-        ->select('json_result')
-        ->selectSub(function ($query) {
-            $query->selectRaw('ROW_NUMBER() OVER (PARTITION BY league_id ORDER BY date ASC)');
-        }, 'row_num')
-        ->whereRaw('(SELECT row_num) <= 10')
-        ->get();
+      $date = $request->input('date');
+      
+      $dateSubstring = substr($date, 0, 10); // 左から10文字を取得
+      
+      $matches = FixturesResult::whereRaw("LEFT(date, 10) = ?", [$dateSubstring])->get();
+      
+      if ($matches->isEmpty()) {
+          // データが存在しない場合の処理
+          return response()->json(['message' => 'データは存在しません']);
+      }
 
-        return response()->json($results);
+      $jsonColumns = $matches->pluck('json_result');
+      return response()->json($jsonColumns);
     }
 
+    /**
+     * 今シーズンの試合日程の日付を取得
+     */
     public function date()
     {
         $date = DB::table('fixtures_results')

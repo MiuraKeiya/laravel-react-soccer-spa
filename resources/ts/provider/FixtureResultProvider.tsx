@@ -8,27 +8,30 @@ export const FixtureResultProvider = ({ children }) => {
     const [fixtureResult, setFixtureResult] = useState([]);
 
     // 日付を格納
-    const [date, setDate] = useState(2023 - 8 - 21);
+    const [date, setDate] = useState(null);
 
     // エラーを格納
     const [error, setError] = useState([]);
 
     // 日付が変更された時に再度データを取得
     useEffect(() => {
-        fetchData();
+        // dateがnullでない場合のみデータを取得
+        if (date !== null) {
+            fetchData();
+        }
     }, [date]);
 
     // 今シーズンの試合日程・試合結果を取得する関数
     const fetchData = async () => {
         try {
-            const date = "送信された日付";
-            const response = await axios.get("/api/fixtures_results", {
+            const res = await axios.get("/api/fixtures_results", {
                 params: {
                     date: date,
                 },
             });
             console.log("試合日程・試合結果");
-            const responseData = response.data;
+            const responseData = res.data;
+            console.log(responseData)
             setFixtureResult(responseData);
         } catch (error) {
             console.log(error);
