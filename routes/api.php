@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::get('/fixtures-results', [LeagueController::class, 'matchSchedule']);
+Route::get('/date', [LeagueController::class, 'date']);
 Route::middleware('auth:sanctum')->group(function(){
     
 });
