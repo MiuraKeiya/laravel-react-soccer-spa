@@ -4,7 +4,7 @@ import { Footer } from "../atoms/Footer";
 
 export const Home = () => {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <Header />
             <FixtureResult />
             <Footer />
