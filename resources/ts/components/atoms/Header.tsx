@@ -23,7 +23,7 @@ export const Header = () => {
     }, []);
 
     return (
-        <div className="flex justify-between items-center bg-[#111931] h-14">
+        <header className="flex justify-between items-center bg-[#111931] h-16 border-b-4 border-[#B0EE1B]">
             <img
                 src="/images/Original.png"
                 alt="Soccer"
@@ -83,6 +83,6 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     );
 };

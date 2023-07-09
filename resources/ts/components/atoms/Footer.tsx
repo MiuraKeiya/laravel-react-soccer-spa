@@ -1,6 +1,6 @@
 export const Footer = () => {
     return (
-        <div>
+        <footer>
             <div className="bg-[#B0EE1B] h-80">
                 <div>Contact</div>
             </div>
@@ -9,6 +9,6 @@ export const Footer = () => {
                     &copy; 2023 Football League
                 </span>
             </div>
-        </div>
+        </footer>
     );
 };
