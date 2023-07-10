@@ -6,7 +6,9 @@ export const Home = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <Header />
-            <FixtureResult />
+            <div className="container mx-auto border border-red-500">
+                <FixtureResult />
+            </div>
             <Footer />
         </div>
     );

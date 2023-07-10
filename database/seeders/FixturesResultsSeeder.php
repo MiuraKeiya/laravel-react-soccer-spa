@@ -46,6 +46,7 @@ class FixturesResultsSeeder extends Seeder
                             'team_id' => $teamId,
                             'league_id' => $leagueId,
                             'date' => $response['fixture']['date'],
+                            'fixture' => $response['fixture']['id'],
                             'json_result' => $response,
                         ]);
                     }

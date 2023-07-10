@@ -29,8 +29,10 @@ class LeagueController extends Controller
         // 左から10文字を取得
         $dateSubstring = substr($date, 0, 10); 
         
-        $matches = FixturesResult::whereRaw("LEFT(date, 10) = ?", [$dateSubstring])->get();
-        
+        $matches = FixturesResult::whereRaw("LEFT(date, 10) = ?", [$dateSubstring])
+            ->orderBy('date', 'asc')
+            ->get();
+
         if ($matches->isEmpty()) {
             // データが存在しない場合の処理
             return response()->json(['message' => 'データは存在しません']);
@@ -38,7 +40,7 @@ class LeagueController extends Controller
 
          // league_idごとにjson_resultをまとめる
         $groupedMatches = $matches->groupBy('league_id')->map(function ($group) {
-            return $group->pluck('json_result');
+            return $group->unique('fixture')->pluck('json_result');
         });
         
         return response()->json($groupedMatches);
