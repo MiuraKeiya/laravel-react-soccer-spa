@@ -27,8 +27,8 @@ export const MatchSchedule = () => {
     };
 
     return (
-        <div className="border border-yellow-500 bg-[#1d2233] rounded-md">
-            <div>
+        <div>
+            <div className="text-right mr-2">
                 <FixtureResultDate />
             </div>
             {Object.entries(fixtureResult).map(([leagueId, results]) => {
@@ -37,16 +37,21 @@ export const MatchSchedule = () => {
                 }
                 return (
                     <div key={leagueId} className="text-[#EEEEEE]">
-                        <div className="bg-[#111931] flex items-center space-x-2 h-6">
-                            <img
-                                src={results[0].league.flag}
-                                alt="team"
-                                className="h-5 w-5 ml-2"
-                            />
-                            <h2 className="text-[13px] font-bold text-[#C8CDCD]">
-                                {results[0].league.country.toUpperCase()}:{" "}
-                                {results[0].league.name.toUpperCase()}
-                            </h2>
+                        <div className="flex items-center justify-between bg-[#111931] h-6">
+                            <div className="flex items-center space-x-2">
+                                <img
+                                    src={results[0].league.flag}
+                                    alt="team"
+                                    className="h-5 w-5 ml-2"
+                                />
+                                <h2 className="text-[13px] font-bold text-[#C8CDCD]">
+                                    {results[0].league.country.toUpperCase()}:{" "}
+                                    {results[0].league.name.toUpperCase()}
+                                </h2>
+                            </div>
+                            <a className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer">
+                                順位表
+                            </a>
                         </div>
                         {results.map((fixture, index) => (
                             <section
