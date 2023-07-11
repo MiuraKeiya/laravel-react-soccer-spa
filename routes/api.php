@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LeagueController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/fixtures_results', [LeagueController::class, 'matchSchedule']);
 Route::get('/date', [LeagueController::class, 'date']);
+Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
 Route::middleware('auth:sanctum')->group(function(){
     
 });
