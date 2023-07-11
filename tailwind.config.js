@@ -6,7 +6,11 @@ module.exports = {
         "./resources/**/*.tsx",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                custom: ["CustomFont", "Silom", "sans-serif"],
+            },
+        },
     },
     plugins: [],
 };

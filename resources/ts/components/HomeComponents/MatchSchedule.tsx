@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FixtureResultContext } from "../../provider/FixtureResultProvider";
@@ -6,8 +7,15 @@ import { FixtureResultDate } from "../atoms/FixtureResultDate";
 import { Tooltip } from "react-tooltip";
 
 export const MatchSchedule = () => {
+    const navigate = useNavigate();
+
     // 今シーズンの試合日程・試合結果・日付・エラーを取得
     const { fixtureResult, error } = useContext(FixtureResultContext);
+
+    // 試合セクションのクリックイベントハンドラー
+    const handleSectionClick = (fixtureId) => {
+        navigate(`/match-details/${fixtureId}`);
+    };
 
     // dateを変換
     const formatDate = (dateString) => {
@@ -56,6 +64,9 @@ export const MatchSchedule = () => {
                         {results.map((fixture, index) => (
                             <section
                                 key={index}
+                                onClick={() =>
+                                    handleSectionClick(fixture.fixture.id)
+                                }
                                 className="flex items-center justify-between border-b border-[#111931] text-[13px] hover:bg-[#3d4e81] cursor-pointer transition duration-500"
                             >
                                 <div className="flex items-center space-x-2 ml-2">
