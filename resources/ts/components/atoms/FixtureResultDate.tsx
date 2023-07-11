@@ -35,7 +35,7 @@ export const FixtureResultDate = () => {
             selected={startDate}
             onChange={handleDateChange}
             highlightDates={highlightedDates}
-            className="bg-black text-white rounded-md cursor-pointer"
+            className="bg-black text-[#C8CDCD] rounded-md cursor-pointer"
         />
     );
 };
