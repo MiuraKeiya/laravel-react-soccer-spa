@@ -15,6 +15,9 @@ export const MatchDetailsProvider = ({ children }) => {
 
     // 初回マウント時に実行
     useEffect(() => {
+        setResult([]);
+        setError([]);
+
         if (matchId !== null) {
             fetchData();
         }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TeamStats } from "./TeamStats";
 
 export const DetailsSelecter = () => {
     const [selectedTab, setSelectedTab] = useState("teamInfo");
@@ -78,7 +79,7 @@ export const DetailsSelecter = () => {
                 </button>
             </div>
             <div className="border-b border-[#111931]"></div>
-            <div>dsdsds</div>
+            <TeamStats />
         </div>
     );
 };

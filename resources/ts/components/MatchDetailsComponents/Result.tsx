@@ -4,7 +4,7 @@ import { Loading } from "../atoms/Loading";
 
 export const Result = () => {
     const { result, error } = useContext(MatchDetailsContext);
-
+    
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const day = date.getDate().toString().padStart(2, "0");
