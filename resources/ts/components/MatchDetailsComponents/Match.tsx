@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export const Match = () => {
     // パラメータから試合idを取得
     const { id } = useParams();
-
+    
     const { setMatchId, error } = useContext(MatchDetailsContext);
 
     useEffect(() => {
