@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { TeamStats } from "./TeamStats";
+import { PlayerStats } from "./PlayerStats";
 
 export const StatsSelecter = () => {
-    const [selectedTab, setSelectedTab] = useState("events");
+    const [selectedTab, setSelectedTab] = useState("team");
 
     const handleEventsClick = () => {
-        setSelectedTab("events");
+        setSelectedTab("team");
     };
 
     const handleMembersClick = () => {
-        setSelectedTab("members");
+        setSelectedTab("player");
     };
 
     return (
@@ -18,7 +19,7 @@ export const StatsSelecter = () => {
                 <div
                     onClick={handleEventsClick}
                     className={`text-[12px] font-bold ${
-                        selectedTab === "events"
+                        selectedTab === "team"
                             ? "text-[#B0EE1B] cursor-default underline"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF] cursor-pointer"
                     }`}
@@ -28,7 +29,7 @@ export const StatsSelecter = () => {
                 <div
                     onClick={handleMembersClick}
                     className={`text-[12px] font-bold ${
-                        selectedTab === "members"
+                        selectedTab === "player"
                             ? "text-[#B0EE1B] cursor-default underline"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF] cursor-pointer"
                     }`}
@@ -36,7 +37,8 @@ export const StatsSelecter = () => {
                     選手スタッツ
                 </div>
             </div>
-            {selectedTab === "events" && <TeamStats />}
+            {selectedTab === "team" && <TeamStats />}
+            {selectedTab === "player" && <PlayerStats />}
         </div>
     );
 };
