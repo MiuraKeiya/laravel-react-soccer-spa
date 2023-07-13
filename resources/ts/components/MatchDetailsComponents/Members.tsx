@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MatchDetailsContext } from "../../provider/MatchDetailsProvider";
 import { Field } from "./Field";
+import { TeamMembers } from "./TeamMembers";
 
 export const Members = () => {
     const { result, error } = useContext(MatchDetailsContext);
@@ -38,6 +39,7 @@ export const Members = () => {
                 </div>
             ))}
             <Field />
+            <TeamMembers />
         </div>
     );
 };

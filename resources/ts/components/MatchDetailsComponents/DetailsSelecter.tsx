@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TeamStats } from "./TeamStats";
 import { ProgressSelecter } from "./ProgressSelecter";
+import { StatsSelecter } from "./StatsSelecter";
 
 export const DetailsSelecter = () => {
     const [selectedTab, setSelectedTab] = useState("stats");
@@ -80,7 +80,7 @@ export const DetailsSelecter = () => {
                 </button>
             </div>
             <div className="border-b border-[#111931]"></div>
-            {selectedTab === "stats" && <TeamStats />}
+            {selectedTab === "stats" && <StatsSelecter />}
             {selectedTab === "progress" && <ProgressSelecter />}
         </div>
     );

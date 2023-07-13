@@ -52,7 +52,7 @@ export const TeamStats = () => {
     }
 
     return (
-        <div className="mt-3">
+        <div>
             <div className="bg-[#111931] text-[#C8CDCD] text-[11px] font-bold py-1 text-center">
                 チームスタッツ
             </div>
