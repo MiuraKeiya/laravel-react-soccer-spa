@@ -184,6 +184,31 @@ export const MatchProgress = () => {
                     </div>
                 ))}
             </div>
+            <div className="bg-[#111931] py-1 flex items-center justify-center">
+                <span className="text-[11px] font-bold text-[#C8CDCD]">
+                    試合情報
+                </span>
+            </div>
+            {result.response.map((fixtrue, index) => (
+                <div key={index} className="mt-2 mb-3">
+                    <div className="flex justify-between items-center ml-3 mr-3 mb-3">
+                        <span className="text-[11px] font-bold text-[#C8CDCD]">
+                            レフェリー:
+                        </span>
+                        <span className="text-[13px] font-bold text-[#FFFFFF]">
+                            {fixtrue.fixture.referee}
+                        </span>
+                    </div>
+                    <div className="flex justify-between items-center ml-3 mr-3">
+                        <span className="text-[11px] font-bold text-[#C8CDCD]">
+                            開催地:
+                        </span>
+                        <span className="text-[13px] font-bold text-[#FFFFFF]">
+                            {fixtrue.fixture.venue.city}
+                        </span>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
