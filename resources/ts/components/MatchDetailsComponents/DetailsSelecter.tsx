@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { TeamStats } from "./TeamStats";
+import { ProgressSelecter } from "./ProgressSelecter";
 
 export const DetailsSelecter = () => {
-    const [selectedTab, setSelectedTab] = useState("teamInfo");
+    const [selectedTab, setSelectedTab] = useState("stats");
 
-    const handleMatchinformationClick = () => {
-        setSelectedTab("teamInfo");
+    const handleStatsClick = () => {
+        setSelectedTab("stats");
     };
 
-    const handleMatchprogressClick = () => {
-        setSelectedTab("schedule");
+    const handleMatchProgressClick = () => {
+        setSelectedTab("progress");
     };
 
     const handlestandingsClick = () => {
@@ -28,9 +29,9 @@ export const DetailsSelecter = () => {
         <div>
             <div className="flex space-x-4 mt-2 mb-2 ml-3">
                 <button
-                    onClick={handleMatchinformationClick}
+                    onClick={handleStatsClick}
                     className={`text-[12px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "teamInfo"
+                        selectedTab === "stats"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
                     }`}
@@ -38,9 +39,9 @@ export const DetailsSelecter = () => {
                     スタッツ
                 </button>
                 <button
-                    onClick={handleMatchprogressClick}
+                    onClick={handleMatchProgressClick}
                     className={`text-[12px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "schedule"
+                        selectedTab === "progress"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
                     }`}
@@ -79,7 +80,8 @@ export const DetailsSelecter = () => {
                 </button>
             </div>
             <div className="border-b border-[#111931]"></div>
-            <TeamStats />
+            {selectedTab === "stats" && <TeamStats />}
+            {selectedTab === "progress" && <ProgressSelecter />}
         </div>
     );
 };
