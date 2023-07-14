@@ -20,7 +20,7 @@ export const RouterConfig = () => {
                             <Route path="/register" element={<Register />} />
                             <Route path="/home" element={<Home />} />
                             <Route
-                                path="/match-details/:id"
+                                path="/match-details/:fixtureId/:leagueId"
                                 element={<MatchDetails />}
                             />
                         </Routes>
