@@ -1,9 +1,29 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MatchDetailsContext } from "../../provider/MatchDetailsProvider";
 import { Tooltip } from "react-tooltip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useModal } from "react-hooks-use-modal";
+import { ModalPlayerStats } from "../atoms/ModalPlayerStats";
 
 export const PlayerStats = () => {
     const { result, error } = useContext(MatchDetailsContext);
+
+    // モーダルに渡すId
+    const [playerId, setPlayerId] = useState(null);
+
+    const handleOpenModal = (Id) => {
+        open();
+        setPlayerId(Id);
+    };
+
+    //　モーダルオプション
+    const [Modal, open, close] = useModal("app", {
+        preventScroll: true,
+        focusTrapOptions: {
+            clickOutsideDeactivates: false,
+        },
+    });
 
     if (result.length === 0) {
         return null;
@@ -14,7 +34,7 @@ export const PlayerStats = () => {
             <div className="bg-[#111931] text-[#C8CDCD] text-[11px] font-bold py-1 text-center">
                 選手スタッツ
             </div>
-            <p className="text-[11px] text-[#969a9a] py-1 ml-2">
+            <p className="text-[11px] text-[#969a9a] py-2 ml-2">
                 ※ 各行をクリックすると全てのスタッツを確認することができます。
             </p>
             {result.response[0].players.map((players, index) => (
@@ -52,6 +72,9 @@ export const PlayerStats = () => {
                             {players.players.map((player, playerIndex) => (
                                 <tr
                                     key={playerIndex}
+                                    onClick={() =>
+                                        handleOpenModal(player.player.id)
+                                    }
                                     className={
                                         "text-[12px] text-[#FFFFFF] text-center border-b border-[#111931] h-8 hover:bg-[#3d4e81] cursor-pointer transition duration-500"
                                     }
@@ -168,6 +191,21 @@ export const PlayerStats = () => {
                     レッドカード
                 </span>
             </Tooltip>
+            <Modal>
+                <div className="border-2 border-[#111931] bg-[#1d2233] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
+                    <div className="mb-4">
+                        <div className="flex flex-row-reverse mt-1">
+                            <button onClick={close} className="mr-4">
+                                <FontAwesomeIcon
+                                    icon={faXmark}
+                                    className="text-[#111931] text-[23px] hover:text-[#C8CDCD] cursor-pointer"
+                                />
+                            </button>
+                        </div>
+                        <ModalPlayerStats playerId={playerId} />
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };
