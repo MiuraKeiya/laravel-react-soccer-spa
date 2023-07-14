@@ -23,7 +23,7 @@ export const Header = () => {
     }, []);
 
     return (
-        <header className="flex justify-between items-center bg-[#111931] h-16 border-b-4 border-[#B0EE1B]">
+        <header className="flex justify-between items-center bg-[#111931] h-16 border-b-[2px] border-[#B0EE1B]">
             <img
                 src="/images/Original.png"
                 alt="Soccer"
