@@ -13,8 +13,8 @@ export const MatchSchedule = () => {
     const { fixtureResult, error } = useContext(FixtureResultContext);
 
     // 試合セクションのクリックイベントハンドラー
-    const handleSectionClick = (fixtureId) => {
-        navigate(`/match-details/${fixtureId}`);
+    const handleSectionClick = (fixtureId, leagueId) => {
+        navigate(`/match-details/${fixtureId}/${leagueId}`);
     };
 
     // dateを変換
@@ -65,7 +65,10 @@ export const MatchSchedule = () => {
                             <section
                                 key={index}
                                 onClick={() =>
-                                    handleSectionClick(fixture.fixture.id)
+                                    handleSectionClick(
+                                        fixture.fixture.id,
+                                        results[0].league.id
+                                    )
                                 }
                                 className="flex items-center justify-between border-b border-[#111931] text-[13px] hover:bg-[#3d4e81] cursor-pointer transition duration-500"
                             >

@@ -7,8 +7,14 @@ export const MatchDetailsProvider = ({ children }) => {
     // 試合idを格納
     const [matchId, setMatchId] = useState(null);
 
+    // リーグIdを格納
+    const [leagueMatchId, setLeagueMatchId] = useState(null);
+
     // 試合結果を格納
     const [result, setResult] = useState([]);
+
+    // 今シーズンのチーム順位を格納
+    const [ranking, setRanking] = useState([]);
 
     // エラーを格納
     const [error, setError] = useState([]);
@@ -21,25 +27,32 @@ export const MatchDetailsProvider = ({ children }) => {
         if (matchId !== null) {
             fetchData();
         }
-    }, [matchId]);
+    }, [matchId, leagueMatchId]);
 
     // 今シーズンの試合日程・試合結果を取得する関数
     const fetchData = async () => {
         try {
-            const res = await axios.get(`/api/match/${matchId}`);
+            const res1 = await axios.get(`/api/match/${matchId}`);
 
-            const responseData = res.data;
+            const responseData = res1.data;
 
             console.log(responseData);
 
             setResult(responseData);
+
+            const res2 = await axios.get(`/api/teams/ranking/${leagueMatchId}`);
+            const responseData2 = res2.data;
+            console.log(responseData2);
+            setRanking(responseData2);
         } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <MatchDetailsContext.Provider value={{ result, setMatchId, error }}>
+        <MatchDetailsContext.Provider
+            value={{ result, ranking, setMatchId, setLeagueMatchId, error }}
+        >
             {children}
         </MatchDetailsContext.Provider>
     );
