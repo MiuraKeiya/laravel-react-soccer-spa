@@ -7,6 +7,7 @@ import { Login } from "./components/pages/Login";
 import { Register } from "./components/pages/Register";
 import { Home } from "./components/pages/Home";
 import { MatchDetails } from "./components/pages/MatchDetails";
+import { Player } from "./components/pages/Player";
 
 export const RouterConfig = () => {
     return (
@@ -22,6 +23,10 @@ export const RouterConfig = () => {
                             <Route
                                 path="/match-details/:fixtureId/:leagueId"
                                 element={<MatchDetails />}
+                            />
+                            <Route
+                                path="/player/:playeId"
+                                element={<Player />}
                             />
                         </Routes>
                     </BrowserRouter>
