@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MatchDetailsContext } from "../../provider/MatchDetailsProvider";
 import { Tooltip } from "react-tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +9,8 @@ import { ModalPlayerStats } from "../atoms/ModalPlayerStats";
 
 export const PlayerStats = () => {
     const { result, error } = useContext(MatchDetailsContext);
+
+    const navigate = useNavigate();
 
     // モーダルに渡すId
     const [playerId, setPlayerId] = useState(null);
@@ -24,6 +27,10 @@ export const PlayerStats = () => {
             clickOutsideDeactivates: false,
         },
     });
+
+    const handleSetPlayerIdClick = (id) => {
+        navigate(`/player/${id}`);
+    };
 
     if (result.length === 0) {
         return null;
@@ -86,7 +93,14 @@ export const PlayerStats = () => {
                                                 alt="Player Photo"
                                                 className="h-5 w-5 rounded-full"
                                             />
-                                            <span className="text-[11px] text-[#FFFFFF] font-bold">
+                                            <span
+                                                className="text-[11px] text-[#FFFFFF] font-bold hover:underline"
+                                                onClick={() =>
+                                                    handleSetPlayerIdClick(
+                                                        player.player.id
+                                                    )
+                                                }
+                                            >
                                                 {player.player.name}
                                             </span>
                                         </span>

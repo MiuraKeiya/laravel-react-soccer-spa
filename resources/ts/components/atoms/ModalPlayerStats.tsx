@@ -1,8 +1,15 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { MatchDetailsContext } from "../../provider/MatchDetailsProvider";
 
 export const ModalPlayerStats = ({ playerId }) => {
     const { result, error } = useContext(MatchDetailsContext);
+
+    const navigate = useNavigate();
+
+    const handleSetPlayerIdClick = (id) => {
+        navigate(`/player/${id}`);
+    };
 
     if (result.length === 0) {
         return null;
@@ -40,11 +47,18 @@ export const ModalPlayerStats = ({ playerId }) => {
                                 {player.player.id === playerId && (
                                     <div>
                                         <div className="flex items-center space-x-4 ml-3">
-                                            <div>
+                                            <div
+                                                className="cursor-pointer"
+                                                onClick={() =>
+                                                    handleSetPlayerIdClick(
+                                                        player.player.id
+                                                    )
+                                                }
+                                            >
                                                 <img
                                                     src={player.player.photo}
                                                     alt="League Photo"
-                                                    className="h-16 w-16 rounded-lg"
+                                                    className="h-16 w-16 rounded-lg hover:border hover:border-[#B0EE1B]"
                                                 />
                                             </div>
                                             <div className="flex flex-col text-[13px] text-[#FFFFFF] space-y-1">
@@ -58,7 +72,14 @@ export const ModalPlayerStats = ({ playerId }) => {
                                                         className="h-6 w-6"
                                                     />
                                                 </div>
-                                                <span>
+                                                <span
+                                                    className="hover:underline cursor-pointer"
+                                                    onClick={() =>
+                                                        handleSetPlayerIdClick(
+                                                            player.player.id
+                                                        )
+                                                    }
+                                                >
                                                     {player.player.name}
                                                 </span>
                                                 <div>
@@ -82,10 +103,9 @@ export const ModalPlayerStats = ({ playerId }) => {
                                                 <div>
                                                     <span>総評価: </span>
                                                     <span className="font-bold text-[#B0EE1B]">
-                                                        {
-                                                            player.statistics[0]
-                                                                .games.rating || "評価なし"
-                                                        }
+                                                        {player.statistics[0]
+                                                            .games.rating ||
+                                                            "評価なし"}
                                                     </span>
                                                 </div>
                                             </div>
