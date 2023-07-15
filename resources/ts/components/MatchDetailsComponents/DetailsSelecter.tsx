@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ProgressSelecter } from "./ProgressSelecter";
 import { StatsSelecter } from "./StatsSelecter";
 import { Rating } from "./Rating";
+import { TeamRanking } from "./TeamRanking";
 
 export const DetailsSelecter = () => {
     const [selectedTab, setSelectedTab] = useState("stats");
@@ -15,7 +16,7 @@ export const DetailsSelecter = () => {
     };
 
     const handlestandingsClick = () => {
-        setSelectedTab("players");
+        setSelectedTab("ranking");
     };
 
     const handleRatingClick = () => {
@@ -62,7 +63,7 @@ export const DetailsSelecter = () => {
                 <button
                     onClick={handlestandingsClick}
                     className={`text-[12px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "players"
+                        selectedTab === "ranking"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
                     }`}
@@ -84,6 +85,7 @@ export const DetailsSelecter = () => {
             {selectedTab === "stats" && <StatsSelecter />}
             {selectedTab === "progress" && <ProgressSelecter />}
             {selectedTab === "rating" && <Rating />}
+            {selectedTab === "ranking" && <TeamRanking />}
         </div>
     );
 };
