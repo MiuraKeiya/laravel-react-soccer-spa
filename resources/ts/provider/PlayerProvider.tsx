@@ -5,7 +5,7 @@ export const PlayerContext = createContext([]);
 
 export const PlayerProvider = ({ children }) => {
     // 選手情報取得
-    const [player, setPlayer] = useState([]);
+    const [playerData, setPlayerData] = useState([]);
 
     // 選手Idを格納
     const [id, setId] = useState(null);
@@ -14,27 +14,30 @@ export const PlayerProvider = ({ children }) => {
     const [error, setError] = useState([]);
 
     useEffect(() => {
-        if (playerId !== null) {
+        setPlayerData([]);
+        setError([]);
+
+        if (id !== null) {
             fetchData();
         }
-    }, []);
+    }, [id]);
 
     const fetchData = async () => {
         try {
             const res = await axios.get(`/api/player/${id}`);
 
-            const playerData = res.data;
+            const player = res.data;
 
-            console.log(playerData);
+            console.log(player);
 
-            setPlayer(playerData);
+            setPlayerData(player);
         } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <PlayerContext.Provider value={{ player, setId, error }}>
+        <PlayerContext.Provider value={{ playerData, setId, error }}>
             {children}
         </PlayerContext.Provider>
     );
