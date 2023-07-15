@@ -16,7 +16,7 @@ export const ModalPlayerStats = ({ playerId }) => {
                         key={index}
                         className="flex items-center justify-between mx-1"
                     >
-                        <div className="flex items-center space-x-1 text-[12px] font-bold text-[#C8CDCD]">
+                        <div className="flex items-center space-x-1 text-[12px] font-bold text-[#C8CDCD] uppercase">
                             <img
                                 src={league.league.flag}
                                 alt="League Photo"

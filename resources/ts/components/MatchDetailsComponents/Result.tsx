@@ -30,9 +30,9 @@ export const Result = () => {
                                 src={match.league.flag}
                                 className="w-4 h-4 m-1"
                             />
-                            <div>{match.league.country}</div>
+                            <div className="uppercase">{match.league.country}</div>
                             <div className="p-1">-</div>
-                            <div>{match.league.name}</div>
+                            <div className="uppercase">{match.league.name}</div>
                             <div className="p-1">-</div>
                             <div>第{match.league.round.match(/\d+/)}節</div>
                         </div>
