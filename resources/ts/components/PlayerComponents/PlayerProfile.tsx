@@ -12,10 +12,10 @@ export const PlayerProfile = () => {
         playerData2023.response.length === 0 ? playerData2022 : playerData2023;
 
     return (
-        <div className="mt-3">
+        <div className="mt-3 mx-3">
             {responseData.response.map((p, index) => (
                 <div key={index}>
-                    <div className="flex space-x-20 items-center">
+                    <div className="flex items-center justify-between">
                         <img
                             src={p.player.photo}
                             alt="PlayerPhoto"
@@ -35,8 +35,11 @@ export const PlayerProfile = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="text-[#FFFFFF] font-bold text-[18px] mb-2">
-                            {p.player.name}
+                        <div className="text-[#FFFFFF] text-[19px] mb-2 flex flex-col mt-1">
+                            <span className="text-[11px]">
+                                {p.player.firstname}・{p.player.lastname}
+                            </span>
+                            <span className="font-bold">{p.player.name}</span>
                         </div>
                         <div className="text-[#C8CDCD] text-[13px] mb-1">
                             <span className="font-bold">チーム: </span>

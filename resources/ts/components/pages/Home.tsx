@@ -1,7 +1,7 @@
 import { FixtureResult } from "../HomeComponents/FixtureResult";
 import { Header } from "../atoms/Header";
 import { Footer } from "../atoms/Footer";
-import { Sidebar } from "../HomeComponents/Sidebar";
+import { Sidebar } from "../atoms/Sidebar";
 
 export const Home = () => {
     return (
