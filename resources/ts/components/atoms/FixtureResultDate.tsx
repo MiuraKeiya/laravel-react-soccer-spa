@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { DatePickerContext } from "../../provider/DatePickerProvider";
 import { FixtureResultContext } from "../../provider/FixtureResultProvider";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ja from 'date-fns/locale/ja';
 
 export const FixtureResultDate = () => {
     // 今シーズンの日付を取得
@@ -12,6 +13,8 @@ export const FixtureResultDate = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [highlightedDates, setHighlightedDates] = useState([]);
+  
+    registerLocale('ja', ja);
 
     // fixtureDateが更新されたときに実行
     useEffect(() => {
@@ -35,7 +38,9 @@ export const FixtureResultDate = () => {
             selected={startDate}
             onChange={handleDateChange}
             highlightDates={highlightedDates}
-            className="bg-black text-[#C8CDCD] rounded-md cursor-pointer"
+            popperPlacement="top-end"
+            locale='ja'
+            className="bg-black text-[#C8CDCD] rounded-md cursor-pointer text-center text-[12px] font-bold py-1"
         />
     );
 };
