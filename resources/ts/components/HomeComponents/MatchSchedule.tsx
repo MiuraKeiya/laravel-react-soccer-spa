@@ -41,7 +41,13 @@ export const MatchSchedule = () => {
             </div>
             {Object.entries(fixtureResult).map(([leagueId, results]) => {
                 if (!Array.isArray(results)) {
-                    return null; // エラーハンドリング
+                    return (
+                        <div className="flex justify-center items-center h-[20rem]">
+                            <p className="text-[13px] text-[#C8CDCD]">
+                                試合データは存在しません。
+                            </p>
+                        </div>
+                    ); // エラーハンドリング
                 }
                 return (
                     <div key={leagueId} className="text-[#EEEEEE]">

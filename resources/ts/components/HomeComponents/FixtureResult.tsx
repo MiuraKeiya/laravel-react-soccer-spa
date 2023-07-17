@@ -12,11 +12,6 @@ export const FixtureResult = () => {
         setSelectedTab("all");
     };
 
-    // ライブ表示
-    const handleLiveGamesClick = () => {
-        setSelectedTab("live");
-    };
-
     // 終了した試合表示
     const handleEndGamesClick = () => {
         setSelectedTab("end");
@@ -39,16 +34,6 @@ export const FixtureResult = () => {
                     onClick={handleAllGamesClick}
                 >
                     全試合
-                </button>
-                <button
-                    className={`text-[12px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "live"
-                            ? "bg-[#B0EE1B] text-black cursor-default"
-                            : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
-                    }`}
-                    onClick={handleLiveGamesClick}
-                >
-                    ライブ
                 </button>
                 <button
                     className={`text-[12px] font-bold rounded px-2 py-1 ${

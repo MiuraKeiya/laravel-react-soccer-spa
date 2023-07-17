@@ -33,7 +33,13 @@ export const Schedule = () => {
             </div>
             {Object.entries(fixtureResult).map(([leagueId, results]) => {
                 if (!Array.isArray(results)) {
-                    return null; // エラーハンドリング
+                    return (
+                        <div className="flex justify-center items-center h-[20rem]">
+                            <p className="text-[13px] text-[#C8CDCD]">
+                                試合データは存在しません。
+                            </p>
+                        </div>
+                    ); // エラーハンドリング
                 }
                 return (
                     <div key={leagueId} className="text-[#EEEEEE]">
@@ -140,9 +146,7 @@ export const Schedule = () => {
                                     </section>
                                 );
                             } else {
-                                return (
-                                    <div>試合終了</div>
-                                );
+                                return <div>試合終了</div>;
                             }
                         })}
                     </div>

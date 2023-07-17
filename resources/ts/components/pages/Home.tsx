@@ -5,9 +5,9 @@ import { Sidebar } from "../atoms/Sidebar";
 
 export const Home = () => {
     return (
-        <div className="flex flex-col min-h-screen bg-black">
+        <div className="flex flex-col  bg-black">
             <Header />
-            <div className="container mx-auto lg:max-w-4xl sm:px-3 py-5 flex flex-wrap border border-rose-500">
+            <div className="container mx-auto lg:max-w-4xl sm:px-3 py-5 flex flex-wrap border border-rose-500 min-h-screen">
                 <Sidebar />
                 <FixtureResult />
             </div>

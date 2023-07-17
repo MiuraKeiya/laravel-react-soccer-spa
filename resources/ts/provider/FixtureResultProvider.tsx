@@ -29,7 +29,7 @@ export const FixtureResultProvider = ({ children }) => {
                     date: date,
                 },
             });
-            console.log("試合日程・試合結果");
+            
             const responseData = res.data;
             console.log(responseData)
             setFixtureResult(responseData);
