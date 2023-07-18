@@ -17,6 +17,10 @@ export const MatchSchedule = () => {
         navigate(`/match-details/${fixtureId}/${leagueId}`);
     };
 
+    const handleSetLeagueId = (leagueId, season) => {
+        navigate(`/ranking/${leagueId}/${season}`);
+    };
+
     // dateを変換
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -63,7 +67,12 @@ export const MatchSchedule = () => {
                                     {results[0].league.name.toUpperCase()}
                                 </h2>
                             </div>
-                            <a className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer">
+                            <a
+                                className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
+                                onClick={() =>
+                                    handleSetLeagueId(results[0].league.id, results[0].league.season)
+                                }
+                            >
                                 順位表
                             </a>
                         </div>

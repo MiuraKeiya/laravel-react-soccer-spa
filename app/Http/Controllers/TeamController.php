@@ -31,19 +31,22 @@ class TeamController extends Controller
     /** チーム順位取得 */
     public function getTeamRankings(Request $request)
     {
-        $client = new Client();
-    
-        $response = $client->request(
-            'GET',
-            "https://" . env('API_HOST') . "/v3/standings?season=2022&league={$request->id}",
-            ['headers' => [
-                'X-RapidAPI-Host' => env('API_HOST'),
-                'X-RapidAPI-Key' => env('API_KEY'),
-            ]]
-        );
-
-        $teamRankings = json_decode($response->getBody(), true);
-        
-        return response()->json($teamRankings);
+      $leagueId = $request->input('leagueId');
+      $season = $request->input('season');
+  
+      $client = new Client();
+  
+      $response = $client->request(
+          'GET',
+          "https://" . env('API_HOST') . "/v3/standings?season={$season}&league={$leagueId}",
+          ['headers' => [
+              'X-RapidAPI-Host' => env('API_HOST'),
+              'X-RapidAPI-Key' => env('API_KEY'),
+          ]]
+      );
+  
+      $teamRankings = json_decode($response->getBody(), true);
+  
+      return response()->json($teamRankings);
     }
 }
