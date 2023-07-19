@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { RankingContext } from "../../provider/RankingProvider";
+import { StandingsSelecter } from "./StandingsSelecter";
+import { SeasonSelecter } from "../atoms/SeasonSelecter";
 
 export const RankingSelecter = () => {
     const { rankingData, error } = useContext(RankingContext);
@@ -15,7 +17,7 @@ export const RankingSelecter = () => {
     };
 
     return (
-        <div>
+        <div className="mx-2">
             {rankingData.response.length > 0 ? (
                 rankingData.response.map((ranking, index) => (
                     <div key={index}>
@@ -29,29 +31,32 @@ export const RankingSelecter = () => {
                                 {ranking.league.country}: {ranking.league.name}
                             </p>
                         </div>
-                        <div className="flex space-x-3 mt-2">
-                            <button
-                                onClick={handleRankingClick}
-                                className={`text-[12px] font-bold rounded px-2 py-1 ${
-                                    selectedTab === "ranking"
-                                        ? "bg-[#B0EE1B] text-black cursor-default"
-                                        : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
-                                }`}
-                            >
-                                順位表
-                            </button>
-                            <button
-                                onClick={handleTopScorerClick}
-                                className={`text-[12px] font-bold rounded px-2 py-1 ${
-                                    selectedTab === "topScorer"
-                                        ? "bg-[#B0EE1B] text-black cursor-default"
-                                        : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
-                                }`}
-                            >
-                                得点王
-                            </button>
+                        <div className="flex items-center justify-between mt-2">
+                            <div className="flex space-x-3">
+                                <button
+                                    onClick={handleRankingClick}
+                                    className={`text-[12px] font-bold rounded px-2 py-1 ${
+                                        selectedTab === "ranking"
+                                            ? "bg-[#B0EE1B] text-black cursor-default"
+                                            : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
+                                    }`}
+                                >
+                                    順位表
+                                </button>
+                                <button
+                                    onClick={handleTopScorerClick}
+                                    className={`text-[12px] font-bold rounded px-2 py-1 ${
+                                        selectedTab === "topScorer"
+                                            ? "bg-[#B0EE1B] text-black cursor-default"
+                                            : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
+                                    }`}
+                                >
+                                    得点王
+                                </button>
+                            </div>
+                            <SeasonSelecter />
                         </div>
-                        {selectedTab === "ranking" && "f"}
+                        {selectedTab === "ranking" && <StandingsSelecter />}
                     </div>
                 ))
             ) : (
