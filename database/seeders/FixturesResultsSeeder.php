@@ -6,6 +6,7 @@ use App\Models\FixturesResult;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\League;
+use App\Models\Season;
 use App\Models\Team;
 use GuzzleHttp\Client;
 
@@ -26,10 +27,12 @@ class FixturesResultsSeeder extends Seeder
         // teamsテーブルからidカラム取得
         $teamIds = Team::pluck('id');
 
+        $season = env('SEASON');
+
         foreach ($leagueIds as $leagueId) {
             $response = $client->request(
                 'GET',
-                "https://" . env('API_HOST') . "/v3/fixtures?league={$leagueId}&season=2023&timezone=Asia%2FTokyo",
+                "https://" . env('API_HOST') . "/v3/fixtures?league={$leagueId}&season={$season}&timezone=Asia%2FTokyo",
                 ['headers' => [
                     'X-RapidAPI-Host' => env('API_HOST'),
                     'X-RapidAPI-Key' => env('API_KEY'),
@@ -42,12 +45,19 @@ class FixturesResultsSeeder extends Seeder
             foreach ($teamIds as $teamId) {
                 foreach ($results['response'] as $response) {
                     if ($response['teams']['home']['id'] === $teamId || $response['teams']['away']['id'] === $teamId) {
+
+                      $seasons = $response['league']['season'];
+
+                      // seasonsテーブルから該当するseasonのidを取得
+                      $seasonId = Season::where('season', $seasons)->value('id');
+
                         FixturesResult::create([
                             'team_id' => $teamId,
                             'league_id' => $leagueId,
                             'date' => $response['fixture']['date'],
                             'fixture' => $response['fixture']['id'],
                             'json_result' => $response,
+                            'season_id' => $seasonId,
                         ]);
                     }
                 }

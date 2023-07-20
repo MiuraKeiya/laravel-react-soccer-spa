@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { RankingContext } from "../../provider/RankingProvider";
 import { StandingsSelecter } from "./StandingsSelecter";
 import { SeasonSelecter } from "../atoms/SeasonSelecter";
+import { PlayersScore } from "./PlayersScore";
 
 export const RankingSelecter = () => {
     const { rankingData, error } = useContext(RankingContext);
@@ -57,6 +58,7 @@ export const RankingSelecter = () => {
                             <SeasonSelecter />
                         </div>
                         {selectedTab === "ranking" && <StandingsSelecter />}
+                        {selectedTab === "topScorer" && <PlayersScore />}
                     </div>
                 ))
             ) : (

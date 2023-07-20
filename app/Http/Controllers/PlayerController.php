@@ -39,4 +39,26 @@ class PlayerController extends Controller
 
       return response()->json($playerData);
   }
+
+  /** 得点順位を取得 */
+  public function scoringOrder(Request $request)
+  {
+      $leagueId = $request->input('leagueId');
+      $season = $request->input('season');
+
+      $client = new Client();
+
+      $response = $client->request(
+          'GET',
+          "https://" . env('API_HOST') . "/v3/players/topscorers?league={$leagueId}&season={$season}",
+          ['headers' => [
+              'X-RapidAPI-Host' => env('API_HOST'),
+              'X-RapidAPI-Key' => env('API_KEY'),
+          ]]
+      );
+
+      $scoringOrder = json_decode($response->getBody(), true);
+
+      return response()->json($scoringOrder);
+  }
 }

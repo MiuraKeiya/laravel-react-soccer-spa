@@ -28,4 +28,9 @@ class League extends Model
     {
       return $this->hasMany(FixturesResult::class);
     }
+
+    public function rankingByLeagues()
+    {
+      return $this->hasMany(RankingByLeague::class);
+    }
 }
