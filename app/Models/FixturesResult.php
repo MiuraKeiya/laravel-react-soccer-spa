@@ -29,4 +29,9 @@ class FixturesResult extends Model
     {
       return $this->belongsTo(League::class);
     }
+
+    public function seasons()
+    {
+      return $this->belongsTo(Season::class);
+    }
 }

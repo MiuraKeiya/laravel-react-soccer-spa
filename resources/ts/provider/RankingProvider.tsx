@@ -4,8 +4,11 @@ import axios from "axios";
 export const RankingContext = createContext([]);
 
 export const RankingProvider = ({ children }) => {
-    // 今シーズン順位表
+    // 順位表
     const [rankingData, setRankingData] = useState([]);
+
+    // 得点ランキング
+    const [scoreData, setScoreData] = useState([]);
 
     // リーグIdを格納
     const [id, setId] = useState(null);
@@ -39,6 +42,19 @@ export const RankingProvider = ({ children }) => {
             console.log(ranking);
 
             setRankingData(ranking);
+
+            const response = await axios.get("/api/players/topscorers", {
+                params: {
+                    leagueId: id,
+                    season: season,
+                },
+            });
+
+            const score = response.data;
+
+            console.log(score);
+
+            setScoreData(score);
         } catch (error) {
             console.log(error);
         }
@@ -46,7 +62,7 @@ export const RankingProvider = ({ children }) => {
 
     return (
         <RankingContext.Provider
-            value={{ rankingData, setId, setSeason, error }}
+            value={{ rankingData, scoreData, setId, setSeason, error }}
         >
             {children}
         </RankingContext.Provider>
