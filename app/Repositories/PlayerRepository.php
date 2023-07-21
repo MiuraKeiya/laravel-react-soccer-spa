@@ -14,9 +14,9 @@ class PlayerRepository
     public function rankings($seasonId, $leagueId)
     {
         // $seasonIdと$leagueIdの両方に一致するレコードのjson_team_rankingカラムを取得する
-        $jsonPlayerRankings = RankingByLeague::where('season_id', $seasonId)
+        $jsonPlayerRankings = RankingByLeague::select('json_scorer_ranking', 'json_assist_ranking', 'json_yellow_ranking', 'json_red_ranking')
+        ->where('season_id', $seasonId)
         ->where('league_id', $leagueId)
-        ->pluck('json_scorer_ranking', 'json_assist_ranking', 'json_yellow_ranking', 'json_red_ranking')
         ->first();
 
         return $jsonPlayerRankings;

@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { TopScore } from "./TopScore";
+import { TopScorer } from "./TopScorer";
+import { AssistRankings } from "./AssistRankings";
+import { YellowRankings } from "./YellowRankings";
+import { RedRankings } from "./RedRankings";
 
 export const PlayersScore = () => {
     const [selectedTab, setSelectedTab] = useState("score");
 
     const handleScoreClick = () => {
         setSelectedTab("score");
+    };
+
+    const handleAssistClick = () => {
+        setSelectedTab("assist");
     };
 
     const handleYellowClick = () => {
@@ -32,6 +39,16 @@ export const PlayersScore = () => {
                     </button>
                     <button
                         className={`${
+                            selectedTab === "assist"
+                                ? "text-[#B0EE1B] cursor-default underline"
+                                : "text-[#C8CDCD] hover:text-[#FFFFFF] cursor-pointer"
+                        }`}
+                        onClick={handleAssistClick}
+                    >
+                        アシスト
+                    </button>
+                    <button
+                        className={`${
                             selectedTab === "yellow"
                                 ? "text-[#B0EE1B] cursor-default underline"
                                 : "text-[#C8CDCD] hover:text-[#FFFFFF] cursor-pointer"
@@ -52,7 +69,10 @@ export const PlayersScore = () => {
                     </button>
                 </div>
             </div>
-            {selectedTab === "score" && <TopScore />}
+            {selectedTab === "score" && <TopScorer />}
+            {selectedTab === "assist" && <AssistRankings />}
+            {selectedTab === "yellow" && <YellowRankings />}
+            {selectedTab === "red" && <RedRankings />}
         </div>
     );
 };
