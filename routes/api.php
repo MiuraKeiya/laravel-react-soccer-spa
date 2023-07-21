@@ -27,6 +27,8 @@ Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
 Route::get('/teams/ranking', [TeamController::class, 'getTeamRankings']);
 Route::get('/player/{id}', [PlayerController::class, 'getPlayers']);
 Route::get('/players/topscorers', [PlayerController::class, 'scoringOrder']);
+Route::get('/teams/rankings', [TeamController::class, 'rankings']);
+
 Route::middleware('auth:sanctum')->group(function(){
     
 });
