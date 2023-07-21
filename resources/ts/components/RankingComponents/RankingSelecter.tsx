@@ -19,8 +19,8 @@ export const RankingSelecter = () => {
 
     return (
         <div className="mx-2">
-            {rankingData.response.length > 0 ? (
-                rankingData.response.map((ranking, index) => (
+            {rankingData.all && rankingData.all.response.length > 0 ? (
+                rankingData.all.response.map((ranking, index) => (
                     <div key={index}>
                         <div className="flex items-center space-x-2 border-b border-[#111931] py-2">
                             <img

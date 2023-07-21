@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { RankingContext } from "../../provider/RankingProvider";
+import { LeagueLules } from "./LeagueLules";
 
 export const RankingDetails = () => {
     const { rankingData } = useContext(RankingContext);
@@ -78,28 +79,11 @@ export const RankingDetails = () => {
         }
     };
 
-    const leagueLules = (leagueId) => {
-        switch (leagueId) {
-            case 39:
-                return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
-            case 61:
-                return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
-            case 78:
-                return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
-            case 135:
-                return "シーズン終了時に同点のチームがいる場合は、当該チームの直接対決の結果で順位を決定する。";
-            case 140:
-                return "シーズン終了時に同点のチームがいる場合は、当該チームの直接対決の結果で順位を決定する。";
-            default:
-                return "";
-        }
-    };
-
     return (
         <div className="mt-2 mb-2">
             {Array.from(
                 new Set(
-                    rankingData.response[0].league.standings[0].map(
+                    rankingData.all.response[0].league.standings[0].map(
                         (ranking) => ranking.description
                     )
                 )
@@ -125,24 +109,7 @@ export const RankingDetails = () => {
                         </div>
                     )
             )}
-            <div className="mt-3">
-                {rankingData.response.map((ranking, index) => (
-                    <div key={index}>
-                        <div className="flex items-center space-x-1">
-                            <img
-                                src={ranking.league.logo}
-                                className="w-6 h-6"
-                            />
-                            <p className="text-[12px] text-[#C8CDCD] uppercase font-bold">
-                                {ranking.league.name}ルール:
-                            </p>
-                        </div>
-                        <p className="text-[12px] text-[#EEEEEE]">
-                            {leagueLules(ranking.league.id)}
-                        </p>
-                    </div>
-                ))}
-            </div>
+            <LeagueLules />
         </div>
     );
 };
