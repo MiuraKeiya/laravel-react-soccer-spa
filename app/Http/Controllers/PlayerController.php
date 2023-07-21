@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PlayerService;
+use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
 class PlayerController extends Controller
 {
+    private $playerService;
+
+    public function __construct(PlayerService $playerService)
+    {
+        $this->playerService = $playerService;
+    }
+
     /** 選手情報を取得 */
     public function getPlayers(Request $request)
   {
@@ -61,4 +70,23 @@ class PlayerController extends Controller
 
       return response()->json($scoringOrder);
   }
+
+    /**
+     * リーグ、シーズン別の選手各ランキングを取得
+     * 
+     */
+    public function rankings(Request $request)
+    {
+        // leagueIdとseasonを取り出す
+        $leagueId = $request->input('leagueId');
+        $season = $request->input('season');
+
+        try {
+            $response = $this->playerService->rankings($season, $leagueId);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }
