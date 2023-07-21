@@ -65,6 +65,7 @@ export const RankingSelecter = () => {
                 <div className="flex justify-center py-[10rem]">
                     <p className="text-[#8c9191] text-[13px] font-bold">
                         現在データは存在しません。
+                        <SeasonSelecter />
                     </p>
                 </div>
             )}
