@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Standings } from "./Standings";
+import { HomeRanking } from "./HomeRanking";
+import { AwayRanking } from "./AwayRanking";
 
 export const StandingsSelecter = () => {
     const [selectedTab, setSelectedTab] = useState("all");
@@ -52,7 +54,11 @@ export const StandingsSelecter = () => {
                     </button>
                 </div>
             </div>
-            <div>{selectedTab === "all" && <Standings />}</div>
+            <div>
+                {selectedTab === "all" && <Standings />}
+                {selectedTab === "home" && <HomeRanking />}
+                {selectedTab === "away" && <AwayRanking />}
+            </div>
         </div>
     );
 };

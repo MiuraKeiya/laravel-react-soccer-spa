@@ -12,7 +12,7 @@ export const Standings = () => {
 
     return (
         <div className="mt-[1px]">
-            {rankingData.response.map((ranking, index) => (
+            {rankingData.all.response.map((ranking, index) => (
                 <div key={index}>
                     <table className="w-full">
                         <thead className="bg-[#111931] text-[#C8CDCD] text-[12px]">

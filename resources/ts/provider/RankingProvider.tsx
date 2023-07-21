@@ -30,7 +30,7 @@ export const RankingProvider = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get("/api/teams/ranking", {
+            const res = await axios.get("/api/teams/rankings", {
                 params: {
                     leagueId: id,
                     season: season,
@@ -43,7 +43,7 @@ export const RankingProvider = ({ children }) => {
 
             setRankingData(ranking);
 
-            const response = await axios.get("/api/players/topscorers", {
+            const response = await axios.get("/api/players/rankings", {
                 params: {
                     leagueId: id,
                     season: season,
