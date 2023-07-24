@@ -21,14 +21,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/fixtures_results', [LeagueController::class, 'matchSchedule']);
-Route::get('/date', [LeagueController::class, 'date']);
+Route::get('/fixtures_results', [LeagueController::class, 'getMatchSchedule']);
+Route::get('/date', [LeagueController::class, 'getDates']);
 Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
 Route::get('/teams/ranking', [TeamController::class, 'getTeamRankings']);
 Route::get('/player/{id}', [PlayerController::class, 'getPlayers']);
 Route::get('/players/topscorers', [PlayerController::class, 'scoringOrder']);
 Route::get('/teams/rankings', [TeamController::class, 'rankings']);
 Route::get('/players/rankings', [PlayerController::class, 'rankings']);
+Route::get('/matches_results', [LeagueController::class, 'getMatchSchedule']);
 
 Route::middleware('auth:sanctum')->group(function(){
     

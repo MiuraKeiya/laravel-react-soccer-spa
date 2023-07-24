@@ -18,44 +18,36 @@ class LeagueController extends Controller
       $this->leagueService = $leagueService;
     }
 
-    /** 
-     * 今シーズンの試合日程・結果を取得
+    /**
+     * 試合日程・結果を取得
      * 
+     * @param Illuminate\Http\Request $request　日付を含むリクエストオブジェクト
+     * @return Illuminate\Http\JsonResponse
      */
-    public function matchSchedule(Request $request)
+    public function getMatchSchedule(Request $request)
     {
-        $date = $request->input('date');
-
-        // 左から10文字を取得
-        $dateSubstring = substr($date, 0, 10); 
-        
-        $matches = FixturesResult::whereRaw("LEFT(date, 10) = ?", [$dateSubstring])
-            ->orderBy('date', 'asc')
-            ->get();
-
-        if ($matches->isEmpty()) {
-            // データが存在しない場合の処理
-            return response()->json(['message' => 'データは存在しません']);
+        try {
+            $response = $this->leagueService->getMatchSchedule($request);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
         }
 
-         // league_idごとにjson_resultをまとめる
-        $groupedMatches = $matches->groupBy('league_id')->map(function ($group) {
-            return $group->unique('fixture')->pluck('json_result');
-        });
-        
-        return response()->json($groupedMatches);
+        return response()->json($response, 200);
     }
 
     /**
-     * 今シーズンの試合日程の日付を取得
+     * 日付一覧を取得
+     * 
+     * @return Illuminate\Http\JsonResponse
      */
-    public function date()
+    public function getDates()
     {
-        $date = DB::table('fixtures_results')
-        ->select(DB::raw('DISTINCT LEFT(date, 10) AS date'))
-        ->orderBy('date')
-        ->get();
-  
-        return response()->json($date);
+        try {
+            $response = $this->leagueService->getDates();
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
     }
 }
