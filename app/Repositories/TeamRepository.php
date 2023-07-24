@@ -8,10 +8,13 @@ use GuzzleHttp\Client;
 class TeamRepository 
 {
     /**
-     * 特定リーグ、シーズンの順位を取得
+     * 特定リーグ、シーズンの順位一覧を取得
+     * 
+     * @param int $seasonId シーズンID
+     * @param int $leagueId リーグID
      * 
      */
-    public function rankings($seasonId, $leagueId) 
+    public function getRankings($seasonId, $leagueId) 
     {
         // $seasonIdと$leagueIdの両方に一致するレコードのjson_team_rankingカラムを取得する
         $jsonTeamRanking = RankingByLeague::where('season_id', $seasonId)

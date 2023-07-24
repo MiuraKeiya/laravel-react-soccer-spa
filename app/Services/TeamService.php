@@ -16,9 +16,13 @@ class TeamService
     /**
      * 特定リーグ、シーズンの順位を取得
      * $seasonをidに変換する
-     * 
+     * home,awayでデータを変換する
+     *
+     * @param string $season シーズン
+     * @param int $leagueId リーグID
+     * @return array|null 順位のデータを含む配列、もしくはnull（データが存在しない場合）
      */
-    public function rankings($season, $leagueId)
+    public function getRankings($season, $leagueId)
     {
         // 環境変数からSEASONとPREVIOUS_SEASONを取得
         $currentSeason = env('SEASON');
@@ -38,13 +42,7 @@ class TeamService
 
         // $seasonIdがセットされた場合のみ、rankingsメソッドに$seasonIdと$leagueIdを渡す
         if ($seasonId !== null) {
-            $response = $this->teamRepository->rankings($seasonId, $leagueId);
-
-            // $responseが空の場合にエラーを処理する
-            if (empty($response)) {
-                $error = response()->json(['message' => 'データが存在しません'], 400);
-                return $error;
-            }
+            $response = $this->teamRepository->getRankings($seasonId, $leagueId);
 
             // $responseのresponseが存在し、leagueのstandingsが存在するかを確認
             if ($response['response'] && isset($response['response'][0]['league']['standings'][0])) {
@@ -108,10 +106,6 @@ class TeamService
         }
 
             return $sortedStandings;
-
-        } else {
-            $error = response()->json(['message' => 'データが存在しません'], 400);
-            return $error;
         }
     }
 }

@@ -62,6 +62,8 @@ class TeamController extends Controller
     /**
      * 特定リーグ、シーズンの順位を取得
      * 
+     * @param \Illuminate\Http\Request $request leagueIdとseasonを含むリクエストオブジェクト
+     * @return \Illuminate\Http\JsonResponse 順位のデータを含むJSONレスポンス
      */
     public function rankings(Request $request)
     {
@@ -70,7 +72,7 @@ class TeamController extends Controller
         $season = $request->input('season');
 
         try {
-            $response = $this->teamService->rankings($season, $leagueId);
+            $response = $this->teamService->getRankings($season, $leagueId);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
