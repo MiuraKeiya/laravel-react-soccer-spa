@@ -7,6 +7,9 @@ export const MatchDetailsProvider = ({ children }) => {
     // 試合idを格納
     const [matchId, setMatchId] = useState(null);
 
+    //シーズンを格納
+    const [season, setSeason] = useState(null);
+
     // リーグIdを格納
     const [leagueMatchId, setLeagueMatchId] = useState(null);
 
@@ -40,7 +43,13 @@ export const MatchDetailsProvider = ({ children }) => {
 
             setResult(responseData);
 
-            const res2 = await axios.get(`/api/teams/ranking/${leagueMatchId}`);
+            const res2 = await axios.get("/api/teams/rankings", {
+                params: {
+                    leagueId: leagueMatchId,
+                    season: season,
+                },
+            });
+
             const responseData2 = res2.data;
             console.log(responseData2);
             setRanking(responseData2);
@@ -51,7 +60,7 @@ export const MatchDetailsProvider = ({ children }) => {
 
     return (
         <MatchDetailsContext.Provider
-            value={{ result, ranking, setMatchId, setLeagueMatchId, error }}
+            value={{ result, ranking, setMatchId, setSeason, setLeagueMatchId, error }}
         >
             {children}
         </MatchDetailsContext.Provider>

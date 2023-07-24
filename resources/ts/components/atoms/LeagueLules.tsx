@@ -23,7 +23,7 @@ export const LeagueLules = () => {
 
     return (
         <div className="mt-3">
-            {rankingData.all.response.map((ranking, index) => (
+            {rankingData?.all && rankingData.all.response.map((ranking, index) => (
                 <div key={index}>
                     <div className="flex items-center space-x-1">
                         <img src={ranking.league.logo} className="w-6 h-6" />

@@ -29,7 +29,7 @@ export const RouterConfig = () => {
                                     />
                                     <Route path="/home" element={<Home />} />
                                     <Route
-                                        path="/match-details/:fixtureId/:leagueId"
+                                        path="/match-details/:fixtureId/:leagueId/:season"
                                         element={<MatchDetails />}
                                     />
                                     <Route

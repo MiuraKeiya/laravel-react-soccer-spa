@@ -7,15 +7,16 @@ import { useEffect } from "react";
 
 export const Match = () => {
     // パラメータから試合idを取得
-    const { fixtureId, leagueId } = useParams();
+    const { fixtureId, leagueId, season } = useParams();
 
-    const { setMatchId, setLeagueMatchId, error } =
+    const { setMatchId, setLeagueMatchId, setSeason, error } =
         useContext(MatchDetailsContext);
 
     useEffect(() => {
         setMatchId(fixtureId);
         setLeagueMatchId(leagueId);
-    }, [fixtureId, leagueId]);
+        setSeason(season);
+    }, [fixtureId, leagueId, season]);
 
     return (
         <main className="flex-grow bg-[#1d2233]">
