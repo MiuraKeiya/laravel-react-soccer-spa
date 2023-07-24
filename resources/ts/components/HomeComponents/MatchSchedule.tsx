@@ -13,8 +13,8 @@ export const MatchSchedule = () => {
     const { fixtureResult, error } = useContext(FixtureResultContext);
 
     // 試合セクションのクリックイベントハンドラー
-    const handleSectionClick = (fixtureId, leagueId) => {
-        navigate(`/match-details/${fixtureId}/${leagueId}`);
+    const handleSectionClick = (fixtureId, leagueId, season) => {
+        navigate(`/match-details/${fixtureId}/${leagueId}/${season}`);
     };
 
     const handleSetLeagueId = (leagueId, season) => {
@@ -70,7 +70,10 @@ export const MatchSchedule = () => {
                             <a
                                 className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
                                 onClick={() =>
-                                    handleSetLeagueId(results[0].league.id, results[0].league.season)
+                                    handleSetLeagueId(
+                                        results[0].league.id,
+                                        results[0].league.season
+                                    )
                                 }
                             >
                                 順位表
@@ -82,7 +85,8 @@ export const MatchSchedule = () => {
                                 onClick={() =>
                                     handleSectionClick(
                                         fixture.fixture.id,
-                                        results[0].league.id
+                                        results[0].league.id,
+                                        results[0].league.season
                                     )
                                 }
                                 className="flex items-center justify-between border-b border-[#111931] text-[13px] hover:bg-[#3d4e81] cursor-pointer transition duration-500"

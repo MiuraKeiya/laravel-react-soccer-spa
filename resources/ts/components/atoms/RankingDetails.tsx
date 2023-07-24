@@ -81,34 +81,35 @@ export const RankingDetails = () => {
 
     return (
         <div className="mt-2 mb-2">
-            {Array.from(
-                new Set(
-                    rankingData.all.response[0].league.standings[0].map(
-                        (ranking) => ranking.description
+            {rankingData?.all?.response?.[0]?.league?.standings?.[0] &&
+                Array.from(
+                    new Set(
+                        rankingData.all.response[0].league.standings[0].map(
+                            (ranking) => ranking.description
+                        )
                     )
-                )
-            ).map(
-                (description, index) =>
-                    description !== null && (
-                        <div
-                            key={index}
-                            className="text-[#EEEEEE] flex items-center space-x-2 space-y-1"
-                        >
+                ).map(
+                    (description, index) =>
+                        description !== null && (
                             <div
-                                className={`w-[13px] h-[13px] ${
-                                    getDescriptionInJapanese(description)
-                                        .bgColorClass
-                                }`}
-                            ></div>
-                            <p className="text-[12px]">
-                                {
-                                    getDescriptionInJapanese(description)
-                                        .description
-                                }
-                            </p>
-                        </div>
-                    )
-            )}
+                                key={index}
+                                className="text-[#EEEEEE] flex items-center space-x-2 space-y-1"
+                            >
+                                <div
+                                    className={`w-[13px] h-[13px] ${
+                                        getDescriptionInJapanese(description)
+                                            .bgColorClass
+                                    }`}
+                                ></div>
+                                <p className="text-[12px]">
+                                    {
+                                        getDescriptionInJapanese(description)
+                                            .description
+                                    }
+                                </p>
+                            </div>
+                        )
+                )}
             <LeagueLules />
         </div>
     );

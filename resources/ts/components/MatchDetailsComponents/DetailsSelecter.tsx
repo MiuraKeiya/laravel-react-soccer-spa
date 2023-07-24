@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ProgressSelecter } from "./ProgressSelecter";
 import { StatsSelecter } from "./StatsSelecter";
 import { Rating } from "./Rating";
-import { TeamRanking } from "./TeamRanking";
+import { RankingsSelecter } from "./RankingsSelecter";
 
 export const DetailsSelecter = () => {
     const [selectedTab, setSelectedTab] = useState("stats");
@@ -85,7 +85,7 @@ export const DetailsSelecter = () => {
             {selectedTab === "stats" && <StatsSelecter />}
             {selectedTab === "progress" && <ProgressSelecter />}
             {selectedTab === "rating" && <Rating />}
-            {selectedTab === "ranking" && <TeamRanking />}
+            {selectedTab === "ranking" && <RankingsSelecter />}
         </div>
     );
 };
