@@ -14,15 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ranking_by_leagues', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('season_id')->constrained();
             $table->foreignId('league_id')->constrained();
-            $table->json('json_team_ranking')->nullable();
-            $table->json('json_scorer_ranking')->nullable();
-            $table->json('json_assist_ranking')->nullable();
-            $table->json('json_yellow_ranking')->nullable();
-            $table->json('json_red_ranking')->nullable();
+            $table->integer('season');
+            $table->json('json_standings');
+            $table->json('json_scorer');
+            $table->json('json_assist');
+            $table->json('json_yellow_card');
+            $table->json('json_red_card');
             $table->timestamps();
+
+            // 複合PKの設定
+            $table->primary(['league_id', 'season']);
         });
     }
 

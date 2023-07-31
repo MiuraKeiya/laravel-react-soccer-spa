@@ -9,24 +9,83 @@ class Team extends Model
 {
     use HasFactory;
 
+    /**
+     * Mass Assignment(一括代入)を許可するカラムの定義
+     *
+     * @var array
+     */
     protected $fillable = [
-      'id',
-      'team_name',
-      'league_id',
+        'id',
+        'name',
+        'league_id',
+        'season',
+        'json_information',
+        'json_statistics',
+        'json_transfer',
     ];
-    
+
+    /**
+     * キャスト（型変換）の定義
+     * 
+     * @var array
+     */
+    protected $casts = [
+        'json_information' => 'json',
+        'json_statistics' => 'json',
+        'json_transfer' => 'json',
+    ];
+
+    /** 
+     * 複合PKのカラム名を指定
+     * 
+     * @var array
+     */
+    protected $primaryKey = ['id', 'season'];
+
+    /** 
+     * オートインクリメントの無効化
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * 所属しているリーグとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function league()
     {
-      return $this->belongsTo(League::class);
+        return $this->belongsTo(League::class);
     }
 
-    public function favoriteteams()
+    /**
+     * チームに所属する選手とのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function player()
     {
-        return $this->hasMany(FavoriteTeam::class);
+        return $this->hasMany(Player::class);
     }
 
-    public function fixturesResults()
+    /**
+     * チームに所属する試合とのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function game()
     {
-      return $this->hasMany(FixturesResult::class);
+        return $this->hasMany(Game::class);
+    }
+
+    /**
+     * 属しているお気に入りとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function favoriteTeam()
+    {
+        return $this->belongsTo(FavoriteTeam::class);
     }
 }
