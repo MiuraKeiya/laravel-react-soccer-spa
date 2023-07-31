@@ -14,10 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('teams', function (Blueprint $table) {
-          $table->bigInteger('id')->unsigned()->primary();
-          $table->string('team_name')->unique();
-          $table->foreignId('league_id')->constrained();
-          $table->timestamps();
+            $table->bigInteger('id')->unsigned();
+            $table->string('name');
+            $table->foreignId('league_id')->constrained();
+            $table->integer('season');
+            $table->json('json_information');
+            $table->json('json_statistics');
+            $table->json('json_transfer');
+            $table->timestamps();
+
+            // 複合PKの設定
+            $table->primary(['id', 'season']);
         });
     }
 

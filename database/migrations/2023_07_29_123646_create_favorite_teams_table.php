@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('favorite_teams', function (Blueprint $table) {
-          $table->id();
-          $table->foreignId('user_id')->constrained();
-          $table->foreignId('team_id')->constrained();
-          $table->timestamps();
-          $table->unique(['user_id', 'team_id']);
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('team_id')->constrained();
+            $table->timestamps();
+
+            // user_idとteam_idの組み合わせにユニーク制約を追加
+            $table->unique(['user_id', 'team_id']);
         });
     }
 

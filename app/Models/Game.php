@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RankingByLeague extends Model
+class Game extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,12 @@ class RankingByLeague extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
+        'team_id',
         'league_id',
         'season',
-        'json_standings',
-        'json_scorer',
-        'json_assist',
-        'json_yellow_card',
-        'json_red_card',
+        'date',
+        'json_detail',
     ];
 
     /**
@@ -30,11 +29,7 @@ class RankingByLeague extends Model
      * @var array
      */
     protected $casts = [
-        'json_standings' => 'json',
-        'json_scorer' => 'json',
-        'json_assist' => 'json',
-        'json_yellow_card' => 'json',
-        'json_red_card' => 'json',
+        'json_detail' => 'json',
     ];
 
     /** 
@@ -42,7 +37,7 @@ class RankingByLeague extends Model
      * 
      * @var array
      */
-    protected $primaryKey = ['league_id', 'season'];
+    protected $primaryKey = ['id', 'team_id'];
 
     /** 
      * オートインクリメントの無効化
@@ -50,6 +45,16 @@ class RankingByLeague extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * 所属しているチームとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 
     /**
      * 所属しているリーグとのリレーションを定義

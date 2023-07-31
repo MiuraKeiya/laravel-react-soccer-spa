@@ -9,28 +9,50 @@ class League extends Model
 {
     use HasFactory;
 
+    /**
+     * Mass Assignment(一括代入)を許可するカラムの定義
+     *
+     * @var array
+     */
     protected $fillable = [
-      'id',
-      'league_name',
+        'id',
+        'name',
     ];
 
-    public function teams()
+    /** 
+     * オートインクリメントの無効化
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * リーグに所属するチームとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function team()
     {
-      return $this->hasMany(Team::class);
+        return $this->hasMany(Team::class);
     }
 
-    public function favoriteLeagues()
+    /**
+     * リーグに所属する各ランキングとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rankingByleague()
     {
-      return $this->hasMany(FavoriteLeague::class);
+        return $this->hasMany(RankingByLeague::class);
     }
 
-    public function fixturesResults()
+    /**
+     * リーグに所属する試合とのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function game()
     {
-      return $this->hasMany(FixturesResult::class);
-    }
-
-    public function rankingByLeagues()
-    {
-      return $this->hasMany(RankingByLeague::class);
+        return $this->hasMany(Game::class);
     }
 }
