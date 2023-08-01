@@ -37,7 +37,7 @@ class Player extends Model
      * 
      * @var array
      */
-    protected $primaryKey = ['id', 'season'];
+    protected $primaryKey = ['id', 'team_id', 'season'];
 
     /** 
      * オートインクリメントの無効化

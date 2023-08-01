@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             // 複合PKの設定
-            $table->primary(['id', 'season']);
+            $table->primary(['id', 'team_id', 'season']);
         });
     }
 
