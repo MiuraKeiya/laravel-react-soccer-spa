@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/fixtures_results', [LeagueController::class, 'getMatchSchedule']);
-Route::get('/date', [LeagueController::class, 'getDates']);
+Route::get('/game_schedules', [LeagueController::class, 'getGameSchedules']);
+Route::get('/game_dates', [LeagueController::class, 'getGameDates']);
 Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
 Route::get('/teams/ranking', [TeamController::class, 'getTeamRankings']);
 Route::get('/player/{id}', [PlayerController::class, 'getPlayers']);

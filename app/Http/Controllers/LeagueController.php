@@ -19,15 +19,15 @@ class LeagueController extends Controller
     }
 
     /**
-     * 試合日程・結果を取得
+     * 日付別の試合日程・結果を取得
      * 
      * @param Illuminate\Http\Request $request　日付を含むリクエストオブジェクト
      * @return Illuminate\Http\JsonResponse
      */
-    public function getMatchSchedule(Request $request)
+    public function getGameSchedules(Request $request)
     {
         try {
-            $response = $this->leagueService->getMatchSchedule($request);
+            $response = $this->leagueService->getGameSchedules($request);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
@@ -36,14 +36,14 @@ class LeagueController extends Controller
     }
 
     /**
-     * 日付一覧を取得
+     * 試合の日付一覧を取得
      * 
      * @return Illuminate\Http\JsonResponse
      */
-    public function getDates()
+    public function getGameDates()
     {
         try {
-            $response = $this->leagueService->getDates();
+            $response = $this->leagueService->getGameDates();
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
