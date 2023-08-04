@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Consts\SoccerApiConst;
 use App\Repositories\TeamRepository;
 
 class TeamService 
@@ -14,98 +15,48 @@ class TeamService
     }
 
     /**
-     * 特定リーグ、シーズンの順位を取得
-     * $seasonをidに変換する
-     * home,awayでデータを変換する
+     * 特定リーグ、シーズン別の順位一覧を取得
+     * データを変換してhomeおよびawayの順位一覧を取得する
      *
      * @param string $season シーズン
      * @param int $leagueId リーグID
-     * @return array|null 順位のデータを含む配列、もしくはnull（データが存在しない場合）
+     * @return array 順位のデータを含む配列
      */
-    public function getRankings($season, $leagueId)
+    public function getStandings($season, $leagueId): array
     {
-        // 環境変数からSEASONとPREVIOUS_SEASONを取得
-        $currentSeason = env('SEASON');
-        $previouseSeason = env('PREVIOUSE_SEASON');
-
-        // $sortedStandingsの初期化
+        // ソートされた順位一覧を格納する変数
         $sortedStandings = null;
 
-        // $seasonを検証して特定の値をIDとしてセットする
-        if ($season === $currentSeason) {
-            $seasonId = 1; 
-        } elseif ($season === $previouseSeason) {
-            $seasonId = 2; 
-        } else {
-            $seasonId = null;
-        }
+        // シーズン別、リーグ別の順位一覧を取得
+        $response = $this->teamRepository->getStandings($season, $leagueId);
 
-        // $seasonIdがセットされた場合のみ、rankingsメソッドに$seasonIdと$leagueIdを渡す
-        if ($seasonId !== null) {
-            $response = $this->teamRepository->getRankings($seasonId, $leagueId);
+        // 取得したデータからstandingsを格納
+        $homeStandings = $response[0]['json_standings']['response'][0]['league']['standings'][0];
 
-            // $responseのresponseが存在し、leagueのstandingsが存在するかを確認
-            if ($response['response'] && isset($response['response'][0]['league']['standings'][0])) {
-                // standingsを取得
-                $standings = $response['response'][0]['league']['standings'][0];
+        // homeでソート
+        $homeStandings =  collect($homeStandings)->sortByDesc(function ($standings) {
+            $points = $standings['home']['win'] * SoccerApiConst::WIN_POINTS + $standings['home']['draw'];
+            $goalDiff = $standings['home']['goals']['for'] - $standings['home']['goals']['against'];
+            return [$points, -$goalDiff];
+        });
 
-                // homeでソート
-                $homeStandings = $standings;
-                usort($homeStandings, function ($a, $b) {
-                    $pointsA = $a['home']['win'] * 3 + $a['home']['draw'];
-                    $pointsB = $b['home']['win'] * 3 + $b['home']['draw'];
+        // 取得したデータからstandingsを格納
+        $awayStandings = $response[0]['json_standings']['response'][0]['league']['standings'][0];
 
-                    if ($pointsA > $pointsB) {
-                        return -1;
-                    } elseif ($pointsA < $pointsB) {
-                        return 1;
-                    } else {
-                        $goalDiffA = $a['home']['goals']['for'] - $a['home']['goals']['against'];
-                        $goalDiffB = $b['home']['goals']['for'] - $b['home']['goals']['against'];
+        // awayでソート
+        $awayStandings = collect($awayStandings)->sortByDesc(function ($standings) {
+            $points = $standings['away']['win'] * SoccerApiConst::WIN_POINTS + $standings['away']['draw'];
+            $goalDiff = $standings['away']['goals']['for'] - $standings['away']['goals']['against'];
+            return [$points, -$goalDiff];
+        });
 
-                        if ($goalDiffA > $goalDiffB) {
-                            return -1;
-                        } elseif ($goalDiffA < $goalDiffB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    }
-                });
+        // ソートされた結果を$sortedStandingsにセット
+        $sortedStandings = [
+            'all' => $response,
+            'home' => $homeStandings->values(),
+            'away' => $awayStandings->values(),
+        ];
 
-              // awayでソート
-              $awayStandings = $standings;
-              usort($awayStandings, function ($a, $b) {
-                  $pointsA = $a['away']['win'] * 3 + $a['away']['draw'];
-                  $pointsB = $b['away']['win'] * 3 + $b['away']['draw'];
-
-                  if ($pointsA > $pointsB) {
-                      return -1;
-                  } elseif ($pointsA < $pointsB) {
-                      return 1;
-                  } else {
-                      $goalDiffA = $a['away']['goals']['for'] - $a['away']['goals']['against'];
-                      $goalDiffB = $b['away']['goals']['for'] - $b['away']['goals']['against'];
-
-                      if ($goalDiffA > $goalDiffB) {
-                          return -1;
-                      } elseif ($goalDiffA < $goalDiffB) {
-                          return 1;
-                      } else {
-                          return 0;
-                      }
-                  }
-              });
-
-              // ソートされた結果を$sortedStandingsにセット
-              $sortedStandings = [
-                  'all' => $response,
-                  'home' => $homeStandings,
-                  'away' => $awayStandings,
-              ];
-        }
-
-            return $sortedStandings;
-        }
+        return $sortedStandings;
     }
 }
