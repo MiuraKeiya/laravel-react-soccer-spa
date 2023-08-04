@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Services\TeamService;
 use Exception;
+use Illuminate\Http\JsonResponse;
 
 class TeamController extends Controller
 {
@@ -17,62 +18,19 @@ class TeamController extends Controller
     }
 
     /**
-     * 試合詳細を取得
-     */
-    public function matchDetails(Request $request)
-    {
-        $client = new Client();
-
-        $response = $client->request(
-          'GET', 
-          "https://" . env('API_HOST') . "/v3/fixtures?id={$request->id}",
-          ['headers' => [
-            'X-RapidAPI-Host' => env('API_HOST'),
-            'X-RapidAPI-Key' => env('API_KEY'),
-          ]]
-        );
-
-        $fixtures = $response->getBody();
-        
-        return $fixtures;
-    }
-
-    /** チーム順位取得 */
-    public function getTeamRankings(Request $request)
-    {
-      $leagueId = $request->input('leagueId');
-      $season = $request->input('season');
-  
-      $client = new Client();
-  
-      $response = $client->request(
-          'GET',
-          "https://" . env('API_HOST') . "/v3/standings?season={$season}&league={$leagueId}",
-          ['headers' => [
-              'X-RapidAPI-Host' => env('API_HOST'),
-              'X-RapidAPI-Key' => env('API_KEY'),
-          ]]
-      );
-  
-      $teamRankings = json_decode($response->getBody(), true);
-  
-      return response()->json($teamRankings);
-    }
-
-    /**
-     * 特定リーグ、シーズンの順位を取得
+     * 特定リーグ、シーズン別の順位一覧を取得
      * 
      * @param \Illuminate\Http\Request $request leagueIdとseasonを含むリクエストオブジェクト
      * @return \Illuminate\Http\JsonResponse 順位のデータを含むJSONレスポンス
      */
-    public function rankings(Request $request)
+    public function getStandings(Request $request): JsonResponse
     {
         // leagueIdとseasonを取り出す
         $leagueId = $request->input('leagueId');
         $season = $request->input('season');
 
         try {
-            $response = $this->teamService->getRankings($season, $leagueId);
+            $response = $this->teamService->getStandings($season, $leagueId);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
