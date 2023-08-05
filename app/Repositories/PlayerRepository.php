@@ -4,21 +4,28 @@ namespace App\Repositories;
 
 use App\Models\RankingByLeague;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Collection;
 
 class PlayerRepository
 {
     /**
-     * リーグ、シーズン別の選手各ランキングを取得
+     * リーグ別、シーズン別の選手の各ランキングを取得
+     * 得点、アシスト、イエローカード、レッドカードのランキングを取得
      * 
+     * @param string $season シーズン
+     * @param int $leagueId リーグID
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function rankings($seasonId, $leagueId)
+    public function getPlayerRankings($season, $leagueId): Collection
     {
-        // $seasonIdと$leagueIdの両方に一致するレコードのjson_team_rankingカラムを取得する
-        $jsonPlayerRankings = RankingByLeague::select('json_scorer_ranking', 'json_assist_ranking', 'json_yellow_ranking', 'json_red_ranking')
-        ->where('season_id', $seasonId)
-        ->where('league_id', $leagueId)
-        ->first();
+        // $seasonと$leagueIdの両方に一致するレコードの各カラムを取得する
+        $playerRankings = RankingByLeague::select('json_scorer', 'json_assist', 'json_yellow_card', 'json_red_card')
+        ->where([
+            'season' => $season,
+            'league_id' => $leagueId,
+        ])
+        ->get();
 
-        return $jsonPlayerRankings;
+        return $playerRankings;
     }
 }

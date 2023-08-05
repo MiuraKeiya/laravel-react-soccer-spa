@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\PlayerRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class PlayerService
 {
@@ -16,36 +17,15 @@ class PlayerService
     /**
      * リーグ、シーズン別の選手各ランキングを取得
      * 
+     * @param string $season シーズン
+     * @param int $leagueId リーグID
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function rankings($season, $leagueId)
+    public function getPlayerRankings($season, $leagueId): Collection
     {
-        // 環境変数からSEASONとPREVIOUS_SEASONを取得
-        $currentSeason = env('SEASON');
-        $previouseSeason = env('PREVIOUSE_SEASON');
+        // 各ランキングデータを取得する
+        $response = $this->playerRepository->getPlayerRankings($season, $leagueId);
 
-        // $seasonを検証して特定の値をIDとしてセットする
-        if ($season === $currentSeason) {
-            $seasonId = 1; 
-        } elseif ($season === $previouseSeason) {
-            $seasonId = 2; 
-        } else {
-            $seasonId = null;
-        }
-
-        // $seasonIdがセットされた場合のみ、rankingsメソッドに$seasonIdと$leagueIdを渡す
-        if ($seasonId !== null) {
-            $response = $this->playerRepository->rankings($seasonId, $leagueId);
-
-            // $responseが空の場合にエラーを処理する
-            if (empty($response)) {
-                $error = response()->json(['message' => 'データが存在しません'], 400);
-                return $error;
-            }
-
-            return $response;
-        } else {
-            $error = response()->json(['message' => 'データが存在しません'], 400);
-            return $error;
-        }
+        return $response;
     }
 }
