@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
@@ -21,8 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/game_schedules', [LeagueController::class, 'getGameSchedules']);
-Route::get('/game_dates', [LeagueController::class, 'getGameDates']);
+Route::get('/game_schedules', [GameController::class, 'getGameSchedules']);
+Route::get('/game_dates', [GameController::class, 'getGameDates']);
 Route::get('/standings', [TeamController::class, 'getStandings']);
 Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
 
