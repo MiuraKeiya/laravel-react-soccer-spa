@@ -6,6 +6,7 @@ use App\Services\PlayerService;
 use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Http\JsonResponse;
 
 class PlayerController extends Controller
 {
@@ -16,6 +17,27 @@ class PlayerController extends Controller
         $this->playerService = $playerService;
     }
 
+    /**
+     * リーグ別、シーズン別の選手の各ランキングを取得
+     * 
+     * @param \Illuminate\Http\Request $request leagueIdとseasonを含むリクエストオブジェクト
+     * @return \Illuminate\Http\JsonResponse 選手の各ランキングを含むJSONレスポンス
+     */
+    public function getPlayerRankings(Request $request): JsonResponse
+    {
+        // leagueIdとseasonを取り出す
+        $leagueId = $request->input('leagueId');
+        $season = $request->input('season');
+
+        try {
+            $response = $this->playerService->getPlayerRankings($season, $leagueId);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
+    
     /** 選手情報を取得 */
     public function getPlayers(Request $request)
   {
@@ -48,45 +70,4 @@ class PlayerController extends Controller
 
       return response()->json($playerData);
   }
-
-  /** 得点順位を取得 */
-  public function scoringOrder(Request $request)
-  {
-      $leagueId = $request->input('leagueId');
-      $season = $request->input('season');
-
-      $client = new Client();
-
-      $response = $client->request(
-          'GET',
-          "https://" . env('API_HOST') . "/v3/players/topscorers?league={$leagueId}&season={$season}",
-          ['headers' => [
-              'X-RapidAPI-Host' => env('API_HOST'),
-              'X-RapidAPI-Key' => env('API_KEY'),
-          ]]
-      );
-
-      $scoringOrder = json_decode($response->getBody(), true);
-
-      return response()->json($scoringOrder);
-  }
-
-    /**
-     * リーグ、シーズン別の選手各ランキングを取得
-     * 
-     */
-    public function rankings(Request $request)
-    {
-        // leagueIdとseasonを取り出す
-        $leagueId = $request->input('leagueId');
-        $season = $request->input('season');
-
-        try {
-            $response = $this->playerService->rankings($season, $leagueId);
-        } catch (Exception $error) {
-            return response()->json(['message' => '取得に失敗しました'], 400);
-        }
-
-        return response()->json($response, 200);
-    }
 }
