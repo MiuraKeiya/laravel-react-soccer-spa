@@ -13,7 +13,7 @@ class SoccerApi
      * @param array $params リクエストパラメーターの連想配列
      * @return array APIからのレスポンスを連想配列として返す
      */
-    public static function call_api($endpoint, $params = [])
+    public static function call_api($endpoint, $params = []): array
     {
         $client = new Client();
 
