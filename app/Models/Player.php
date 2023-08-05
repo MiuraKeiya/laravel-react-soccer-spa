@@ -15,7 +15,7 @@ class Player extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
+        'api_player_id',
         'name',
         'team_id',
         'league_id',
@@ -32,20 +32,6 @@ class Player extends Model
         'json_statistics' => 'json',
     ];
 
-    /** 
-     * 複合PKのカラム名を指定
-     * 
-     * @var array
-     */
-    protected $primaryKey = ['id', 'team_id', 'season'];
-
-    /** 
-     * オートインクリメントの無効化
-     * 
-     * @var bool
-     */
-    public $incrementing = false;
-
     /**
      * 所属しているチームとのリレーションを定義
      *
@@ -54,5 +40,15 @@ class Player extends Model
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    /**
+     * 所属しているリーグとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function league()
+    {
+        return $this->belongsTo(League::class);
     }
 }

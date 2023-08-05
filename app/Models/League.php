@@ -55,4 +55,14 @@ class League extends Model
     {
         return $this->hasMany(Game::class);
     }
+
+    /**
+     * リーグに所属する選手とのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function player()
+    {
+        return $this->hasMany(Player::class);
+    }
 }
