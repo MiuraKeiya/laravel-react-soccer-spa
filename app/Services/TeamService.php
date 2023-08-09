@@ -70,4 +70,15 @@ class TeamService
     {
         return $this->teamRepository->addFavoriteTeam($teamId);
     }
+
+    /**
+     * お気に入りのチームを削除する
+     * 
+     * @param int $teamId チームのID
+     * @return void
+     */
+    public function deleteFavoriteTeam($teamId)
+    {
+        return $this->teamRepository->deleteFavoriteTeam($teamId);
+    }
 }

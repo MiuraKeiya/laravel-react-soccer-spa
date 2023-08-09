@@ -36,4 +36,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
     // お気に入りチームを保存
     Route::post('/favorites/team', [TeamController::class, 'addFavoriteTeam']);
+    // お気に入りチームを削除
+    Route::delete('/favorites/team/delete', [TeamController::class, 'deleteFavoriteTeam']);
 });

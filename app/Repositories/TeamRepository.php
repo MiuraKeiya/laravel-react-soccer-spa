@@ -45,4 +45,22 @@ class TeamRepository
             'team_id' => $teamId,
         ]);
     }
+
+    /**
+     * お気に入りチームを削除する
+     * 
+     * @param int $teamId チームのID
+     * @return void
+     */
+    public function deleteFavoriteTeam($teamId)
+    {
+        // 現在認証しているユーザーのIDを取得
+        $id = Auth::id(); 
+
+        // ユーザーに紐づく指定されたチームのお気に入り情報を削除
+        FavoriteTeam::where([
+            'user_id' => $id,
+            'team_id' => $teamId,
+        ])->delete();
+    }
 }

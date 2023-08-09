@@ -54,4 +54,21 @@ class TeamController extends Controller
 
         return response()->json(['message' => 'DBに保存しました'], 201);
     }
+
+    /**
+     * お気に入りのチームを削除する
+     * 
+     * @param \Illuminate\Http\Request $request teamIdを含む
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function deleteFavoriteTeam(Request $request): JsonResponse
+    {
+        try {
+            $this->teamService->deleteFavoriteTeam($request->teamId);
+        } catch (Exception $error) {
+            return response()->json(['message' => '削除に失敗しました'], 400);
+        }
+
+        return response()->json(['message' => '削除しました'], 201);
+    }
 }
