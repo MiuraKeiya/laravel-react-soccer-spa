@@ -59,4 +59,15 @@ class TeamService
 
         return $sortedStandings;
     }
+
+    /**
+     * お気に入りチームを保存
+     * 
+     * @param int $teamId チームのID
+     * @return void
+     */
+    public function addFavoriteTeam($teamId)
+    {
+        return $this->teamRepository->addFavoriteTeam($teamId);
+    }
 }

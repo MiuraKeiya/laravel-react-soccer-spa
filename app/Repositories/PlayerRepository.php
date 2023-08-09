@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\RankingByLeague;
-use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Collection;
 
 class PlayerRepository
