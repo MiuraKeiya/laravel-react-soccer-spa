@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\RankingByLeague;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
+use App\Models\FavoriteTeam;
 
 class TeamRepository 
 {
@@ -27,7 +29,20 @@ class TeamRepository
     }
 
     /**
+     * お気に入りチームを保存する
      * 
-     * 
+     * @param int $teamId チームのID
+     * @return void
      */
+    public function addFavoriteTeam($teamId)
+    {
+        // 現在認証しているユーザーのIDを取得
+        $id = Auth::id(); 
+
+        // DBに保存
+        FavoriteTeam::create([
+            'user_id' => $id,
+            'team_id' => $teamId,
+        ]);
+    }
 }

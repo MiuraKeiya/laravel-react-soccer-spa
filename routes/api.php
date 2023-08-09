@@ -34,4 +34,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/game_dates', [GameController::class, 'getGameDates']);
     Route::get('/standings', [TeamController::class, 'getStandings']);
     Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
+    // お気に入りチームを保存
+    Route::post('/favorites/team', [TeamController::class, 'addFavoriteTeam']);
 });

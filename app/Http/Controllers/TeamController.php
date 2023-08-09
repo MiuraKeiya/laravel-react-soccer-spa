@@ -37,4 +37,21 @@ class TeamController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * お気に入りチームを保存する
+     * 
+     * @param \Illuminate\Http\Request $request teamIdを含む
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function addFavoriteTeam(Request $request): JsonResponse
+    {
+        try {
+            $this->teamService->addFavoriteTeam($request->teamId);
+        } catch (Exception $error) {
+            return response()->json(['message' => '保存に失敗しました'], 400);
+        }
+
+        return response()->json(['message' => 'DBに保存しました'], 201);
+    }
 }
