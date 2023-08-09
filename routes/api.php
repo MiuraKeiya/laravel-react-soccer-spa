@@ -22,10 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/game_schedules', [GameController::class, 'getGameSchedules']);
-Route::get('/game_dates', [GameController::class, 'getGameDates']);
-Route::get('/standings', [TeamController::class, 'getStandings']);
-Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
+
 
 Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
 Route::get('/player/{id}', [PlayerController::class, 'getPlayers']);
@@ -33,5 +30,8 @@ Route::get('/teams/rankings', [TeamController::class, 'rankings']);
 Route::get('/matches_results', [LeagueController::class, 'getMatchSchedule']);
 
 Route::middleware('auth:sanctum')->group(function(){
-    
+    Route::get('/game_schedules', [GameController::class, 'getGameSchedules']);
+    Route::get('/game_dates', [GameController::class, 'getGameDates']);
+    Route::get('/standings', [TeamController::class, 'getStandings']);
+    Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
 });
