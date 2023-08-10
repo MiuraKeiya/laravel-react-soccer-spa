@@ -37,4 +37,18 @@ class GameRepository
 
         return $gameDates;
     }
+
+    /**
+     * 特定の試合IDの試合詳細を取得
+     * 
+     * @param int $gameId 試合ID
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getGameDetail($gameId): Collection
+    {
+        // gamesテーブルから試合IDに対応する試合詳細データ（json_detailカラム）を取得
+        $gameDetail = Game::where('id', $gameId)->select('json_detail')->get();
+    
+        return $gameDetail;
+    }
 }
