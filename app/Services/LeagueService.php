@@ -34,4 +34,14 @@ class LeagueService
     {
         return $this->leagueRepository->deleteFavoriteLeague($leagueId);
     }
+
+    /**
+     * お気に入り保存しているリーグを取得する
+     * 
+     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りリーグのID
+     */
+    public function getFavoriteLeague()
+    {
+        return $this->leagueRepository->getFavoriteLeague();
+    }
 }
