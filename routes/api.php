@@ -30,9 +30,16 @@ Route::get('/teams/rankings', [TeamController::class, 'rankings']);
 Route::get('/matches_results', [LeagueController::class, 'getMatchSchedule']);
 
 Route::middleware('auth:sanctum')->group(function(){
+    // 試合日程・結果一覧を取得
     Route::get('/game_schedules', [GameController::class, 'getGameSchedules']);
+
+    // 試合の日付を取得
     Route::get('/game_dates', [GameController::class, 'getGameDates']);
+
+    // 順位一覧を取得
     Route::get('/standings', [TeamController::class, 'getStandings']);
+
+    // 選手の各ランキング一覧を取得
     Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
     
     // お気に入りチームを保存
@@ -49,4 +56,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // お気に入り保存されているチームを取得
     Route::get('/favorites/teams', [TeamController::class, 'getFavoriteTeam']);
+
+    // お気に入り保存されているリーグを取得する
+    Route::get('/favorites/leagues', [LeagueController::class, 'getFavoriteLeague']);
 });

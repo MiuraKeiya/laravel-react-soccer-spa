@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\FavoriteLeague;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class LeagueRepository  
@@ -41,5 +42,19 @@ class LeagueRepository
             'user_id' => $id,
             'league_id' => $leagueId,
         ])->delete();
+    }
+
+    /**
+     * お気に入り保存しているリーグを取得する
+     * 
+     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りリーグのID
+     */
+    public function getFavoriteLeague()
+    {
+        // 現在認証しているユーザーのIDを取得
+        $id = Auth::id(); 
+
+        // ユーザーが保存しているリーグのIDを取得する
+        return FavoriteLeague::where('user_id', $id)->pluck('league_id');
     }
 }

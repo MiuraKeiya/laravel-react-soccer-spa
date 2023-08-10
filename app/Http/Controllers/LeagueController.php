@@ -49,4 +49,20 @@ class LeagueController extends Controller
 
         return response()->json(['message' => '削除しました'], 200);
     }
+
+    /**
+     * お気に入りのリーグを取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function getFavoriteLeague(): JsonResponse
+    {
+        try {
+            $response = $this->leagueService->getFavoriteLeague();
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 201);
+    }
 }
