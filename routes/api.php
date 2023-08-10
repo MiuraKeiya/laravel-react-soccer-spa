@@ -46,4 +46,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // お気に入りリーグを削除
     Route::delete('/favorites/league/delete', [LeagueController::class, 'deleteFavoriteLeague']);
+
+    // お気に入り保存されているチームを取得
+    Route::get('/favorites/teams', [TeamController::class, 'getFavoriteTeam']);
 });

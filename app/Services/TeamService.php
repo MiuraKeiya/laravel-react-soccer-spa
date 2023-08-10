@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Consts\SoccerApiConst;
 use App\Repositories\TeamRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class TeamService 
 {
@@ -80,5 +81,21 @@ class TeamService
     public function deleteFavoriteTeam($teamId)
     {
         return $this->teamRepository->deleteFavoriteTeam($teamId);
+    }
+
+    /**
+     * お気に入り保存されているチームを取得する
+     * 重複を削除して新しい配列を作成する
+     * 
+     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りチームのチーム情報
+     */
+    public function getFavoriteTeam()
+    {
+        $response =  $this->teamRepository->getFavoriteTeam();
+        
+        // 重複を削除して新しい配列を作成
+        $uniqueTeams = collect($response)->unique('team.id')->values();
+
+        return $uniqueTeams;
     }
 }
