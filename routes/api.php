@@ -34,8 +34,16 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/game_dates', [GameController::class, 'getGameDates']);
     Route::get('/standings', [TeamController::class, 'getStandings']);
     Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
+    
     // お気に入りチームを保存
     Route::post('/favorites/team', [TeamController::class, 'addFavoriteTeam']);
+
     // お気に入りチームを削除
     Route::delete('/favorites/team/delete', [TeamController::class, 'deleteFavoriteTeam']);
+
+    // お気に入りリーグを保存
+    Route::post('/favorites/league', [LeagueController::class, 'addFavoriteLeague']);
+
+    // お気に入りリーグを削除
+    Route::delete('/favorites/league/delete', [LeagueController::class, 'deleteFavoriteLeague']);
 });

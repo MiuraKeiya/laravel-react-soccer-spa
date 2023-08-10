@@ -69,6 +69,6 @@ class TeamController extends Controller
             return response()->json(['message' => '削除に失敗しました'], 400);
         }
 
-        return response()->json(['message' => '削除しました'], 201);
+        return response()->json(['message' => '削除しました'], 200);
     }
 }
