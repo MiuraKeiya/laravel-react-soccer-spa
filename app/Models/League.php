@@ -65,4 +65,14 @@ class League extends Model
     {
         return $this->hasMany(Player::class);
     }
+
+    /**
+     * 属しているお気に入りとのリレーションを定義
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function favoriteLeague()
+    {
+        return $this->belongsTo(FavoriteLeague::class);
+    }
 }
