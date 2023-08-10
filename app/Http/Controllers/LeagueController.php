@@ -63,6 +63,6 @@ class LeagueController extends Controller
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
 
-        return response()->json($response, 201);
+        return response()->json($response, 200);
     }
 }

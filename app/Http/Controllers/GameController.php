@@ -48,4 +48,21 @@ class GameController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * 特定の試合IDの試合詳細を取得
+     * 
+     * @param Illuminate\Http\Request $request　試合IDを含む
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getGameDetail(Request $request): JsonResponse
+    {
+        try {
+            $response = $this->gameService->getGameDetail($request);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

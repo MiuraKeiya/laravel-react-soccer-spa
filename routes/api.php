@@ -59,4 +59,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // お気に入り保存されているリーグを取得する
     Route::get('/favorites/leagues', [LeagueController::class, 'getFavoriteLeague']);
+
+    // 特定の試合の詳細を取得
+    Route::get('/game/detail', [GameController::class, 'getGameDetail']);
 });
