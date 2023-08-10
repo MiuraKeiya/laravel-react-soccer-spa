@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use App\Services\TeamService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -70,5 +69,21 @@ class TeamController extends Controller
         }
 
         return response()->json(['message' => '削除しました'], 200);
+    }
+
+    /**
+     * お気に入り保存されているチームを取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function getFavoriteTeam(): JsonResponse
+    {
+        try {
+            $response = $this->teamService->getFavoriteTeam();
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
     }
 }

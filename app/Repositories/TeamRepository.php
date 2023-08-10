@@ -6,6 +6,7 @@ use App\Models\RankingByLeague;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FavoriteTeam;
+use App\Models\Team;
 
 class TeamRepository 
 {
@@ -62,5 +63,24 @@ class TeamRepository
             'user_id' => $id,
             'team_id' => $teamId,
         ])->delete();
+    }
+
+    /**
+     * お気に入り保存されているチームを取得する
+     * 
+     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りチームのチーム情報
+     */
+    public function getFavoriteTeam()
+    {
+        // 現在認証しているユーザーのIDを取得
+        $id = Auth::id(); 
+
+        // ユーザーが保存しているチームのteam_idを取得する
+        $favoriteTeamId = FavoriteTeam::where('user_id', $id)->pluck('team_id');
+
+        // チームに紐づけられているチーム情報を取得する
+        $teamInformation = Team::whereIn('id', $favoriteTeamId)->pluck('json_information');
+
+        return $teamInformation;
     }
 }
