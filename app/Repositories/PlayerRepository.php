@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Player;
 use App\Models\RankingByLeague;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -26,5 +27,42 @@ class PlayerRepository
         ->get();
 
         return $playerRankings;
+    }
+
+    /**
+     * 特定のチームに在籍している選手一覧を取得
+     * @param int $teamId チームID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTeamRoster($teamId, $season):Collection
+    {
+        $teamRoster = Player::select('json_statistics')
+        ->where([
+            'team_id' => $teamId,
+            'season' => $season,
+        ])
+        ->get();
+
+        return $teamRoster;
+    }
+
+    /**
+     * 特定の選手の統計を取得
+     * 
+     * @param int $playerId 選手ID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPlayerStatistics($playerId, $season): Collection
+    {
+        $statistics = Player::select('json_statistics')
+        ->where([
+          'api_player_id' => $playerId,
+          'season' => $season,
+        ])
+        ->get();
+
+        return $statistics;
     }
 }

@@ -38,36 +38,39 @@ class PlayerController extends Controller
         return response()->json($response, 200);
     }
     
-    /** 選手情報を取得 */
-    public function getPlayers(Request $request)
-  {
-      $client = new Client();
-      $playerData = [];
+    /**
+     * 特定のチームに在籍している選手一覧を取得
+     * 
+     * @param int $teamId チームID
+     * @param int $season シーズン
+     * @return \Illuminate\Http\JsonResponse チームに所属する選手一覧を含むJSONレスポンス
+     */
+    public function getTeamRoster($teamId, $season): JsonResponse
+    {
+        try {
+            $response = $this->playerService->getTeamRoster($teamId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
 
-      // 2023年の選手データを取得
-      $response2023 = $client->request(
-          'GET',
-          "https://" . env('API_HOST') . "/v3/players?id={$request->id}&season=2023",
-          ['headers' => [
-              'X-RapidAPI-Host' => env('API_HOST'),
-              'X-RapidAPI-Key' => env('API_KEY'),
-          ]]
-      );
-      $player2023 = json_decode($response2023->getBody(), true);
-      $playerData['2023'] = $player2023;
+        return response()->json($response, 200);
+    }
 
-      // 2022年の選手データを取得
-      $response2022 = $client->request(
-          'GET',
-          "https://" . env('API_HOST') . "/v3/players?id={$request->id}&season=2022",
-          ['headers' => [
-              'X-RapidAPI-Host' => env('API_HOST'),
-              'X-RapidAPI-Key' => env('API_KEY'),
-          ]]
-      );
-      $player2022 = json_decode($response2022->getBody(), true);
-      $playerData['2022'] = $player2022;
+    /**
+     * 特定の選手の統計を取得
+     * 
+     * @param int $playerId 選手Id
+     * @param int $season シーズン
+     * @return \Illuminate\Http\JsonResponse 選手の統計情報を含むJSONレスポンス
+     */
+    public function getPlayerStatistics($playerId, $season): JsonResponse
+    {
+        try {
+            $response = $this->playerService->getPlayerStatistics($playerId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
 
-      return response()->json($playerData);
-  }
+        return response()->json($response, 200);
+    }
 }
