@@ -68,4 +68,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // ページネーションで特定チームの試合を取得
     Route::get('/games/team/{teamId}/{season}', [GameController::class, 'getGamesPagenate']);
+
+    // 特定のチームの選手一覧を取得
+    Route::get('/players/team/{teamId}/{season}', [PlayerController::class, 'getTeamRoster']);
+
+    // 特定の選手の統計情報を取得
+    Route::get('/players/{playerId}/{season}', [PlayerController::class, 'getPlayerStatistics']);
 });

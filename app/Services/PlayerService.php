@@ -28,4 +28,28 @@ class PlayerService
 
         return $response;
     }
+
+    /**
+     * 特定のチームに在籍している選手一覧を取得
+     * 
+     * @param int $teamId チームID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTeamRoster($teamId, $season): Collection
+    {
+        return $this->playerRepository->getTeamRoster($teamId, $season);
+    }
+
+    /**
+     * 特定の選手の統計を取得
+     * 
+     * @param int $playerId 選手ID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPlayerStatistics($playerId, $season): Collection
+    {
+      return $this->playerRepository->getPlayerStatistics($playerId, $season);
+    }
 }
