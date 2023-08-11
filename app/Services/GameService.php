@@ -64,4 +64,17 @@ class GameService
 
         return $uniqueGameDetail;
     }
+
+    /**
+     * ページネーションで特定チームの試合を取得する
+     * 最新の5試合ごとに取得する
+     * 
+     * @param int $teamId チームID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getGamesPagenate($teamId, $season): Collection
+    {
+        return $this->gameRepository->getGamesPagenate($teamId, $season);
+    }
 }
