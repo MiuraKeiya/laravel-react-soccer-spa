@@ -65,4 +65,23 @@ class GameController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * ページネーションで特定チームの試合を取得する
+     * 最新の5試合ごとに取得する
+     * 
+     * @param int $teamId チームID
+     * @param int $season シーズン
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getGamesPagenate($teamId, $season): JsonResponse
+    {
+        try {
+            $response = $this->gameService->getGamesPagenate($teamId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

@@ -65,4 +65,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // チーム情報、統計、移籍情報を取得
     Route::get('/team/info', [TeamController::class, 'getTeamInfo']);
+
+    // ページネーションで特定チームの試合を取得
+    Route::get('/games/team/{teamId}/{season}', [GameController::class, 'getGamesPagenate']);
 });
