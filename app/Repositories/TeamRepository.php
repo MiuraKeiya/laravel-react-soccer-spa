@@ -103,5 +103,22 @@ class TeamRepository
 
         return $teamInfo;
     }
+    
+    /**
+     * 特定リーグのチームを全て取得する
+     * 
+     * @param int $leagueId リーグID
+     * @param int $season シーズン
+     */
+    public function getLeagueTeams($leagueId, $season)
+    {
+        $teams = Team::select('json_information')
+        ->where([
+            'league_id' => $leagueId,
+            'season' => $season,
+        ])
+        ->get();
 
+        return $teams;
+    }
 }

@@ -71,10 +71,28 @@ class GameService
      * 
      * @param int $teamId チームID
      * @param int $season シーズン
-     * @return \Illuminate\Database\Eloquent\Collection
+     * 
      */
-    public function getGamesPagenate($teamId, $season): Collection
+    public function getGamesPagenate($teamId, $season)
     {
         return $this->gameRepository->getGamesPagenate($teamId, $season);
+    }
+
+    /**
+     * 特定のリーグの試合日程・結果一覧を取得
+     * 
+     * @param int $leagueId リーグID
+     * @param int $season シーズン
+     * 
+     */
+    public function getLeagueMatches($leagueId, $season)
+    {
+        // 特定リーグの試合データを取得
+        $matches = $this->gameRepository->getLeagueMatches($leagueId, $season);
+
+        // 重複を排除する
+        $uniqueMatches = collect($matches)->unique('json_detail')->values();
+
+        return $uniqueMatches;
     }
 }
