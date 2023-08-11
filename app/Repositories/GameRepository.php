@@ -59,9 +59,9 @@ class GameRepository
      * 
      * @param int $teamId チームID
      * @param int $season シーズン
-     * @return \Illuminate\Database\Eloquent\Collection
+     * 
      */
-    public function getGamesPagenate($teamId, $season): Collection
+    public function getGamesPagenate($teamId, $season)
     {
         // 特定チームの試合を最新順に取得する
         $games = Game::select('json_detail')
@@ -73,5 +73,24 @@ class GameRepository
         ->paginate(SoccerApiConst::GAMES_PER_PAGE);
         
         return $games;
+    }
+
+    /**
+     * 特定のリーグの試合日程・結果一覧を取得
+     * 
+     * @param int $leagueId リーグID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getLeagueMatches($leagueId, $season): Collection
+    {
+        $matches = Game::select('json_detail')
+        ->where([
+            'league_id' => $leagueId,
+            'season' => $season,
+        ])
+        ->get();
+
+        return $matches;
     }
 }

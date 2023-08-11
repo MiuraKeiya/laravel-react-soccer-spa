@@ -112,6 +112,17 @@ class TeamService
         $teamId = $request->input('teamId');
         $season = $request->input('season');
 
-        return $teamInfo = $this->teamRepository->getTeamInfo($teamId, $season);
+        return $this->teamRepository->getTeamInfo($teamId, $season);
+    }
+
+    /**
+     * 特定リーグのチームを全て取得する
+     * 
+     * @param int $leagueId リーグID
+     * @param int $season シーズン
+     */
+    public function getLeagueTeams($leagueId, $season)
+    {
+        return $this->teamRepository->getLeagueTeams($leagueId, $season);
     }
 }

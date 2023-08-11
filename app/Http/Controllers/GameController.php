@@ -84,4 +84,22 @@ class GameController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * 特定のリーグの試合日程・結果一覧を取得
+     * 
+     * @param int $leagueId リーグID
+     * @param int $season シーズン
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getLeagueMatches($leagueId, $season): JsonResponse
+    {
+        try {
+            $response = $this->gameService->getLeagueMatches($leagueId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

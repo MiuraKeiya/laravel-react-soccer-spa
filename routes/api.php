@@ -74,4 +74,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // 特定の選手の統計情報を取得
     Route::get('/players/{playerId}/{season}', [PlayerController::class, 'getPlayerStatistics']);
+
+    // 特定のリーグの試合を取得
+    Route::get('/games/league/{leagueId}/{season}', [GameController::class, 'getLeagueMatches']);
+
+    // 特定リーグの全てのチームを取得
+    Route::get('/teams/league/{leagueId}/{season}', [TeamController::class, 'getLeagueTeams']);
 });
