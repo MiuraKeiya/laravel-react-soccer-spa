@@ -62,4 +62,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // 特定の試合の詳細を取得
     Route::get('/game/detail', [GameController::class, 'getGameDetail']);
+
+    // チーム情報、統計、移籍情報を取得
+    Route::get('/team/info', [TeamController::class, 'getTeamInfo']);
 });

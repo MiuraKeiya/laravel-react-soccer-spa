@@ -83,4 +83,25 @@ class TeamRepository
 
         return $teamInformation;
     }
+
+    /**
+     * チームの情報、統計、移籍情報を取得する
+     * チームIDとシーズンに基づく
+     * 
+     * @param int $teamId チームのID
+     * @param int $season シーズン
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTeamInfo($teamId, $season): Collection
+    {
+        // チーム情報、統計、移籍情報を取得する
+        $teamInfo = Team::select('json_information', 'json_statistics', 'json_transfer')
+        ->where([
+            'id' => $teamId,
+            'season' => $season,
+        ])->get();
+
+        return $teamInfo;
+    }
+
 }

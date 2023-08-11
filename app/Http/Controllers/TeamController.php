@@ -86,4 +86,21 @@ class TeamController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * チームの情報、統計、移籍情報を取得する
+     * 
+     * @param \Illuminate\Http\Request $request teamIdとseasonを含む
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function getTeamInfo(Request $request): JsonResponse
+    {
+        try {
+            $response = $this->teamService->getTeamInfo($request);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

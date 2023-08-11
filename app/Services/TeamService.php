@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Consts\SoccerApiConst;
 use App\Repositories\TeamRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class TeamService 
 {
@@ -97,5 +98,20 @@ class TeamService
         $uniqueTeams = collect($response)->unique('team.id')->values();
 
         return $uniqueTeams;
+    }
+
+    /**
+     * チームの情報、統計、移籍情報を取得する
+     * チームIDとシーズンに基づく
+     * 
+     * @param \Illuminate\Http\Request $request teamIdを含む
+     * 
+     */
+    public function getTeamInfo(Request $request)
+    {
+        $teamId = $request->input('teamId');
+        $season = $request->input('season');
+
+        return $teamInfo = $this->teamRepository->getTeamInfo($teamId, $season);
     }
 }
