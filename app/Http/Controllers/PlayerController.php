@@ -20,17 +20,14 @@ class PlayerController extends Controller
     /**
      * リーグ別、シーズン別の選手の各ランキングを取得
      * 
-     * @param \Illuminate\Http\Request $request leagueIdとseasonを含むリクエストオブジェクト
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
      * @return \Illuminate\Http\JsonResponse 選手の各ランキングを含むJSONレスポンス
      */
-    public function getPlayerRankings(Request $request): JsonResponse
+    public function getPlayerRankings(string $leagueId, $season): JsonResponse
     {
-        // leagueIdとseasonを取り出す
-        $leagueId = $request->input('leagueId');
-        $season = $request->input('season');
-
         try {
-            $response = $this->playerService->getPlayerRankings($season, $leagueId);
+            $response = $this->playerService->getPlayerRankings($leagueId, $season);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }

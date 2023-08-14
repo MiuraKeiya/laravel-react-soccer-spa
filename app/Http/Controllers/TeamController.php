@@ -19,17 +19,14 @@ class TeamController extends Controller
     /**
      * 特定リーグ、シーズン別の順位一覧を取得
      * 
-     * @param \Illuminate\Http\Request $request leagueIdとseasonを含むリクエストオブジェクト
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
      * @return \Illuminate\Http\JsonResponse 順位のデータを含むJSONレスポンス
      */
-    public function getStandings(Request $request): JsonResponse
+    public function getStandings(string $leagueId, $season): JsonResponse
     {
-        // leagueIdとseasonを取り出す
-        $leagueId = $request->input('leagueId');
-        $season = $request->input('season');
-
         try {
-            $response = $this->teamService->getStandings($season, $leagueId);
+            $response = $this->teamService->getStandings($leagueId, $season);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
@@ -90,13 +87,14 @@ class TeamController extends Controller
     /**
      * チームの情報、統計、移籍情報を取得する
      * 
-     * @param \Illuminate\Http\Request $request teamIdとseasonを含む
+     * @param string $teamId チームID
+     * @param string $season シーズン
      * @return \Illuminate\Http\JsonResponse 
      */
-    public function getTeamInfo(Request $request): JsonResponse
+    public function getTeamInfo(string $teamId, $season): JsonResponse
     {
         try {
-            $response = $this->teamService->getTeamInfo($request);
+            $response = $this->teamService->getTeamInfo($teamId, $season);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }

@@ -22,37 +22,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-Route::get('/match/{id}', [TeamController::class, 'matchDetails']);
-Route::get('/player/{id}', [PlayerController::class, 'getPlayers']);
-Route::get('/teams/rankings', [TeamController::class, 'rankings']);
-Route::get('/matches_results', [LeagueController::class, 'getMatchSchedule']);
-
 Route::middleware('auth:sanctum')->group(function(){
     // 試合日程・結果一覧を取得
-    Route::get('/game_schedules', [GameController::class, 'getGameSchedules']);
+    Route::get('/games/dates/{date}', [GameController::class, 'getGameSchedules']);
 
     // 試合の日付を取得
-    Route::get('/game_dates', [GameController::class, 'getGameDates']);
+    Route::get('/dates', [GameController::class, 'getGameDates']);
 
     // 順位一覧を取得
-    Route::get('/standings', [TeamController::class, 'getStandings']);
+    Route::get('/standings/leagues/{leagueId}/seasons/{season}', [TeamController::class, 'getStandings']);
 
     // 選手の各ランキング一覧を取得
-    Route::get('/players/rankings', [PlayerController::class, 'getPlayerRankings']);
+    Route::get('/players/rankings/leagues/{leagueId}/seasons/{season}', [PlayerController::class, 'getPlayerRankings']);
     
     // お気に入りチームを保存
-    Route::post('/favorites/team', [TeamController::class, 'addFavoriteTeam']);
+    Route::post('/favorites/teams', [TeamController::class, 'addFavoriteTeam']);
 
     // お気に入りチームを削除
-    Route::delete('/favorites/team/delete', [TeamController::class, 'deleteFavoriteTeam']);
+    Route::delete('/favorites/teams', [TeamController::class, 'deleteFavoriteTeam']);
 
     // お気に入りリーグを保存
-    Route::post('/favorites/league', [LeagueController::class, 'addFavoriteLeague']);
+    Route::post('/favorites/leagues', [LeagueController::class, 'addFavoriteLeague']);
 
     // お気に入りリーグを削除
-    Route::delete('/favorites/league/delete', [LeagueController::class, 'deleteFavoriteLeague']);
+    Route::delete('/favorites/leagues', [LeagueController::class, 'deleteFavoriteLeague']);
 
     // お気に入り保存されているチームを取得
     Route::get('/favorites/teams', [TeamController::class, 'getFavoriteTeam']);
@@ -61,23 +54,23 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/favorites/leagues', [LeagueController::class, 'getFavoriteLeague']);
 
     // 特定の試合の詳細を取得
-    Route::get('/game/detail', [GameController::class, 'getGameDetail']);
+    Route::get('/games/{gameId}', [GameController::class, 'getGameDetail']);
 
     // チーム情報、統計、移籍情報を取得
-    Route::get('/team/info', [TeamController::class, 'getTeamInfo']);
+    Route::get('/teams/{teamId}/seasons/{season}', [TeamController::class, 'getTeamInfo']);
 
     // ページネーションで特定チームの試合を取得
-    Route::get('/games/team/{teamId}/{season}', [GameController::class, 'getGamesPagenate']);
+    Route::get('/games/team/{teamId}/season/{season}', [GameController::class, 'getGamesPagenate']);
 
     // 特定のチームの選手一覧を取得
-    Route::get('/players/team/{teamId}/{season}', [PlayerController::class, 'getTeamRoster']);
+    Route::get('/players/team/{teamId}/season/{season}', [PlayerController::class, 'getTeamRoster']);
 
     // 特定の選手の統計情報を取得
-    Route::get('/players/{playerId}/{season}', [PlayerController::class, 'getPlayerStatistics']);
+    Route::get('/players/{playerId}/season/{season}', [PlayerController::class, 'getPlayerStatistics']);
 
     // 特定のリーグの試合を取得
-    Route::get('/games/league/{leagueId}/{season}', [GameController::class, 'getLeagueMatches']);
+    Route::get('/games/league/{leagueId}/season/{season}', [GameController::class, 'getLeagueMatches']);
 
     // 特定リーグの全てのチームを取得
-    Route::get('/teams/league/{leagueId}/{season}', [TeamController::class, 'getLeagueTeams']);
+    Route::get('/teams/league/{leagueId}/season/{season}', [TeamController::class, 'getLeagueTeams']);
 });
