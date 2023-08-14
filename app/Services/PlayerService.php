@@ -17,14 +17,14 @@ class PlayerService
     /**
      * リーグ、シーズン別の選手各ランキングを取得
      * 
+     * @param string $leagueId リーグID
      * @param string $season シーズン
-     * @param int $leagueId リーグID
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getPlayerRankings($season, $leagueId): Collection
+    public function getPlayerRankings(string $leagueId, $season): Collection
     {
         // 各ランキングデータを取得する
-        $response = $this->playerRepository->getPlayerRankings($season, $leagueId);
+        $response = $this->playerRepository->getPlayerRankings($leagueId, $season);
 
         return $response;
     }

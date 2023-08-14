@@ -14,10 +14,10 @@ class TeamRepository
      * 特定リーグ、シーズン別の順位一覧を取得
      * 
      * @param string $season シーズン
-     * @param int $leagueId リーグID
+     * @param string $leagueId リーグID
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getStandings($season, $leagueId): Collection
+    public function getStandings(string $leagueId, $season): Collection
     {
         // $seasonと$leagueIdの両方に一致するレコードのjson_standingsカラムを取得する
         $standings = RankingByLeague::select('json_standings')
@@ -88,11 +88,11 @@ class TeamRepository
      * チームの情報、統計、移籍情報を取得する
      * チームIDとシーズンに基づく
      * 
-     * @param int $teamId チームのID
-     * @param int $season シーズン
+     * @param string $teamId チームのID
+     * @param string $season シーズン
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTeamInfo($teamId, $season): Collection
+    public function getTeamInfo(string $teamId, $season): Collection
     {
         // チーム情報、統計、移籍情報を取得する
         $teamInfo = Team::select('json_information', 'json_statistics', 'json_transfer')

@@ -18,14 +18,11 @@ class GameService
     /**
      * 特定の日付の試合日程・結果を取得
      *
-     * @param \Illuminate\Http\Request $request 日付を含むリクエストオブジェクト
+     * @param string $date 日付 （形式：YYYY-MM-DD）
      * @return \Illuminate\Database\Eloquent\Collection 試合日程のデータを含むEloquentコレクション
      */
-    public function getGameSchedules(Request $request): Collection
+    public function getGameSchedules(string $date): Collection
     {
-        // リクエストから日付を取得
-        $date = $request->input('date');
-
         // 指定された日付の試合日程・結果を取得
         $games = $this->gameRepository->getGameSchedules($date);
 
@@ -48,14 +45,11 @@ class GameService
     /**
      * 特定の試合IDの試合詳細を取得
      * 
-     * @param \Illuminate\Http\Request $request 試合IDを含むリクエストオブジェクト
+     * @param string $gameId 試合ID
      * 
      */
-    public function getGameDetail(Request $request)
+    public function getGameDetail(string $gameId)
     {
-        // リクエストから試合IDを取得
-        $gameId = $request->input('gameId');
-
         // 試合詳細データを取得
         $gameDetail = $this->gameRepository->getGameDetail($gameId);
 
@@ -69,11 +63,11 @@ class GameService
      * ページネーションで特定チームの試合を取得する
      * 最新の5試合ごとに取得する
      * 
-     * @param int $teamId チームID
-     * @param int $season シーズン
+     * @param string $teamId チームID
+     * @param string $season シーズン
      * 
      */
-    public function getGamesPagenate($teamId, $season)
+    public function getGamesPagenate(string $teamId, $season)
     {
         return $this->gameRepository->getGamesPagenate($teamId, $season);
     }
@@ -81,11 +75,11 @@ class GameService
     /**
      * 特定のリーグの試合日程・結果一覧を取得
      * 
-     * @param int $leagueId リーグID
-     * @param int $season シーズン
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
      * 
      */
-    public function getLeagueMatches($leagueId, $season)
+    public function getLeagueMatches(string $leagueId, $season)
     {
         // 特定リーグの試合データを取得
         $matches = $this->gameRepository->getLeagueMatches($leagueId, $season);

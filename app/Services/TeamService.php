@@ -21,16 +21,16 @@ class TeamService
      * データを変換してhomeおよびawayの順位一覧を取得する
      *
      * @param string $season シーズン
-     * @param int $leagueId リーグID
+     * @param string $leagueId リーグID
      * @return array 順位のデータを含む配列
      */
-    public function getStandings($season, $leagueId): array
+    public function getStandings(string $leagueId, $season): array
     {
         // ソートされた順位一覧を格納する変数
         $sortedStandings = null;
 
         // シーズン別、リーグ別の順位一覧を取得
-        $response = $this->teamRepository->getStandings($season, $leagueId);
+        $response = $this->teamRepository->getStandings($leagueId, $season);
 
         // 取得したデータからstandingsを格納
         $homeStandings = $response[0]['json_standings']['response'][0]['league']['standings'][0];
@@ -104,14 +104,12 @@ class TeamService
      * チームの情報、統計、移籍情報を取得する
      * チームIDとシーズンに基づく
      * 
-     * @param \Illuminate\Http\Request $request teamIdを含む
+     * @param string $teamId チームID
+     * @param string $season シーズン
      * 
      */
-    public function getTeamInfo(Request $request)
+    public function getTeamInfo(string $teamId, $season)
     {
-        $teamId = $request->input('teamId');
-        $season = $request->input('season');
-
         return $this->teamRepository->getTeamInfo($teamId, $season);
     }
 

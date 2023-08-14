@@ -19,13 +19,13 @@ class GameController extends Controller
     /**
      * 日付別の試合日程・結果を取得
      * 
-     * @param Illuminate\Http\Request $request　日付を含むリクエストオブジェクト
+     * @param string $date 日付（例 2022-08-05）
      * @return Illuminate\Http\JsonResponse
      */
-    public function getGameSchedules(Request $request): JsonResponse
+    public function getGameSchedules(string $date): JsonResponse
     {
         try {
-            $response = $this->gameService->getGameSchedules($request);
+            $response = $this->gameService->getGameSchedules($date);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
@@ -52,13 +52,13 @@ class GameController extends Controller
     /**
      * 特定の試合IDの試合詳細を取得
      * 
-     * @param Illuminate\Http\Request $request　試合IDを含む
+     * @param string $gameId 試合ID
      * @return Illuminate\Http\JsonResponse
      */
-    public function getGameDetail(Request $request): JsonResponse
+    public function getGameDetail(string $gameId): JsonResponse
     {
         try {
-            $response = $this->gameService->getGameDetail($request);
+            $response = $this->gameService->getGameDetail($gameId);
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
@@ -70,11 +70,11 @@ class GameController extends Controller
      * ページネーションで特定チームの試合を取得する
      * 最新の5試合ごとに取得する
      * 
-     * @param int $teamId チームID
-     * @param int $season シーズン
+     * @param string $teamId チームID
+     * @param string $season シーズン
      * @return Illuminate\Http\JsonResponse
      */
-    public function getGamesPagenate($teamId, $season): JsonResponse
+    public function getGamesPagenate(string $teamId, $season): JsonResponse
     {
         try {
             $response = $this->gameService->getGamesPagenate($teamId, $season);
@@ -88,11 +88,11 @@ class GameController extends Controller
     /**
      * 特定のリーグの試合日程・結果一覧を取得
      * 
-     * @param int $leagueId リーグID
-     * @param int $season シーズン
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
      * @return Illuminate\Http\JsonResponse
      */
-    public function getLeagueMatches($leagueId, $season): JsonResponse
+    public function getLeagueMatches(string $leagueId, $season): JsonResponse
     {
         try {
             $response = $this->gameService->getLeagueMatches($leagueId, $season);

@@ -14,7 +14,7 @@ class GameRepository
      * @param string $date 日付（形式：YYYY-MM-DD）
      * @return \Illuminate\Database\Eloquent\Collection 試合日程のデータを含むEloquentコレクション
      */
-    public function getGameSchedules($date): Collection
+    public function getGameSchedules(string $date): Collection
     {
         // 指定された日付に一致する試合の詳細データを取得する
         $games = Game::where('date', $date)->distinct()->select('json_detail')->get();
@@ -42,10 +42,10 @@ class GameRepository
     /**
      * 特定の試合IDの試合詳細を取得
      * 
-     * @param int $gameId 試合ID
+     * @param string $gameId 試合ID
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getGameDetail($gameId): Collection
+    public function getGameDetail(string $gameId): Collection
     {
         // gamesテーブルから試合IDに対応する試合詳細データ（json_detailカラム）を取得
         $gameDetail = Game::where('id', $gameId)->select('json_detail')->get();
@@ -57,11 +57,11 @@ class GameRepository
      * ページネーションで特定チームの試合を取得する
      * 最新の試合を5試合ごとに取得する
      * 
-     * @param int $teamId チームID
-     * @param int $season シーズン
+     * @param string $teamId チームID
+     * @param string $season シーズン
      * 
      */
-    public function getGamesPagenate($teamId, $season)
+    public function getGamesPagenate(string $teamId, $season)
     {
         // 特定チームの試合を最新順に取得する
         $games = Game::select('json_detail')
@@ -78,11 +78,11 @@ class GameRepository
     /**
      * 特定のリーグの試合日程・結果一覧を取得
      * 
-     * @param int $leagueId リーグID
-     * @param int $season シーズン
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getLeagueMatches($leagueId, $season): Collection
+    public function getLeagueMatches(string $leagueId, $season): Collection
     {
         $matches = Game::select('json_detail')
         ->where([
