@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // 特定リーグの全てのチームを取得
     Route::get('/teams/league/{leagueId}/season/{season}', [TeamController::class, 'getLeagueTeams']);
+
+    // 検索機能
+    Route::get('/search', [SearchController::class, 'search']);
 });
