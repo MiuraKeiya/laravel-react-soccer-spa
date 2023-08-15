@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\PlayerService;
 use Exception;
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;
 
 class PlayerController extends Controller
