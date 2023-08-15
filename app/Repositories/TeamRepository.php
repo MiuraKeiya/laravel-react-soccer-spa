@@ -15,16 +15,16 @@ class TeamRepository
      * 
      * @param string $season シーズン
      * @param string $leagueId リーグID
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return ?RankingByLeague
      */
-    public function getStandings(string $leagueId, $season): Collection
+    public function getStanding(string $leagueId, $season): ?RankingByLeague
     {
         // $seasonと$leagueIdの両方に一致するレコードのjson_standingsカラムを取得する
         $standings = RankingByLeague::select('json_standings')
-        ->where([
-            'season' => $season,
-            'league_id' => $leagueId,
-        ])->get();
+            ->where([
+                'season' => $season,
+                'league_id' => $leagueId,
+            ])->first();
         
         return $standings;
     }

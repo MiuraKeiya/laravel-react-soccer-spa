@@ -28,6 +28,7 @@ class TeamController extends Controller
         try {
             $response = $this->teamService->getStandings($leagueId, $season);
         } catch (Exception $error) {
+            logger()->error($error);
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
 

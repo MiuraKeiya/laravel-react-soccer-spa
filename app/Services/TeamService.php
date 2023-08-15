@@ -4,8 +4,6 @@ namespace App\Services;
 
 use App\Consts\SoccerApiConst;
 use App\Repositories\TeamRepository;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 
 class TeamService 
 {
@@ -17,49 +15,44 @@ class TeamService
     }
 
     /**
-     * 特定リーグ、シーズン別の順位一覧を取得
-     * データを変換してhomeおよびawayの順位一覧を取得する
+     * 指定したリーグの順位一覧を取得する
+     * 全体、ホーム、アウェイにおける順位をそれぞれ取得する
      *
      * @param string $season シーズン
      * @param string $leagueId リーグID
-     * @return array 順位のデータを含む配列
+     * @return array 全体、ホーム、アウェイにおける順位一覧
      */
     public function getStandings(string $leagueId, $season): array
     {
-        // ソートされた順位一覧を格納する変数
-        $sortedStandings = null;
+        // 指定したリーグを取得
+        $league = $this->teamRepository->getStanding($leagueId, $season);
 
-        // シーズン別、リーグ別の順位一覧を取得
-        $response = $this->teamRepository->getStandings($leagueId, $season);
+        // 全体での順位一覧
+        $standings = $league->json_standings['response'][0]['league']['standings'][0];
 
-        // 取得したデータからstandingsを格納
-        $homeStandings = $response[0]['json_standings']['response'][0]['league']['standings'][0];
-
-        // homeでソート
-        $homeStandings =  collect($homeStandings)->sortByDesc(function ($standings) {
-            $points = $standings['home']['win'] * SoccerApiConst::WIN_POINTS + $standings['home']['draw'];
-            $goalDiff = $standings['home']['goals']['for'] - $standings['home']['goals']['against'];
+        // ホームでの順位一覧
+        $homeStandings =  collect($standings)->sortByDesc(function ($datas) {
+            // 勝点
+            $points = $datas['home']['win'] * SoccerApiConst::WIN_POINTS + $datas['home']['draw'];
+            // 得失点差
+            $goalDiff = $datas['home']['goals']['for'] - $datas['home']['goals']['against'];
             return [$points, -$goalDiff];
         });
 
-        // 取得したデータからstandingsを格納
-        $awayStandings = $response[0]['json_standings']['response'][0]['league']['standings'][0];
-
-        // awayでソート
-        $awayStandings = collect($awayStandings)->sortByDesc(function ($standings) {
-            $points = $standings['away']['win'] * SoccerApiConst::WIN_POINTS + $standings['away']['draw'];
-            $goalDiff = $standings['away']['goals']['for'] - $standings['away']['goals']['against'];
+        // アウェイでの順位一覧
+        $awayStandings = collect($standings)->sortByDesc(function ($datas) {
+            // 勝点
+            $points = $datas['away']['win'] * SoccerApiConst::WIN_POINTS + $datas['away']['draw'];
+            // 得失点差
+            $goalDiff = $datas['away']['goals']['for'] - $datas['away']['goals']['against'];
             return [$points, -$goalDiff];
         });
 
-        // ソートされた結果を$sortedStandingsにセット
-        $sortedStandings = [
-            'all' => $response,
-            'home' => $homeStandings->values(),
-            'away' => $awayStandings->values(),
+        return [
+            'all' => $standings,
+            'home' => $homeStandings,
+            'away' => $awayStandings,
         ];
-
-        return $sortedStandings;
     }
 
     /**
