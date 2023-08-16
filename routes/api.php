@@ -5,6 +5,7 @@ use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,4 +78,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // 検索機能
     Route::get('/search', [SearchController::class, 'search']);
+
+    // アカウントの削除
+    Route::delete('/user', [UserController::class, 'destroy']);
 });
