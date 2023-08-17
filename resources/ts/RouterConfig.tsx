@@ -5,7 +5,7 @@ import { MatchDetailsProvider } from "./provider/MatchDetailsProvider";
 import { PlayerProvider } from "./provider/PlayerProvider";
 import { RankingProvider } from "./provider/RankingProvider";
 import { Top } from "./components/pages/Top";
-import { Login } from "./components/pages/Login";
+import { Login } from "./components/pages/Auth/Login";
 import { Register } from "./components/pages/Register";
 import { Home } from "./components/pages/Home";
 import { MatchDetails } from "./components/pages/MatchDetails";
