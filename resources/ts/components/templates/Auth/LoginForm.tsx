@@ -10,7 +10,8 @@ export const LoginForm = () => {
     // ログイン処理
     const onSubmit = (data) => {
         axios.get("/sanctum/csrf-cookie").then(() => {
-            axios.post("/api/login", data).then(() => {
+            axios.post("/api/login", data).then((res) => {
+              console.log(res.data)
                 navigate("/home");
             });
         });
