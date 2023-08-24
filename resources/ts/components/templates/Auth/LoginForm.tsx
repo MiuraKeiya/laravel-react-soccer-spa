@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Icon } from "../../atoms/Icon/Icon";
+import { Icon } from "../../atoms/Icon";
 
 export const LoginForm = () => {
     const navigate = useNavigate();

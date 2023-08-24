@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const Top = () => {
+export const TopPage = () => {
     const navigate = useNavigate();
     const handleLogin = () => {
         navigate("/login");
