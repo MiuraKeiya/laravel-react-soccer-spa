@@ -1,18 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Top } from "./pages/Top";
+import { TopPage } from "./pages/TopPage";
 import { Login } from "./pages/Auth/Login";
 import { Register } from "./pages/Auth/Register";
-import { Home } from "./pages/Home";
+import { HomePage } from "./pages/HomePage";
+import { GamesDateProvider } from "./providers/GamesDateContext";
 
 export const RouterConfig = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Top />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/home" element={<Home />} />
-            </Routes>
-        </BrowserRouter>
+        <GamesDateProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<TopPage />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/home" element={<HomePage />} />
+                </Routes>
+            </BrowserRouter>
+        </GamesDateProvider>
     );
 };
