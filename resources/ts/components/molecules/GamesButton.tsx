@@ -21,21 +21,15 @@ export const GamesButton = ({
 }: GamesButtonProps) => {
     return (
         <div className={style}>
-            <Button
-                label="全ての試合"
-                style={allGamesStyle}
-                onClick={onAllGamesClick}
-            />
-            <Button
-                label="終了した試合"
-                style={finishedStyle}
-                onClick={onFinishedGamesClick}
-            />
-            <Button
-                label="開催予定"
-                style={scheduledStyle}
-                onClick={onScheduledGamesClick}
-            />
+            <Button style={allGamesStyle} onClick={onAllGamesClick}>
+                全ての試合
+            </Button>
+            <Button style={finishedStyle} onClick={onFinishedGamesClick}>
+                終了した試合
+            </Button>
+            <Button style={scheduledStyle} onClick={onScheduledGamesClick}>
+                開催予定
+            </Button>
         </div>
     );
 };
