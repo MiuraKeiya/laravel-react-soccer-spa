@@ -7,7 +7,7 @@ export const HeaderLogo = () => {
             <Icon
                 src="/images/Original.png"
                 alt="FootballLeague"
-                className="h-10 w-hull ml-5"
+                className="h-10 w-hull"
             />
         </a>
     );
