@@ -11,8 +11,7 @@ export const useDatePicker = () => {
     useEffect(() => {
         if (!loading) {
             const dates = gamesDate.map((item) => new Date(item.date));
-            setStartDate(dates[0]);
-            setSelectedDate(formatDate(dates[0]));
+            setSelectedDate(formatDate(new Date()));
             setHighlightedDates(dates);
         }
     }, [gamesDate]);

@@ -1,13 +1,15 @@
+import { ReactNode } from "react";
+
 type Props = {
-    label: string;
+    children: ReactNode;
     style: string;
     onClick: () => void;
 };
 
-export const Button = ({ label, style, onClick }: Props) => {
+export const Button = ({ children, style, onClick }: Props) => {
     return (
         <button className={style} onClick={onClick}>
-            {label}
+            {children}
         </button>
     );
 };
