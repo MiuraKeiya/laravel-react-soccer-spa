@@ -65,4 +65,21 @@ class LeagueController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * 全てのリーグを取得する
+     * リーグ名とリーグIDを取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function getLeagues(): JsonResponse
+    {
+        try {
+            $response = $this->leagueService->getLeagues();
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

@@ -81,4 +81,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // アカウントの削除
     Route::delete('/user', [UserController::class, 'destroy']);
+
+    // 全てのリーグを取得
+    Route::get('/leagues', [LeagueController::class, 'getLeagues']);
 });
