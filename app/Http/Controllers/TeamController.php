@@ -120,4 +120,21 @@ class TeamController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * 咋シーズンのリーグで一位のチーム情報を取得する
+     * 全てのリーグから取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCurrentSeasonChampions(): JsonResponse
+    {
+        try {
+            $response = $this->teamService->getCurrentSeasonChampions();
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
 }

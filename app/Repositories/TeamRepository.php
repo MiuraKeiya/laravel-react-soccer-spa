@@ -121,4 +121,20 @@ class TeamRepository
 
         return $teams;
     }
+
+    /**
+     * 特定シーズンの全てのリーグの順位一覧を取得する
+     * 
+     * @param string $season シーズン　例:2023
+     * 
+     */
+    public function getCurrentSeasonChampions(string $season)
+    {
+        // 全てのリーグの順位一覧を取得する
+        $standings = RankingByLeague::select('json_standings')
+            ->where('season', $season)
+            ->get();
+
+        return $standings;
+    }
 }

@@ -116,4 +116,50 @@ class TeamService
     {
         return $this->teamRepository->getLeagueTeams($leagueId, $season);
     }
+
+    /**
+     * 咋シーズンのリーグで一位のチームを取得する
+     * 順位一覧から一位のチームを抽出する
+     * 
+     * 
+     */
+    public function getCurrentSeasonChampions()
+    {
+        // configファイルからシーズンのリストを取得
+        $seasons = config('api.seasons');
+
+        // シーズンリストから昨シーズンを取得
+        $sortedSeasons = array_values($seasons);
+        rsort($sortedSeasons);
+        $lastSeason = $sortedSeasons[1];
+
+        // 咋シーズンの全てのリーグ順位一覧を取得
+        $standings = $this->teamRepository->getCurrentSeasonChampions($lastSeason);
+        
+        // コレクションに変換
+        $collection = collect($standings);
+
+        $rank_1_teams = [];
+
+        $collection->each(function ($standing) use (&$rank_1_teams) {
+            $standings = $standing['json_standings']['response'][0]['league']['standings']; 
+
+            // rankが1のチーム情報を抽出
+            foreach ($standings as $team) {
+                foreach ($team as $a) {
+                    if ($a['rank'] == 1) {
+                        $rank_1_teams[] = [
+                            'teamName' => $a['team']['name'],
+                            'teamLogo' => $a['team']['logo'],
+                            'league' => $standing['json_standings']['response'][0]['league']['name'],
+                            'country' => $standing['json_standings']['response'][0]['league']['country'],
+                        ];
+                    }
+                }
+            }
+        });
+
+        // rank 1 のチーム情報の配列
+        return $rank_1_teams;
+    }
 }

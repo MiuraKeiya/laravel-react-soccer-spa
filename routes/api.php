@@ -84,4 +84,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // 全てのリーグを取得
     Route::get('/leagues', [LeagueController::class, 'getLeagues']);
+
+    // 今シーズンのリーグの一位のチームを取得
+    Route::get('/standings/teams', [TeamController::class, 'getCurrentSeasonChampions']);
 });
