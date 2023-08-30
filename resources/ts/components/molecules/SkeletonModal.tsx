@@ -8,7 +8,6 @@ export const SkeletonModal = () => {
                     variant={"text"}
                     width={40}
                     height={70}
-                    animation={"wave"}
                     backgroundColor={"#111931"}
                     borderRadius={"7px"}
                 />
@@ -17,7 +16,6 @@ export const SkeletonModal = () => {
                         variant={"text"}
                         width={210}
                         height={30}
-                        animation={"wave"}
                         backgroundColor={"#111931"}
                         borderRadius={"5px"}
                     />
@@ -25,7 +23,6 @@ export const SkeletonModal = () => {
                         variant={"text"}
                         width={210}
                         height={10}
-                        animation={"wave"}
                         backgroundColor={"#111931"}
                         borderRadius={"5px"}
                     />
@@ -35,7 +32,6 @@ export const SkeletonModal = () => {
                 variant={"circular"}
                 width={25}
                 height={25}
-                animation={"wave"}
                 backgroundColor={"#111931"}
                 borderRadius={""}
             />

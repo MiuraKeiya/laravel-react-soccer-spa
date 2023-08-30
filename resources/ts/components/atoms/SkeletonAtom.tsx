@@ -4,7 +4,6 @@ export const SkeletonAtom = ({
     variant,
     width,
     height,
-    animation,
     backgroundColor,
     borderRadius,
 }) => {
@@ -13,7 +12,6 @@ export const SkeletonAtom = ({
             variant={variant}
             width={width}
             height={height}
-            animation={animation}
             sx={{
                 backgroundColor: backgroundColor,
                 borderRadius: borderRadius,
