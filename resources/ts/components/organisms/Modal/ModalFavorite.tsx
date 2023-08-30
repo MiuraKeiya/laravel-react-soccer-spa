@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ModalLeague } from "./ModalLeague";
 import { ModalTeam } from "./ModalTeam";
+import { useTeamSearchApi } from "../../../hooks/useTeamSearchApi";
+import { SearchResults } from "./SearchResults";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,7 +11,8 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
 export const ModalFavorite = ({ onClick }) => {
     const [searchQuery, setSearchQuery] = useState("");
-
+    const { searchResults, loading } = useTeamSearchApi(searchQuery);
+    console.log(`検索${searchResults}`);
     const handleClear = () => {
         setSearchQuery("");
     };
@@ -43,7 +46,7 @@ export const ModalFavorite = ({ onClick }) => {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="リーグ名またはチーム名を入力"
+                        placeholder="チーム名を入力"
                         className="pl-8 pr-3 py-1 rounded-md border border-[#C8CDCD] w-full focus:outline-none focus:border-[#111931]"
                     />
                     {searchQuery && (
@@ -60,6 +63,13 @@ export const ModalFavorite = ({ onClick }) => {
                 </p>
             </div>
             <div className="mx-3">
+                {searchQuery !== "" && (
+                    <SearchResults
+                        results={searchResults}
+                        loading={loading}
+                        searchQuery={searchQuery}
+                    />
+                )}
                 <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
                     全てのリーグ
                 </h1>
