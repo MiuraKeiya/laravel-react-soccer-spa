@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ModalLeague } from "./ModalLeague";
+import { ModalTeam } from "./ModalTeam";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
@@ -59,13 +60,14 @@ export const ModalFavorite = ({ onClick }) => {
                 </p>
             </div>
             <div className="mx-3">
-                <h1 className="text-[#EEEEEE] text-[14px] font-bold">
+                <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
                     全てのリーグ
                 </h1>
                 <ModalLeague />
-                <h1 className="text-[#EEEEEE] text-[14px] font-bold">
+                <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
                     主なチーム
                 </h1>
+                <ModalTeam />
             </div>
         </div>
     );
