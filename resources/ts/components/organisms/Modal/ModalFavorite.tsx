@@ -63,21 +63,29 @@ export const ModalFavorite = ({ onClick }) => {
                 </p>
             </div>
             <div className="mx-3">
-                {searchQuery !== "" && (
-                    <SearchResults
-                        results={searchResults}
-                        loading={loading}
-                        searchQuery={searchQuery}
-                    />
+                {searchQuery !== "" ? (
+                    <div>
+                        <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
+                            検索結果
+                        </h1>
+                        <SearchResults
+                            results={searchResults}
+                            loading={loading}
+                            searchQuery={searchQuery}
+                        />
+                    </div>
+                ) : (
+                    <div>
+                        <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
+                            全てのリーグ
+                        </h1>
+                        <ModalLeague />
+                        <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
+                            主なチーム
+                        </h1>
+                        <ModalTeam />
+                    </div>
                 )}
-                <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
-                    全てのリーグ
-                </h1>
-                <ModalLeague />
-                <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
-                    主なチーム
-                </h1>
-                <ModalTeam />
             </div>
         </div>
     );
