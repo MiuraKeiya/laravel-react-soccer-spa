@@ -149,6 +149,7 @@ class TeamService
                 foreach ($team as $a) {
                     if ($a['rank'] == 1) {
                         $rank_1_teams[] = [
+                            'id' => $a['team']['id'],
                             'teamName' => $a['team']['name'],
                             'teamLogo' => $a['team']['logo'],
                             'league' => $standing['json_standings']['response'][0]['league']['name'],

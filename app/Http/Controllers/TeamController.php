@@ -44,7 +44,7 @@ class TeamController extends Controller
     public function addFavoriteTeam(Request $request): JsonResponse
     {
         try {
-            $this->teamService->addFavoriteTeam($request->teamId);
+            $this->teamService->addFavoriteTeam($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '保存に失敗しました'], 400);
         }
@@ -61,7 +61,7 @@ class TeamController extends Controller
     public function deleteFavoriteTeam(Request $request): JsonResponse
     {
         try {
-            $this->teamService->deleteFavoriteTeam($request->teamId);
+            $this->teamService->deleteFavoriteTeam($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '削除に失敗しました'], 400);
         }
