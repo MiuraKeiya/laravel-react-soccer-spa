@@ -2,15 +2,15 @@ import { AddPlusIcon } from "../../atoms/AddIPlusIcon";
 import { useSidebarContext } from "../../../context/SidebarContext";
 import { HeaderLogo } from "../../molecules/HeaderLogo";
 import { ModalFavorite } from "../Modal/ModalFavorite";
+import { FavoriteTeams } from "./FavoriteTeams";
+import { FavoriteLeagues } from "./FavoriteLeagues";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { ListItemText } from "@mui/material";
 import { useModal } from "react-hooks-use-modal";
 
 export const SideBar = () => {
@@ -66,6 +66,8 @@ export const SideBar = () => {
                                 お気に入り追加
                             </span>
                         </ListItemButton>
+                        <FavoriteTeams />
+                        <FavoriteLeagues />
                     </List>
                 </Box>
             </Drawer>
