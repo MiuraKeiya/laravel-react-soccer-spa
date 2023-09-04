@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AddPlusIcon } from "../../atoms/AddIPlusIcon";
 import { useSidebarContext } from "../../../context/SidebarContext";
 import { HeaderLogo } from "../../molecules/HeaderLogo";
@@ -6,15 +7,31 @@ import { FavoriteTeams } from "./FavoriteTeams";
 import { FavoriteLeagues } from "./FavoriteLeagues";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import { ListItemIcon } from "@mui/material";
+import ListItemText from "@mui/material/ListItemText";
 import { useModal } from "react-hooks-use-modal";
 
 export const SideBar = () => {
     const { isSidebarOpen, toggleSidebar } = useSidebarContext();
+
+    const [openFavoriteTeam, setOpenFavoriteTeam] = useState(true);
+    const [openFavoriteLeague, setOpenFavoriteLeague] = useState(true);
+
+    const handleOpenFavoriteTeamClick = () => {
+        setOpenFavoriteTeam(!openFavoriteTeam);
+    };
+
+    const handleOpenFavoriteLeagueClick = () => {
+        setOpenFavoriteLeague(!openFavoriteLeague);
+    };
 
     const handleOpenModal = () => {
         toggleSidebar();
@@ -57,17 +74,58 @@ export const SideBar = () => {
                     </IconButton>
                     <HeaderLogo />
                 </div>
-                <Toolbar />
                 <Box sx={{ overflow: "auto" }}>
-                    <List>
+                    <List className="text-[#EEEEEE]">
                         <ListItemButton onClick={handleOpenModal}>
                             <AddPlusIcon style={"text-[#EEEEEE]"} />
                             <span className="text-[#EEEEEE]">
                                 お気に入り追加
                             </span>
                         </ListItemButton>
-                        <FavoriteTeams />
-                        <FavoriteLeagues />
+                        <ListItemButton onClick={handleOpenFavoriteTeamClick}>
+                            <ListItemIcon>
+                                <SportsSoccerIcon className="text-[#EEEEEE]" />
+                            </ListItemIcon>
+                            <ListItemText primary="MyTeam" />
+                            {openFavoriteTeam ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse
+                            in={openFavoriteTeam}
+                            timeout="auto"
+                            unmountOnExit
+                        >
+                            <List
+                                component="div"
+                                sx={{ pl: 3, pr: 1 }}
+                                disablePadding
+                            >
+                                <FavoriteTeams />
+                            </List>
+                        </Collapse>
+                        <ListItemButton onClick={handleOpenFavoriteLeagueClick}>
+                            <ListItemIcon>
+                                <SportsSoccerIcon className="text-[#EEEEEE]" />
+                            </ListItemIcon>
+                            <ListItemText primary="MyLeague" />
+                            {openFavoriteLeague ? (
+                                <ExpandLess />
+                            ) : (
+                                <ExpandMore />
+                            )}
+                        </ListItemButton>
+                        <Collapse
+                            in={openFavoriteLeague}
+                            timeout="auto"
+                            unmountOnExit
+                        >
+                            <List
+                                component="div"
+                                sx={{ pl: 3, pr: 1 }}
+                                disablePadding
+                            >
+                                <FavoriteLeagues />
+                            </List>
+                        </Collapse>
                     </List>
                 </Box>
             </Drawer>
