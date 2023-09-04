@@ -8,9 +8,9 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
 export const ModalTeam = () => {
-    const { favorites } = useGetFavoriteApi("teams");
+    const { favorites, loading } = useGetFavoriteApi("teams");
     const { addFavorite, deleteFavorite } = useFavoriteApi("teams");
-    const { leadingTeam, loading } = useLeadingTeamApi();
+    const { leadingTeam } = useLeadingTeamApi();
     const [favoriteStates, setFavoriteStates] = useState([]);
     console.log(favorites);
     useEffect(() => {

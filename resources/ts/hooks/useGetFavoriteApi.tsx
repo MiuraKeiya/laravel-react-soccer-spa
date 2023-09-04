@@ -6,8 +6,11 @@ export const useGetFavoriteApi = (apiPath) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const FavoritesLeague = async () => {
+        const fetchData = async () => {
             try {
+                // 1秒待機
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+
                 const response = await axios.get(`/api/favorites/${apiPath}`);
                 setFavorites(response.data);
                 setLoading(false);
@@ -17,7 +20,7 @@ export const useGetFavoriteApi = (apiPath) => {
             }
         };
 
-        FavoritesLeague();
+        fetchData();
     }, []);
 
     return { favorites, loading };
