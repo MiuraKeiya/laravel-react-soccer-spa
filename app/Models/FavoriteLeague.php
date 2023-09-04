@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FavoriteLeague extends Model
 {
     use HasFactory;
-
+    
     /**
      * Mass Assignment(一括代入)を許可するカラムの定義
      *
@@ -32,10 +32,10 @@ class FavoriteLeague extends Model
     /**
      * お気に入りに属するリーグとのリレーションを定義
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function league()
     {
-        return $this->hasMany(League::class);
+        return $this->belongsTo(League::class);
     }
 }

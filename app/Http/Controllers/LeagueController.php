@@ -60,6 +60,7 @@ class LeagueController extends Controller
         try {
             $response = $this->leagueService->getFavoriteLeague();
         } catch (Exception $error) {
+          logger($error);
             return response()->json(['message' => '取得に失敗しました'], 400);
         }
 
