@@ -69,10 +69,10 @@ class League extends Model
     /**
      * 属しているお気に入りとのリレーションを定義
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function favoriteLeague()
     {
-        return $this->belongsTo(FavoriteLeague::class);
+        return $this->hasMany(FavoriteLeague::class);
     }
 }
