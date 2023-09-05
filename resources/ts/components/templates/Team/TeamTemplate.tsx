@@ -1,9 +1,9 @@
-export const HomeTemplate = ({ header, footer, sidebar, children }) => {
+export const TeamTemplate = ({ header, footer, sidebar, children }) => {
   return (
-      <div>
+      <div className="bg-black">
           <header>{header}</header>
           <aside>{sidebar}</aside>
-          <main className="bg-[#1d2233]">{children}</main>
+          <main className="container mx-auto">{children}</main>
           <footer>{footer}</footer>
       </div>
   );
