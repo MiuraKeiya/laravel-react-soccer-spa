@@ -15,7 +15,7 @@ export const Team = () => {
                 <TeamInformations informations={informations} />
             </div>
             <div className="mt-1 mb-6">
-                <Selecter />
+                <Selecter informations={informations}/>
             </div>
         </div>
     );
