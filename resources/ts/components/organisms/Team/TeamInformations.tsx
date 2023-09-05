@@ -1,6 +1,6 @@
 export const TeamInformations = ({ informations }) => {
     return (
-        <div className="bg-gradient-to-r from-[#1d2233] rounded">
+        <div className="bg-gradient-to-r from-[#1d2233] rounded-t">
             {informations.map((item, index) => (
                 <div key={index} className="flex justify-center">
                     <div className="flex items-center space-x-6 my-5">
