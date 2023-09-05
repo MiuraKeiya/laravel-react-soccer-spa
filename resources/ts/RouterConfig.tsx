@@ -3,6 +3,7 @@ import { TopPage } from "./pages/TopPage";
 import { Login } from "./pages/Auth/Login";
 import { Register } from "./pages/Auth/Register";
 import { HomePage } from "./pages/HomePage";
+import { TeamPage } from "./pages/TeamPage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 
@@ -15,6 +16,7 @@ export const RouterConfig = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<HomePage />} />
+                    <Route path="/team/:id" element={<TeamPage />} />
                     <Route path="/standings/:id" element={<StandingsPage />} />
                 </Routes>
             </BrowserRouter>
