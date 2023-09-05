@@ -1,4 +1,4 @@
-import { SkeletonFavorite } from "../../molecules/skeletonFavorite";
+import { SkeletonFavorite } from "../../molecules/SkeletonFavorite";
 
 export const Loading = () => {
     return (

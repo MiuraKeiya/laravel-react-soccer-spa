@@ -50,10 +50,10 @@ export const SideBar = () => {
         <>
             <Drawer
                 sx={{
-                    width: 200,
+                    width: 250,
                     flexShrink: 0,
                     "& .MuiDrawer-paper": {
-                        width: 200,
+                        width: 250,
                         backgroundColor: "#111931",
                     },
                 }}
@@ -74,13 +74,14 @@ export const SideBar = () => {
                     </IconButton>
                     <HeaderLogo />
                 </div>
+                <div className="ml-4 mr-4 mt-2 border-b border-[#1d2233]"></div>
                 <Box sx={{ overflow: "auto" }}>
                     <List className="text-[#EEEEEE]">
                         <ListItemButton onClick={handleOpenModal}>
-                            <AddPlusIcon style={"text-[#EEEEEE]"} />
-                            <span className="text-[#EEEEEE]">
-                                お気に入り追加
-                            </span>
+                            <ListItemIcon>
+                                <AddPlusIcon style={"text-[#EEEEEE]"} />
+                            </ListItemIcon>
+                            <span>お気に入り追加</span>
                         </ListItemButton>
                         <ListItemButton onClick={handleOpenFavoriteTeamClick}>
                             <ListItemIcon>
@@ -96,7 +97,7 @@ export const SideBar = () => {
                         >
                             <List
                                 component="div"
-                                sx={{ pl: 3, pr: 1 }}
+                                sx={{ pl: 3, pr: 2 }}
                                 disablePadding
                             >
                                 <FavoriteTeams />
@@ -120,7 +121,7 @@ export const SideBar = () => {
                         >
                             <List
                                 component="div"
-                                sx={{ pl: 3, pr: 1 }}
+                                sx={{ pl: 3, pr: 2 }}
                                 disablePadding
                             >
                                 <FavoriteLeagues />
