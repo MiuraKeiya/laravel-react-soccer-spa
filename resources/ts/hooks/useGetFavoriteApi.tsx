@@ -23,5 +23,5 @@ export const useGetFavoriteApi = (apiPath) => {
         fetchData();
     }, []);
 
-    return { favorites, loading };
+    return { favorites, setFavorites, loading };
 };
