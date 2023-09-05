@@ -11,6 +11,7 @@ export const useTeamInformations = (teamId, season) => {
                 const response = await axios.get(
                     `/api/teams/${teamId}/seasons/${season}`
                 );
+                console.log(response.data);
                 setInformations(response.data);
                 setLoading(false);
             } catch (error) {

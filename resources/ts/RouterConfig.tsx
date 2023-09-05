@@ -16,7 +16,7 @@ export const RouterConfig = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<HomePage />} />
-                    <Route path="/team/:id" element={<TeamPage />} />
+                    <Route path="/team/:id/season/:season" element={<TeamPage />} />
                     <Route path="/standings/:id" element={<StandingsPage />} />
                 </Routes>
             </BrowserRouter>
