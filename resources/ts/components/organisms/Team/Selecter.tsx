@@ -2,8 +2,9 @@ import { Button } from "../../atoms/Button";
 import { useState } from "react";
 import { ScheduleResults } from "./ScheduleResults";
 import { Statistics } from "./Statistics";
+import { Squad } from "./Squad/Squad";
 
-export const Selecter = ({ informations }) => {
+export const Selecter = ({ informations, squad }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
     const handleScheduleResultsClick = () => {
@@ -86,6 +87,7 @@ export const Selecter = ({ informations }) => {
             {selectedTab === "statistics" && (
                 <Statistics informations={informations} />
             )}
+            {selectedTab === "players" && <Squad squad={squad} />}
         </>
     );
 };
