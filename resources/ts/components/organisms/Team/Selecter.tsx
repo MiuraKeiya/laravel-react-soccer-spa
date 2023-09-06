@@ -1,6 +1,7 @@
 import { Button } from "../../atoms/Button";
 import { useState } from "react";
 import { ScheduleResults } from "./ScheduleResults";
+import { Statistics } from "./Statistics";
 
 export const Selecter = ({ informations }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
@@ -79,7 +80,12 @@ export const Selecter = ({ informations }) => {
                     移籍情報
                 </Button>
             </div>
-            <ScheduleResults informations={informations} />
+            {selectedTab === "scheduleResults" && (
+                <ScheduleResults informations={informations} />
+            )}
+            {selectedTab === "statistics" && (
+                <Statistics informations={informations} />
+            )}
         </>
     );
 };
