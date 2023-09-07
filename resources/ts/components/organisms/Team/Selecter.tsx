@@ -3,8 +3,9 @@ import { useState } from "react";
 import { ScheduleResults } from "./ScheduleResults";
 import { Statistics } from "./Statistics";
 import { Squad } from "./Squad/Squad";
+import { StandingsSelecter } from "./Standing/StandingsSelecter";
 
-export const Selecter = ({ informations, squad }) => {
+export const Selecter = ({ informations, squad, standings, id }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
     const handleScheduleResultsClick = () => {
@@ -88,6 +89,9 @@ export const Selecter = ({ informations, squad }) => {
                 <Statistics informations={informations} />
             )}
             {selectedTab === "players" && <Squad squad={squad} />}
+            {selectedTab === "standings" && (
+                <StandingsSelecter standings={standings} id={id} />
+            )}
         </>
     );
 };

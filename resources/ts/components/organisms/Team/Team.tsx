@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useTeamInformations } from "../../../hooks/useTeamInformationsApi";
 import { useTeamPlayersApi } from "../../../hooks/useTeamPlayersApi";
+import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { TeamInformations } from "./TeamInformations";
 import { Selecter } from "./Selecter";
 
@@ -8,9 +9,17 @@ export const Team = () => {
     // パラメータを取得
     const { id, season } = useParams();
 
+    // チーム情報を取得
     const { informations } = useTeamInformations(id, season);
 
+    // 選手一覧を取得
     const { players } = useTeamPlayersApi(id, season);
+
+    // チーム情報からリーグIDを取得
+    const leagueId = informations[0]?.json_statistics.league.id;
+
+    // 順位一覧を取得
+    const { standings } = useStandingsApi(leagueId, season);
 
     return (
         <div>
@@ -18,7 +27,12 @@ export const Team = () => {
                 <TeamInformations informations={informations} />
             </div>
             <div className="mt-1 mb-6">
-                <Selecter informations={informations} squad={players}/>
+                <Selecter
+                    informations={informations}
+                    squad={players}
+                    standings={standings}
+                    id={id}
+                />
             </div>
         </div>
     );
