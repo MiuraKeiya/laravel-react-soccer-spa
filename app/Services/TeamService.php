@@ -37,7 +37,7 @@ class TeamService
             // 得失点差
             $goalDiff = $datas['home']['goals']['for'] - $datas['home']['goals']['against'];
             return [$points, -$goalDiff];
-        });
+        })->values();
 
         // アウェイでの順位一覧
         $awayStandings = collect($standings)->sortByDesc(function ($datas) {
@@ -46,7 +46,7 @@ class TeamService
             // 得失点差
             $goalDiff = $datas['away']['goals']['for'] - $datas['away']['goals']['against'];
             return [$points, -$goalDiff];
-        });
+        })->values();
 
         return [
             'all' => $standings,
