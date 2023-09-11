@@ -11,13 +11,11 @@ export const Team = () => {
     const { id, season } = useParams();
 
     // チーム情報を取得
-    const { informations } = useTeamInformations(id, season);
+    const { informations, teamLoading } = useTeamInformations(id, season);
 
     // 試合日程・結果一覧を取得
-    const { games, setPage, lastPage, currentPage } = useGamesPaginateApi(
-        id,
-        season
-    );
+    const { games, paginateLoading, setPage, lastPage, currentPage } =
+        useGamesPaginateApi(id, season);
 
     // 選手一覧を取得
     const { players } = useTeamPlayersApi(id, season);
@@ -31,7 +29,10 @@ export const Team = () => {
     return (
         <div>
             <div className="mt-6">
-                <TeamInformations informations={informations} />
+                <TeamInformations
+                    informations={informations}
+                    loading={teamLoading}
+                />
             </div>
             <div className="mt-1 mb-6">
                 <Selecter
@@ -43,6 +44,7 @@ export const Team = () => {
                     squad={players}
                     standings={standings}
                     id={id}
+                    paginateLoading={paginateLoading}
                 />
             </div>
         </div>

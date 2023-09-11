@@ -6,7 +6,7 @@ export const useGamesPaginateApi = (teamId, season) => {
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState([]);
     const [currentPage, setCurrentPage] = useState([]);
-    const [gamesloading, setGamesLoading] = useState(true);
+    const [paginateLoading, setPaginateLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,15 +24,15 @@ export const useGamesPaginateApi = (teamId, season) => {
                 // 前回のデータと新しいデータを結合してセット
                 setGames((prevGames) => [...prevGames, ...newGames]);
 
-                setGamesLoading(false);
+                setPaginateLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
-                setGamesLoading(false);
+                setPaginateLoading(false);
             }
         };
 
         fetchData();
     }, [teamId, season, page]);
 
-    return { games, gamesloading, setPage, lastPage, currentPage };
+    return { games, paginateLoading, setPage, lastPage, currentPage };
 };
