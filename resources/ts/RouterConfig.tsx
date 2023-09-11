@@ -23,7 +23,7 @@ export const RouterConfig = () => {
                     />
                     <Route path="/standings/:id" element={<StandingsPage />} />
                     <Route
-                        path="/games/:gamesId/leagues/:leagueId/seasons/:season"
+                        path="/games/:gameId/leagues/:leagueId/seasons/:season"
                         element={<GamesPage />}
                     />
                 </Routes>
