@@ -4,6 +4,7 @@ import { formatDatePart } from "../../../../functions/Utils";
 import { formatDate } from "../../../../functions/Utils";
 import { Button } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useNavigate } from "react-router-dom";
 
 export const Games = ({
     games,
@@ -12,8 +13,14 @@ export const Games = ({
     currentPage,
     paginateLoading,
 }) => {
+    const navigate = useNavigate();
+
     const handlePaginateClick = () => {
         setPage((prevPage) => prevPage + 1);
+    };
+
+    const handleGamesClick = (fixtureId, leagueId, season) => {
+        navigate(`/games/${fixtureId}/leagues/${leagueId}/seasons/${season}`);
     };
 
     return (

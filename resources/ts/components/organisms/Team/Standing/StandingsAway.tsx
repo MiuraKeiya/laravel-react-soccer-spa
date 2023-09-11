@@ -8,15 +8,15 @@ export const StandingsAway = ({ standings, id }) => {
                 <thead className="bg-[#111931] text-[#C8CDCD] text-[12px] font-bold">
                     <tr>
                         <th className="w-11"></th>
-                        <th className="TM text-left">チーム</th>
-                        <th className="MP">MP</th>
-                        <th className="W">W</th>
-                        <th className="D">D</th>
-                        <th className="L">L</th>
-                        <th className="G">G</th>
-                        <th className="T">+/-</th>
-                        <th className="P">P</th>
-                        <th className="FM">フォーム</th>
+                        <th className="text-left">チーム</th>
+                        <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>G</th>
+                        <th>+/-</th>
+                        <th>P</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
