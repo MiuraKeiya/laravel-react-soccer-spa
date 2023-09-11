@@ -27,7 +27,7 @@ export const Squad = ({ squad }) => {
                                 {player.json_statistics.statistics[0].games
                                     .position === "Goalkeeper" && (
                                     <tr className="text-white border-b border-black text-center h-16">
-                                        <td>
+                                        <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -44,20 +44,17 @@ export const Squad = ({ squad }) => {
                                             </div>
                                         </td>
                                         <td className="text-[20px]">
-                                            {player.json_statistics.player.age}
+                                            {player.json_statistics.player
+                                                .age || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].games
-                                                    .appearences
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].games
+                                                .appearences || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].goals.total
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].goals.total || 0}
                                         </td>
                                     </tr>
                                 )}
@@ -87,7 +84,7 @@ export const Squad = ({ squad }) => {
                                 {player.json_statistics.statistics[0].games
                                     .position === "Defender" && (
                                     <tr className="text-white border-b border-black text-center h-16">
-                                        <td>
+                                        <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -104,20 +101,17 @@ export const Squad = ({ squad }) => {
                                             </div>
                                         </td>
                                         <td className="text-[20px]">
-                                            {player.json_statistics.player.age}
+                                            {player.json_statistics.player
+                                                .age || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].games
-                                                    .appearences
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].games
+                                                .appearences || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].goals.total
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].goals.total || 0}
                                         </td>
                                     </tr>
                                 )}
@@ -147,7 +141,7 @@ export const Squad = ({ squad }) => {
                                 {player.json_statistics.statistics[0].games
                                     .position === "Midfielder" && (
                                     <tr className="text-white border-b border-black text-center h-16">
-                                        <td>
+                                        <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -164,20 +158,17 @@ export const Squad = ({ squad }) => {
                                             </div>
                                         </td>
                                         <td className="text-[20px]">
-                                            {player.json_statistics.player.age}
+                                            {player.json_statistics.player
+                                                .age || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].games
-                                                    .appearences
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].games
+                                                .appearences || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].goals.total
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].goals.total || 0}
                                         </td>
                                     </tr>
                                 )}
@@ -207,7 +198,7 @@ export const Squad = ({ squad }) => {
                                 {player.json_statistics.statistics[0].games
                                     .position === "Attacker" && (
                                     <tr className="text-white border-b border-black text-center h-16">
-                                        <td>
+                                        <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -224,20 +215,17 @@ export const Squad = ({ squad }) => {
                                             </div>
                                         </td>
                                         <td className="text-[20px]">
-                                            {player.json_statistics.player.age}
+                                            {player.json_statistics.player
+                                                .age || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].games
-                                                    .appearences
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].games
+                                                .appearences || 0}
                                         </td>
                                         <td className="text-[20px]">
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].goals.total
-                                            }
+                                            {player.json_statistics
+                                                .statistics[0].goals.total || 0}
                                         </td>
                                     </tr>
                                 )}
