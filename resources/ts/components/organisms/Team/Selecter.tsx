@@ -14,6 +14,7 @@ export const Selecter = ({
     squad,
     standings,
     id,
+    paginateLoading,
 }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
@@ -97,6 +98,7 @@ export const Selecter = ({
                     setPage={setPage}
                     lastPage={lastPage}
                     currentPage={currentPage}
+                    paginateLoading={paginateLoading}
                 />
             )}
             {selectedTab === "statistics" && (

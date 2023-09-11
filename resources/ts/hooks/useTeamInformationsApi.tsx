@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useTeamInformations = (teamId, season) => {
     const [informations, setInformations] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [teamLoading, setTeamLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,15 +13,16 @@ export const useTeamInformations = (teamId, season) => {
                 );
                 console.log(response.data);
                 setInformations(response.data);
-                setLoading(false);
+
+                setTeamLoading(false);
             } catch (error) {
                 console.error("Error getting informations:", error);
-                setLoading(false);
+                setTeamLoading(false);
             }
         };
 
         fetchData();
     }, []);
 
-    return { informations, loading };
+    return { informations, teamLoading };
 };
