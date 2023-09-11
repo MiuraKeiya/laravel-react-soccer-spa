@@ -4,6 +4,7 @@ import { Login } from "./pages/Auth/Login";
 import { Register } from "./pages/Auth/Register";
 import { HomePage } from "./pages/HomePage";
 import { TeamPage } from "./pages/TeamPage";
+import { GamesPage } from "./pages/GamesPage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 
@@ -21,6 +22,10 @@ export const RouterConfig = () => {
                         element={<TeamPage />}
                     />
                     <Route path="/standings/:id" element={<StandingsPage />} />
+                    <Route
+                        path="/games/:gamesId/leagues/:leagueId/seasons/:season"
+                        element={<GamesPage />}
+                    />
                 </Routes>
             </BrowserRouter>
         </SidebarProvider>
