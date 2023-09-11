@@ -48,7 +48,16 @@ export const Games = ({
                                 {game.json_detail.fixture.status.long}
                             </p>
                         </div>
-                        <div className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500">
+                        <div
+                            className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                            onClick={() =>
+                                handleGamesClick(
+                                    game.json_detail.fixture.id,
+                                    game.json_detail.league.id,
+                                    game.json_detail.league.season
+                                )
+                            }
+                        >
                             <div className="flex items-center w-52 justify-end space-x-6">
                                 <p className="text-white text-[15px]">
                                     {game.json_detail.teams.home.name}
