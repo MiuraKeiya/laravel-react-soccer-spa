@@ -1,11 +1,20 @@
 import { Button } from "../../atoms/Button";
 import { useState } from "react";
-import { ScheduleResults } from "./ScheduleResults";
 import { Statistics } from "./Statistics";
 import { Squad } from "./Squad/Squad";
 import { StandingsSelecter } from "./Standing/StandingsSelecter";
+import { Games } from "./Game/Games";
 
-export const Selecter = ({ informations, squad, standings, id }) => {
+export const Selecter = ({
+    informations,
+    games,
+    setPage,
+    lastPage,
+    currentPage,
+    squad,
+    standings,
+    id,
+}) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
     const handleScheduleResultsClick = () => {
@@ -83,7 +92,12 @@ export const Selecter = ({ informations, squad, standings, id }) => {
                 </Button>
             </div>
             {selectedTab === "scheduleResults" && (
-                <ScheduleResults informations={informations} />
+                <Games
+                    games={games}
+                    setPage={setPage}
+                    lastPage={lastPage}
+                    currentPage={currentPage}
+                />
             )}
             {selectedTab === "statistics" && (
                 <Statistics informations={informations} />

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useTeamInformations } from "../../../hooks/useTeamInformationsApi";
 import { useTeamPlayersApi } from "../../../hooks/useTeamPlayersApi";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
+import { useGamesPaginateApi } from "../../../hooks/useGamesPaginateApi";
 import { TeamInformations } from "./TeamInformations";
 import { Selecter } from "./Selecter";
 
@@ -11,6 +12,12 @@ export const Team = () => {
 
     // チーム情報を取得
     const { informations } = useTeamInformations(id, season);
+
+    // 試合日程・結果一覧を取得
+    const { games, setPage, lastPage, currentPage } = useGamesPaginateApi(
+        id,
+        season
+    );
 
     // 選手一覧を取得
     const { players } = useTeamPlayersApi(id, season);
@@ -29,6 +36,10 @@ export const Team = () => {
             <div className="mt-1 mb-6">
                 <Selecter
                     informations={informations}
+                    games={games}
+                    setPage={setPage}
+                    lastPage={lastPage}
+                    currentPage={currentPage}
                     squad={players}
                     standings={standings}
                     id={id}
