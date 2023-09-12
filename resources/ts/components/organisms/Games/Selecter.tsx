@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "../../atoms/Button";
+import { Stats } from "./Stats";
 
-export const Selecter = () => {
+export const Selecter = ({ games }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
 
     const handleStatsClick = () => {
@@ -78,6 +79,7 @@ export const Selecter = () => {
                     統計
                 </Button>
             </div>
+            {selectedTab === "stats" && <Stats games={games} />}
         </>
     );
 };

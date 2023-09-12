@@ -14,7 +14,7 @@ export const Games = () => {
                 <GamesTitle games={games} />
             </div>
             <div className="mt-1 mb-6">
-                <Selecter />
+                <Selecter games={games} />
             </div>
         </div>
     );
