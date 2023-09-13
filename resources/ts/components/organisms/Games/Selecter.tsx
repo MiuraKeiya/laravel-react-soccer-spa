@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../atoms/Button";
 import { Stats } from "./Stats";
+import { Progress } from "./Progress";
 
 export const Selecter = ({ games }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
@@ -80,6 +81,7 @@ export const Selecter = ({ games }) => {
                 </Button>
             </div>
             {selectedTab === "stats" && <Stats games={games} />}
+            {selectedTab === "progress" && <Progress games={games} />}
         </>
     );
 };
