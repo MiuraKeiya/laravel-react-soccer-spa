@@ -1,7 +1,7 @@
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip from "@mui/material/Tooltip";
 
-export const StandingsAll = ({ standings, id }) => {
+export const StandingsAll = ({ standings, teamIds }) => {
     return (
         <div className="bg-[#1d2233]">
             <table className="w-full">
@@ -25,7 +25,7 @@ export const StandingsAll = ({ standings, id }) => {
                         <tr
                             key={index}
                             className={`border-b border-[#111931] text-center h-[3.4375rem] ${
-                                id == standing.team.id
+                                teamIds.includes(standing.team.id)
                                     ? "bg-gradient-to-r from-[#1e2667]"
                                     : ""
                             }`}
