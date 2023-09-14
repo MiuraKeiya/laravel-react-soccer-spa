@@ -4,7 +4,7 @@ import { Stats } from "./Stats";
 import { Progress } from "./Progress";
 import { TopPlayers } from "./TopPlayers";
 
-export const Selecter = ({ games }) => {
+export const Selecter = ({ games, loading }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
 
     const handleStatsClick = () => {
@@ -67,7 +67,9 @@ export const Selecter = ({ games }) => {
                     順位表
                 </Button>
             </div>
-            {selectedTab === "stats" && <Stats games={games} />}
+            {selectedTab === "stats" && (
+                <Stats games={games} loading={loading} />
+            )}
             {selectedTab === "progress" && <Progress games={games} />}
             {selectedTab === "rating" && <TopPlayers games={games} />}
         </>
