@@ -1,6 +1,7 @@
 import { GaugeBar } from "../../molecules/GaugeBar";
+import { StatsLoading } from "./Loading/StatsLoading";
 
-export const TeamsStats = ({ games }) => {
+export const TeamsStats = ({ games, loading }) => {
     const translations = {
         "Shots on Goal": "枠内シュート",
         "Shots off Goal": "枠外シュート",
@@ -44,15 +45,19 @@ export const TeamsStats = ({ games }) => {
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 text-center rounded-b">
                 チームスタッツ
             </div>
-            {flattenedHomeStatistics.map((homeStat, index) => (
-                <div key={index}>
-                    <GaugeBar
-                        homeValue={homeStat.value}
-                        awayValue={flattenedAwayStatistics[index].value}
-                        type={homeStat.type}
-                    />
-                </div>
-            ))}
+            {loading ? (
+                <StatsLoading />
+            ) : (
+                flattenedHomeStatistics.map((homeStat, index) => (
+                    <div key={index}>
+                        <GaugeBar
+                            homeValue={homeStat.value}
+                            awayValue={flattenedAwayStatistics[index].value}
+                            type={homeStat.type}
+                        />
+                    </div>
+                ))
+            )}
         </div>
     );
 };

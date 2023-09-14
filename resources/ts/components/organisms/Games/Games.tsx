@@ -11,10 +11,10 @@ export const Games = () => {
     return (
         <div>
             <div className="mt-6">
-                <GamesTitle games={games} />
+                <GamesTitle games={games} loading={loading} />
             </div>
             <div className="mt-1 mb-6">
-                <Selecter games={games} />
+                <Selecter games={games} loading={loading} />
             </div>
         </div>
     );
