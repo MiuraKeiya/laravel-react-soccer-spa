@@ -51,3 +51,74 @@ export const formatAllDate = (dateString) => {
 
     return `${year}.${month}.${day}.${hours}:${minutes}`;
 };
+
+export const SortTopPlayers = (games) => {
+    // プレイヤーデータを取得
+    const allPlayers = games[0].json_detail?.players.flatMap((team) =>
+        team.players.map((player) => ({
+            ...player,
+            teamName: team.team.name,
+            teamLogo: team.team.logo,
+        }))
+    );
+
+    // シュート数でソート
+    const sortedPlayers = allPlayers.sort(
+        (a, b) =>
+            (b.statistics[0].shots.total || 0) -
+            (a.statistics[0].shots.total || 0)
+    );
+
+    // 上位3人の選手を取得
+    const top3Shots = sortedPlayers.slice(0, 3);
+
+    // パス数でソート
+    const sortedByPasses = allPlayers.sort(
+        (a, b) =>
+            (b.statistics[0].passes.total || 0) -
+            (a.statistics[0].passes.total || 0)
+    );
+
+    // 上位3人の選手を取得
+    const top3Passers = sortedByPasses.slice(0, 3);
+
+    // ドリブル数でソート
+    const sortedByDribbles = allPlayers.sort(
+        (a, b) =>
+            (b.statistics[0].dribbles.attempts || 0) -
+            (a.statistics[0].dribbles.attempts || 0)
+    );
+
+    // 上位3人の選手を取得
+    const top3Dribbles = sortedByDribbles.slice(0, 3);
+
+    // デュエル数でソート
+    const sortedByDuels = allPlayers.sort(
+        (a, b) =>
+            (b.statistics[0].duels.total || 0) -
+            (a.statistics[0].duels.total || 0)
+    );
+
+    // 上位3人の選手を取得
+    const top3Duels = sortedByDuels.slice(0, 3);
+
+    // タックルでソート
+    const sortedByTackles = allPlayers.sort(
+        (a, b) =>
+            (b.statistics[0].tackles.total || 0) -
+            (a.statistics[0].tackles.total || 0)
+    );
+
+    // 上位3人の選手を取得
+    const top3Tackles = sortedByTackles.slice(0, 3);
+
+    const topPlayers = [
+        top3Shots,
+        top3Passers,
+        top3Dribbles,
+        top3Duels,
+        top3Tackles,
+    ];
+
+    return topPlayers;
+};
