@@ -106,7 +106,7 @@ export const Selecter = ({
             )}
             {selectedTab === "players" && <Squad squad={squad} />}
             {selectedTab === "standings" && (
-                <StandingsSelecter standings={standings} id={id} />
+                <StandingsSelecter standings={standings} teamIds={id} />
             )}
         </>
     );

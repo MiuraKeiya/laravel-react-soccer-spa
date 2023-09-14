@@ -4,7 +4,7 @@ import { StandingsAll } from "./StandingsAll";
 import { StandingsHome } from "./StandingsHome";
 import { StandingsAway } from "./StandingsAway";
 
-export const StandingsSelecter = ({ standings, id }) => {
+export const StandingsSelecter = ({ standings, teamIds }) => {
     const [selectedTab, setSelectedTab] = useState("all");
 
     const handleStandingsAllClick = () => {
@@ -54,13 +54,13 @@ export const StandingsSelecter = ({ standings, id }) => {
                 </Button>
             </div>
             {selectedTab === "all" && (
-                <StandingsAll standings={standings} id={id} />
+                <StandingsAll standings={standings} teamIds={teamIds} />
             )}
             {selectedTab === "home" && (
-                <StandingsHome standings={standings} id={id} />
+                <StandingsHome standings={standings} teamIds={teamIds} />
             )}
             {selectedTab === "away" && (
-                <StandingsAway standings={standings} id={id} />
+                <StandingsAway standings={standings} teamIds={teamIds} />
             )}
         </>
     );

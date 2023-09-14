@@ -3,8 +3,9 @@ import { Button } from "../../atoms/Button";
 import { Stats } from "./Stats";
 import { Progress } from "./Progress";
 import { TopPlayers } from "./TopPlayers";
+import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 
-export const Selecter = ({ games, loading }) => {
+export const Selecter = ({ games, standings, teamIds, loading }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
 
     const handleStatsClick = () => {
@@ -72,6 +73,9 @@ export const Selecter = ({ games, loading }) => {
             )}
             {selectedTab === "progress" && <Progress games={games} />}
             {selectedTab === "rating" && <TopPlayers games={games} />}
+            {selectedTab === "standings" && (
+                <StandingsSelecter standings={standings} teamIds={teamIds} />
+            )}
         </>
     );
 };
