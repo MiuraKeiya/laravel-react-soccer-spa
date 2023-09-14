@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../../atoms/Button";
 import { Stats } from "./Stats";
 import { Progress } from "./Progress";
+import { TopPlayers } from "./TopPlayers";
 
 export const Selecter = ({ games }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
@@ -19,11 +20,7 @@ export const Selecter = ({ games }) => {
     };
 
     const handleStandingsClick = () => {
-        setSelectedTab("ranking");
-    };
-
-    const handlePredictionsClick = () => {
-        setSelectedTab("predictions");
+        setSelectedTab("standings");
     };
 
     return (
@@ -62,26 +59,17 @@ export const Selecter = ({ games }) => {
                 <Button
                     onClick={handleStandingsClick}
                     style={`text-[15px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "ranking"
+                        selectedTab === "standings"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
                     }`}
                 >
                     順位表
                 </Button>
-                <Button
-                    onClick={handlePredictionsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "predictions"
-                            ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
-                            : "text-[#C8CDCD] hover:text-[#FFFFFF]"
-                    }`}
-                >
-                    統計
-                </Button>
             </div>
             {selectedTab === "stats" && <Stats games={games} />}
             {selectedTab === "progress" && <Progress games={games} />}
+            {selectedTab === "rating" && <TopPlayers games={games} />}
         </>
     );
 };
