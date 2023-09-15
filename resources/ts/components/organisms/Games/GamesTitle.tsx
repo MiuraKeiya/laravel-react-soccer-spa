@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { formatAllDate } from "../../../functions/Utils";
 import StadiumIcon from "@mui/icons-material/Stadium";
 import { GameHeaderLoading } from "./Loading/GameHeaderLoading";
 
 export const GamesTitle = ({ games, loading }) => {
+    const navigate = useNavigate();
+
+    const handleLeagueClick = (leagueId, season) => {
+        navigate(`/league/${leagueId}/season/${season}`);
+    };
+
     return (
         <div className="bg-gradient-to-r from-[#1d2233] rounded-t h-60 flex justify-center items-center">
             {loading ? (
@@ -23,7 +30,15 @@ export const GamesTitle = ({ games, loading }) => {
                                     {game.json_detail.league.country}
                                 </div>
                                 <div className="p-1">-</div>
-                                <div className="uppercase">
+                                <div
+                                    className="uppercase hover:underline cursor-pointer"
+                                    onClick={() =>
+                                        handleLeagueClick(
+                                            game.json_detail.league.id,
+                                            game.json_detail.league.season
+                                        )
+                                    }
+                                >
                                     {game.json_detail.league.name}
                                 </div>
                                 <div className="p-1">-</div>

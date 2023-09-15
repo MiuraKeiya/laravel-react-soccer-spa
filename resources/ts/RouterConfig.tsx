@@ -5,6 +5,7 @@ import { Register } from "./pages/Auth/Register";
 import { HomePage } from "./pages/HomePage";
 import { TeamPage } from "./pages/TeamPage";
 import { GamesPage } from "./pages/GamesPage";
+import { LeaguePage } from "./pages/LeaguePage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 
@@ -25,6 +26,10 @@ export const RouterConfig = () => {
                     <Route
                         path="/games/:gameId/leagues/:leagueId/seasons/:season"
                         element={<GamesPage />}
+                    />
+                    <Route
+                        path="/league/:id/season/:season"
+                        element={<LeaguePage />}
                     />
                 </Routes>
             </BrowserRouter>
