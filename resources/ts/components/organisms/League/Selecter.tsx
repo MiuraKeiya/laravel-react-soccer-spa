@@ -2,6 +2,7 @@ import { Button } from "../../atoms/Button";
 import { useState } from "react";
 import { LeagueOverview } from "./LeagueOverview";
 import { LeagueResults } from "./LeagueResults";
+import { TopScorerSelecter } from "./TopScorerSelecter";
 
 export const Selecter = ({
     latestGames,
@@ -88,6 +89,9 @@ export const Selecter = ({
                     currentPage={currentPage}
                     paginateLoading={paginateLoading}
                 />
+            )}
+            {selectedTab === "standings" && (
+                <TopScorerSelecter standings={standings} />
             )}
         </>
     );
