@@ -1,16 +1,29 @@
 import { formatDatePart } from "../../../functions/Utils";
 import { formatDate } from "../../../functions/Utils";
-import { StandingsAll } from "../Team/Standing/StandingsAll";
+import { Button } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-export const LeagueOverview = ({ latestGames, standings }) => {
+export const LeagueResults = ({
+    pagenateGames,
+    setPage,
+    lastPage,
+    currentPage,
+    paginateLoading,
+}) => {
+    const handlePaginateClick = () => {
+        setPage((prevPage) => prevPage + 1);
+    };
+
     return (
-        <div className="mt-2">
-            <div className="bg-[#111931] py-1 text-[#EEEEEE] text-[18px] font-bold rounded">
-                <h1 className="ml-3">最新スコア</h1>
+        <div>
+            <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 mt-2 rounded">
+                <h1 className="ml-3">試合日程・結果</h1>
             </div>
-            <div>
-                {latestGames.map((game, index) => (
-                    <div key={index} className="text-white">
+            {paginateLoading ? (
+                <div></div>
+            ) : (
+                pagenateGames.map((game, index) => (
+                    <div key={index}>
                         <div className="flex justify-between mt-3">
                             <div className="flex space-x-1">
                                 <p className="text-[#EEEEEE] font-bold">
@@ -63,12 +76,19 @@ export const LeagueOverview = ({ latestGames, standings }) => {
                             </div>
                         </div>
                     </div>
-                ))}
+                ))
+            )}
+            <div className="text-center mt-6">
+                {currentPage !== lastPage && (
+                    <Button
+                        variant="outlined"
+                        endIcon={<KeyboardArrowDownIcon />}
+                        onClick={handlePaginateClick}
+                    >
+                        更に試合を表示する
+                    </Button>
+                )}
             </div>
-            <div className="bg-[#111931] py-1 text-[#EEEEEE] text-[18px] font-bold mt-6 mb-[1px] rounded-t">
-                <h1 className="ml-3">順位表</h1>
-            </div>
-            <StandingsAll standings={standings} />
         </div>
     );
 };

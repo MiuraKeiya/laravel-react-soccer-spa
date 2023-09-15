@@ -101,4 +101,42 @@ class GameController extends Controller
 
         return response()->json($response, 200);
     }
+
+    /**
+     * 特定のリーグの直近5試合を取得する
+     * 今日の日付からみて過去5試合を取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getLatestGames(string $leagueId, $season): JsonResponse
+    {
+        try {
+            $response = $this->gameService->getLatestGames($leagueId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
+
+    /**
+     * ページネーションで特定リーグの試合を取得する
+     * 最新の試合を5試合ごとに取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getLeagueGamesPagenate(string $leagueId, $season): JsonResponse
+    {
+      try {
+          $response = $this->gameService->getLeagueGamesPagenate($leagueId, $season);
+      } catch (Exception $error) {
+          return response()->json(['message' => '取得に失敗しました'], 400);
+      }
+
+    return response()->json($response, 200);
+    }
 }
