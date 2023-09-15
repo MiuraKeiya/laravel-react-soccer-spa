@@ -1,8 +1,17 @@
 import { Button } from "../../atoms/Button";
 import { useState } from "react";
 import { LeagueOverview } from "./LeagueOverview";
+import { LeagueResults } from "./LeagueResults";
 
-export const Selecter = ({ games, standings }) => {
+export const Selecter = ({
+    latestGames,
+    standings,
+    pagenateGames,
+    setPage,
+    lastPage,
+    currentPage,
+    paginateLoading,
+}) => {
     const [selectedTab, setSelectedTab] = useState("informations");
 
     const handleInformationsClick = () => {
@@ -66,7 +75,19 @@ export const Selecter = ({ games, standings }) => {
                 </Button>
             </div>
             {selectedTab === "informations" && (
-                <LeagueOverview games={games} standings={standings} />
+                <LeagueOverview
+                    latestGames={latestGames}
+                    standings={standings}
+                />
+            )}
+            {selectedTab === "results" && (
+                <LeagueResults
+                    pagenateGames={pagenateGames}
+                    setPage={setPage}
+                    lastPage={lastPage}
+                    currentPage={currentPage}
+                    paginateLoading={paginateLoading}
+                />
             )}
         </>
     );

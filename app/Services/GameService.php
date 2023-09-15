@@ -89,4 +89,41 @@ class GameService
 
         return $uniqueMatches;
     }
+
+    /**
+     * 特定のリーグの直近5試合を取得する
+     * 今日の日付からみて過去5試合を取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * 
+     */
+    public function getLatestGames(string $leagueId, $season)
+    {
+        // 今日の日付を取得
+        $today = date('Y-m-d');
+
+        $latestGames = $this->gameRepository->getLatestGames($leagueId, $today, $season);
+
+        // Eloquentコレクションから普通の配列に変換
+        $latestGamesArray = $latestGames->map(function ($game) {
+            return ['json_detail' => $game->json_detail];
+        })->values()->toArray();
+
+
+        return $latestGamesArray;
+    }
+
+    /**
+     * ページネーションで特定リーグの試合を取得する
+     * 最新の試合を5試合ごとに取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * 
+     */
+    public function getLeagueGamesPagenate(string $leagueId, $season)
+    {
+        return $this->gameRepository->getLeagueGamesPagenate($leagueId, $season);
+    }
 }
