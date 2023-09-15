@@ -122,3 +122,28 @@ export const SortTopPlayers = (games) => {
 
     return topPlayers;
 };
+
+export const latestGames = (games) => {
+    // 今日の日付を取得(例: 2023-09-15)
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const day = today.getDate().toString().padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // 今日から過去の試合を抽出
+    const pastGames = games.filter((game) => {
+        const gameDate = game.json_detail?.fixture?.date.split("T")[0];
+        return gameDate < formattedDate;
+    });
+
+    // 過去の試合を日付降順で並べ替え
+    pastGames.sort((a, b) => {
+        const dateA = new Date(a.json_detail?.fixture?.date.split("T")[0]);
+        const dateB = new Date(b.json_detail?.fixture?.date.split("T")[0]);
+        return dateB - dateA;
+    });
+
+    // 5試合を抽出して返す
+    return pastGames.slice(0, 5);
+};
