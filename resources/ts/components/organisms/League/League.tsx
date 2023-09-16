@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useLatestGamesApi } from "../../../hooks/useLatestGamesApi";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useLeagueGamesPaginateApi } from "../../../hooks/useLeagueGamesPaginateApi";
+import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { LeagueInformations } from "./LeagueInformations";
 import { Selecter } from "./Selecter";
 
@@ -15,6 +16,8 @@ export const League = () => {
 
     const { pagenateGames, paginateLoading, setPage, lastPage, currentPage } =
         useLeagueGamesPaginateApi(id, season);
+
+    const { rankings } = useRankingsApi(id, season);
 
     return (
         <div>
@@ -30,6 +33,7 @@ export const League = () => {
                     lastPage={lastPage}
                     currentPage={currentPage}
                     paginateLoading={paginateLoading}
+                    rankings={rankings}
                 />
             </div>
         </div>
