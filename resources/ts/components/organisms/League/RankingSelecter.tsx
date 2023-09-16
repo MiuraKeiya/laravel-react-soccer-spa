@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Button } from "../../atoms/Button";
+import { Scorer } from "./Scorer";
+import { Assist } from "./Assist";
+import { YellowCard } from "./YellowCard";
+import { RedCard } from "./RedCard";
 
-export const RankingSelecter = () => {
+export const RankingSelecter = ({ rankings }) => {
     const [selectedTab, setSelectedTab] = useState("scorer");
 
     const handleScorerClick = () => {
@@ -64,6 +68,10 @@ export const RankingSelecter = () => {
                     レッドカード
                 </Button>
             </div>
+            {selectedTab === "scorer" && <Scorer rankings={rankings} />}
+            {selectedTab === "assist" && <Assist rankings={rankings} />}
+            {selectedTab === "yellow" && <YellowCard rankings={rankings} />}
+            {selectedTab === "red" && <RedCard rankings={rankings} />}
         </>
     );
 };
