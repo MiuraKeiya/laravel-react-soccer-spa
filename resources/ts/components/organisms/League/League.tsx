@@ -3,6 +3,7 @@ import { useLatestGamesApi } from "../../../hooks/useLatestGamesApi";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useLeagueGamesPaginateApi } from "../../../hooks/useLeagueGamesPaginateApi";
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
+import { useLeagueTeamsApi } from "../../../hooks/useLeagueTeamsApi";
 import { LeagueInformations } from "./LeagueInformations";
 import { Selecter } from "./Selecter";
 
@@ -19,6 +20,8 @@ export const League = () => {
 
     const { rankings } = useRankingsApi(id, season);
 
+    const { teams } = useLeagueTeamsApi(id, season);
+
     return (
         <div>
             <div className="mt-6">
@@ -34,6 +37,7 @@ export const League = () => {
                     currentPage={currentPage}
                     paginateLoading={paginateLoading}
                     rankings={rankings}
+                    teams={teams}
                 />
             </div>
         </div>

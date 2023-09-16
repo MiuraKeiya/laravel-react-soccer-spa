@@ -3,6 +3,7 @@ import { useState } from "react";
 import { LeagueOverview } from "./LeagueOverview";
 import { LeagueResults } from "./LeagueResults";
 import { TopScorerSelecter } from "./TopScorerSelecter";
+import { Teams } from "./Teams";
 
 export const Selecter = ({
     latestGames,
@@ -13,6 +14,7 @@ export const Selecter = ({
     currentPage,
     paginateLoading,
     rankings,
+    teams,
 }) => {
     const [selectedTab, setSelectedTab] = useState("informations");
 
@@ -94,6 +96,7 @@ export const Selecter = ({
             {selectedTab === "standings" && (
                 <TopScorerSelecter standings={standings} rankings={rankings} />
             )}
+            {selectedTab === "teams" && <Teams teams={teams} />}
         </>
     );
 };
