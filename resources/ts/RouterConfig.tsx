@@ -8,6 +8,7 @@ import { GamesPage } from "./pages/GamesPage";
 import { LeaguePage } from "./pages/LeaguePage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
+import { PlayerPage } from "./pages/PlayerPage";
 
 export const RouterConfig = () => {
     return (
@@ -30,6 +31,10 @@ export const RouterConfig = () => {
                     <Route
                         path="/league/:id/season/:season"
                         element={<LeaguePage />}
+                    />
+                    <Route
+                        path="/player/:id/season/:season"
+                        element={<PlayerPage />}
                     />
                 </Routes>
             </BrowserRouter>
