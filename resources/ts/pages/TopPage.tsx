@@ -1,20 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { TopTemplate } from "../components/templates/Top/TopTemplate";
+import { Top } from "../components/organisms/Top/Top";
+import { TopFooter } from "../components/atoms/footer/TopFooter";
 
 export const TopPage = () => {
-    const navigate = useNavigate();
-    const handleLogin = () => {
-        navigate("/login");
-    };
-
-    const handleRegister = () => {
-        navigate("/register");
-    };
-
     return (
-        <div>
-            <div>Top</div>
-            <button onClick={handleLogin}>ログイン</button>
-            <button onClick={handleRegister}>新規登録</button>
-        </div>
+        <TopTemplate footer={<TopFooter />}>
+            <Top />
+        </TopTemplate>
     );
 };
