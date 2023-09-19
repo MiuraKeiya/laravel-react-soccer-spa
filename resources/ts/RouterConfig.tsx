@@ -9,35 +9,41 @@ import { LeaguePage } from "./pages/LeaguePage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 import { PlayerPage } from "./pages/PlayerPage";
+import { DatePickerProvider } from "./context/DatePickerContext";
 
 export const RouterConfig = () => {
     return (
-        <SidebarProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<TopPage />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/home" element={<HomePage />} />
-                    <Route
-                        path="/team/:id/season/:season"
-                        element={<TeamPage />}
-                    />
-                    <Route path="/standings/:id" element={<StandingsPage />} />
-                    <Route
-                        path="/games/:gameId/leagues/:leagueId/seasons/:season"
-                        element={<GamesPage />}
-                    />
-                    <Route
-                        path="/league/:id/season/:season"
-                        element={<LeaguePage />}
-                    />
-                    <Route
-                        path="/player/:id/season/:season"
-                        element={<PlayerPage />}
-                    />
-                </Routes>
-            </BrowserRouter>
-        </SidebarProvider>
+        <DatePickerProvider>
+            <SidebarProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<TopPage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/home" element={<HomePage />} />
+                        <Route
+                            path="/team/:id/season/:season"
+                            element={<TeamPage />}
+                        />
+                        <Route
+                            path="/standings/:id"
+                            element={<StandingsPage />}
+                        />
+                        <Route
+                            path="/games/:gameId/leagues/:leagueId/seasons/:season"
+                            element={<GamesPage />}
+                        />
+                        <Route
+                            path="/league/:id/season/:season"
+                            element={<LeaguePage />}
+                        />
+                        <Route
+                            path="/player/:id/season/:season"
+                            element={<PlayerPage />}
+                        />
+                    </Routes>
+                </BrowserRouter>
+            </SidebarProvider>
+        </DatePickerProvider>
     );
 };
