@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { SortTopPlayers } from "../../../functions/Utils";
 
-export const TopPlayers = ({ games }) => {
+export const TopPlayers = ({ games, maxSeason }) => {
     const topPlayers = SortTopPlayers(games);
+
+    const navigate = useNavigate();
+
+    const handlePlayerClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
+
     console.log(topPlayers);
     return (
         <div className="mt-2">
@@ -40,7 +48,17 @@ export const TopPlayers = ({ games }) => {
                                                 src={player.teamLogo}
                                                 className="w-10 h-10 mr-2"
                                             />
-                                            {player.player.name}
+                                            <a
+                                                className="hover:underline cursor-pointer"
+                                                onClick={() =>
+                                                    handlePlayerClick(
+                                                        player.player.id,
+                                                        maxSeason
+                                                    )
+                                                }
+                                            >
+                                                {player.player.name}
+                                            </a>
                                         </div>
                                     </td>
                                     <td className="py-2 text-center">
@@ -84,7 +102,17 @@ export const TopPlayers = ({ games }) => {
                                                 src={player.teamLogo}
                                                 className="w-10 h-10 mr-2"
                                             />
-                                            {player.player.name}
+                                            <a
+                                                className="hover:underline cursor-pointer"
+                                                onClick={() =>
+                                                    handlePlayerClick(
+                                                        player.player.id,
+                                                        maxSeason
+                                                    )
+                                                }
+                                            >
+                                                {player.player.name}
+                                            </a>
                                         </div>
                                     </td>
                                     <td className="py-2 text-center"></td>
@@ -130,7 +158,18 @@ export const TopPlayers = ({ games }) => {
                                                         src={player.teamLogo}
                                                         className="w-10 h-10 mr-2"
                                                     />
-                                                    {player.player.name}
+                                                    <a
+                                                        className="hover:underline cursor-pointer"
+                                                        onClick={() =>
+                                                            handlePlayerClick(
+                                                                player.player
+                                                                    .id,
+                                                                maxSeason
+                                                            )
+                                                        }
+                                                    >
+                                                        {player.player.name}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td className="py-2 text-center"></td>
@@ -179,7 +218,18 @@ export const TopPlayers = ({ games }) => {
                                                         src={player.teamLogo}
                                                         className="w-10 h-10 mr-2"
                                                     />
-                                                    {player.player.name}
+                                                    <a
+                                                        className="hover:underline cursor-pointer"
+                                                        onClick={() =>
+                                                            handlePlayerClick(
+                                                                player.player
+                                                                    .id,
+                                                                maxSeason
+                                                            )
+                                                        }
+                                                    >
+                                                        {player.player.name}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td className="py-2 text-center"></td>
@@ -230,7 +280,18 @@ export const TopPlayers = ({ games }) => {
                                                         src={player.teamLogo}
                                                         className="w-10 h-10 mr-2"
                                                     />
-                                                    {player.player.name}
+                                                    <a
+                                                        className="hover:underline cursor-pointer"
+                                                        onClick={() =>
+                                                            handlePlayerClick(
+                                                                player.player
+                                                                    .id,
+                                                                maxSeason
+                                                            )
+                                                        }
+                                                    >
+                                                        {player.player.name}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td className="py-2 text-center">

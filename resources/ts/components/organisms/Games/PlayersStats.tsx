@@ -1,17 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useModal } from "react-hooks-use-modal";
 import { PlayerStatsModal } from "./PlayerStatsModal";
 
-export const PlayersStats = ({ games }) => {
+export const PlayersStats = ({ games, maxSeason }) => {
     // モーダルに渡すId
     const [playerId, setPlayerId] = useState(null);
+
+    const navigate = useNavigate();
 
     const handleOpenModal = (Id) => {
         open();
         setPlayerId(Id);
+    };
+
+    const handlePlayerClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
+
+    const handleTeamClick = (teamId, maxSeason) => {
+        navigate(`/team/${teamId}/season/${maxSeason}`);
     };
 
     //　モーダルオプション
@@ -36,7 +47,15 @@ export const PlayersStats = ({ games }) => {
                         <thead>
                             <tr className="text-[14px] text-[#C8CDCD] bg-[#111931] h-8 cursor-default">
                                 <th>
-                                    <span className="flex items-center space-x-2 sm:w-[6rem] md:w-[9rem] lg:w-[11rem] sm:ml-1">
+                                    <span
+                                        className="flex items-center space-x-2 sm:w-[6rem] md:w-[9rem] lg:w-[11rem] sm:ml-1 hover:underline cursor-pointer"
+                                        onClick={() =>
+                                            handleTeamClick(
+                                                players.team.id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
                                         <img
                                             src={players.team.logo}
                                             alt="TeamLogo"
@@ -107,7 +126,15 @@ export const PlayersStats = ({ games }) => {
                                                 alt="Player Photo"
                                                 className="h-11 w-11 rounded-full"
                                             />
-                                            <span className="text-[15px] text-white font-bold hover:underline">
+                                            <span
+                                                className="text-[15px] text-white font-bold hover:underline"
+                                                onClick={() =>
+                                                    handlePlayerClick(
+                                                        player.player.id,
+                                                        maxSeason
+                                                    )
+                                                }
+                                            >
                                                 {player.player.name}
                                             </span>
                                         </span>
@@ -181,7 +208,11 @@ export const PlayersStats = ({ games }) => {
                                 <CloseIcon />
                             </IconButton>
                         </div>
-                        <PlayerStatsModal playerId={playerId} games={games} />
+                        <PlayerStatsModal
+                            playerId={playerId}
+                            games={games}
+                            maxSeason={maxSeason}
+                        />
                     </div>
                 </div>
             </Modal>

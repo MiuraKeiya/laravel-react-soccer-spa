@@ -1,4 +1,20 @@
-export const PlayerStatsModal = ({ playerId, games }) => {
+import { useNavigate } from "react-router-dom";
+
+export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
+    const navigate = useNavigate();
+
+    const handleLeagueClick = (leagueId, maxSeason) => {
+        navigate(`/league/${leagueId}/season/${maxSeason}`);
+    };
+
+    const handleTeamClick = (teamId, maxSeason) => {
+        navigate(`/team/${teamId}/season/${maxSeason}`);
+    };
+
+    const handlePlayerClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
+
     return (
         <div className="mx-3">
             <div className="bg-[#111931]">
@@ -13,7 +29,15 @@ export const PlayerStatsModal = ({ playerId, games }) => {
                                 alt="League Photo"
                                 className="h-5 w-5"
                             />
-                            <span>
+                            <span
+                                className="hover:underline cursor-pointer"
+                                onClick={() =>
+                                    handleLeagueClick(
+                                        league.json_detail.league.id,
+                                        maxSeason
+                                    )
+                                }
+                            >
                                 {league.json_detail.league.country} -{" "}
                                 {league.json_detail.league.name}
                             </span>
@@ -36,21 +60,49 @@ export const PlayerStatsModal = ({ playerId, games }) => {
                                                 <img
                                                     src={player.player.photo}
                                                     alt="League Photo"
-                                                    className="h-16 w-16 rounded-lg hover:border hover:border-[#B0EE1B]"
+                                                    className="h-16 w-16 rounded-lg hover:border hover:border-[#B0EE1B] cursor-pointer"
+                                                    onClick={() =>
+                                                        handlePlayerClick(
+                                                            player.player.id,
+                                                            maxSeason
+                                                        )
+                                                    }
                                                 />
                                             </div>
-                                            <div className="flex flex-col text-[13px] text-[#FFFFFF] space-y-1">
+                                            <div className="flex flex-col text-[13px] text-[#FFFFFF] space-y-1 mt-2">
                                                 <div className="flex items-center space-x-1">
-                                                    <span className="font-bold">
+                                                    <span
+                                                        className="font-bold cursor-pointer hover:underline"
+                                                        onClick={() =>
+                                                            handleTeamClick(
+                                                                players.team.id,
+                                                                maxSeason
+                                                            )
+                                                        }
+                                                    >
                                                         {players.team.name}
                                                     </span>
                                                     <img
                                                         src={players.team.logo}
                                                         alt="League Photo"
-                                                        className="h-6 w-6"
+                                                        className="h-6 w-6 transition-transform hover:scale-110 cursor-pointer"
+                                                        onClick={() =>
+                                                            handleTeamClick(
+                                                                players.team.id,
+                                                                maxSeason
+                                                            )
+                                                        }
                                                     />
                                                 </div>
-                                                <span className="hover:underline cursor-pointer">
+                                                <span
+                                                    className="hover:underline cursor-pointer font-bold"
+                                                    onClick={() =>
+                                                        handlePlayerClick(
+                                                            player.player.id,
+                                                            maxSeason
+                                                        )
+                                                    }
+                                                >
                                                     {player.player.name}
                                                 </span>
                                                 <div>

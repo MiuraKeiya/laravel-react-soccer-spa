@@ -1,7 +1,7 @@
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip from "@mui/material/Tooltip";
 
-export const StandingsAll = ({ standings, teamIds }) => {
+export const StandingsAll = ({ standings, teamIds, maxSeason }) => {
     return (
         <div className="bg-[#1d2233]">
             <table className="w-full">
@@ -39,9 +39,12 @@ export const StandingsAll = ({ standings, teamIds }) => {
                                             src={standing.team.logo}
                                             className="w-8 h-8"
                                         />
-                                        <span className="text-[16px] ml-1 hover:underline cursor-pointer font-bold">
+                                        <a
+                                            className="text-[16px] ml-1 hover:underline cursor-pointer font-bold"
+                                            href={`/team/${standing.team.id}/season/${maxSeason}`}
+                                        >
                                             {standing.team.name}
-                                        </span>
+                                        </a>
                                     </div>
                                 </td>
                                 <td className="text-[16px]">
