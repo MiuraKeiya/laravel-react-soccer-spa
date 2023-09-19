@@ -9,7 +9,7 @@ import { ScheduleGames } from "./ScheduleGames";
 import { useContext } from "react";
 import { DatePickerContext } from "../../../context/DatePickerContext";
 
-export const GamesSelecter = ({ games }) => {
+export const GamesSelecter = ({ games, maxSeason }) => {
     const { startDate, highlightedDates, handleDateChange } =
         useContext(DatePickerContext);
 
@@ -75,9 +75,15 @@ export const GamesSelecter = ({ games }) => {
                     className="bg-black text-[#EEEEEE] rounded-md cursor-pointer text-center text-[13px] font-bold py-1 mr-6"
                 />
             </div>
-            {selectedTab === "all" && <AllGames games={games} />}
-            {selectedTab === "end" && <EndGames games={games} />}
-            {selectedTab === "schedule" && <ScheduleGames games={games} />}
+            {selectedTab === "all" && (
+                <AllGames games={games} maxSeason={maxSeason} />
+            )}
+            {selectedTab === "end" && (
+                <EndGames games={games} maxSeason={maxSeason} />
+            )}
+            {selectedTab === "schedule" && (
+                <ScheduleGames games={games} maxSeason={maxSeason} />
+            )}
         </>
     );
 };

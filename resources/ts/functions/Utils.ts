@@ -122,3 +122,23 @@ export const SortTopPlayers = (games) => {
 
     return topPlayers;
 };
+
+// configの最大値を返す
+export const findMaxSeason = (config) => {
+    let maxSeason = -Infinity;
+
+    for (const key in config) {
+        if (config.hasOwnProperty(key)) {
+            const season = parseFloat(config[key]);
+            if (!isNaN(season) && season > maxSeason) {
+                maxSeason = season;
+            }
+        }
+    }
+
+    if (maxSeason === -Infinity) {
+        maxSeason = 0;
+    }
+
+    return maxSeason;
+};
