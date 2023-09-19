@@ -11,7 +11,7 @@ export const GamesDate = () => {
     registerLocale("ja", ja);
 
     return (
-        <>
+        <GamesSelecter date={selectedDate}>
             <DatePicker
                 selected={startDate} // 選択された日付（stateで管理）
                 onChange={handleDateChange} // 日付が選択されたときのコールバック関数
@@ -20,7 +20,6 @@ export const GamesDate = () => {
                 locale="ja" // 表示言語（日本語）
                 className="bg-black text-[#C8CDCD] rounded-md cursor-pointer text-center text-[12px] font-bold py-1"
             />
-            <GamesSelecter date={selectedDate} />
-        </>
+        </GamesSelecter>
     );
 };

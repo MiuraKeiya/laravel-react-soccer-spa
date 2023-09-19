@@ -3,6 +3,7 @@ import { GamesDate } from "../components/organisms/Home/GamesDate";
 import { Header } from "../components/organisms/Header";
 import { Footer } from "../components/atoms/footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
+import { Home } from "../components/organisms/Home/Home";
 
 export const HomePage = () => {
     return (
@@ -11,7 +12,7 @@ export const HomePage = () => {
             footer={<Footer />}
             sidebar={<SideBar />}
         >
-            <GamesDate />
+            <Home />
         </HomeTemplate>
     );
 };
