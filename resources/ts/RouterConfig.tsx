@@ -26,7 +26,7 @@ export const RouterConfig = () => {
                             element={<TeamPage />}
                         />
                         <Route
-                            path="/standings/:id"
+                            path="/standings/league/:id/season/:season"
                             element={<StandingsPage />}
                         />
                         <Route

@@ -13,6 +13,7 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@mui/icons-material": "^5.14.6",
         "@mui/material": "^5.14.6",
+        "@types/node": "^20.6.2",
         "@types/react": "^18.2.14",
         "@types/react-datepicker": "^4.11.2",
         "@types/react-dom": "^18.2.6",

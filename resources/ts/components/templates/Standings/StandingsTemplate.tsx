@@ -1,11 +1,9 @@
-export const StandingsTemplate = ({ header, footer, children }) => {
+export const StandingsTemplate = ({ header, footer, sidebar, children }) => {
     return (
-        <div>
+        <div className="bg-black">
             <header>{header}</header>
-            <div className="flex">
-                <aside className="w-1/4 bg-gray-200">サイドバー</aside>
-                <main className="w-3/4 bg-[#1d2233]"> {children}</main>
-            </div>
+            <aside>{sidebar}</aside>
+            <main className="min-h-screen container mx-auto">{children}</main>
             <footer>{footer}</footer>
         </div>
     );

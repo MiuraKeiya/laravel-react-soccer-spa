@@ -4,11 +4,15 @@ import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { Message } from "../../atoms/Message";
 import { ToolTip } from "../../atoms/ToolTip";
 
-export const AllGames = ({ games }) => {
+export const AllGames = ({ games, maxSeason }) => {
     const navigate = useNavigate();
     console.log(games);
     const handleGameClick = (gameId, leagueId, season) => {
         navigate(`/games/${gameId}/leagues/${leagueId}/seasons/${season}`);
+    };
+
+    const handleStandingsClick = (leagueId, maxSeason) => {
+        navigate(`/standings/league/${leagueId}/season/${maxSeason}`);
     };
 
     return (
@@ -45,7 +49,16 @@ export const AllGames = ({ games }) => {
                                         : {leagueName}
                                     </p>
                                 </div>
-                                <a className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer">
+                                <a
+                                    className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
+                                    onClick={() =>
+                                        handleStandingsClick(
+                                            leagueGames[0].json_detail.league
+                                                .id,
+                                            maxSeason
+                                        )
+                                    }
+                                >
                                     順位表
                                 </a>
                             </div>
