@@ -3,7 +3,7 @@ import { Button } from "../../atoms/Button";
 import { Events } from "./Events";
 import { Members } from "./Members";
 
-export const Progress = ({ games }) => {
+export const Progress = ({ games, maxSeason }) => {
     const [selectedTab, setSelectedTab] = useState("events");
 
     const handleEventsClick = () => {
@@ -38,7 +38,9 @@ export const Progress = ({ games }) => {
                     メンバー
                 </Button>
             </div>
-            {selectedTab === "events" && <Events games={games} />}
+            {selectedTab === "events" && (
+                <Events games={games} maxSeason={maxSeason} />
+            )}
             {selectedTab === "members" && <Members games={games} />}
         </>
     );

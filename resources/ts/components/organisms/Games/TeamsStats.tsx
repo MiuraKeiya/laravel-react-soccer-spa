@@ -22,8 +22,8 @@ export const TeamsStats = ({ games, loading }) => {
         expected_goals: "ゴール期待値",
     };
 
-    const homeStatistics = games[0]?.json_detail.statistics[0].statistics;
-    const awayStatistics = games[0]?.json_detail.statistics[1].statistics;
+    const homeStatistics = games[0]?.json_detail?.statistics[0]?.statistics;
+    const awayStatistics = games[0]?.json_detail?.statistics[1]?.statistics;
 
     // ホームとアウェイの統計データをフラット化し、typeをtranslationsに変換
     const flattenedHomeStatistics = homeStatistics

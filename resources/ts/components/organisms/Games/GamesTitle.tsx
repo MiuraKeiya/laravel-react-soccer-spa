@@ -3,11 +3,15 @@ import { formatAllDate } from "../../../functions/Utils";
 import StadiumIcon from "@mui/icons-material/Stadium";
 import { GameHeaderLoading } from "./Loading/GameHeaderLoading";
 
-export const GamesTitle = ({ games, loading }) => {
+export const GamesTitle = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
 
     const handleLeagueClick = (leagueId, season) => {
         navigate(`/league/${leagueId}/season/${season}`);
+    };
+
+    const handleTeamClick = (teamId, maxSeason) => {
+        navigate(`/team/${teamId}/season/${maxSeason}`);
     };
 
     return (
@@ -54,9 +58,23 @@ export const GamesTitle = ({ games, loading }) => {
                                 <img
                                     src={game.json_detail.teams.home.logo}
                                     alt="homeTeam"
-                                    className="w-24 h-24"
+                                    className="w-24 h-24 cursor-pointer transition-transform hover:scale-110"
+                                    onClick={() =>
+                                        handleTeamClick(
+                                            game.json_detail.teams.home.id,
+                                            maxSeason
+                                        )
+                                    }
                                 />
-                                <span className="text-white font-bold text-[20px] mt-1">
+                                <span
+                                    className="text-white font-bold text-[20px] mt-1 hover:underline cursor-pointer"
+                                    onClick={() =>
+                                        handleTeamClick(
+                                            game.json_detail.teams.home.id,
+                                            maxSeason
+                                        )
+                                    }
+                                >
                                     {game.json_detail.teams.home.name}
                                 </span>
                             </div>
@@ -89,9 +107,23 @@ export const GamesTitle = ({ games, loading }) => {
                                 <img
                                     src={game.json_detail.teams.away.logo}
                                     alt="awayTeam"
-                                    className="w-24 h-24"
+                                    className="w-24 h-24 cursor-pointer transition-transform hover:scale-110"
+                                    onClick={() =>
+                                        handleTeamClick(
+                                            game.json_detail.teams.away.id,
+                                            maxSeason
+                                        )
+                                    }
                                 />
-                                <span className="text-white font-bold text-[20px] mt-1">
+                                <span
+                                    className="text-white font-bold text-[20px] mt-1 hover:underline cursor-pointer"
+                                    onClick={() =>
+                                        handleTeamClick(
+                                            game.json_detail.teams.away.id,
+                                            maxSeason
+                                        )
+                                    }
+                                >
                                     {game.json_detail.teams.away.name}
                                 </span>
                             </div>

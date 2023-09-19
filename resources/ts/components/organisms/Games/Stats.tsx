@@ -3,7 +3,7 @@ import { Button } from "../../atoms/Button";
 import { TeamsStats } from "./TeamsStats";
 import { PlayersStats } from "./PlayersStats";
 
-export const Stats = ({ games, loading }) => {
+export const Stats = ({ games, loading, maxSeason }) => {
     const [selectedTab, setSelectedTab] = useState("teams");
 
     const handleTeamsClick = () => {
@@ -41,7 +41,9 @@ export const Stats = ({ games, loading }) => {
             {selectedTab === "teams" && (
                 <TeamsStats games={games} loading={loading} />
             )}
-            {selectedTab === "players" && <PlayersStats games={games} />}
+            {selectedTab === "players" && (
+                <PlayersStats games={games} maxSeason={maxSeason} />
+            )}
         </>
     );
 };

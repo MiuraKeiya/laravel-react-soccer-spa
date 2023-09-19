@@ -4,7 +4,7 @@ import { StandingsAll } from "./StandingsAll";
 import { StandingsHome } from "./StandingsHome";
 import { StandingsAway } from "./StandingsAway";
 
-export const StandingsSelecter = ({ standings, teamIds }) => {
+export const StandingsSelecter = ({ standings, teamIds, maxSeason }) => {
     const [selectedTab, setSelectedTab] = useState("all");
 
     const handleStandingsAllClick = () => {
@@ -54,13 +54,25 @@ export const StandingsSelecter = ({ standings, teamIds }) => {
                 </Button>
             </div>
             {selectedTab === "all" && (
-                <StandingsAll standings={standings} teamIds={teamIds} />
+                <StandingsAll
+                    standings={standings}
+                    teamIds={teamIds}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "home" && (
-                <StandingsHome standings={standings} teamIds={teamIds} />
+                <StandingsHome
+                    standings={standings}
+                    teamIds={teamIds}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "away" && (
-                <StandingsAway standings={standings} teamIds={teamIds} />
+                <StandingsAway
+                    standings={standings}
+                    teamIds={teamIds}
+                    maxSeason={maxSeason}
+                />
             )}
         </>
     );

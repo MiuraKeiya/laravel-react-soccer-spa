@@ -5,7 +5,7 @@ import { Progress } from "./Progress";
 import { TopPlayers } from "./TopPlayers";
 import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 
-export const Selecter = ({ games, standings, teamIds, loading }) => {
+export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
     const [selectedTab, setSelectedTab] = useState("stats");
 
     const handleStatsClick = () => {
@@ -69,12 +69,20 @@ export const Selecter = ({ games, standings, teamIds, loading }) => {
                 </Button>
             </div>
             {selectedTab === "stats" && (
-                <Stats games={games} loading={loading} />
+                <Stats games={games} loading={loading} maxSeason={maxSeason} />
             )}
-            {selectedTab === "progress" && <Progress games={games} />}
-            {selectedTab === "rating" && <TopPlayers games={games} />}
+            {selectedTab === "progress" && (
+                <Progress games={games} maxSeason={maxSeason} />
+            )}
+            {selectedTab === "rating" && (
+                <TopPlayers games={games} maxSeason={maxSeason} />
+            )}
             {selectedTab === "standings" && (
-                <StandingsSelecter standings={standings} teamIds={teamIds} />
+                <StandingsSelecter
+                    standings={standings}
+                    teamIds={teamIds}
+                    maxSeason={maxSeason}
+                />
             )}
         </>
     );

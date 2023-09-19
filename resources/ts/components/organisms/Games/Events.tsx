@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import LoopIcon from "@mui/icons-material/Loop";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import SportsIcon from "@mui/icons-material/Sports";
 import StadiumIcon from "@mui/icons-material/Stadium";
 
-export const Events = ({ games }) => {
+export const Events = ({ games, maxSeason }) => {
+    const navigate = useNavigate();
+
+    const handlePlayerClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
     return (
         <div>
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 text-center">
@@ -53,11 +59,21 @@ export const Events = ({ games }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <span className="font-bold">
+                                        <span
+                                            className="font-bold hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
                                             {game.player.name}
                                         </span>
                                         {game.assist.name && (
-                                            <a>({game.assist.name})</a>
+                                            <span>
+                                                (<a>{game.assist.name}</a>)
+                                            </span>
                                         )}
                                     </div>
                                 )}
@@ -66,9 +82,19 @@ export const Events = ({ games }) => {
                                 game.time.elapsed <= 45 && (
                                     <div className="text-white flex items-center justify-end space-x-2 mb-5 text-[20px]">
                                         {game.assist.name && (
-                                            <a>({game.assist.name})</a>
+                                            <span>
+                                                (<a>{game.assist.name}</a>)
+                                            </span>
                                         )}
-                                        <span className="font-bold">
+                                        <span
+                                            className="font-bold hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
                                             {game.player.name}
                                         </span>
                                         <span>
@@ -142,12 +168,22 @@ export const Events = ({ games }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <span className="font-bold">
+                                        <span
+                                            className="font-bold hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
                                             {game.player.name}
                                         </span>
                                         <div>
                                             {game.assist.name && (
-                                                <a>({game.assist.name})</a>
+                                                <span>
+                                                    (<a>{game.assist.name}</a>)
+                                                </span>
                                             )}
                                         </div>
                                     </div>
@@ -158,10 +194,20 @@ export const Events = ({ games }) => {
                                     <div className="text-white flex items-center justify-end space-x-2 mb-5 text-[20px]">
                                         <div>
                                             {game.assist.name && (
-                                                <a>({game.assist.name})</a>
+                                                <span>
+                                                    (<a>{game.assist.name}</a>)
+                                                </span>
                                             )}
                                         </div>
-                                        <span className="font-bold">
+                                        <span
+                                            className="font-bold hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
                                             {game.player.name}
                                         </span>
                                         <span>
