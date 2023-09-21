@@ -142,3 +142,12 @@ export const findMaxSeason = (config) => {
 
     return maxSeason;
 };
+
+export const formatDateToCustomFormat = (dateString) => {
+    const originalDate = new Date(dateString);
+    const year = originalDate.getFullYear();
+    const month = String(originalDate.getMonth() + 1).padStart(2, "0");
+    const day = String(originalDate.getDate()).padStart(2, "0");
+    const formattedDateStr = `${year}-${month}-${day}`;
+    return formattedDateStr;
+};

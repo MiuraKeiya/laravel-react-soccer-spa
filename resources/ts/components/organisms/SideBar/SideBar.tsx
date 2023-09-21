@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AddPlusIcon } from "../../atoms/AddIPlusIcon";
 import { useSidebarContext } from "../../../context/SidebarContext";
 import { HeaderLogo } from "../../molecules/HeaderLogo";
@@ -27,11 +28,17 @@ import PortraitIcon from "@mui/icons-material/Portrait";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import Modal from "@mui/material/Modal";
+import { useUserApi } from "../../../hooks/useUserApi";
+import { ModalAccount } from "../Modal/ModalAccount";
+import { ModalLogout } from "../Modal/ModalLogout";
+import { ModalDeleteAccount } from "../Modal/ModalDeleteAccount";
 
 export const SideBar = () => {
     const { isSidebarOpen, toggleSidebar } = useSidebarContext();
 
     const { leagues } = useLeagueAPI();
+
+    const { user } = useUserApi();
 
     const [openFavoriteTeam, setOpenFavoriteTeam] = useState(true);
 
@@ -123,6 +130,13 @@ export const SideBar = () => {
     // ログアウトモーダルを閉じるハンドラー
     const handleCloseLogoutModal = () => {
         setOpenLogoutModal(false);
+    };
+
+    const navigate = useNavigate();
+
+    const handleHomeClick = () => {
+        toggleSidebar();
+        navigate("/home");
     };
 
     return (
@@ -227,7 +241,7 @@ export const SideBar = () => {
                             </List>
                         </Collapse>
                         <div className="ml-4 mr-4 mt-2 mb-2 border-b border-[#1d2233]"></div>
-                        <ListItemButton>
+                        <ListItemButton onClick={handleHomeClick}>
                             <ListItemIcon>
                                 <HomeIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
@@ -308,13 +322,8 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
-                    <button
-                        onClick={handleCloseAccountModal}
-                        className="text-white"
-                    >
-                        閉じる
-                    </button>
+                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
+                    <ModalAccount user={user} close={handleCloseAccountModal} />
                 </div>
             </Modal>
             {/* パスワード変更モーダル */}
@@ -327,7 +336,7 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
+                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
                     <button
                         onClick={handleClosePasswordChangeModal}
                         className="text-white"
@@ -346,13 +355,11 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
-                    <button
-                        onClick={handleCloseAccountDeletionModal}
-                        className="text-white"
-                    >
-                        閉じる
-                    </button>
+                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
+                    <ModalDeleteAccount
+                        close={handleCloseAccountDeletionModal}
+                        user={user}
+                    />
                 </div>
             </Modal>
             {/* ログアウトモーダル */}
@@ -365,13 +372,8 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
-                    <button
-                        onClick={handleOpenLogoutModal}
-                        className="text-white"
-                    >
-                        閉じる
-                    </button>
+                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
+                    <ModalLogout close={handleCloseLogoutModal} />
                 </div>
             </Modal>
         </>
