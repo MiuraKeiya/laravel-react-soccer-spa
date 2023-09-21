@@ -34,10 +34,6 @@ export const Selecter = ({
         setSelectedTab("players");
     };
 
-    const handleTransferClick = () => {
-        setSelectedTab("transfer");
-    };
-
     return (
         <>
             <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-12 flex items-center justify-center space-x-16">
@@ -80,16 +76,6 @@ export const Selecter = ({
                     }`}
                 >
                     選手一覧
-                </Button>
-                <Button
-                    onClick={handleTransferClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
-                        selectedTab === "transfer"
-                            ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
-                            : "text-[#C8CDCD] hover:text-[#FFFFFF]"
-                    }`}
-                >
-                    移籍情報
                 </Button>
             </div>
             {selectedTab === "scheduleResults" && (
