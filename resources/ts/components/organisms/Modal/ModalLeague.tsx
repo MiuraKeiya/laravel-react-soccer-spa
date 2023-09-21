@@ -12,12 +12,14 @@ export const ModalLeague = () => {
     const { favorites, loading } = useGetFavoriteApi("leagues");
     const { leagues, isLoading } = useLeagueAPI();
     const [favoriteStates, setFavoriteStates] = useState([]);
-console.log(favorites);
+    console.log(favorites);
     useEffect(() => {
         // 初期表示時のお気に入りの状態を設定する
         const initialFavoriteStates = leagues.map((league) => ({
             id: league.id,
-            isFavorite: favorites.some((favorite) => favorite.league_id === league.id),
+            isFavorite: favorites.some(
+                (favorite) => favorite.league_id === league.id
+            ),
         }));
 
         setFavoriteStates(initialFavoriteStates);

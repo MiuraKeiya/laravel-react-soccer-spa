@@ -14,6 +14,7 @@ export const useLeagueAPI = () => {
 
                 const response = await axios.get("/api/leagues");
 
+                console.log(response.data);
                 setLeagues(response.data);
                 setIsLoading(false);
             } catch (error) {
