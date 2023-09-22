@@ -21,7 +21,7 @@ export const Home = () => {
                 <HomeInformations />
             </div>
             <div className="mt-1 mb-6">
-                <GamesSelecter games={games} maxSeason={maxSeason}/>
+                <GamesSelecter games={games} maxSeason={maxSeason} />
             </div>
         </div>
     );
