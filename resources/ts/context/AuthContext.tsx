@@ -65,12 +65,9 @@ export const useAuth = () => {
 const useProvideAuth = () => {
     const [user, setUser] = useState<User | null>(null);
 
-    const register = (registerData: RegisterData) => {
-        return axios.post("/api/register", registerData).then((res) => {
-            axios.get("api/user").then((res) => {
-                setUser(res.data);
-            });
-        });
+    const register = async (registerData: RegisterData) => {
+        const res = await axios.post("/api/register", registerData);
+        setUser(res.data);
     };
 
     const signin = async (loginData: LoginData) => {

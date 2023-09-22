@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TopPage } from "./pages/TopPage";
-import { Login } from "./pages/Auth/Login";
 import { LoginPage } from "./pages/Auth/LoginPage";
-import { Register } from "./pages/Auth/Register";
+import { RegisterPage } from "./pages/Auth/RegisterPage";
 import { HomePage } from "./pages/HomePage";
 import { TeamPage } from "./pages/TeamPage";
 import { GamesPage } from "./pages/GamesPage";
@@ -22,7 +21,10 @@ export const RouterConfig = () => {
                         <Routes>
                             <Route path="/" element={<TopPage />} />
                             <Route path="/login" element={<LoginPage />} />
-                            <Route path="/register" element={<Register />} />
+                            <Route
+                                path="/register"
+                                element={<RegisterPage />}
+                            />
                             <Route
                                 path="/home"
                                 element={
