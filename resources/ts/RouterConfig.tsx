@@ -10,7 +10,7 @@ import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 import { PlayerPage } from "./pages/PlayerPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
-import ProvideAuth, { PrivateRoute } from "./context/AuthContext";
+import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
 export const RouterConfig = () => {
     return (
@@ -19,11 +19,32 @@ export const RouterConfig = () => {
                 <SidebarProvider>
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/" element={<TopPage />} />
-                            <Route path="/login" element={<LoginPage />} />
+                            <Route
+                                path="/"
+                                element={
+                                    <PublicRoute
+                                        component={<TopPage />}
+                                        redirect="/home"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/login"
+                                element={
+                                    <PublicRoute
+                                        component={<LoginPage />}
+                                        redirect="/home"
+                                    />
+                                }
+                            />
                             <Route
                                 path="/register"
-                                element={<RegisterPage />}
+                                element={
+                                    <PublicRoute
+                                        component={<RegisterPage />}
+                                        redirect="/home"
+                                    />
+                                }
                             />
                             <Route
                                 path="/home"
@@ -36,23 +57,48 @@ export const RouterConfig = () => {
                             />
                             <Route
                                 path="/team/:id/season/:season"
-                                element={<TeamPage />}
+                                element={
+                                    <PrivateRoute
+                                        component={<TeamPage />}
+                                        redirect="/login"
+                                    />
+                                }
                             />
                             <Route
                                 path="/standings/league/:id/season/:season"
-                                element={<StandingsPage />}
+                                element={
+                                    <PrivateRoute
+                                        component={<StandingsPage />}
+                                        redirect="/login"
+                                    />
+                                }
                             />
                             <Route
                                 path="/games/:gameId/leagues/:leagueId/seasons/:season"
-                                element={<GamesPage />}
+                                element={
+                                    <PrivateRoute
+                                        component={<GamesPage />}
+                                        redirect="/login"
+                                    />
+                                }
                             />
                             <Route
                                 path="/league/:id/season/:season"
-                                element={<LeaguePage />}
+                                element={
+                                    <PrivateRoute
+                                        component={<LeaguePage />}
+                                        redirect="/login"
+                                    />
+                                }
                             />
                             <Route
                                 path="/player/:id/season/:season"
-                                element={<PlayerPage />}
+                                element={
+                                    <PrivateRoute
+                                        component={<PlayerPage />}
+                                        redirect="/login"
+                                    />
+                                }
                             />
                         </Routes>
                     </BrowserRouter>

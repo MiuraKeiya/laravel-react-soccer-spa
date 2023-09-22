@@ -12,7 +12,6 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 
 export const Register = () => {
     const auth = useAuth();

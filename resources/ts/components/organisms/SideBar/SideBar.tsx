@@ -32,6 +32,7 @@ import { useUserApi } from "../../../hooks/useUserApi";
 import { ModalAccount } from "../Modal/ModalAccount";
 import { ModalLogout } from "../Modal/ModalLogout";
 import { ModalDeleteAccount } from "../Modal/ModalDeleteAccount";
+import { ModalPassword } from "../Modal/ModalPassword";
 
 export const SideBar = () => {
     const { isSidebarOpen, toggleSidebar } = useSidebarContext();
@@ -336,13 +337,8 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
-                    <button
-                        onClick={handleClosePasswordChangeModal}
-                        className="text-white"
-                    >
-                        閉じる
-                    </button>
+                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
+                    <ModalPassword close={handleClosePasswordChangeModal} />
                 </div>
             </Modal>
             {/* アカウント削除モーダル */}

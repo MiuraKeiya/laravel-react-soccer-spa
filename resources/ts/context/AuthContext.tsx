@@ -6,7 +6,7 @@ import {
     ReactNode,
     useEffect,
 } from "react";
-import { Route, Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 interface User {
     id: number;
@@ -27,16 +27,11 @@ interface RegisterData {
     password: string;
     password_confirmation: string;
 }
-interface ProfileData {
-    name?: string;
-    email?: string;
-}
 interface authProps {
     user: User | null;
     register: (registerData: RegisterData) => Promise<void>;
     signin: (loginData: LoginData) => Promise<void>;
     signout: () => Promise<void>;
-    saveProfile: (formData: FormData | ProfileData) => Promise<void>;
 }
 interface Props {
     children: ReactNode;
@@ -63,73 +58,85 @@ export const useAuth = () => {
 };
 
 const useProvideAuth = () => {
+    // ユーザー情報を保持
     const [user, setUser] = useState<User | null>(null);
 
+    // ローディングフラグ
+    const [userLoading, setUserLoading] = useState(true);
+
+    /**
+     * 新規登録
+     * 成功時にはユーザー情報をstateで管理
+     *
+     * @param {RegisterData} registerData - 登録データ
+     * @returns {Promise<void>} ユーザー情報を設定する Promise
+     */
     const register = async (registerData: RegisterData) => {
-        const res = await axios.post("/api/register", registerData);
-        setUser(res.data);
+        try {
+            const res = await axios.post("/api/register", registerData);
+            setUser(res.data);
+        } catch (error) {
+            console.error("Registration error:", error);
+        }
     };
 
+    /**
+     * ログイン
+     * 成功時にはユーザー情報をstateで管理
+     *
+     * @param {LoginData} loginData - ログインに必要なデータ
+     * @returns {Promise<void>} ログインが成功した場合に解決される Promise
+     */
     const signin = async (loginData: LoginData) => {
         try {
             const res = await axios.post("/api/login", loginData);
+            setUser(res.data);
         } catch (error) {
-            throw error;
+            console.error("login error:", error);
         }
-
-        return axios
-            .get("/api/user")
-            .then((res) => {
-                setUser(res.data);
-            })
-            .catch((error) => {
-                setUser(null);
-            });
     };
 
-    const signout = () => {
-        return axios.post("/api/logout", {}).then(() => {
+    /**
+     * ログアウト
+     * 成功時にはユーザー情報を削除
+     *
+     * @returns {Promise<void>} ログアウトが成功した場合に解決される Promise
+     */
+    const signout = async () => {
+        try {
+            await axios.post("/api/logout", {});
             setUser(null);
-        });
-    };
-
-    const saveProfile = async (formData: FormData | ProfileData) => {
-        const res = await axios
-            .post("/api/user/profile-information", formData, {
-                headers: { "X-HTTP-Method-Override": "PUT" },
-            })
-            .catch((error) => {
-                throw error;
-            });
-        if (res?.status == 200) {
-            return axios
-                .get("/api/user")
-                .then((res) => {
-                    setUser(res.data);
-                })
-                .catch((error) => {
-                    setUser(null);
-                });
+        } catch (error) {
+            console.error("logout error:", error);
         }
     };
 
     useEffect(() => {
-        axios
-            .get("/api/user")
-            .then((res) => {
-                setUser(res.data);
-            })
-            .catch((error) => {
-                setUser(null);
-            });
+        const fetchData = async () => {
+            try {
+                setUserLoading(true);
+
+                const response = await axios.get("/api/user");
+
+                console.log(response.data);
+                setUser(response.data);
+
+                setUserLoading(false);
+            } catch (error) {
+                console.error("API call error:", error);
+                setUserLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return {
         user,
+        userLoading,
         register,
         signin,
         signout,
-        saveProfile,
     };
 };
 
@@ -138,18 +145,42 @@ const useProvideAuth = () => {
  */
 export const PrivateRoute = ({ component, redirect }: RouteProps) => {
     // 認証ユーザーを取得
-    const authUser = useAuth();
+    const auth = useAuth();
 
-    // ルートを許可するかどうかを判定するためのフラグ
-    let allowRoute = false;
-
-    // 認証ユーザーが存在する場合
-    if (authUser?.user) {
-        allowRoute = true;
+    // user情報が取得されるまで待つ
+    if (auth?.userLoading) {
+        return <div>Loading...</div>;
     }
 
-    // ルートが許可されていない場合、指定されたリダイレクト先にリダイレクトする
-    if (!allowRoute) {
+    if (auth?.user === null) {
+        return (
+            <Navigate
+                to={redirect}
+                state={{ from: useLocation() }}
+                replace={false}
+            />
+        );
+    } else {
+        return component;
+    }
+};
+
+/**
+ * 認証していない場合のみアクセス可能（ログイン画面など）
+ */
+export const PublicRoute = ({ component, redirect }: RouteProps) => {
+    const auth = useAuth();
+
+    const navigate = useNavigate();
+
+    // user情報が取得されるまで待つ
+    if (auth?.userLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (auth?.user === null) {
+        return component;
+    } else {
         return (
             <Navigate
                 to={redirect}
@@ -158,37 +189,4 @@ export const PrivateRoute = ({ component, redirect }: RouteProps) => {
             />
         );
     }
-
-    return <>{component}</>;
 };
-
-/**
- * 認証していない場合のみアクセス可能（ログイン画面など）
- */
-// export const PublicRoute = ({ children, path, exact = false }: RouteProps) => {
-//     const auth = useAuth();
-//     const history = useHistory();
-//     return (
-//         <Route
-//             path={path}
-//             exact={exact}
-//             render={({ location }) => {
-//                 if (auth?.user == null) {
-//                     return children;
-//                 } else {
-//                     return (
-//                         <Navigate
-//                             to={{
-//                                 pathname: (history.location.state as From)
-//                                     ? (history.location.state as From).from
-//                                           .pathname
-//                                     : "/",
-//                                 state: { from: location },
-//                             }}
-//                         />
-//                     );
-//                 }
-//             }}
-//         />
-//     );
-// };
