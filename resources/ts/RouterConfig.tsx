@@ -9,6 +9,7 @@ import { LeaguePage } from "./pages/LeaguePage";
 import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 import { PlayerPage } from "./pages/PlayerPage";
+import { ForgotPasswordPage } from "./pages/Auth/ForgotPasswordPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
 import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
@@ -42,6 +43,15 @@ export const RouterConfig = () => {
                                 element={
                                     <PublicRoute
                                         component={<RegisterPage />}
+                                        redirect="/home"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/forgot_password"
+                                element={
+                                    <PublicRoute
+                                        component={<ForgotPasswordPage />}
                                         redirect="/home"
                                     />
                                 }

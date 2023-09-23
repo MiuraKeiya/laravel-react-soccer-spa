@@ -38,7 +38,6 @@ export const Login = () => {
                     navigate("/home");
                 })
                 .catch((error) => {
-                    console.log(error);
                     setError("submit", {
                         type: "manual",
                         message:
@@ -203,7 +202,7 @@ export const Login = () => {
                         )}
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link href="/forgot_password" variant="body2">
                                     パスワードをお忘れですか？
                                 </Link>
                             </Grid>
