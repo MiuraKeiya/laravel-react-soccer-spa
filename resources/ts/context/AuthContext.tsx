@@ -77,6 +77,7 @@ const useProvideAuth = () => {
             setUser(res.data);
         } catch (error) {
             console.error("Registration error:", error);
+            throw error;
         }
     };
 
@@ -90,9 +91,11 @@ const useProvideAuth = () => {
     const signin = async (loginData: LoginData) => {
         try {
             const res = await axios.post("/api/login", loginData);
+            console.log(res.data);
             setUser(res.data);
         } catch (error) {
             console.error("login error:", error);
+            throw error;
         }
     };
 
@@ -144,6 +147,8 @@ const useProvideAuth = () => {
  * 認証済みのみアクセス可能 (ホーム画面など)
  */
 export const PrivateRoute = ({ component, redirect }: RouteProps) => {
+    const location = useLocation();
+
     // 認証ユーザーを取得
     const auth = useAuth();
 
@@ -156,7 +161,7 @@ export const PrivateRoute = ({ component, redirect }: RouteProps) => {
         return (
             <Navigate
                 to={redirect}
-                state={{ from: useLocation() }}
+                state={{ from: location }}
                 replace={false}
             />
         );
@@ -169,9 +174,9 @@ export const PrivateRoute = ({ component, redirect }: RouteProps) => {
  * 認証していない場合のみアクセス可能（ログイン画面など）
  */
 export const PublicRoute = ({ component, redirect }: RouteProps) => {
-    const auth = useAuth();
+    const location = useLocation();
 
-    const navigate = useNavigate();
+    const auth = useAuth();
 
     // user情報が取得されるまで待つ
     if (auth?.userLoading) {
@@ -184,7 +189,7 @@ export const PublicRoute = ({ component, redirect }: RouteProps) => {
         return (
             <Navigate
                 to={redirect}
-                state={{ from: useLocation() }}
+                state={{ from: location }}
                 replace={false}
             />
         );
