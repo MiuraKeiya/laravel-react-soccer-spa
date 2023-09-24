@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Icon } from "../../atoms/Icon";
 import { useAuth } from "../../../context/AuthContext";
+import { CustomSnackbar } from "../../molecules/CustomSnackbar";
+import { useNavigation } from "../../../hooks/useNavigation";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -11,17 +13,18 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoadingButton from "@mui/lab/LoadingButton";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
+import { Button } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const Login = () => {
     const auth = useAuth();
 
-    const navigate = useNavigate();
+    const goTo = useNavigation();
 
     const location = useLocation();
 
-    const resetPasswordMessage = location.state?.message;
+    const snackbarMessage = location.state?.message;
 
     const {
         register,
@@ -39,7 +42,7 @@ export const Login = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
             auth?.signin(data)
                 .then(() => {
-                    navigate("/home");
+                    goTo("/home");
                 })
                 .catch((error) => {
                     setError("submit", {
@@ -93,6 +96,7 @@ export const Login = () => {
 
     return (
         <div className="sm:w-[27rem] md:w-[27rem] lg:w-[27rem]">
+            {snackbarMessage && <CustomSnackbar message={snackbarMessage} />}
             {/** ログインタイトル */}
             <div className="mb-5">
                 <Icon
@@ -206,7 +210,10 @@ export const Login = () => {
                         )}
                         <Grid container>
                             <Grid item xs>
-                                <Link href="/forgot_password" variant="body2">
+                                <Link
+                                    to="/forgot_password"
+                                    className="underline text-[#C8CDCD] hover:text-white"
+                                >
                                     パスワードをお忘れですか？
                                 </Link>
                             </Grid>
@@ -257,13 +264,21 @@ export const Login = () => {
                 <p className="mt-10 text-center text-sm text-[#C8CDCD]">
                     まだ登録をしていませんか？{" "}
                     <Link
-                        href="/register"
-                        style={{ color: "#5a67d8" }}
-                        className="font-semibold hover:text-indigo-600"
+                        to="/register"
+                        className="font-semibold underline text-[#5a67d8] hover:text-indigo-600"
                     >
                         新規登録する
                     </Link>
                 </p>
+                <div className="text-center mt-4">
+                    <Button
+                        variant="outlined"
+                        startIcon={<ArrowBackIosIcon />}
+                        onClick={() => goTo("/")}
+                    >
+                        トップへ戻る
+                    </Button>
+                </div>
                 {/** コピーライト */}
                 <div className="bg-[#111931] h-14 flex items-center justify-center">
                     <span className="text-[#B0EE1B] text-sm">

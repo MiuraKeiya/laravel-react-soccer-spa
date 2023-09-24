@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Icon } from "../../atoms/Icon";
 import { useAuth } from "../../../context/AuthContext";
+import { useNavigation } from "../../../hooks/useNavigation";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -11,12 +12,13 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoadingButton from "@mui/lab/LoadingButton";
-import Link from "@mui/material/Link";
+import { Button } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export const Register = () => {
     const auth = useAuth();
 
-    const navigate = useNavigate();
+    const goTo = useNavigation();
 
     const {
         getValues,
@@ -35,7 +37,7 @@ export const Register = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
             auth?.register(data)
                 .then(() => {
-                    navigate("/home");
+                    goTo("/home");
                 })
                 .catch((error) => {
                     setError("submit", {
@@ -283,13 +285,21 @@ export const Register = () => {
                 <p className="mt-5 text-center text-sm text-[#C8CDCD]">
                     アカウントをお持ちですか？{" "}
                     <Link
-                        href="/login"
-                        style={{ color: "#5a67d8" }}
-                        className="font-semibold hover:text-indigo-600"
+                        to="/login"
+                        className="font-semibold underline text-[#5a67d8] hover:text-indigo-600"
                     >
                         ログインする
                     </Link>
                 </p>
+                <div className="text-center mt-4">
+                    <Button
+                        variant="outlined"
+                        startIcon={<ArrowBackIosIcon />}
+                        onClick={() => goTo("/")}
+                    >
+                        トップへ戻る
+                    </Button>
+                </div>
                 {/** コピーライト */}
                 <div className="bg-[#111931] h-14 flex items-center justify-center">
                     <span className="text-[#B0EE1B] text-sm">
