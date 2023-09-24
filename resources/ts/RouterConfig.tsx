@@ -10,6 +10,8 @@ import { StandingsPage } from "./pages/StandingsPage";
 import { SidebarProvider } from "./context/SidebarContext";
 import { PlayerPage } from "./pages/PlayerPage";
 import { ForgotPasswordPage } from "./pages/Auth/ForgotPasswordPage";
+import { ResetPasswordPage } from "./pages/Auth/ResetPasswordPage";
+import { PasswordSentPage } from "./pages/Auth/PasswordSentPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
 import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
@@ -52,6 +54,24 @@ export const RouterConfig = () => {
                                 element={
                                     <PublicRoute
                                         component={<ForgotPasswordPage />}
+                                        redirect="/home"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/reset-password"
+                                element={
+                                    <PublicRoute
+                                        component={<ResetPasswordPage />}
+                                        redirect="/home"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/password_sent"
+                                element={
+                                    <PublicRoute
+                                        component={<PasswordSentPage />}
                                         redirect="/home"
                                     />
                                 }

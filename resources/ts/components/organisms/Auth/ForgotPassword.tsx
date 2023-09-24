@@ -14,6 +14,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Button } from "@mui/material";
+import { useForgotPasswordApi } from "../../../hooks/useForgotPasswordApi";
 
 export const ForgotPassword = () => {
     const {
@@ -31,6 +32,25 @@ export const ForgotPassword = () => {
 
     const handleBackClick = () => {
         navigate("/login");
+    };
+
+    const { sendForgotPasswordEmail } = useForgotPasswordApi();
+
+    const onSubmit = (email) => {
+        setLoading(true);
+        axios.get("/sanctum/csrf-cookie").then(() => {
+            sendForgotPasswordEmail(email)
+                .then(() => {
+                    navigate("/password_sent");
+                })
+                .catch((error) => {
+                    setError("submit", {
+                        type: "manual",
+                        message: "メールの送信に失敗しました。",
+                    });
+                    setLoading(false);
+                });
+        });
     };
 
     // スタイル
@@ -82,7 +102,12 @@ export const ForgotPassword = () => {
             </div>
             <div>
                 {/** パスワードリセットフォーム */}
-                <form>
+                <form
+                    onSubmit={(e) => {
+                        clearErrors();
+                        handleSubmit(onSubmit)(e);
+                    }}
+                >
                     <ThemeProvider theme={theme}>
                         <TextField
                             fullWidth
