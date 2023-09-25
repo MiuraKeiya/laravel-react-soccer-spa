@@ -37,7 +37,7 @@ export const Register = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
             auth?.register(data)
                 .then(() => {
-                    goTo("/home");
+                    goTo("/email-sent");
                 })
                 .catch((error) => {
                     setError("submit", {
