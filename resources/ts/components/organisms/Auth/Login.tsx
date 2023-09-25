@@ -211,7 +211,7 @@ export const Login = () => {
                         <Grid container>
                             <Grid item xs>
                                 <Link
-                                    to="/forgot_password"
+                                    to="/forgot-password"
                                     className="underline text-[#C8CDCD] hover:text-white"
                                 >
                                     パスワードをお忘れですか？

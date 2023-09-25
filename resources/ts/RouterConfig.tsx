@@ -12,6 +12,7 @@ import { PlayerPage } from "./pages/PlayerPage";
 import { ForgotPasswordPage } from "./pages/Auth/ForgotPasswordPage";
 import { ResetPasswordPage } from "./pages/Auth/ResetPasswordPage";
 import { PasswordSentPage } from "./pages/Auth/PasswordSentPage";
+import { EmailVerificationPage } from "./pages/Auth/EmailVerificationPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
 import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
@@ -50,7 +51,7 @@ export const RouterConfig = () => {
                                 }
                             />
                             <Route
-                                path="/forgot_password"
+                                path="/forgot-password"
                                 element={
                                     <PublicRoute
                                         component={<ForgotPasswordPage />}
@@ -68,11 +69,20 @@ export const RouterConfig = () => {
                                 }
                             />
                             <Route
-                                path="/password_sent"
+                                path="/password-sent"
                                 element={
                                     <PublicRoute
                                         component={<PasswordSentPage />}
                                         redirect="/home"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/email-sent"
+                                element={
+                                    <PrivateRoute
+                                        component={<EmailVerificationPage />}
+                                        redirect="/login"
                                     />
                                 }
                             />
