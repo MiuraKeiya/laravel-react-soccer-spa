@@ -13,6 +13,7 @@ import { ForgotPasswordPage } from "./pages/Auth/ForgotPasswordPage";
 import { ResetPasswordPage } from "./pages/Auth/ResetPasswordPage";
 import { PasswordSentPage } from "./pages/Auth/PasswordSentPage";
 import { EmailVerificationPage } from "./pages/Auth/EmailVerificationPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
 import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
@@ -140,6 +141,7 @@ export const RouterConfig = () => {
                                     />
                                 }
                             />
+                            <Route path="*" element={<NotFoundPage />} />
                         </Routes>
                     </BrowserRouter>
                 </SidebarProvider>
