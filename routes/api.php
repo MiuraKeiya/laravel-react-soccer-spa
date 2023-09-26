@@ -6,6 +6,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToProvider']);
+
+Route::post('/login/google/callback', [GoogleLoginController::class, 'handleProviderCallback']);
 
 Route::middleware('auth:sanctum')->group(function(){
     // 試合日程・結果一覧を取得

@@ -114,6 +114,24 @@ const useProvideAuth = () => {
         }
     };
 
+    /**
+     * Googleログイン
+     *
+     */
+    const signinWithGoogle = async (token: string) => {
+        try {
+            const res = await axios.post(
+                `/api/login/google/callback${token}`,
+                {}
+            );
+            console.log(res.data);
+            setUser(res.data);
+        } catch (error) {
+            console.error("signinWithGoogle error:", error);
+            throw error;
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -140,6 +158,7 @@ const useProvideAuth = () => {
         register,
         signin,
         signout,
+        signinWithGoogle,
     };
 };
 

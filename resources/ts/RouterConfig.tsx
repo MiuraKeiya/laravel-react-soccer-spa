@@ -14,6 +14,7 @@ import { ResetPasswordPage } from "./pages/Auth/ResetPasswordPage";
 import { PasswordSentPage } from "./pages/Auth/PasswordSentPage";
 import { EmailVerificationPage } from "./pages/Auth/EmailVerificationPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { CallbackPage } from "./pages/Auth/CallbackPage";
 import { DatePickerProvider } from "./context/DatePickerContext";
 import ProvideAuth, { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
@@ -138,6 +139,15 @@ export const RouterConfig = () => {
                                     <PrivateRoute
                                         component={<PlayerPage />}
                                         redirect="/login"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/login/google/callback"
+                                element={
+                                    <PublicRoute
+                                        component={<CallbackPage />}
+                                        redirect="/home"
                                     />
                                 }
                             />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert } from "../atoms/Alert";
 
-export const CustomSnackbar = ({ message }) => {
+export const CustomSnackbar = ({ message, severity }) => {
     const [open, setOpen] = useState(true);
 
     const handleClose = (
@@ -25,7 +25,7 @@ export const CustomSnackbar = ({ message }) => {
         >
             <Alert
                 onClose={handleClose}
-                severity="success"
+                severity={severity}
                 sx={{ width: "100%" }}
             >
                 {message}
