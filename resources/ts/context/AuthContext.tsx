@@ -111,11 +111,13 @@ const useProvideAuth = () => {
             setUser(null);
         } catch (error) {
             console.error("logout error:", error);
+            throw error;
         }
     };
 
     /**
      * Googleログイン
+     * 成功時にはユーザー情報をstateで管理
      *
      */
     const signinWithGoogle = async (token: string) => {
@@ -128,6 +130,19 @@ const useProvideAuth = () => {
             setUser(res.data);
         } catch (error) {
             console.error("signinWithGoogle error:", error);
+            throw error;
+        }
+    };
+
+    /**
+     * パスワードの更新
+     *
+     */
+    const passwordUpdate = async (password) => {
+        try {
+            await axios.put("/api/user/password", password);
+        } catch (error) {
+            console.error("passwordUpdate error:", error);
             throw error;
         }
     };
@@ -159,6 +174,7 @@ const useProvideAuth = () => {
         signin,
         signout,
         signinWithGoogle,
+        passwordUpdate,
     };
 };
 

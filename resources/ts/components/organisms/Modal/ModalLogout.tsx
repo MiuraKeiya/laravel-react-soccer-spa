@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { useAuth } from "../../../context/AuthContext";
 
 export const ModalLogout = ({ close }) => {
@@ -8,11 +9,28 @@ export const ModalLogout = ({ close }) => {
 
     const navigate = useNavigate();
 
+    // ローディングフラグ
+    const [loading, setLoading] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState("");
+
     const logout = () => {
+        setLoading(true);
+
+        setErrorMessage("");
+
         axios.get("/sanctum/csrf-cookie").then(() => {
-            auth?.signout().then(() => {
-                navigate("/");
-            });
+            auth?.signout()
+                .then(() => {
+                    setLoading(false);
+                    navigate("/");
+                })
+                .catch((error) => {
+                    setLoading(false);
+                    setErrorMessage(
+                        "ログアウトに失敗しました。\n恐れ入りますが時間をおいて再度お試しください。"
+                    );
+                });
         });
     };
 
@@ -32,7 +50,11 @@ export const ModalLogout = ({ close }) => {
                     className="w-[25rem]"
                     onClick={logout}
                 >
-                    はい
+                    {loading ? (
+                        <CircularProgress color="inherit" size={25} />
+                    ) : (
+                        "はい"
+                    )}
                 </Button>
                 <Button
                     variant="contained"
@@ -42,6 +64,11 @@ export const ModalLogout = ({ close }) => {
                     いいえ
                 </Button>
             </div>
+            {errorMessage && (
+                <p className="text-red-500 whitespace-pre-line pt-2">
+                    {errorMessage}
+                </p>
+            )}
         </div>
     );
 };
