@@ -1,8 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Icon } from "../../atoms/Icon";
+import { CustomSnackbar } from "../../molecules/CustomSnackbar";
 
 export const Top = () => {
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const snackbarMessage = location.state?.message;
 
     const handleLogin = () => {
         navigate("/login");
@@ -14,6 +19,9 @@ export const Top = () => {
 
     return (
         <>
+            {snackbarMessage && (
+                <CustomSnackbar message={snackbarMessage} severity="success" />
+            )}
             <div className="flex">
                 {/* 左側のコンテンツ */}
                 <div className="w-1/2 h-screen bg-[#111931] flex items-center justify-center">
