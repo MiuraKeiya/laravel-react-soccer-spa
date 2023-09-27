@@ -147,6 +147,20 @@ const useProvideAuth = () => {
         }
     };
 
+    /**
+     * ユーザーの削除
+     *
+     */
+    const deleteUser = async () => {
+        try {
+            await axios.delete("/api/user");
+            setUser(null);
+        } catch (error) {
+            console.error("deleteUser error:", error);
+            throw error;
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -175,6 +189,7 @@ const useProvideAuth = () => {
         signout,
         signinWithGoogle,
         passwordUpdate,
+        deleteUser,
     };
 };
 

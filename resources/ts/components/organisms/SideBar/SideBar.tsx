@@ -349,7 +349,7 @@ export const SideBar = () => {
                             <CloseIcon />
                         </IconButton>
                     </div>
-                    <ModalPassword close={handleClosePasswordChangeModal}/>
+                    <ModalPassword close={handleClosePasswordChangeModal} />
                 </div>
             </Modal>
             {/* アカウント削除モーダル */}
@@ -362,7 +362,7 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
+                <div className="border-2 border-[#111931] bg-[#010A0F] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
                     <ModalDeleteAccount
                         close={handleCloseAccountDeletionModal}
                         user={user}
