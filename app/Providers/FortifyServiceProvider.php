@@ -15,6 +15,7 @@ use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\PasswordUpdateResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,14 @@ class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return response()->json([], 200);
+            }
+        });
+
+        // パスワード更新のレスポンスをJSONに変更
+        $this->app->instance(\Laravel\Fortify\Http\Responses\PasswordUpdateResponse::class, new class implements PasswordUpdateResponse {
+            public function toResponse($request)
+            {
+                return response()->json([], 204);
             }
         });
     }

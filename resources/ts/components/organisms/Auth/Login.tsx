@@ -64,6 +64,9 @@ export const Login = () => {
     // Googleログイン
     const handleGoogleLogin = () => {
         setGoogleLoading(true);
+
+        setGoogleErrorMessage("");
+
         googleCallback()
             .then((res) => {
                 if (res && res.redirect_url) {
@@ -269,7 +272,7 @@ export const Login = () => {
                     onClick={() => handleGoogleLogin()}
                 >
                     {googleLoading ? (
-                        <CircularProgress color="inherit" size={20} />
+                        <CircularProgress color="inherit" size={25} />
                     ) : (
                         <>
                             <svg

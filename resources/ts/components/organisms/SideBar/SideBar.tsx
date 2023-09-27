@@ -28,6 +28,7 @@ import PortraitIcon from "@mui/icons-material/Portrait";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import Modal from "@mui/material/Modal";
+import CloseIcon from "@mui/icons-material/Close";
 import { useUserApi } from "../../../hooks/useUserApi";
 import { ModalAccount } from "../Modal/ModalAccount";
 import { ModalLogout } from "../Modal/ModalLogout";
@@ -337,8 +338,18 @@ export const SideBar = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
-                    <ModalPassword close={handleClosePasswordChangeModal} />
+                <div className="border-2 border-[#111931] bg-[#010A0F] w-[20rem] sm:w-[28rem] md:w-[28rem] lg:w-[28rem]">
+                    <div className="text-right">
+                        <IconButton
+                            color="inherit"
+                            aria-label="close"
+                            onClick={handleClosePasswordChangeModal}
+                            sx={{ color: "#C8CDCD" }}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    </div>
+                    <ModalPassword close={handleClosePasswordChangeModal}/>
                 </div>
             </Modal>
             {/* アカウント削除モーダル */}
