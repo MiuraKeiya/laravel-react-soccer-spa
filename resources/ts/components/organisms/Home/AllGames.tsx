@@ -6,7 +6,7 @@ import { ToolTip } from "../../atoms/ToolTip";
 
 export const AllGames = ({ games, maxSeason }) => {
     const navigate = useNavigate();
-    console.log(games);
+
     const handleGameClick = (gameId, leagueId, season) => {
         navigate(`/games/${gameId}/leagues/${leagueId}/seasons/${season}`);
     };

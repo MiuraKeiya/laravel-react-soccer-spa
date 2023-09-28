@@ -8,6 +8,7 @@ import { FavoriteTeams } from "./FavoriteTeams";
 import { FavoriteLeagues } from "./FavoriteLeagues";
 import { useLeagueAPI } from "../../../hooks/useLeagueApi";
 import { StandingLeagues } from "./StandingLeagues";
+import { useAuth } from "../../../context/AuthContext";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -29,7 +30,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
-import { useUserApi } from "../../../hooks/useUserApi";
 import { ModalAccount } from "../Modal/ModalAccount";
 import { ModalLogout } from "../Modal/ModalLogout";
 import { ModalDeleteAccount } from "../Modal/ModalDeleteAccount";
@@ -40,7 +40,7 @@ export const SideBar = () => {
 
     const { leagues } = useLeagueAPI();
 
-    const { user } = useUserApi();
+    const auth = useAuth();
 
     const [openFavoriteTeam, setOpenFavoriteTeam] = useState(true);
 
@@ -395,7 +395,10 @@ export const SideBar = () => {
                 }}
             >
                 <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
-                    <ModalAccount user={user} close={handleCloseAccountModal} />
+                    <ModalAccount
+                        user={auth?.user}
+                        close={handleCloseAccountModal}
+                    />
                 </div>
             </Modal>
             {/* パスワード変更モーダル */}
@@ -419,7 +422,7 @@ export const SideBar = () => {
                             <CloseIcon />
                         </IconButton>
                     </div>
-                    <ModalPassword close={handleClosePasswordChangeModal} />
+                    <ModalPassword />
                 </div>
             </Modal>
             {/* アカウント削除モーダル */}
@@ -435,7 +438,7 @@ export const SideBar = () => {
                 <div className="border-2 border-[#111931] bg-[#010A0F] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
                     <ModalDeleteAccount
                         close={handleCloseAccountDeletionModal}
-                        user={user}
+                        user={auth?.user}
                     />
                 </div>
             </Modal>

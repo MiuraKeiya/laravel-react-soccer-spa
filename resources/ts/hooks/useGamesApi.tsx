@@ -10,22 +10,28 @@ import { groupGamesByLeague } from "../functions/Utils";
  */
 export const useGamesApi = (date: string) => {
     const [games, setGames] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [gamesLoading, setGamesLoading] = useState(true);
 
     useEffect(() => {
+        if (!date) {
+            setGamesLoading(true);
+            return;
+        }
+
         const GamesData = async () => {
             try {
                 const response = await axios.get(`/api/games/dates/${date}`);
+                console.log("試合API", response.data);
                 setGames(groupGamesByLeague(response.data));
-                setLoading(false);
+                setGamesLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
-                setLoading(false);
+                setGamesLoading(false);
             }
         };
 
         GamesData();
     }, [date]);
 
-    return { games, loading };
+    return { games, gamesLoading };
 };
