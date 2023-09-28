@@ -16,9 +16,9 @@ export const EndGames = ({ games, maxSeason }) => {
     };
 
     return (
-        <div>
+        <div className="bg-[#1d2233]">
             {Object.keys(games).length === 0 ? (
-                <div className="flex justify-center items-center h-[20rem]">
+                <div className="flex justify-center items-center h-[20rem] mt-2">
                     <GamesMessage>
                         試合データは存在しません。
                         <br />
@@ -92,7 +92,7 @@ export const EndGames = ({ games, maxSeason }) => {
                                 {leagueGames.map((game, gameIndex) => (
                                     <div
                                         key={gameIndex}
-                                        className="flex items-center justify-between border-b border-[#1d2233] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
+                                        className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
                                         onClick={() =>
                                             handleGameClick(
                                                 game.json_detail.fixture.id,

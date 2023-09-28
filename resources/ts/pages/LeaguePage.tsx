@@ -3,6 +3,7 @@ import { League } from "../components/organisms/League/League";
 import { Header } from "../components/organisms/Header";
 import { Footer } from "../components/atoms/footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
+import { ScrollRestoration } from "react-router-dom";
 
 export const LeaguePage = () => {
     return (
@@ -11,6 +12,7 @@ export const LeaguePage = () => {
             footer={<Footer />}
             sidebar={<SideBar />}
         >
+            <ScrollRestoration />
             <League />
         </LeagueTemplate>
     );
