@@ -23,7 +23,9 @@ export const ModalLogout = ({ close }) => {
             auth?.signout()
                 .then(() => {
                     setLoading(false);
-                    navigate("/");
+                    navigate("/", {
+                        state: { message: "ログアウトしました。" },
+                    });
                 })
                 .catch((error) => {
                     setLoading(false);
@@ -49,6 +51,7 @@ export const ModalLogout = ({ close }) => {
                     variant="outlined"
                     className="w-[25rem]"
                     onClick={logout}
+                    color="error"
                 >
                     {loading ? (
                         <CircularProgress color="inherit" size={25} />
@@ -60,6 +63,7 @@ export const ModalLogout = ({ close }) => {
                     variant="contained"
                     className="w-[25rem]"
                     onClick={close}
+                    color="inherit"
                 >
                     いいえ
                 </Button>

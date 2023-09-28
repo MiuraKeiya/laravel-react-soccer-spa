@@ -3,6 +3,7 @@ import { Player } from "../components/organisms/Player/Player";
 import { Header } from "../components/organisms/Header";
 import { Footer } from "../components/atoms/footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
+import { ScrollRestoration } from "react-router-dom";
 
 export const PlayerPage = () => {
     return (
@@ -11,6 +12,7 @@ export const PlayerPage = () => {
             footer={<Footer />}
             sidebar={<SideBar />}
         >
+            <ScrollRestoration />
             <Player />
         </PlayerTemplate>
     );

@@ -3,6 +3,7 @@ import { Team } from "../components/organisms/Team/Team";
 import { Header } from "../components/organisms/Header";
 import { Footer } from "../components/atoms/footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
+import { ScrollRestoration } from "react-router-dom";
 
 export const TeamPage = () => {
     return (
@@ -11,6 +12,7 @@ export const TeamPage = () => {
             footer={<Footer />}
             sidebar={<SideBar />}
         >
+            <ScrollRestoration />
             <Team />
         </TeamTemplate>
     );

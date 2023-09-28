@@ -3,6 +3,7 @@ import { Games } from "../components/organisms/Games/Games";
 import { Header } from "../components/organisms/Header";
 import { Footer } from "../components/atoms/footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
+import { ScrollRestoration } from "react-router-dom";
 
 export const GamesPage = () => {
     return (
@@ -12,6 +13,7 @@ export const GamesPage = () => {
             sidebar={<SideBar />}
         >
             <Games />
+            <ScrollRestoration />
         </GamesTemplate>
     );
 };

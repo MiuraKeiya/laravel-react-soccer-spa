@@ -162,7 +162,13 @@ export const SideBar = () => {
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{ mr: 2, color: "#EEEEEE" }}
+                        sx={{
+                            mr: 2,
+                            color: "#EEEEEE",
+                            "&:hover": {
+                                backgroundColor: "#3d4e81",
+                            },
+                        }}
                         onClick={toggleSidebar}
                     >
                         <MenuIcon />
@@ -172,13 +178,27 @@ export const SideBar = () => {
                 <div className="ml-4 mr-4 mt-2 border-b border-[#1d2233]"></div>
                 <Box sx={{ overflow: "auto" }}>
                     <List className="text-[#EEEEEE]">
-                        <ListItemButton onClick={handleOpenFavoriteModal}>
+                        <ListItemButton
+                            onClick={handleOpenFavoriteModal}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <AddPlusIcon style={"text-[#EEEEEE]"} />
                             </ListItemIcon>
-                            <span>お気に入り追加</span>
+                            <ListItemText primary="お気に入り追加" />
                         </ListItemButton>
-                        <ListItemButton onClick={handleOpenFavoriteTeamClick}>
+                        <ListItemButton
+                            onClick={handleOpenFavoriteTeamClick}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <SportsSoccerIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
@@ -198,7 +218,14 @@ export const SideBar = () => {
                                 <FavoriteTeams />
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={handleOpenFavoriteLeagueClick}>
+                        <ListItemButton
+                            onClick={handleOpenFavoriteLeagueClick}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <SportsSoccerIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
@@ -222,7 +249,14 @@ export const SideBar = () => {
                                 <FavoriteLeagues />
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={handleOpenStandingsClick}>
+                        <ListItemButton
+                            onClick={handleOpenStandingsClick}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <EmojiEventsIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
@@ -243,13 +277,27 @@ export const SideBar = () => {
                             </List>
                         </Collapse>
                         <div className="ml-4 mr-4 mt-2 mb-2 border-b border-[#1d2233]"></div>
-                        <ListItemButton onClick={handleHomeClick}>
+                        <ListItemButton
+                            onClick={handleHomeClick}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <HomeIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
                             <ListItemText primary="ホーム" />
                         </ListItemButton>
-                        <ListItemButton onClick={handleOpenAccountClick}>
+                        <ListItemButton
+                            onClick={handleOpenAccountClick}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <ManageAccountsIcon className="text-[#EEEEEE]" />
                             </ListItemIcon>
@@ -264,6 +312,11 @@ export const SideBar = () => {
                             >
                                 <ListItemButton
                                     onClick={handleOpenAccountModal}
+                                    sx={{
+                                        "&:hover": {
+                                            backgroundColor: "#3d4e81",
+                                        },
+                                    }}
                                 >
                                     <ListItemIcon>
                                         <PortraitIcon className="text-[#EEEEEE]" />
@@ -272,6 +325,11 @@ export const SideBar = () => {
                                 </ListItemButton>
                                 <ListItemButton
                                     onClick={handleOpenPasswordChangeModal}
+                                    sx={{
+                                        "&:hover": {
+                                            backgroundColor: "#3d4e81",
+                                        },
+                                    }}
                                 >
                                     <ListItemIcon>
                                         <LockIcon className="text-[#EEEEEE]" />
@@ -280,6 +338,11 @@ export const SideBar = () => {
                                 </ListItemButton>
                                 <ListItemButton
                                     onClick={handleOpenAccountDeletionModal}
+                                    sx={{
+                                        "&:hover": {
+                                            backgroundColor: "#3d4e81",
+                                        },
+                                    }}
                                 >
                                     <ListItemIcon>
                                         <PersonOffIcon className="text-[#EEEEEE]" />
@@ -288,7 +351,14 @@ export const SideBar = () => {
                                 </ListItemButton>
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={handleOpenLogoutModal}>
+                        <ListItemButton
+                            onClick={handleOpenLogoutModal}
+                            sx={{
+                                "&:hover": {
+                                    backgroundColor: "#3d4e81",
+                                },
+                            }}
+                        >
                             <ListItemIcon>
                                 <LogoutIcon className="text-red-600" />
                             </ListItemIcon>

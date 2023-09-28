@@ -41,7 +41,7 @@ export const ForgotPassword = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
             sendForgotPasswordEmail(email)
                 .then(() => {
-                    navigate("/password_sent");
+                    navigate("/password-sent");
                 })
                 .catch((error) => {
                     setError("submit", {

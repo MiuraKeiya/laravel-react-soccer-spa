@@ -16,9 +16,9 @@ export const AllGames = ({ games, maxSeason }) => {
     };
 
     return (
-        <div>
+        <div className="bg-[#1d2233]">
             {Object.keys(games).length === 0 ? (
-                <div className="flex justify-center items-center h-[20rem]">
+                <div className="flex justify-center items-center h-[20rem] mt-2">
                     <Message style={"text-[18px] text-[#C8CDCD]"}>
                         試合データは存在しません。
                         <br />
@@ -32,7 +32,7 @@ export const AllGames = ({ games, maxSeason }) => {
                     return (
                         <div key={index} className="text-[#EEEEEE] mt-2 mb-2">
                             <div className="flex items-center justify-between bg-[#111931] h-8">
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center space-x-2 ml-2">
                                     <img
                                         src={
                                             leagueGames[0].json_detail.league
@@ -65,7 +65,7 @@ export const AllGames = ({ games, maxSeason }) => {
                             {leagueGames.map((game, gameIndex) => (
                                 <div
                                     key={gameIndex}
-                                    className="flex items-center justify-between border-b border-[#1d2233] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
+                                    className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
                                     onClick={() =>
                                         handleGameClick(
                                             game.json_detail.fixture.id,
