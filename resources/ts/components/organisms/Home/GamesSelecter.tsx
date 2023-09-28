@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useGamesApi } from "../../../hooks/useGamesApi";
+import { useDatePicker } from "../../../hooks/useDatePicker";
 import { Button } from "../../atoms/Button";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,12 +8,13 @@ import ja from "date-fns/locale/ja";
 import { AllGames } from "./AllGames";
 import { EndGames } from "./EndGames";
 import { ScheduleGames } from "./ScheduleGames";
-import { useContext } from "react";
-import { DatePickerContext } from "../../../context/DatePickerContext";
 
-export const GamesSelecter = ({ games, maxSeason }) => {
-    const { startDate, highlightedDates, handleDateChange } =
-        useContext(DatePickerContext);
+export const GamesSelecter = ({ maxSeason }) => {
+    const { selectedDate, highlightedDates, startDate, handleDateChange } =
+        useDatePicker();
+
+    // 日付ごとの試合を取得
+    const { games, gamesLoading } = useGamesApi(selectedDate);
 
     registerLocale("ja", ja);
 
@@ -76,13 +79,13 @@ export const GamesSelecter = ({ games, maxSeason }) => {
                 />
             </div>
             {selectedTab === "all" && (
-                <AllGames games={games} maxSeason={maxSeason} />
+                <AllGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
             )}
             {selectedTab === "end" && (
-                <EndGames games={games} maxSeason={maxSeason} />
+                <EndGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
             )}
             {selectedTab === "schedule" && (
-                <ScheduleGames games={games} maxSeason={maxSeason} />
+                <ScheduleGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
             )}
         </>
     );

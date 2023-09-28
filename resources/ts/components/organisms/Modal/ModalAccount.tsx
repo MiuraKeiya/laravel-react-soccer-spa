@@ -19,14 +19,14 @@ export const ModalAccount = ({ user, close }) => {
             <div className="flex flex-col space-y-2 mx-3">
                 <div>
                     <h2 className="text-[#C8CDCD] text-[16px]">ユーザー名 :</h2>
-                    <span className="text-[18px]">{user.name}</span>
+                    <span className="text-[18px]">{user.user.name}</span>
                 </div>
                 <div className="border-b border-[#111931]"></div>
                 <div>
                     <h2 className="text-[#C8CDCD] text-[16px]">
                         メールアドレス :
                     </h2>
-                    <span className="text-[18px]">{user.email}</span>
+                    <span className="text-[18px]">{user.user.email}</span>
                 </div>
                 <div className="border-b border-[#111931]"></div>
                 <div>
@@ -34,7 +34,7 @@ export const ModalAccount = ({ user, close }) => {
                         アカウント作成日 :
                     </h2>
                     <span className="text-[18px]">
-                        {formatDateToCustomFormat(user.created_at)}
+                        {formatDateToCustomFormat(user.user.created_at)}
                     </span>
                 </div>
                 <div className="border-b border-[#111931]"></div>

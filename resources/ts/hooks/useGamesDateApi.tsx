@@ -3,27 +3,31 @@ import axios from "axios";
 
 /**
  * 試合が行われる日付を全て取得する
- * 
- * @returns 
+ *
+ * @returns
  */
 export const useGamesDateApi = () => {
     const [gamesDate, setGamesDate] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [gamesDateloading, setGamesDateLoading] = useState(true);
 
     useEffect(() => {
+        setGamesDateLoading(true);
+
         const GamesDate = async () => {
             try {
-                const response = await axios.get("/api/dates");
-                setGamesDate(response.data);
-                setLoading(false);
+                setTimeout(async () => {
+                    const response = await axios.get("/api/dates");
+                    setGamesDate(response.data);
+                    setGamesDateLoading(false);
+                }, 2000); // 2秒遅延
             } catch (error) {
                 console.error("API call error:", error);
-                setLoading(false);
+                setGamesDateLoading(false);
             }
         };
 
         GamesDate();
     }, []);
 
-    return { gamesDate, loading };
+    return { gamesDate, gamesDateloading };
 };
