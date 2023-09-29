@@ -9,11 +9,11 @@ export const useDatePicker = () => {
     const [highlightedDates, setHighlightedDates] = useState([]);
 
     const [selectedDate, setSelectedDate] = useState("");
-console.log(1)
+    console.log(1);
     useEffect(() => {
         if (!gamesDateloading) {
             const dates = gamesDate.map((item) => new Date(item.date));
-            
+
             setSelectedDate(formatDate(new Date()));
 
             setHighlightedDates(dates);
@@ -40,5 +40,6 @@ console.log(1)
         highlightedDates,
         selectedDate,
         handleDateChange,
+        gamesDateloading,
     };
 };
