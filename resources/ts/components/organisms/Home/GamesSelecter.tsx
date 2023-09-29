@@ -8,10 +8,16 @@ import ja from "date-fns/locale/ja";
 import { AllGames } from "./AllGames";
 import { EndGames } from "./EndGames";
 import { ScheduleGames } from "./ScheduleGames";
+import { SkeletonDatePicker } from "../../molecules/SkeletonDatePicker";
 
 export const GamesSelecter = ({ maxSeason }) => {
-    const { selectedDate, highlightedDates, startDate, handleDateChange } =
-        useDatePicker();
+    const {
+        selectedDate,
+        highlightedDates,
+        startDate,
+        handleDateChange,
+        gamesDateloading,
+    } = useDatePicker();
 
     // 日付ごとの試合を取得
     const { games, gamesLoading } = useGamesApi(selectedDate);
@@ -67,25 +73,43 @@ export const GamesSelecter = ({ maxSeason }) => {
                         開催予定
                     </Button>
                 </div>
-                <DatePicker
-                    withPortal // モーダルで表示
-                    closeOnScroll={true} // スクロールで閉じる
-                    selected={startDate} // 選択された日付（stateで管理）
-                    onChange={handleDateChange} // 日付が選択されたときのコールバック関数
-                    highlightDates={highlightedDates} // ハイライトしたい日付の配列
-                    popperPlacement="top-end" // カレンダーポップアップの表示位置
-                    locale="ja" // 表示言語（日本語）
-                    className="bg-black text-[#EEEEEE] rounded-md cursor-pointer text-center text-[13px] font-bold py-1 mr-6"
-                />
+                {gamesDateloading ? (
+                    <div className="mr-6">
+                        <SkeletonDatePicker />
+                    </div>
+                ) : (
+                    <DatePicker
+                        withPortal // モーダルで表示
+                        closeOnScroll={true} // スクロールで閉じる
+                        selected={startDate} // 選択された日付（stateで管理）
+                        onChange={handleDateChange} // 日付が選択されたときのコールバック関数
+                        highlightDates={highlightedDates} // ハイライトしたい日付の配列
+                        popperPlacement="top-end" // カレンダーポップアップの表示位置
+                        locale="ja" // 表示言語（日本語）
+                        className="bg-black text-[#EEEEEE] rounded-md cursor-pointer text-center text-[13px] font-bold py-1 mr-6"
+                    />
+                )}
             </div>
             {selectedTab === "all" && (
-                <AllGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
+                <AllGames
+                    games={games}
+                    loading={gamesLoading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "end" && (
-                <EndGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
+                <EndGames
+                    games={games}
+                    loading={gamesLoading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "schedule" && (
-                <ScheduleGames games={games} loading={gamesLoading} maxSeason={maxSeason} />
+                <ScheduleGames
+                    games={games}
+                    loading={gamesLoading}
+                    maxSeason={maxSeason}
+                />
             )}
         </>
     );

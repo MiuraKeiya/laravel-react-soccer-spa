@@ -8,7 +8,10 @@ import axios from "axios";
  */
 export const useGamesDateApi = () => {
     const [gamesDate, setGamesDate] = useState([]);
+
     const [gamesDateloading, setGamesDateLoading] = useState(true);
+
+    const [gamesDateError, setGamesDateError] = useState("");
 
     useEffect(() => {
         setGamesDateLoading(true);
@@ -22,6 +25,7 @@ export const useGamesDateApi = () => {
                 }, 2000); // 2秒遅延
             } catch (error) {
                 console.error("API call error:", error);
+                
                 setGamesDateLoading(false);
             }
         };

@@ -3,8 +3,9 @@ import { formatDate } from "../../../functions/Utils";
 import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { Message } from "../../atoms/Message";
 import { ToolTip } from "../../atoms/ToolTip";
+import { HomeLoading } from "./HomeLoading";
 
-export const AllGames = ({ games, maxSeason }) => {
+export const AllGames = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
 
     const handleGameClick = (gameId, leagueId, season) => {
@@ -14,10 +15,10 @@ export const AllGames = ({ games, maxSeason }) => {
     const handleStandingsClick = (leagueId, maxSeason) => {
         navigate(`/standings/league/${leagueId}/season/${maxSeason}`);
     };
-
+    console.log(loading);
     return (
         <div className="bg-[#1d2233]">
-            {Object.keys(games).length === 0 ? (
+            {Object.keys(games).length === 0 && !loading ? (
                 <div className="flex justify-center items-center h-[20rem] mt-2">
                     <Message style={"text-[18px] text-[#C8CDCD]"}>
                         試合データは存在しません。
@@ -25,6 +26,8 @@ export const AllGames = ({ games, maxSeason }) => {
                         別の日付を選択してください。
                     </Message>
                 </div>
+            ) : loading ? (
+                <HomeLoading />
             ) : (
                 Object.keys(games).map((leagueName, index) => {
                     const leagueGames = games[leagueName];
