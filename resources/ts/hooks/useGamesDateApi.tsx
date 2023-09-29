@@ -18,14 +18,15 @@ export const useGamesDateApi = () => {
 
         const GamesDate = async () => {
             try {
-                setTimeout(async () => {
-                    const response = await axios.get("/api/dates");
-                    setGamesDate(response.data);
-                    setGamesDateLoading(false);
-                }, 2000); // 2秒遅延
+                const response = await axios.get("/api/dates");
+
+                setGamesDate(response.data);
+
+                setGamesDateLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
-                
+                setGamesDateError(error.response.status);
+
                 setGamesDateLoading(false);
             }
         };
@@ -33,5 +34,5 @@ export const useGamesDateApi = () => {
         GamesDate();
     }, []);
 
-    return { gamesDate, gamesDateloading };
+    return { gamesDate, gamesDateloading, gamesDateError };
 };

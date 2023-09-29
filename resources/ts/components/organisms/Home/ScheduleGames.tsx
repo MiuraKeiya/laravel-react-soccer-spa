@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import { formatDate } from "../../../functions/Utils";
+import { HomeLoading } from "./HomeLoading";
 import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { ToolTip } from "../../atoms/ToolTip";
+import SportsIcon from "@mui/icons-material/Sports";
 
-export const ScheduleGames = ({ games, maxSeason }) => {
+export const ScheduleGames = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
-    console.log(games);
+
     const handleGameClick = (gameId, leagueId, season) => {
         navigate(`/games/${gameId}/leagues/${leagueId}/seasons/${season}`);
     };
@@ -15,14 +17,24 @@ export const ScheduleGames = ({ games, maxSeason }) => {
         navigate(`/standings/league/${leagueId}/season/${maxSeason}`);
     };
 
+    if (loading) {
+        return (
+            <div className="bg-[#1d2233]">
+                <HomeLoading />
+            </div>
+        );
+    }
+
     return (
         <div className="bg-[#1d2233]">
             {Object.keys(games).length === 0 ? (
-                <GamesMessage>
-                    試合データは存在しません。
-                    <br />
-                    別の日付を選択してください。
-                </GamesMessage>
+                <div className="flex justify-center items-center h-[20rem] mt-2">
+                    <GamesMessage>
+                        行われる試合はありません。
+                        <br />
+                        別の日付を選択してください。
+                    </GamesMessage>
+                </div>
             ) : (
                 (() => {
                     // 表示フラグ
@@ -44,9 +56,15 @@ export const ScheduleGames = ({ games, maxSeason }) => {
                             if (!hasDisplayedMessage) {
                                 hasDisplayedMessage = true;
                                 return (
-                                    <GamesMessage>
-                                        開催予定の試合はありません。
-                                    </GamesMessage>
+                                    <div
+                                        key={index}
+                                        className="mt-2 flex items-center justify-center space-x-2"
+                                    >
+                                        <SportsIcon className="text-[#EEEEEE]" />
+                                        <GamesMessage>
+                                            開催予定の試合はありません。
+                                        </GamesMessage>
+                                    </div>
                                 );
                             }
                             return null;
@@ -58,7 +76,7 @@ export const ScheduleGames = ({ games, maxSeason }) => {
                                 className="text-[#EEEEEE] mt-2 mb-2"
                             >
                                 <div className="flex items-center justify-between bg-[#111931] h-8">
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-2 ml-2">
                                         <img
                                             src={
                                                 leagueGames[0].json_detail

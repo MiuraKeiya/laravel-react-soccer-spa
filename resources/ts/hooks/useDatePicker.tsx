@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useGamesDateApi } from "./useGamesDateApi";
 
 export const useDatePicker = () => {
-    const { gamesDate, gamesDateloading } = useGamesDateApi();
+    const { gamesDate, gamesDateloading, gamesDateError } = useGamesDateApi();
 
     const [startDate, setStartDate] = useState(new Date());
 
     const [highlightedDates, setHighlightedDates] = useState([]);
 
     const [selectedDate, setSelectedDate] = useState("");
-    console.log(1);
+    
     useEffect(() => {
         if (!gamesDateloading) {
             const dates = gamesDate.map((item) => new Date(item.date));
@@ -41,5 +41,6 @@ export const useDatePicker = () => {
         selectedDate,
         handleDateChange,
         gamesDateloading,
+        gamesDateError,
     };
 };

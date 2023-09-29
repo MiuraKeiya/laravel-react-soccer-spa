@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useGamesApi } from "../../../hooks/useGamesApi";
-import { useDatePicker } from "../../../hooks/useDatePicker";
 import { Button } from "../../atoms/Button";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,18 +8,15 @@ import { EndGames } from "./EndGames";
 import { ScheduleGames } from "./ScheduleGames";
 import { SkeletonDatePicker } from "../../molecules/SkeletonDatePicker";
 
-export const GamesSelecter = ({ maxSeason }) => {
-    const {
-        selectedDate,
-        highlightedDates,
-        startDate,
-        handleDateChange,
-        gamesDateloading,
-    } = useDatePicker();
-
-    // 日付ごとの試合を取得
-    const { games, gamesLoading } = useGamesApi(selectedDate);
-
+export const GamesSelecter = ({
+    maxSeason,
+    highlightedDates,
+    startDate,
+    handleDateChange,
+    gamesDateloading,
+    games,
+    gamesLoading,
+}) => {
     registerLocale("ja", ja);
 
     const [selectedTab, setSelectedTab] = useState("all");
@@ -40,11 +35,11 @@ export const GamesSelecter = ({ maxSeason }) => {
 
     return (
         <>
-            <div className="bg-[#1d2233] rounded-t h-12 flex items-center justify-between">
-                <div className="flex items-center space-x-8">
+            <div className="bg-[#1d2233] rounded-t h-16 md:h-12 lg:h-12 flex items-center justify-between">
+                <div className="flex items-center space-x-1 lg:space-x-8">
                     <Button
                         onClick={handleAllClick}
-                        style={`text-[15px] font-bold rounded px-2 py-1 ml-6 ${
+                        style={`text-[15px] font-bold rounded px-2 py-1 ml-1 lg:ml-6 ${
                             selectedTab === "all"
                                 ? "bg-[#B0EE1B] text-black cursor-default"
                                 : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -74,7 +69,7 @@ export const GamesSelecter = ({ maxSeason }) => {
                     </Button>
                 </div>
                 {gamesDateloading ? (
-                    <div className="mr-6">
+                    <div className="mr-1 lg:mr-6">
                         <SkeletonDatePicker />
                     </div>
                 ) : (
@@ -86,7 +81,7 @@ export const GamesSelecter = ({ maxSeason }) => {
                         highlightDates={highlightedDates} // ハイライトしたい日付の配列
                         popperPlacement="top-end" // カレンダーポップアップの表示位置
                         locale="ja" // 表示言語（日本語）
-                        className="bg-black text-[#EEEEEE] rounded-md cursor-pointer text-center text-[13px] font-bold py-1 mr-6"
+                        className="bg-black text-[#EEEEEE] rounded-md cursor-pointer text-center text-[13px] font-bold py-1 mr-1 lg:mr-6 w-24 md:w-36 lg:w-36"
                     />
                 )}
             </div>

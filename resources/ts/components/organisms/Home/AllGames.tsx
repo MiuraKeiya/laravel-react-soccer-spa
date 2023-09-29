@@ -21,7 +21,7 @@ export const AllGames = ({ games, loading, maxSeason }) => {
             {Object.keys(games).length === 0 && !loading ? (
                 <div className="flex justify-center items-center h-[20rem] mt-2">
                     <Message style={"text-[18px] text-[#C8CDCD]"}>
-                        試合データは存在しません。
+                        行われる試合はありません。
                         <br />
                         別の日付を選択してください。
                     </Message>
