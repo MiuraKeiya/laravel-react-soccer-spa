@@ -2,7 +2,7 @@ import { SkeletonAtom } from "../atoms/SkeletonAtom";
 
 export const SkeletonModal = () => {
     return (
-        <div className="flex items-center justify-between mr-3">
+        <div className="flex items-center justify-between mr-3 ml-2">
             <div className="flex items-center space-x-2">
                 <SkeletonAtom
                     variant={"text"}
