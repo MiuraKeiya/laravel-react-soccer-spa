@@ -13,14 +13,27 @@ export const ModalLeague = ({
     favoriteStatus,
     handleFavoriteClick,
 }) => {
+    console.log(favorites);
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
-        if (favorites && favorites.length > 0 && favoriteStatus.length === 0) {
+        if (
+            !favoriteLoading &&
+            favorites.length > 0 &&
+            favoriteStatus.length === 0
+        ) {
             const initialFavoriteStates = leagues.map((league) => ({
                 id: league.id,
                 isFavorite: favorites.some(
                     (favorite) => favorite.league_id === league.id
                 ),
+            }));
+
+            setFavoriteStatus(initialFavoriteStates);
+        } else if (!favoriteLoading && favoriteStatus.length === 0) {
+            // favoriteStatusが空の場合
+            const initialFavoriteStates = leagues.map((league) => ({
+                id: league.id,
+                isFavorite: false, // お気に入り状態を初期化
             }));
 
             setFavoriteStatus(initialFavoriteStates);
@@ -56,6 +69,7 @@ export const ModalLeague = ({
                             onClick={() => handleFavoriteClick(league.id)}
                         >
                             <Tooltip
+                                followCursor
                                 title={
                                     favoriteStatus.find(
                                         (item) => item.id === league.id
