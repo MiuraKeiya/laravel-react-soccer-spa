@@ -3,11 +3,11 @@ import axios from "axios";
 
 export const useTeamSearchApi = (searchQuery) => {
     const [searchResults, setSearchResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [typingTimeout, setTypingTimeout] = useState(null);
-    const delay = 1300; // 遅延時間（ミリ秒単位）
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let timeoutId; // setTimeout の ID を保持
+
         const searchTeams = async () => {
             try {
                 setLoading(true);
@@ -18,33 +18,34 @@ export const useTeamSearchApi = (searchQuery) => {
                     });
 
                     setSearchResults(response.data);
-                } else {
-                    setSearchResults([]);
+                    setLoading(false);
                 }
-
-                setLoading(false);
             } catch (error) {
-                console.error("Error fetching search results:", error);
-                setLoading(false);
+                console.error("検索エラー:", error);
             }
         };
 
-        if (typingTimeout) {
-            clearTimeout(typingTimeout);
+        setLoading(true);
+
+        // 前回のsetTimeoutをクリア
+        if (timeoutId) {
+            clearTimeout(timeoutId);
         }
 
-        setLoading(true); // 入力値が変更されたらすぐにローディングを表示
-
+        // 新しいsetTimeoutをセット
         if (searchQuery) {
-            const timeout = setTimeout(() => {
+            timeoutId = setTimeout(() => {
                 searchTeams();
-            }, delay);
-
-            setTypingTimeout(timeout);
+            }, 1000); // 1000ミリ秒（1秒）のディレイを設定
         } else {
             setSearchResults([]);
-            setLoading(false); // 入力が空の場合はすぐにローディングを非表示に
         }
+
+        return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
     }, [searchQuery]);
 
     return { searchResults, loading };

@@ -7,8 +7,8 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
-export const ModalTeam = () => {
-    const { favorites, loading } = useGetFavoriteApi("teams");
+export const ModalTeam = ({favorites, loading}) => {
+   
     const { addFavorite, deleteFavorite } = useFavoriteApi("teams");
     const { leadingTeam } = useLeadingTeamApi();
     const [favoriteStates, setFavoriteStates] = useState([]);

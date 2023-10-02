@@ -8,7 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
 export const SearchResults = ({ results, loading, searchQuery }) => {
-    const { favorites } = useGetFavoriteApi("teams");
+    const [favorites, favoritesLoading] = useGetFavoriteApi("teams");
     const { addFavorite, deleteFavorite } = useFavoriteApi("teams");
     const [favoriteStates, setFavoriteStates] = useState([]);
 
@@ -23,11 +23,9 @@ export const SearchResults = ({ results, loading, searchQuery }) => {
         }));
 
         setFavoriteStates(initialFavoriteStates);
-        console.log(initialFavoriteStates);
     }, [favorites, results]);
 
     const handleFavoriteClick = (id) => {
-        console.log(id);
         // idに対応するチームのお気に入りの状態を切り替える
         const newFavoriteStates = [...favoriteStates];
 

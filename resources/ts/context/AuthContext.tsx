@@ -6,7 +6,7 @@ import {
     ReactNode,
     useEffect,
 } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 interface User {
     id: number;
@@ -160,7 +160,7 @@ const useProvideAuth = () => {
             throw error;
         }
     };
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
