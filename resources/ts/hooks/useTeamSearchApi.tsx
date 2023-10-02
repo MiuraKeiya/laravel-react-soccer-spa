@@ -4,6 +4,7 @@ import axios from "axios";
 export const useTeamSearchApi = (searchQuery) => {
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         let timeoutId; // setTimeout の ID を保持
@@ -22,6 +23,8 @@ export const useTeamSearchApi = (searchQuery) => {
                 }
             } catch (error) {
                 console.error("検索エラー:", error);
+
+                setError(error);
             }
         };
 
@@ -48,5 +51,5 @@ export const useTeamSearchApi = (searchQuery) => {
         };
     }, [searchQuery]);
 
-    return { searchResults, loading };
+    return [searchResults, loading, error];
 };

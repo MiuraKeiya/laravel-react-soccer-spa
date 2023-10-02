@@ -34,7 +34,8 @@ export const ModalFavorite = ({ onClick }) => {
     const [favoriteTeam, favoriteTeamLoading] = useGetFavoriteApi("teams");
 
     // 検索結果
-    const { searchResults, loading } = useTeamSearchApi(searchQuery);
+    const [searchResults, searchLoading, searchError] =
+        useTeamSearchApi(searchQuery);
 
     // 検索欄に入力された値をクリアする
     const handleClear = () => {
@@ -97,7 +98,8 @@ export const ModalFavorite = ({ onClick }) => {
         favoriteError,
         favoriteLeagueError,
         leadingTeamError,
-        favoriteTeamError
+        favoriteTeamError,
+        searchError
     );
 
     return (
@@ -149,13 +151,17 @@ export const ModalFavorite = ({ onClick }) => {
                 <div className="mx-2">
                     {searchQuery !== "" ? (
                         <div>
-                            <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
+                            <h1 className="text-[#EEEEEE] text-[14px] font-bold mb-2 ml-2">
                                 検索結果
                             </h1>
                             <SearchResults
                                 results={searchResults}
-                                loading={loading}
+                                loading={searchLoading}
+                                favorites={favoriteTeam}
                                 searchQuery={searchQuery}
+                                favoriteStatus={favoriteTeamStatus}
+                                setFavoriteStatus={setFavoriteTeamStatus}
+                                handleFavoriteClick={handleFavoriteTeamClick}
                             />
                         </div>
                     ) : (
