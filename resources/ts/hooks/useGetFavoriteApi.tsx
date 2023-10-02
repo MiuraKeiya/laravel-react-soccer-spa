@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useFavorite } from "../context/FavoriteContext";
 import axios from "axios";
 
 export const useGetFavoriteApi = (apiPath) => {
-    const favorite = useFavorite();
     const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setoError] = useState(null);
 
     useEffect(() => {
         setLoading(true);
@@ -16,15 +15,13 @@ export const useGetFavoriteApi = (apiPath) => {
                 console.log(`お気に入り${apiPath}`, response.data);
                 setFavorites(response.data);
 
-                if (apiPath === "leagues") {
-                    favorite?.setFavoriteLeagues(response.data);
-                } else if (apiPath === "teams") {
-                    favorite?.setFavoriteTeams(response.data);
-                }
+                setFavorites(response.data);
 
                 setLoading(false);
             } catch (error) {
                 console.error("Error getting favorites:", error);
+
+                setoError(error);
 
                 setLoading(false);
             }
@@ -33,5 +30,5 @@ export const useGetFavoriteApi = (apiPath) => {
         fetchData();
     }, []);
 
-    return [favorites, loading];
+    return [favorites, loading, error];
 };

@@ -23,10 +23,11 @@ export const ModalFavorite = ({ onClick }) => {
     const [leagues, leaguesLoading, leaguesError] = useLeagueAPI();
 
     // 主なチーム一覧
-    const { leadingTeam } = useLeadingTeamApi();
+    const [leadingTeam, leadingTeamError, leadingTeamLoading] =
+        useLeadingTeamApi();
 
     // お気に入りリーグ一覧
-    const [favoriteLeague, favoriteLeagueLoading] =
+    const [favoriteLeague, favoriteLeagueLoading, favoriteLeagueError] =
         useGetFavoriteApi("leagues");
 
     // お気に入りチーム一覧
@@ -41,13 +42,10 @@ export const ModalFavorite = ({ onClick }) => {
     };
 
     // 選択したリーグをお気に入り追加と削除
-    const [addFavorite, deleteFavorite, statusCode, favoriteError] =
+    const [addFavorite, deleteFavorite, favoriteError] =
         useFavoriteApi("leagues");
 
     const [favoriteStatus, setFavoriteStatus] = useState([]);
-
-    // 各エラーをまとめる
-    const pageError = useErrors(leaguesError, favoriteError);
 
     const handleFavoriteClick = (id) => {
         // idに対応するリーグのお気に入りの状態を切り替える
@@ -68,6 +66,39 @@ export const ModalFavorite = ({ onClick }) => {
             deleteFavorite(id); // リーグのお気に入り登録を削除
         }
     };
+
+    // 選択したチームをお気に入り追加と削除
+    const [addTeamFavorite, deleteTeamFavorite, favoriteTeamError] =
+        useFavoriteApi("teams");
+
+    const [favoriteTeamStatus, setFavoriteTeamStatus] = useState([]);
+
+    const handleFavoriteTeamClick = (id) => {
+        // idに対応するチームのお気に入りの状態を切り替える
+        const newFavoriteStates = [...favoriteTeamStatus];
+
+        const teamIndex = newFavoriteStates.findIndex((team) => team.id === id);
+
+        newFavoriteStates[teamIndex].isFavorite =
+            !newFavoriteStates[teamIndex].isFavorite;
+
+        setFavoriteTeamStatus(newFavoriteStates);
+
+        if (newFavoriteStates[teamIndex].isFavorite) {
+            addTeamFavorite(id); // チームをお気に入りに追加
+        } else {
+            deleteTeamFavorite(id); // チームのお気に入り登録を削除
+        }
+    };
+
+    // 各エラーをまとめる
+    const pageError = useErrors(
+        leaguesError,
+        favoriteError,
+        favoriteLeagueError,
+        leadingTeamError,
+        favoriteTeamError
+    );
 
     return (
         <Page error={pageError}>
@@ -128,7 +159,7 @@ export const ModalFavorite = ({ onClick }) => {
                             />
                         </div>
                     ) : (
-                        <div>
+                        <div className="mb-1">
                             <h1 className="text-[#EEEEEE] text-[14px] font-bold mb-2 ml-2">
                                 全てのリーグ
                             </h1>
@@ -141,11 +172,18 @@ export const ModalFavorite = ({ onClick }) => {
                                 favoriteStatus={favoriteStatus}
                                 handleFavoriteClick={handleFavoriteClick} // お気に入り状態を更新するための関数を渡す
                             />
-                            <h1 className="text-[#EEEEEE] text-[14px] font-bold my-2">
+                            <h1 className="text-[#EEEEEE] text-[14px] font-bold mb-2 ml-2 mt-2">
                                 主なチーム
                             </h1>
-                            <p>sa</p>
-                            <br />
+                            <ModalTeam
+                                teams={leadingTeam}
+                                teamloading={leadingTeamLoading}
+                                favorites={favoriteTeam}
+                                favoritesLoading={favoriteTeamLoading}
+                                setFavoriteStatus={setFavoriteTeamStatus}
+                                favoriteStatus={favoriteTeamStatus}
+                                handleFavoriteClick={handleFavoriteTeamClick}
+                            />
                         </div>
                     )}
                 </div>

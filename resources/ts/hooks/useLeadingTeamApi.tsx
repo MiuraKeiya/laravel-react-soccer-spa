@@ -3,12 +3,13 @@ import axios from "axios";
 
 /**
  * 主要なチームを取得する
- * 
- * @returns 
+ *
+ * @returns
  */
 export const useLeadingTeamApi = () => {
     const [leadingTeam, setLeadingTeam] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const GamesDate = async () => {
@@ -18,6 +19,8 @@ export const useLeadingTeamApi = () => {
                 setLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
+
+                setError(error);
                 setLoading(false);
             }
         };
@@ -25,5 +28,5 @@ export const useLeadingTeamApi = () => {
         GamesDate();
     }, []);
 
-    return { leadingTeam, loading };
+    return [leadingTeam, error, loading];
 };
