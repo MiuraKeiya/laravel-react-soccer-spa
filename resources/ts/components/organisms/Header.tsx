@@ -108,7 +108,7 @@ export const Header = () => {
                     justifyContent: "center",
                 }}
             >
-                <div className="border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-y-scroll">
+                <div className="rounded-md border-2 border-[#111931] bg-[#010A0F] h-[33rem] sm:h-[34rem] md:h-[35rem] lg:h-[35rem] w-[20rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] overflow-auto">
                     <ModalFavorite onClick={handleCloseFavoriteModal} />
                 </div>
             </Modal>

@@ -3,28 +3,29 @@ import axios from "axios";
 
 export const useLeagueAPI = () => {
     const [leagues, setLeagues] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+        
         const fetchLeagues = async () => {
             try {
-                setIsLoading(true);
-                setError(null);
-
                 const response = await axios.get("/api/leagues");
 
-                console.log(response.data);
+                console.log("リーグ一覧API", response.data);
+
                 setLeagues(response.data);
-                setIsLoading(false);
+
+                setLoading(false);
             } catch (error) {
-                setError(error);
-                setIsLoading(false);
+                setError(error.response.status);
+                setLoading(false);
             }
         };
 
         fetchLeagues();
     }, []);
 
-    return { leagues, isLoading, error };
+    return [leagues, loading, error];
 };
