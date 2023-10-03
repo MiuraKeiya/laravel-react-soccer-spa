@@ -1,24 +1,25 @@
-import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
 import { Loading } from "./Loading";
-import { useFavoriteApi } from "../../../hooks/useFavoriteApi";
 import { NoFavoriteMessage } from "../../molecules/NoFavoriteMessage";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import { Button } from "../../atoms/Button";
 
-export const FavoriteLeagues = () => {
-    const { favorites, setFavorites, loading } = useGetFavoriteApi("leagues");
-
-    const { deleteFavorite } = useFavoriteApi("leagues");
-
-    const handleFavoriteClick = (id) => {
-        deleteFavorite(id);
-
-        // ローカルのお気に入りリストからも削除
-        setFavorites((prevFavorites) =>
-            prevFavorites.filter((favorite) => favorite.league.id !== id)
+export const FavoriteLeagues = ({
+    favorites,
+    loading,
+    deleteFavorite,
+    setFavoritesLeague,
+}) => {
+    const handleDeleteFavorite = (leagueId) => {
+        // favorites ステートから削除対象のリーグを除外する
+        const updatedFavorites = favorites.filter(
+            (favorite) => favorite.league.id !== leagueId
         );
+
+        setFavoritesLeague(updatedFavorites);
+
+        deleteFavorite(leagueId);
     };
 
     return (
@@ -41,7 +42,7 @@ export const FavoriteLeagues = () => {
                                 <img
                                     src={`https://media-3.api-sports.io/football/leagues/${favorite.league.id}.png`}
                                     alt={favorite.league.name}
-                                    className="h-4 w-4"
+                                    className="h-5 w-5 bg-white border border-white rounded-md"
                                 />
                                 <p className="text-[#EEEEEE] text-[15px] my-1">
                                     {favorite.league.name}
@@ -58,7 +59,7 @@ export const FavoriteLeagues = () => {
                                     color: "#B0EE1B",
                                 }}
                                 onClick={() =>
-                                    handleFavoriteClick(favorite.league.id)
+                                    handleDeleteFavorite(favorite.league.id)
                                 }
                             >
                                 <SportsSoccerIcon

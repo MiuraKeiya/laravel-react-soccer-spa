@@ -1,24 +1,25 @@
-import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
 import { Loading } from "./Loading";
-import { useFavoriteApi } from "../../../hooks/useFavoriteApi";
 import { NoFavoriteMessage } from "../../molecules/NoFavoriteMessage";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import { Button } from "../../atoms/Button";
 
-export const FavoriteTeams = () => {
-    const { favorites, setFavorites, loading } = useGetFavoriteApi("teams");
-
-    const { deleteFavorite } = useFavoriteApi("teams");
-
-    const handleFavoriteClick = (id) => {
-        deleteFavorite(id);
-
-        // ローカルのお気に入りリストからも削除
-        setFavorites((prevFavorites) =>
-            prevFavorites.filter((favorite) => favorite.team.id !== id)
+export const FavoriteTeams = ({
+    favorites,
+    loading,
+    deleteFavorite,
+    setFavoritesTeam,
+}) => {
+    const handleDeleteFavorite = (teamId) => {
+        // favorites ステートから削除対象のリーグを除外する
+        const updatedFavorites = favorites.filter(
+            (favorite) => favorite.team.id !== teamId
         );
+
+        setFavoritesTeam(updatedFavorites);
+
+        deleteFavorite(teamId);
     };
 
     return (
@@ -41,7 +42,7 @@ export const FavoriteTeams = () => {
                                 <img
                                     src={favorite.team.logo}
                                     alt={favorite.team.code}
-                                    className="h-4 w-4"
+                                    className="h-5 w-5 bg-white border border-white rounded-md"
                                 />
                                 <p className="text-[#EEEEEE] text-[15px] my-1">
                                     {favorite.team.name}
@@ -58,7 +59,7 @@ export const FavoriteTeams = () => {
                                     color: "#B0EE1B",
                                 }}
                                 onClick={() =>
-                                    handleFavoriteClick(favorite.team.id)
+                                    handleDeleteFavorite(favorite.team.id)
                                 }
                             >
                                 <SportsSoccerIcon
