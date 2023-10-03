@@ -394,7 +394,7 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
             >
                 <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
                     <ModalAccount
-                        user={auth?.user}
+                        user={auth}
                         close={handleCloseAccountModal}
                     />
                 </div>
@@ -436,7 +436,7 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
                 <div className="border-2 border-[#111931] bg-[#010A0F] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
                     <ModalDeleteAccount
                         close={handleCloseAccountDeletionModal}
-                        user={auth?.user}
+                        user={auth}
                     />
                 </div>
             </Modal>
