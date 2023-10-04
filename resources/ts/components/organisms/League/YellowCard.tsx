@@ -1,4 +1,16 @@
-export const YellowCard = ({ rankings }) => {
+import CircularProgress from "@mui/material/CircularProgress";
+
+export const YellowCard = ({ rankings, rankingsLoading }) => {
+    if (rankingsLoading) {
+        return (
+            <div className="bg-[#1d2233] h-[35rem] flex justify-center mt-1">
+                <div className="mt-10">
+                    <CircularProgress />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div>
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 text-center">
