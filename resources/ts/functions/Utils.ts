@@ -151,3 +151,98 @@ export const formatDateToCustomFormat = (dateString) => {
     const formattedDateStr = `${year}-${month}-${day}`;
     return formattedDateStr;
 };
+
+export const getDescriptionInJapanese = (description) => {
+    switch (description) {
+        case "Promotion - Champions League (Group Stage: )":
+        case "Promotion - Champions League (Group Stage)":
+            return {
+                description:
+                    "昇格 - UEFAチャンピオンズリーグ (グループステージ: )",
+                bgColorClass: "bg-[#81319c]",
+            };
+        case "Promotion - Europa League (Group Stage: )":
+        case "Promotion - Europa League (Group Stage)":
+            return {
+                description: "昇格 - UEFAヨーロッパリーグ (グループステージ: )",
+                bgColorClass: "bg-[#276e8d]",
+            };
+        case "Promotion - Europa Conference League (Qualification: )":
+        case "Promotion - Europa League (Qualification)":
+            return {
+                description:
+                    "昇格 - UEFAヨーロッパカンファレンスリーグ (資格予選: )",
+                bgColorClass: "bg-[#787822]",
+            };
+        case "Relegation - Championship":
+            return {
+                description: "降格 - チャンピオンシップ",
+                bgColorClass: "bg-[#a62b1b]",
+            };
+        case "Promotion - Champions League (Qualification: )":
+            return {
+                description: "昇格 - UEFAチャンピオンズリーグ (資格予選: )",
+                bgColorClass: "bg-blue-600",
+            };
+        case "Relegation - Ligue 2":
+            return {
+                description: "降格 - リーグ・ドゥ",
+                bgColorClass: "bg-[#a62b1b]",
+            };
+        case "Promotion - Europa Conference League (Group Stage: )":
+            return {
+                description:
+                    "昇格 - UEFAヨーロッパカンファレンスリーグ (グループステージ: )",
+                bgColorClass: "bg-green-600",
+            };
+        case "Bundesliga (Relegation)":
+            return {
+                description: "ブンデスリーガ (降格戦)",
+                bgColorClass: "bg-gray-500",
+            };
+        case "Relegation - 2. Bundesliga":
+            return {
+                description: "降格 - 2.ブンデスリーガ",
+                bgColorClass: "bg-[#a62b1b]",
+            };
+        case "Serie A (Additional match: )":
+            return {
+                description: "セリエ A (追加試合: )",
+                bgColorClass: "bg-gray-500",
+            };
+        case "Relegation - Serie B":
+            return {
+                description: "降格 - セリエ B",
+                bgColorClass: "bg-[#a62b1b]",
+            };
+        case "Relegation - LaLiga2":
+            return {
+                description: "降格 - ラ・リーガ 2部",
+                bgColorClass: "bg-[#a62b1b]",
+            };
+        case "Ligue 1 (Promotion - Play Offs: )":
+            return {
+                description: "リーグ・アン (昇格 - プレーオフ: )",
+                bgColorClass: "bg-gray-500",
+            };
+        default:
+            return { description, bgColorClass: "bg-orange-400" };
+    }
+};
+
+export const leagueLule = (leagueId) => {
+    switch (leagueId) {
+        case 39:
+            return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
+        case 61:
+            return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
+        case 78:
+            return "シーズン終了時に同点のチームがいる場合は、得失点差で順位を決定する。";
+        case 135:
+            return "シーズン終了時に同点のチームがいる場合は、当該チームの直接対決の結果で順位を決定する。";
+        case 140:
+            return "シーズン終了時に同点のチームがいる場合は、当該チームの直接対決の結果で順位を決定する。";
+        default:
+            return "";
+    }
+};
