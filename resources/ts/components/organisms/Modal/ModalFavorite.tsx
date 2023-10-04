@@ -6,6 +6,8 @@ import { useLeagueAPI } from "../../../hooks/useLeagueApi";
 import { useLeadingTeamApi } from "../../../hooks/useLeadingTeamApi";
 import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
 import { SearchResults } from "./SearchResults";
+import { findMaxSeason } from "../../../functions/Utils";
+import config from "../../../config";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
@@ -41,6 +43,9 @@ export const ModalFavorite = ({ onClick }) => {
     const handleClear = () => {
         setSearchQuery("");
     };
+
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
 
     // 選択したリーグをお気に入り追加と削除
     const [addFavorite, deleteFavorite, favoriteError] =
@@ -162,6 +167,7 @@ export const ModalFavorite = ({ onClick }) => {
                                 favoriteStatus={favoriteTeamStatus}
                                 setFavoriteStatus={setFavoriteTeamStatus}
                                 handleFavoriteClick={handleFavoriteTeamClick}
+                                maxSeason={maxSeason}
                             />
                         </div>
                     ) : (
@@ -174,9 +180,10 @@ export const ModalFavorite = ({ onClick }) => {
                                 leagueLoading={leaguesLoading}
                                 favorites={favoriteLeague}
                                 favoriteLoading={favoriteLeagueLoading}
-                                setFavoriteStatus={setFavoriteStatus} // お気に入り状態を
+                                setFavoriteStatus={setFavoriteStatus}
                                 favoriteStatus={favoriteStatus}
-                                handleFavoriteClick={handleFavoriteClick} // お気に入り状態を更新するための関数を渡す
+                                handleFavoriteClick={handleFavoriteClick}
+                                maxSeason={maxSeason}
                             />
                             <h1 className="text-[#EEEEEE] text-[14px] font-bold mb-2 ml-2 mt-2">
                                 主なチーム
@@ -189,6 +196,7 @@ export const ModalFavorite = ({ onClick }) => {
                                 setFavoriteStatus={setFavoriteTeamStatus}
                                 favoriteStatus={favoriteTeamStatus}
                                 handleFavoriteClick={handleFavoriteTeamClick}
+                                maxSeason={maxSeason}
                             />
                         </div>
                     )}

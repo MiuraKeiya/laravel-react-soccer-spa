@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Loading } from "./Loading";
+import { useNavigate } from "react-router-dom";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -12,8 +13,8 @@ export const ModalLeague = ({
     setFavoriteStatus,
     favoriteStatus,
     handleFavoriteClick,
+    maxSeason,
 }) => {
-    console.log(favorites);
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
         if (
@@ -40,6 +41,12 @@ export const ModalLeague = ({
         }
     }, [favorites, leagues]);
 
+    const navigate = useNavigate();
+
+    const handleLeagueClick = (id, season) => {
+        navigate(`/league/${id}/season/${season}`);
+    };
+
     return (
         <div className="text-white">
             {leagueLoading || favoriteLoading ? (
@@ -49,6 +56,7 @@ export const ModalLeague = ({
                     <div
                         key={index}
                         className="flex justify-between hover:bg-[#191E24] cursor-pointer transition duration-450 rounded-md"
+                        onClick={() => handleLeagueClick(league.id, maxSeason)}
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
@@ -66,7 +74,10 @@ export const ModalLeague = ({
                                     ? "#B0EE1B"
                                     : "white",
                             }}
-                            onClick={() => handleFavoriteClick(league.id)}
+                            onClick={(e) => {
+                                e.stopPropagation(); // クリックイベントの伝播を停止
+                                handleFavoriteClick(league.id); // IconButtonのクリック処理を実行
+                            }}
                         >
                             <Tooltip
                                 followCursor

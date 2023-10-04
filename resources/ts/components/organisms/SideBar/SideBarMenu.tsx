@@ -36,7 +36,11 @@ import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 
-export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
+export const SideBarMenu = ({
+    toggleSidebar,
+    handleOpenFavoriteModal,
+    maxSeason,
+}) => {
     // 選択したリーグをお気に入りから削除
     const [addLeagueFavorite, deleteLeagueFavorite, deleteLeagueError] =
         useFavoriteApi("leagues");
@@ -227,6 +231,8 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
                                 loading={favoriteTeamLoading}
                                 deleteFavorite={deleteTeamFavorite}
                                 setFavoritesTeam={setFavoritesTeam}
+                                maxSeason={maxSeason}
+                                toggleSidebar={toggleSidebar}
                             />
                         </List>
                     </Collapse>
@@ -259,6 +265,8 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
                                 loading={favoriteLeagueLoading}
                                 deleteFavorite={deleteLeagueFavorite}
                                 setFavoritesLeague={setFavoritesLeague}
+                                maxSeason={maxSeason}
+                                toggleSidebar={toggleSidebar}
                             />
                         </List>
                     </Collapse>
@@ -285,6 +293,8 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
                             <StandingLeagues
                                 leagues={leagues}
                                 loading={leaguesLoading}
+                                maxSeason={maxSeason}
+                                toggleSidebar={toggleSidebar}
                             />
                         </List>
                     </Collapse>
@@ -393,10 +403,7 @@ export const SideBarMenu = ({ toggleSidebar, handleOpenFavoriteModal }) => {
                 }}
             >
                 <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
-                    <ModalAccount
-                        user={auth}
-                        close={handleCloseAccountModal}
-                    />
+                    <ModalAccount user={auth} close={handleCloseAccountModal} />
                 </div>
             </Modal>
             {/* パスワード変更モーダル */}

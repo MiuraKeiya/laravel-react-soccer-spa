@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLeadingTeamApi } from "../../../hooks/useLeadingTeamApi";
 import { Loading } from "./Loading";
-import { useFavoriteApi } from "../../../hooks/useFavoriteApi";
-import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
+import { useNavigate } from "react-router-dom";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -15,6 +14,7 @@ export const ModalTeam = ({
     favoriteStatus,
     setFavoriteStatus,
     handleFavoriteClick,
+    maxSeason,
 }) => {
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
@@ -42,6 +42,12 @@ export const ModalTeam = ({
         }
     }, [favorites, teams]);
 
+    const navigate = useNavigate();
+
+    const handleTeamClick = (id, season) => {
+        navigate(`/team/${id}/season/${season}`);
+    };
+
     return (
         <div className="text-white">
             {teamloading || favoritesLoading ? (
@@ -51,6 +57,7 @@ export const ModalTeam = ({
                     <div
                         key={index}
                         className="flex justify-between hover:bg-[#191E24] cursor-pointer transition duration-450 rounded-md"
+                        onClick={() => handleTeamClick(team.id, maxSeason)}
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
@@ -75,7 +82,10 @@ export const ModalTeam = ({
                                     ? "#B0EE1B"
                                     : "white",
                             }}
-                            onClick={() => handleFavoriteClick(team.id)}
+                            onClick={(e) => {
+                                e.stopPropagation(); // クリックイベントの伝播を停止
+                                handleFavoriteClick(team.id); // IconButtonのクリック処理を実行
+                            }}
                         >
                             <Tooltip
                                 followCursor
