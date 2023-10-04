@@ -5,7 +5,7 @@ import { Assist } from "./Assist";
 import { YellowCard } from "./YellowCard";
 import { RedCard } from "./RedCard";
 
-export const RankingSelecter = ({ rankings }) => {
+export const RankingSelecter = ({ rankings, rankingsLoading }) => {
     const [selectedTab, setSelectedTab] = useState("scorer");
 
     const handleScorerClick = () => {
@@ -68,10 +68,24 @@ export const RankingSelecter = ({ rankings }) => {
                     レッドカード
                 </Button>
             </div>
-            {selectedTab === "scorer" && <Scorer rankings={rankings} />}
-            {selectedTab === "assist" && <Assist rankings={rankings} />}
-            {selectedTab === "yellow" && <YellowCard rankings={rankings} />}
-            {selectedTab === "red" && <RedCard rankings={rankings} />}
+            {selectedTab === "scorer" && (
+                <Scorer rankings={rankings} rankingsLoading={rankingsLoading} />
+            )}
+            {selectedTab === "assist" && (
+                <Assist rankings={rankings} rankingsLoading={rankingsLoading} />
+            )}
+            {selectedTab === "yellow" && (
+                <YellowCard
+                    rankings={rankings}
+                    rankingsLoading={rankingsLoading}
+                />
+            )}
+            {selectedTab === "red" && (
+                <RedCard
+                    rankings={rankings}
+                    rankingsLoading={rankingsLoading}
+                />
+            )}
         </>
     );
 };

@@ -9,7 +9,10 @@ export const Standings = () => {
 
     const { standings, loading, error } = useStandingsApi(id, season);
 
-    const { rankings } = useRankingsApi(id, season);
+    const [rankings, rankingsLoading, rankingsError] = useRankingsApi(
+        id,
+        season
+    );
 
     return (
         <div>
@@ -24,6 +27,7 @@ export const Standings = () => {
                     standings={standings}
                     rankings={rankings}
                     loading={loading}
+                    rankingsLoading={rankingsLoading}
                 />
             </div>
         </div>
