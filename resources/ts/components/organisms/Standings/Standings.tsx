@@ -14,7 +14,7 @@ export const Standings = () => {
     return (
         <div>
             <div className="mt-6">
-                <StandingsInformations />
+                <StandingsInformations standings={standings} />
             </div>
             <div className="mb-6">
                 <TopScorerSelecter standings={standings} rankings={rankings} />
