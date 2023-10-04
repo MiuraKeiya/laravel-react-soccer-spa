@@ -30,6 +30,19 @@ class TeamService
         // 全体での順位一覧
         $standings = $league->json_standings['response'][0]['league']['standings'][0];
 
+        // リーグ情報を取得
+        $leagueInformation = $league->json_standings['response'][0]['league'];
+
+        // リーグの必要な情報だけを取得
+        $selectedLeagueInformation = array(
+            'id' => $leagueInformation['id'],
+            'flag' => $leagueInformation['flag'],
+            'logo' => $leagueInformation['logo'],
+            'name' => $leagueInformation['name'],
+            'season' => $leagueInformation['season'],
+            'country' => $leagueInformation['country']
+        );
+        
         // ホームでの順位一覧
         $homeStandings =  collect($standings)->sortByDesc(function ($datas) {
             // 勝点
@@ -49,6 +62,7 @@ class TeamService
         })->values();
 
         return [
+            'league' => $selectedLeagueInformation,
             'all' => $standings,
             'home' => $homeStandings,
             'away' => $awayStandings,
