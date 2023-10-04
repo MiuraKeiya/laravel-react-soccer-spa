@@ -1,6 +1,8 @@
 import { useSidebarContext } from "../../../context/SidebarContext";
 import { SideBarMenu } from "./SideBarMenu";
 import { ModalFavorite } from "../Modal/ModalFavorite";
+import config from "../../../config";
+import { findMaxSeason } from "../../../functions/Utils";
 import Drawer from "@mui/material/Drawer";
 import Modal from "@mui/material/Modal";
 export const SideBar = () => {
@@ -12,6 +14,9 @@ export const SideBar = () => {
         handleCloseFavoriteModal,
         openFavoriteModal,
     } = useSidebarContext();
+
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
 
     return (
         <>
@@ -31,6 +36,7 @@ export const SideBar = () => {
                 <SideBarMenu
                     toggleSidebar={toggleSidebar}
                     handleOpenFavoriteModal={handleOpenFavoriteModal}
+                    maxSeason={maxSeason}
                 />
             </Drawer>
 

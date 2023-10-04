@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SearchLoading } from "./SearchLoading";
 import { SearchError } from "./SearchError";
-import { useFavoriteApi } from "../../../hooks/useFavoriteApi";
-import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -15,6 +14,7 @@ export const SearchResults = ({
     handleFavoriteClick,
     setFavoriteStatus,
     favorites,
+    maxSeason,
 }) => {
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
@@ -62,6 +62,12 @@ export const SearchResults = ({
         }
     }, [favorites, results]);
 
+    const navigate = useNavigate();
+
+    const handleTeamClick = (id, season) => {
+        navigate(`/team/${id}/season/${season}`);
+    };
+
     return (
         <div className="text-white">
             {loading ? (
@@ -73,6 +79,12 @@ export const SearchResults = ({
                     <div
                         key={index}
                         className="flex justify-between hover:bg-[#191E24] cursor-pointer transition duration-450 rounded-md"
+                        onClick={() =>
+                            handleTeamClick(
+                                result.json_information.team.id,
+                                maxSeason
+                            )
+                        }
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
@@ -99,11 +111,12 @@ export const SearchResults = ({
                                     ? "#B0EE1B"
                                     : "white",
                             }}
-                            onClick={() =>
+                            onClick={(e) => {
+                                e.stopPropagation(); // クリックイベントの伝播を停止
                                 handleFavoriteClick(
                                     result.json_information.team.id
-                                )
-                            }
+                                ); // IconButtonのクリック処理を実行
+                            }}
                         >
                             <Tooltip
                                 title={

@@ -1,4 +1,5 @@
 import { Loading } from "./Loading";
+import { useNavigate } from "react-router-dom";
 import { NoFavoriteMessage } from "../../molecules/NoFavoriteMessage";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -10,6 +11,8 @@ export const FavoriteTeams = ({
     loading,
     deleteFavorite,
     setFavoritesTeam,
+    maxSeason,
+    toggleSidebar,
 }) => {
     const handleDeleteFavorite = (teamId) => {
         // favorites ステートから削除対象のリーグを除外する
@@ -20,6 +23,13 @@ export const FavoriteTeams = ({
         setFavoritesTeam(updatedFavorites);
 
         deleteFavorite(teamId);
+    };
+
+    const navigate = useNavigate();
+
+    const handleTeamClick = (id, season) => {
+        toggleSidebar();
+        navigate(`/team/${id}/season/${season}`);
     };
 
     return (
@@ -34,7 +44,12 @@ export const FavoriteTeams = ({
                         key={index}
                         className="flex items-center justify-between"
                     >
-                        <Button style={"hover:underline"}>
+                        <Button
+                            style={"hover:underline"}
+                            onClick={() =>
+                                handleTeamClick(favorite.team.id, maxSeason)
+                            }
+                        >
                             <div
                                 className="flex items-center space-x-1"
                                 style={{ overflow: "hidden" }}
