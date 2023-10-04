@@ -4,7 +4,12 @@ import { StandingsAll } from "./StandingsAll";
 import { StandingsHome } from "./StandingsHome";
 import { StandingsAway } from "./StandingsAway";
 
-export const StandingsSelecter = ({ standings, teamIds, maxSeason }) => {
+export const StandingsSelecter = ({
+    standings,
+    teamIds,
+    maxSeason,
+    loading,
+}) => {
     const [selectedTab, setSelectedTab] = useState("all");
 
     const handleStandingsAllClick = () => {
@@ -58,6 +63,7 @@ export const StandingsSelecter = ({ standings, teamIds, maxSeason }) => {
                     standings={standings}
                     teamIds={teamIds}
                     maxSeason={maxSeason}
+                    loading={loading}
                 />
             )}
             {selectedTab === "home" && (
@@ -65,6 +71,7 @@ export const StandingsSelecter = ({ standings, teamIds, maxSeason }) => {
                     standings={standings}
                     teamIds={teamIds}
                     maxSeason={maxSeason}
+                    loading={loading}
                 />
             )}
             {selectedTab === "away" && (
@@ -72,6 +79,7 @@ export const StandingsSelecter = ({ standings, teamIds, maxSeason }) => {
                     standings={standings}
                     teamIds={teamIds}
                     maxSeason={maxSeason}
+                    loading={loading}
                 />
             )}
         </>
