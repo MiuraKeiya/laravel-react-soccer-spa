@@ -1,6 +1,8 @@
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip from "@mui/material/Tooltip";
 import CircularProgress from "@mui/material/CircularProgress";
+import { StandingsDetails } from "../../Standings/StandingsDetails";
+import { LeagueLule } from "../../Standings/LeagueLule";
 
 export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
     if (loading) {
@@ -43,7 +45,54 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                                         : ""
                                 }`}
                             >
-                                <td>{standing.rank}</td>
+                                <td>
+                                    <div
+                                        className={`mx-2 rounded ${
+                                            standing.description ===
+                                            "Promotion - Champions League (Group Stage: )"
+                                                ? "bg-[#81319c]"
+                                                : standing.description ===
+                                                  "Promotion - Europa League (Group Stage: )"
+                                                ? "bg-[#276e8d]"
+                                                : standing.description ===
+                                                  "Promotion - Europa Conference League (Qualification: )"
+                                                ? "bg-[#787822]"
+                                                : standing.description ===
+                                                  "Relegation - Championship"
+                                                ? "bg-[#a62b1b]"
+                                                : standing.description ===
+                                                  "Promotion - Champions League (Qualification: )"
+                                                ? "bg-blue-600"
+                                                : standing.description ===
+                                                  "Relegation - Ligue 2"
+                                                ? "bg-[#a62b1b]"
+                                                : standing.description ===
+                                                  "Promotion - Europa Conference League (Group Stage: )"
+                                                ? "bg-green-600"
+                                                : standing.description ===
+                                                  "Bundesliga (Relegation)"
+                                                ? "bg-gray-500"
+                                                : standing.description ===
+                                                  "Relegation - 2. Bundesliga"
+                                                ? "bg-[#a62b1b]"
+                                                : standing.description ===
+                                                  "Serie A (Additional match: )"
+                                                ? "bg-gray-500"
+                                                : standing.description ===
+                                                  "Relegation - Serie B"
+                                                ? "bg-[#a62b1b]"
+                                                : standing.description ===
+                                                  "Relegation - LaLiga2"
+                                                ? "bg-[#a62b1b]"
+                                                : standing.description ===
+                                                  "Ligue 1 (Promotion - Play Offs: )"
+                                                ? "bg-gray-500"
+                                                : ""
+                                        }`}
+                                    >
+                                        {standing.rank}
+                                    </div>
+                                </td>
                                 <td>
                                     <div className="flex items-center space-x-2">
                                         <img
@@ -131,6 +180,10 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                         ))}
                 </tbody>
             </table>
+            <div className="pb-4">
+                <StandingsDetails standings={standings} />
+                <LeagueLule standings={standings} />
+            </div>
         </div>
     );
 };

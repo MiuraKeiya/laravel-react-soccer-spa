@@ -3,6 +3,8 @@ import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { StandingsInformations } from "./StandingsInformations";
 import { TopScorerSelecter } from "../League/TopScorerSelecter";
+import { useErrors } from "../../../hooks/useErrors";
+import { Page } from "../../../Page";
 
 export const Standings = () => {
     const { id, season } = useParams();
@@ -14,22 +16,27 @@ export const Standings = () => {
         season
     );
 
+    // エラーをまとめる
+    const pageError = useErrors(error, rankingsError);
+
     return (
-        <div>
-            <div className="mt-6">
-                <StandingsInformations
-                    standings={standings}
-                    loading={loading}
-                />
+        <Page error={pageError}>
+            <div>
+                <div className="mt-6">
+                    <StandingsInformations
+                        standings={standings}
+                        loading={loading}
+                    />
+                </div>
+                <div className="mb-6">
+                    <TopScorerSelecter
+                        standings={standings}
+                        rankings={rankings}
+                        loading={loading}
+                        rankingsLoading={rankingsLoading}
+                    />
+                </div>
             </div>
-            <div className="mb-6">
-                <TopScorerSelecter
-                    standings={standings}
-                    rankings={rankings}
-                    loading={loading}
-                    rankingsLoading={rankingsLoading}
-                />
-            </div>
-        </div>
+        </Page>
     );
 };
