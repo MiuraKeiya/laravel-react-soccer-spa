@@ -3,7 +3,7 @@ import { Button } from "../../atoms/Button";
 import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 import { RankingSelecter } from "./RankingSelecter";
 
-export const TopScorerSelecter = ({ standings, rankings }) => {
+export const TopScorerSelecter = ({ standings, rankings, loading }) => {
     const [selectedTab, setSelectedTab] = useState("standings");
 
     const handleStandingsClick = () => {
@@ -39,10 +39,10 @@ export const TopScorerSelecter = ({ standings, rankings }) => {
                 </Button>
             </div>
             {selectedTab === "standings" && (
-                <StandingsSelecter standings={standings} />
+                <StandingsSelecter standings={standings} loading={loading} />
             )}
             {selectedTab === "topScorer" && (
-                <RankingSelecter rankings={rankings} />
+                <RankingSelecter rankings={rankings} loading={loading} />
             )}
         </>
     );
