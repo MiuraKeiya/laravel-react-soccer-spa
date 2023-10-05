@@ -7,12 +7,12 @@ export const Page = ({ error, children }) => {
     if (error) {
         switch (error.response?.status) {
             case 401:
-                return <Unauthorized status={error} />;
+                return <Unauthorized status={error.response?.status} />;
             case 429:
-                return <TooManyRequests status={error} />;
+                return <TooManyRequests status={error.response?.status} />;
             case 405:
             case 500:
-                return <Error status={error} />;
+                return <Error status={error.response?.status} />;
             default:
                 break;
         }
