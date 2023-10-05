@@ -7,7 +7,7 @@ export const StandingsInformations = ({ standings, loading }) => {
                 <SkeletonStandingsLeague />
             ) : (
                 <div className="flex items-center space-x-3 ml-6">
-                    <img src={standings.league?.logo} className="h-12 w-12" />
+                    <img src={standings.league?.logo} className="h-12 w-12 bg-white rounded" />
                     <h1 className="text-white text-[25px] uppercase font-semibold">
                         {standings.league?.name}
                     </h1>

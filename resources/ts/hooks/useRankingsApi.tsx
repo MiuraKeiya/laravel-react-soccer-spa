@@ -14,7 +14,7 @@ export const useRankingsApi = (leagueId, season) => {
                 const response = await axios.get(
                     `/api/players/rankings/leagues/${leagueId}/seasons/${season}`
                 );
-                console.log(response.data);
+                console.log("ランキングAPI", response.data);
 
                 setRankings(response.data);
                 setLoading(false);
@@ -27,7 +27,7 @@ export const useRankingsApi = (leagueId, season) => {
         };
 
         fetchData();
-    }, []);
+    }, [leagueId, season]);
 
     return [rankings, loading, error];
 };
