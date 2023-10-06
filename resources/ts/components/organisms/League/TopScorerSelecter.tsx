@@ -10,6 +10,7 @@ export const TopScorerSelecter = ({
     rankings,
     loading,
     rankingsLoading,
+    maxSeason,
 }) => {
     const { id, season } = useParams();
 
@@ -52,12 +53,17 @@ export const TopScorerSelecter = ({
             </div>
 
             {selectedTab === "standings" && (
-                <StandingsSelecter standings={standings} loading={loading} />
+                <StandingsSelecter
+                    standings={standings}
+                    loading={loading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "topScorer" && (
                 <RankingSelecter
                     rankings={rankings}
                     rankingsLoading={rankingsLoading}
+                    maxSeason={maxSeason}
                 />
             )}
         </>

@@ -3,6 +3,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { StandingsLoading } from "../../Standings/StandingsLoading";
 import { StandingsDetails } from "../../Standings/StandingsDetails";
 import { LeagueLule } from "../../Standings/LeagueLule";
+import { Link } from "react-router-dom";
 
 export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
     if (loading) {
@@ -93,12 +94,12 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                                             src={standing.team.logo}
                                             className="w-8 h-8"
                                         />
-                                        <a
-                                            className="text-[16px] ml-1 hover:underline cursor-pointer font-bold"
-                                            href={`/team/${standing.team.id}/season/${maxSeason}`}
+                                        <Link
+                                            className="text-[16px] ml-1 hover:underline font-bold"
+                                            to={`/team/${standing.team.id}/season/${maxSeason}`}
                                         >
                                             {standing.team.name}
-                                        </a>
+                                        </Link>
                                     </div>
                                 </td>
                                 <td className="text-[16px]">

@@ -5,6 +5,8 @@ import { StandingsInformations } from "./StandingsInformations";
 import { TopScorerSelecter } from "../League/TopScorerSelecter";
 import { useErrors } from "../../../hooks/useErrors";
 import { Page } from "../../../Page";
+import config from "../../../config";
+import { findMaxSeason } from "../../../functions/Utils";
 
 export const Standings = () => {
     const { id, season } = useParams();
@@ -16,6 +18,9 @@ export const Standings = () => {
         season
     );
 
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
+
     // エラーをまとめる
     const pageError = useErrors(error, rankingsError);
 
@@ -26,6 +31,7 @@ export const Standings = () => {
                     <StandingsInformations
                         standings={standings}
                         loading={loading}
+                        season={maxSeason}
                     />
                 </div>
                 <div className="mb-6">
@@ -34,6 +40,7 @@ export const Standings = () => {
                         rankings={rankings}
                         loading={loading}
                         rankingsLoading={rankingsLoading}
+                        maxSeason={maxSeason}
                     />
                 </div>
             </div>
