@@ -15,12 +15,12 @@ class TeamService
     }
 
     /**
-     * 指定したリーグの順位一覧を取得する
-     * 全体、ホーム、アウェイにおける順位をそれぞれ取得する
+     * 指定したリーグの順位一覧とリーグ情報を取得する
+     * 全体、ホーム、アウェイにおける順位とリーグ情報をそれぞれ取得する
      *
      * @param string $season シーズン
      * @param string $leagueId リーグID
-     * @return array 全体、ホーム、アウェイにおける順位一覧
+     * @return array 全体、ホーム、アウェイにおける順位一覧とリーグ情報
      */
     public function getStandings(string $leagueId, $season): array
     {

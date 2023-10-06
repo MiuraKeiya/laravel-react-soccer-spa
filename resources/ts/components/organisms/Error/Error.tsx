@@ -35,7 +35,7 @@ export const Error = ({ status }) => {
                     <h1 className="text-red-600 text-[20px] mb-2">
                         エラーが発生しました。
                     </h1>
-                    <p>ステータスコード : {status.response.status}</p>
+                    <p>ステータスコード : {status}</p>
                     <p>
                         恐れ入りますが、再読み込みをするか時間を空けてからアクセスしてください。
                     </p>
