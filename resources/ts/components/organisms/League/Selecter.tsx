@@ -15,6 +15,8 @@ export const Selecter = ({
     paginateLoading,
     rankings,
     teams,
+    latestGamesLoading,
+    standingsLoading,
 }) => {
     const [selectedTab, setSelectedTab] = useState("informations");
 
@@ -82,6 +84,8 @@ export const Selecter = ({
                 <LeagueOverview
                     latestGames={latestGames}
                     standings={standings}
+                    latestGamesLoading={latestGamesLoading}
+                    standingsLoading={standingsLoading}
                 />
             )}
             {selectedTab === "results" && (

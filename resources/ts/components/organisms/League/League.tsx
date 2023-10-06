@@ -11,9 +11,10 @@ export const League = () => {
     // パラメータを取得
     const { id, season } = useParams();
 
-    const { latestGames } = useLatestGamesApi(id, season);
+    const [latestGames, latestGamesLoading, latestGamesError] =
+        useLatestGamesApi(id, season);
 
-    const { standings } = useStandingsApi(id, season);
+    const { standings, loading, error } = useStandingsApi(id, season);
 
     const { pagenateGames, paginateLoading, setPage, lastPage, currentPage } =
         useLeagueGamesPaginateApi(id, season);
@@ -25,10 +26,14 @@ export const League = () => {
     return (
         <div>
             <div className="mt-6">
-                <LeagueInformations latestGames={latestGames} />
+                <LeagueInformations
+                    latestGames={latestGames}
+                    loading={latestGamesLoading}
+                />
             </div>
             <div className="mt-1 mb-6">
                 <Selecter
+                    latestGamesLoading={latestGamesLoading}
                     latestGames={latestGames}
                     standings={standings}
                     pagenateGames={pagenateGames}
@@ -38,6 +43,7 @@ export const League = () => {
                     paginateLoading={paginateLoading}
                     rankings={rankings}
                     teams={teams}
+                    standingsLoading={loading}
                 />
             </div>
         </div>
