@@ -68,7 +68,7 @@ export const TooManyRequests = ({ status }) => {
                     <h1 className="text-red-600 text-[20px] mb-2">
                         APIコール制限
                     </h1>
-                    <p>ステータスコード : {status.response.status}</p>
+                    <p>ステータスコード : {status}</p>
                     <p>
                         APIのコール回数が多すぎます。
                         <br />
