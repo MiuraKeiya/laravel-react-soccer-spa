@@ -5,7 +5,7 @@ import { Assist } from "./Assist";
 import { YellowCard } from "./YellowCard";
 import { RedCard } from "./RedCard";
 
-export const RankingSelecter = ({ rankings, rankingsLoading }) => {
+export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
     const [selectedTab, setSelectedTab] = useState("scorer");
 
     const handleScorerClick = () => {
@@ -69,21 +69,31 @@ export const RankingSelecter = ({ rankings, rankingsLoading }) => {
                 </Button>
             </div>
             {selectedTab === "scorer" && (
-                <Scorer rankings={rankings} rankingsLoading={rankingsLoading} />
+                <Scorer
+                    rankings={rankings}
+                    rankingsLoading={rankingsLoading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "assist" && (
-                <Assist rankings={rankings} rankingsLoading={rankingsLoading} />
+                <Assist
+                    rankings={rankings}
+                    rankingsLoading={rankingsLoading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "yellow" && (
                 <YellowCard
                     rankings={rankings}
                     rankingsLoading={rankingsLoading}
+                    maxSeason={maxSeason}
                 />
             )}
             {selectedTab === "red" && (
                 <RedCard
                     rankings={rankings}
                     rankingsLoading={rankingsLoading}
+                    maxSeason={maxSeason}
                 />
             )}
         </>

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { RankingsLoading } from "../Standings/RankingsLoading";
 
-export const Assist = ({ rankings, rankingsLoading }) => {
+export const Assist = ({ rankings, rankingsLoading, maxSeason }) => {
     if (rankingsLoading) {
         return <RankingsLoading />;
     }
@@ -35,9 +36,12 @@ export const Assist = ({ rankings, rankingsLoading }) => {
                                                     src={assist.player.photo}
                                                     className="w-8 h-8 rounded-full"
                                                 />
-                                                <span className="text-[15px] font-bold text-white ml-1 hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] font-bold text-white ml-1 hover:underline"
+                                                    to={`/player/${assist.player.id}/season/${maxSeason}`}
+                                                >
                                                     {assist.player.name}
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[13px]">
@@ -49,12 +53,15 @@ export const Assist = ({ rankings, rankingsLoading }) => {
                                                     }
                                                     className="w-8 h-8"
                                                 />
-                                                <span className="text-[15px] hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] hover:underline"
+                                                    to={`/team/${assist.statistics[0].team.id}/season/${maxSeason}`}
+                                                >
                                                     {
                                                         assist.statistics[0]
                                                             .team.name
                                                     }
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[15px] font-bold">

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { RankingsLoading } from "../Standings/RankingsLoading";
 
-export const Scorer = ({ rankings, rankingsLoading }) => {
+export const Scorer = ({ rankings, rankingsLoading, maxSeason }) => {
     if (rankingsLoading) {
         return <RankingsLoading />;
     }
@@ -35,9 +36,12 @@ export const Scorer = ({ rankings, rankingsLoading }) => {
                                                     src={scorer.player.photo}
                                                     className="w-8 h-8 rounded-full"
                                                 />
-                                                <span className="text-[15px] font-bold text-white ml-1 hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] font-bold text-white ml-1 hover:underline"
+                                                    to={`/player/${scorer.player.id}/season/${maxSeason}`}
+                                                >
                                                     {scorer.player.name}
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[13px]">
@@ -49,12 +53,15 @@ export const Scorer = ({ rankings, rankingsLoading }) => {
                                                     }
                                                     className="w-8 h-8"
                                                 />
-                                                <span className="text-[15px] hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] hover:underline"
+                                                    to={`/team/${scorer.statistics[0].team.id}/season/${maxSeason}`}
+                                                >
                                                     {
                                                         scorer.statistics[0]
                                                             .team.name
                                                     }
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[15px] font-bold">

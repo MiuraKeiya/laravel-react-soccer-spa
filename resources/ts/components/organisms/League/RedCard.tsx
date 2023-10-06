@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { RankingsLoading } from "../Standings/RankingsLoading";
 
-export const RedCard = ({ rankings, rankingsLoading }) => {
+export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
     if (rankingsLoading) {
         return <RankingsLoading />;
     }
@@ -11,7 +12,7 @@ export const RedCard = ({ rankings, rankingsLoading }) => {
                 レッドカードランキング
             </div>
             <div className="bg-[#1d2233] mt-[1px]">
-                {rankings[0].json_scorer?.response?.length > 0 ? (
+                {rankings[0].json_red_card?.response?.length > 0 ? (
                     <table className="w-full">
                         <thead className="bg-[#111931] text-[#C8CDCD] text-[15px]">
                             <tr>
@@ -35,9 +36,12 @@ export const RedCard = ({ rankings, rankingsLoading }) => {
                                                     src={red.player.photo}
                                                     className="w-8 h-8 rounded-full"
                                                 />
-                                                <span className="text-[15px] font-bold text-white ml-1 hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] font-bold text-white ml-1 hover:underline"
+                                                    to={`/player/${red.player.id}/season/${maxSeason}`}
+                                                >
                                                     {red.player.name}
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[13px]">
@@ -49,22 +53,23 @@ export const RedCard = ({ rankings, rankingsLoading }) => {
                                                     }
                                                     className="w-8 h-8"
                                                 />
-                                                <span className="text-[15px] hover:underline cursor-pointer">
+                                                <Link
+                                                    className="text-[15px] hover:underline"
+                                                    to={`/team/${red.statistics[0].team.id}/season/${maxSeason}`}
+                                                >
                                                     {
                                                         red.statistics[0].team
                                                             .name
                                                     }
-                                                </span>
+                                                </Link>
                                             </div>
                                         </td>
                                         <td className="text-[15px] font-bold">
-                                            {red.statistics[0].cards.red}
+                                            {red.statistics[0].cards.red ?? 0}
                                         </td>
                                         <td className="text-[15px]">
-                                            {
-                                                red.statistics[0].games
-                                                    .appearences
-                                            }
+                                            {red.statistics[0].games
+                                                .appearences ?? 0}
                                         </td>
                                     </tr>
                                 </tbody>
