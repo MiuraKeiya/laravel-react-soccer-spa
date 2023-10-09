@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import config from "../../config";
 
-export const SeasonSelecter = ({ id, season }) => {
+export const SeasonSelecter = ({ baseRoute, id, season }) => {
     const [seasonOptions, setSeasonOptions] = useState([]);
     const [selectedSeason, setSelectedSeason] = useState("");
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const SeasonSelecter = ({ id, season }) => {
         const newSeason = event.target.value;
         setSelectedSeason(newSeason);
 
-        navigate(`/standings/league/${id}/season/${newSeason}`);
+        navigate(`${baseRoute}/${id}/season/${newSeason}`);
     };
 
     return (

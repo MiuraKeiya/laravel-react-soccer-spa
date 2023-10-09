@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { Button } from "../../atoms/Button";
 import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 import { RankingSelecter } from "./RankingSelecter";
-import { SeasonSelecter } from "../../molecules/SeasonSelecter";
 
-export const TopScorerSelecter = ({
+export const LeagueTopScorerSelecter = ({
     standings,
     rankings,
     loading,
     rankingsLoading,
     maxSeason,
 }) => {
-    const { id, season } = useParams();
-
     const [selectedTab, setSelectedTab] = useState("standings");
 
     const handleStandingsClick = () => {
@@ -49,11 +45,6 @@ export const TopScorerSelecter = ({
                         得点王
                     </Button>
                 </div>
-                <SeasonSelecter
-                    baseRoute={"/standings/league"}
-                    id={id}
-                    season={season}
-                />
             </div>
 
             {selectedTab === "standings" && (
