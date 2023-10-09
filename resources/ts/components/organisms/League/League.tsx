@@ -19,7 +19,10 @@ export const League = () => {
     const { pagenateGames, paginateLoading, setPage, lastPage, currentPage } =
         useLeagueGamesPaginateApi(id, season);
 
-    const { rankings } = useRankingsApi(id, season);
+    const [rankings, rankingsLoading, rankingsError] = useRankingsApi(
+        id,
+        season
+    );
 
     const { teams } = useLeagueTeamsApi(id, season);
 

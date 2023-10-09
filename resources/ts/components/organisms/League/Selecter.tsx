@@ -1,9 +1,11 @@
+import { useParams } from "react-router-dom";
 import { Button } from "../../atoms/Button";
 import { useState } from "react";
 import { LeagueOverview } from "./LeagueOverview";
 import { LeagueResults } from "./LeagueResults";
-import { TopScorerSelecter } from "./TopScorerSelecter";
 import { Teams } from "./Teams";
+import { SeasonSelecter } from "../../molecules/SeasonSelecter";
+import { LeagueTopScorerSelecter } from "./LeagueTopScoreSelecter";
 
 export const Selecter = ({
     latestGames,
@@ -18,6 +20,8 @@ export const Selecter = ({
     latestGamesLoading,
     standingsLoading,
 }) => {
+    const { id, season } = useParams();
+
     const [selectedTab, setSelectedTab] = useState("informations");
 
     const handleInformationsClick = () => {
@@ -38,7 +42,7 @@ export const Selecter = ({
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-12 flex items-center justify-center space-x-16">
+            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-14 flex items-center justify-center space-x-16">
                 <Button
                     onClick={handleInformationsClick}
                     style={`text-[15px] font-bold rounded px-2 py-1 ${
@@ -79,6 +83,7 @@ export const Selecter = ({
                 >
                     チーム
                 </Button>
+                <SeasonSelecter baseRoute={"/league"} id={id} season={season} />
             </div>
             {selectedTab === "informations" && (
                 <LeagueOverview
@@ -98,7 +103,10 @@ export const Selecter = ({
                 />
             )}
             {selectedTab === "standings" && (
-                <TopScorerSelecter standings={standings} rankings={rankings} />
+                <LeagueTopScorerSelecter
+                    standings={standings}
+                    rankings={rankings}
+                />
             )}
             {selectedTab === "teams" && <Teams teams={teams} />}
         </>

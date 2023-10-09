@@ -21,7 +21,7 @@ export const useLeagueTeamsApi = (leagueId, season) => {
         };
 
         fetchData();
-    }, []);
+    }, [leagueId, season]);
 
     return { teams, loading };
 };
