@@ -44,6 +44,7 @@ export const Team = () => {
                     squad={players}
                     standings={standings}
                     id={id}
+                    season={season}
                     paginateLoading={paginateLoading}
                 />
             </div>
