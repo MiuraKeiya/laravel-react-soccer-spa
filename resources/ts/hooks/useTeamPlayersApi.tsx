@@ -21,7 +21,7 @@ export const useTeamPlayersApi = (playerId, season) => {
         };
 
         fetchData();
-    }, []);
+    }, [playerId, season]);
 
     return { players, loading };
 };

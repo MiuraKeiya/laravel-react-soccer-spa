@@ -4,6 +4,7 @@ import { Statistics } from "./Statistics";
 import { Squad } from "./Squad/Squad";
 import { StandingsSelecter } from "./Standing/StandingsSelecter";
 import { Games } from "./Game/Games";
+import { SeasonSelecter } from "../../molecules/SeasonSelecter";
 
 export const Selecter = ({
     informations,
@@ -14,6 +15,7 @@ export const Selecter = ({
     squad,
     standings,
     id,
+    season,
     paginateLoading,
 }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
@@ -36,7 +38,7 @@ export const Selecter = ({
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-12 flex items-center justify-center space-x-16">
+            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-14 flex items-center justify-center space-x-16">
                 <Button
                     onClick={handleScheduleResultsClick}
                     style={`text-[15px] font-bold rounded px-2 py-1 ${
@@ -77,6 +79,7 @@ export const Selecter = ({
                 >
                     選手一覧
                 </Button>
+                <SeasonSelecter baseRoute={"/team"} id={id} season={season} />
             </div>
             {selectedTab === "scheduleResults" && (
                 <Games

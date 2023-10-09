@@ -22,7 +22,7 @@ export const useTeamInformations = (teamId, season) => {
         };
 
         fetchData();
-    }, []);
+    }, [teamId, season]);
 
     return { informations, teamLoading };
 };
