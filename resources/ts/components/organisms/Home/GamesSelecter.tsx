@@ -35,11 +35,11 @@ export const GamesSelecter = ({
 
     return (
         <>
-            <div className="bg-[#1d2233] rounded-t h-16 md:h-12 lg:h-12 flex items-center justify-between">
-                <div className="flex items-center space-x-1 lg:space-x-8">
+            <div className="bg-[#1d2233] rounded-t h-10 md:h-12 lg:h-12 flex items-center justify-between">
+                <div className="flex items-center space-x-3 lg:space-x-8">
                     <Button
                         onClick={handleAllClick}
-                        style={`text-[15px] font-bold rounded px-2 py-1 ml-1 lg:ml-6 ${
+                        style={`lg:text-[15px] text-[12px] font-bold rounded px-2 py-1 ml-1 lg:ml-6 ${
                             selectedTab === "all"
                                 ? "bg-[#B0EE1B] text-black cursor-default"
                                 : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -49,7 +49,7 @@ export const GamesSelecter = ({
                     </Button>
                     <Button
                         onClick={handleEndClick}
-                        style={`text-[15px] font-bold rounded px-2 py-1 ${
+                        style={`lg:text-[15px] text-[12px] font-bold rounded px-2 py-1 ${
                             selectedTab === "end"
                                 ? "bg-[#B0EE1B] text-black cursor-default"
                                 : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -59,7 +59,7 @@ export const GamesSelecter = ({
                     </Button>
                     <Button
                         onClick={handleScheduleClick}
-                        style={`text-[15px] font-bold rounded px-2 py-1 ${
+                        style={`lg:text-[15px] text-[12px] font-bold rounded px-2 py-1 ${
                             selectedTab === "schedule"
                                 ? "bg-[#B0EE1B] text-black cursor-default"
                                 : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
