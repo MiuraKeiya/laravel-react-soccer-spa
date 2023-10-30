@@ -1,6 +1,6 @@
 import { HomeTemplate } from "../components/templates/Home/HomeTemplate";
 import { Header } from "../components/organisms/Header";
-import { Footer } from "../components/atoms/footer/Footer";
+import { Footer } from "../components/organisms/Footer/Footer";
 import { SideBar } from "../components/organisms/SideBar/SideBar";
 import { Home } from "../components/organisms/Home/Home";
 import { ScrollRestoration } from "react-router-dom";
