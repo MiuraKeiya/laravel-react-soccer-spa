@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TeamController;
@@ -98,4 +99,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // ページネーションで特定リーグの試合を取得
     Route::get('/games/leagues/{leagueId}/seasons/{season}', [GameController::class, 'getLeagueGamesPagenate']);
+
+    // お問い合わせメール送信
+    Route::post('/send-email', [ContactController::class, 'send']);
 });
