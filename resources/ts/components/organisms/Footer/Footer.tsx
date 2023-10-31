@@ -4,21 +4,21 @@ import { Form } from "./Form";
 export const Footer = () => {
     return (
         <>
-            <div className="bg-[#111931] h-[28rem] flex items-center justify-center space-x-11">
-                <div>
+            <div className="bg-[#111931] lg:h-[28rem] lg:flex items-center justify-center space-x-11 md:flex">
+                <div className="pb-3 ml-11 pt-3 lg:ml-0">
                     <Icon
                         src="/images/footballleague.png"
                         alt="FootballLeague"
-                        className="h-[5rem]"
+                        className="lg:h-[5rem] md:h-[2rem] h-[3rem]"
                     />
-                    <p className="text-[#C8CDCD] text-[14px] pt-2 ml-2">
+                    <p className="text-[#C8CDCD] lg:text-[14px] md:text-[7px] text-[10px] lg:pt-2 pt-1 ml-2">
                         海外サッカー情報サイト
                     </p>
                 </div>
                 <span className="text-white font-bold text-[17px] border-b dark:border-gray-700 pb-1">
                     当サイトについて
                 </span>
-                <div>
+                <div className="pb-3 pt-2">
                     <p className="text-[#EEEEEE]">
                         Football Leagueは、欧州5大リーグの
                         <br />
@@ -30,14 +30,14 @@ export const Footer = () => {
                         <br />
                         すぐに情報を閲覧することもできます。
                     </p>
-                    <p className="text-[#EEEEEE] pt-6">
+                    <p className="text-[#EEEEEE] lg:pt-6 pt-3">
                         <span className="font-bold">サイト名:</span> Football
                         League
                     </p>
                     <p className="text-[#EEEEEE]">
                         <span className="font-bold">URL:</span> ここにURLが入る
                     </p>
-                    <p className="text-[#bebcbc] text-[14px] pt-6">
+                    <p className="text-[#bebcbc] text-[14px] lg:pt-6 pt-3">
                         当サイトを利用したことにより発生した、
                         <br />
                         いかなる損害及びトラブルに関して当方では
