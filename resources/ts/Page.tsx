@@ -11,6 +11,7 @@ export const Page = ({ error, children }) => {
             case 429:
                 return <TooManyRequests status={error.response?.status} />;
             case 405:
+            case 422:
             case 500:
                 return <Error status={error.response?.status} />;
             default:
