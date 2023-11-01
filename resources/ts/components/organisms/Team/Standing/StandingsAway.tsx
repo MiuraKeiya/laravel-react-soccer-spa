@@ -9,20 +9,20 @@ export const StandingsAway = ({ standings, teamIds, maxSeason, loading }) => {
     }
 
     return (
-        <div className="bg-[#1d2233]">
+        <div className="bg-[#1d2233] overflow-x-auto">
             <table className="w-full">
                 <thead className="bg-[#111931] text-[#C8CDCD] text-[12px] font-bold">
                     <tr>
                         <th className="w-11"></th>
                         <th className="text-left">チーム</th>
-                        <th>MP</th>
-                        <th>W</th>
-                        <th>D</th>
-                        <th>L</th>
-                        <th>G</th>
-                        <th>+/-</th>
-                        <th>P</th>
-                        <th></th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">MP</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">W</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">D</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">L</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">G</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">+/-</th>
+                        <th className="px-6 lg:px-0 lg:w-[4rem]">P</th>
+                        <th className="lg:w-[3rem]"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -43,10 +43,10 @@ export const StandingsAway = ({ standings, teamIds, maxSeason, loading }) => {
                                     <div className="flex items-center space-x-2">
                                         <img
                                             src={standing.team.logo}
-                                            className="w-8 h-8"
+                                            className="lg:w-8 lg:h-8 h-[23px]"
                                         />
                                         <Link
-                                            className="text-[16px] ml-1 hover:underline font-bold"
+                                            className="lg:text-[16px] text-[14px] ml-1 hover:underline font-bold"
                                             to={`/team/${standing.team.id}/season/${maxSeason}`}
                                         >
                                             {standing.team.name}
