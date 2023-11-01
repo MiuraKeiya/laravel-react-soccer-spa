@@ -36,8 +36,11 @@ export const SeasonSelecter = ({ baseRoute, id, season }) => {
             size="small"
             sx={{
                 m: 3,
-                minWidth: 120,
+                minWidth: 90,
                 backgroundColor: "#111931",
+                "@media (min-width: 640px)": {
+                    minWidth: 100, // sm スクリーンサイズ以上で minWidth を変更
+                },
             }}
         >
             <InputLabel

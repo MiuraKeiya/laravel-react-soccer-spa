@@ -8,20 +8,20 @@ export const TeamInformations = ({ informations, loading }) => {
             ) : (
                 informations.map((item, index) => (
                     <div key={index} className="flex justify-center">
-                        <div className="flex items-center space-x-6 my-5">
+                        <div className="flex items-center lg:justify-center space-x-6 my-5">
                             <div className="border rounded-xl bg-black">
                                 <img
                                     src={item.json_information.team.logo}
                                     alt="team"
-                                    className="h-24 w-24"
+                                    className="lg:h-24 lg:w-24 h-[5rem]"
                                 />
                             </div>
                             <div className="text-[#EEEEEE] flex items-center space-x-11">
                                 <div>
-                                    <h2 className="font-bold text-[30px] uppercase text-white">
+                                    <h2 className="font-bold lg:text-[30px] uppercase text-white">
                                         {item.json_information.team.name}
                                     </h2>
-                                    <div className="flex items-center space-x-16 pt-3">
+                                    <div className="flex items-center lg:space-x-16 pt-3">
                                         <div>
                                             <p>創立年:</p>
                                             <p className="font-bold">
@@ -77,11 +77,11 @@ export const TeamInformations = ({ informations, loading }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <img
+                                {/* <img
                                     src={item.json_information.venue.image}
                                     alt="team"
-                                    className="h-32 w-56"
-                                />
+                                    className="h-32 w-56 lg:visible invisible"
+                                /> */}
                             </div>
                         </div>
                     </div>

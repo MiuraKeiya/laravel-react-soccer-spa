@@ -20,11 +20,17 @@ export const Statistics = ({ informations }) => {
                                 width: 190,
                                 height: 110,
                             },
+                            "@media (max-width: 1023px)": {
+                                justifyContent: "center",
+                            },
                         }}
                     >
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">
@@ -40,7 +46,10 @@ export const Statistics = ({ informations }) => {
                         </Paper>
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">
@@ -56,7 +65,10 @@ export const Statistics = ({ informations }) => {
                         </Paper>
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">
@@ -72,7 +84,10 @@ export const Statistics = ({ informations }) => {
                         </Paper>
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">
@@ -88,7 +103,10 @@ export const Statistics = ({ informations }) => {
                         </Paper>
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">
@@ -104,7 +122,10 @@ export const Statistics = ({ informations }) => {
                         </Paper>
                         <Paper
                             elevation={10}
-                            sx={{ backgroundColor: "#111931" }}
+                            sx={{
+                                background:
+                                    "linear-gradient(70deg, blue, black)",
+                            }}
                         >
                             <div className="pl-4 pt-2">
                                 <h2 className="text-[20px] text-[#EEEEEE]">

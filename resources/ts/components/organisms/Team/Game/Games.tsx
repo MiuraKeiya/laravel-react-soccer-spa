@@ -35,16 +35,19 @@ export const Games = ({
                     <div key={index}>
                         <div className="flex justify-between mt-3">
                             <div className="flex space-x-1">
-                                <p className="text-[#EEEEEE] font-bold">
+                                <p className="text-[#EEEEEE] font-bold lg:text-[16px] text-[14px]">
+                                    第
+                                    {game.json_detail.league.round.match(/\d+/)}
+                                    節:{" "}
                                     {formatDatePart(
                                         game.json_detail.fixture.date
                                     )}
                                 </p>
-                                <p className="text-[#EEEEEE]">
+                                <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                     {formatDate(game.json_detail.fixture.date)}
                                 </p>
                             </div>
-                            <p className="text-[#EEEEEE]">
+                            <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                 {game.json_detail.fixture.status.long}
                             </p>
                         </div>
@@ -58,17 +61,17 @@ export const Games = ({
                                 )
                             }
                         >
-                            <div className="flex items-center w-52 justify-end space-x-6">
-                                <p className="text-white text-[15px]">
+                            <div className="flex items-center w-52 justify-end lg:space-x-6 space-x-2">
+                                <p className="text-white lg:text-[15px] text-[12px]">
                                     {game.json_detail.teams.home.name}
                                 </p>
                                 <img
                                     src={game.json_detail.teams.home.logo}
                                     alt="league"
-                                    className="h-10 w10"
+                                    className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
                             </div>
-                            <div className="flex items-center space-x-1 mx-6">
+                            <div className="flex items-center space-x-1 lg:mx-6 mx-2">
                                 <div className="w-11 h-12 bg-[#111931] text-center">
                                     <p className="text-[#EEEEEE] font-bold text-[30px]">
                                         {game.json_detail.score.fulltime.home ??
@@ -82,13 +85,13 @@ export const Games = ({
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center w-52 space-x-6">
+                            <div className="flex items-center w-52 lg:space-x-6 space-x-2">
                                 <img
                                     src={game.json_detail.teams.away.logo}
                                     alt="league"
-                                    className="h-11 w-11"
+                                    className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
-                                <p className="text-white text-[15px]">
+                                <p className="text-white lg:text-[15px] text-[12px]">
                                     {game.json_detail.teams.away.name}
                                 </p>
                             </div>

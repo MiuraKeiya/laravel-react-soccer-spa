@@ -1,6 +1,6 @@
 export const Squad = ({ squad }) => {
     return (
-        <div className="bg-[#1d2233] mt-2 rounded">
+        <div className="bg-[#1d2233] mt-2 rounded overflow-x-auto">
             <div>
                 <h1 className="text-white font-bold text-[20px] pl-4">
                     在籍選手
@@ -17,9 +17,11 @@ export const Squad = ({ squad }) => {
                         <thead>
                             <tr className="text-[#EEEEEE]">
                                 <th className="text-left">名前</th>
-                                <th>年齢</th>
-                                <th>出場数</th>
-                                <th>得点</th>
+                                <th className="w-[7rem] lg:w-[8rem]">年齢</th>
+                                <th className="w-[15rem] lg:w-[16rem]">
+                                    出場数
+                                </th>
+                                <th className="w-[9rem] lg:w-[8rem]">得点</th>
                             </tr>
                         </thead>
                         {squad.map((player, index) => (
@@ -74,9 +76,11 @@ export const Squad = ({ squad }) => {
                         <thead>
                             <tr className="text-[#EEEEEE]">
                                 <th className="text-left">名前</th>
-                                <th>年齢</th>
-                                <th>出場数</th>
-                                <th>得点</th>
+                                <th className="w-[7rem] lg:w-[8rem]">年齢</th>
+                                <th className="w-[15rem] lg:w-[16rem]">
+                                    出場数
+                                </th>
+                                <th className="w-[9rem] lg:w-[8rem]">得点</th>
                             </tr>
                         </thead>
                         {squad.map((player, index) => (
@@ -131,9 +135,11 @@ export const Squad = ({ squad }) => {
                         <thead>
                             <tr className="text-[#EEEEEE]">
                                 <th className="text-left">名前</th>
-                                <th>年齢</th>
-                                <th>出場数</th>
-                                <th>得点</th>
+                                <th className="w-[7rem] lg:w-[8rem]">年齢</th>
+                                <th className="w-[15rem] lg:w-[16rem]">
+                                    出場数
+                                </th>
+                                <th className="w-[9rem] lg:w-[8rem]">得点</th>
                             </tr>
                         </thead>
                         {squad.map((player, index) => (
@@ -188,9 +194,11 @@ export const Squad = ({ squad }) => {
                         <thead>
                             <tr className="text-[#EEEEEE]">
                                 <th className="text-left">名前</th>
-                                <th>年齢</th>
-                                <th>出場数</th>
-                                <th>得点</th>
+                                <th className="w-[7rem] lg:w-[8rem]">年齢</th>
+                                <th className="w-[15rem] lg:w-[16rem]">
+                                    出場数
+                                </th>
+                                <th className="w-[9rem] lg:w-[8rem]">得点</th>
                             </tr>
                         </thead>
                         {squad.map((player, index) => (
