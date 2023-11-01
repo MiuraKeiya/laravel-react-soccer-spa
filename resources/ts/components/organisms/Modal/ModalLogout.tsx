@@ -46,10 +46,10 @@ export const ModalLogout = ({ close }) => {
                     ログアウトしてもよろしいですか？
                 </h2>
             </div>
-            <div className="flex flex-col space-y-4 mt-3">
+            <div className="flex flex-col items-center space-y-4 mt-3">
                 <Button
                     variant="outlined"
-                    className="w-[25rem]"
+                    className="sm:w-[25rem] w-[15rem]"
                     onClick={logout}
                     color="error"
                 >
@@ -61,7 +61,7 @@ export const ModalLogout = ({ close }) => {
                 </Button>
                 <Button
                     variant="contained"
-                    className="w-[25rem]"
+                    className="sm:w-[25rem] w-[15rem]"
                     onClick={close}
                     color="inherit"
                 >
