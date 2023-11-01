@@ -31,7 +31,7 @@ export const ModalAccount = ({ user, close }) => {
                                 ユーザー名 :
                             </h2>
                             <span className="text-[18px]">
-                                {user?.user.name}
+                                {user.user.user.name}
                             </span>
                         </div>
                         <div className="border-b border-[#111931]"></div>
@@ -40,7 +40,7 @@ export const ModalAccount = ({ user, close }) => {
                                 メールアドレス :
                             </h2>
                             <span className="text-[18px]">
-                                {user?.user.email}
+                                {user.user.user.email}
                             </span>
                         </div>
                         <div className="border-b border-[#111931]"></div>
@@ -50,7 +50,7 @@ export const ModalAccount = ({ user, close }) => {
                             </h2>
                             <span className="text-[18px]">
                                 {formatDateToCustomFormat(
-                                    user?.user.created_at
+                                    user.user.user.created_at
                                 )}
                             </span>
                         </div>

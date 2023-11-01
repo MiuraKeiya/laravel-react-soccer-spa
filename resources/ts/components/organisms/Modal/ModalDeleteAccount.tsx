@@ -45,7 +45,7 @@ export const ModalDeleteAccount = ({ close, user }) => {
                             アカウント削除
                         </h1>
                         <span className="text-white">
-                            ユーザー名 : {user?.user.name}
+                            ユーザー名 : {user.user.user.name}
                         </span>
                         <span className="text-[#C8CDCD] text-center">
                             このアカウントを削除してもよろしいですか？
