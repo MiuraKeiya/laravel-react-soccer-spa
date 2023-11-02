@@ -6,9 +6,11 @@ export const useGamesPaginateApi = (teamId, season) => {
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState([]);
     const [currentPage, setCurrentPage] = useState([]);
-    const [paginateLoading, setPaginateLoading] = useState(true);
+    const [paginateLoading, setPaginateLoading] = useState(false);
 
     useEffect(() => {
+        setPaginateLoading(true);
+
         const fetchData = async () => {
             try {
                 const response = await axios.get(
