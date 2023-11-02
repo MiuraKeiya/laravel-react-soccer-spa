@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import { Button } from "@mui/material";
 import CachedIcon from "@mui/icons-material/Cached";
 
-export const TooManyRequests = ({ status }) => {
+export const TooManyRequests = ({ error }) => {
     const [open, setOpen] = useState(false);
     const [timeRemaining, setTimeRemaining] = useState(0);
     const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -20,7 +20,7 @@ export const TooManyRequests = ({ status }) => {
 
     // x-ratelimit-reset ヘッダーの値を整数に変換
     const resetTimeInSeconds = parseInt(
-        status.response.headers["x-ratelimit-reset"],
+        error.response?.headers["x-ratelimit-reset"],
         10
     );
 
@@ -68,7 +68,7 @@ export const TooManyRequests = ({ status }) => {
                     <h1 className="text-red-600 text-[20px] mb-2">
                         APIコール制限
                     </h1>
-                    <p>ステータスコード : {status}</p>
+                    <p>ステータスコード : {error.response?.status}</p>
                     <p>
                         APIのコール回数が多すぎます。
                         <br />

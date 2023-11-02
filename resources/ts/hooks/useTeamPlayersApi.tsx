@@ -3,9 +3,12 @@ import axios from "axios";
 
 export const useTeamPlayersApi = (playerId, season) => {
     const [players, setPlayers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+
         const fetchData = async () => {
             try {
                 const response = await axios.get(
@@ -16,6 +19,7 @@ export const useTeamPlayersApi = (playerId, season) => {
                 setLoading(false);
             } catch (error) {
                 console.error("Error getting players:", error);
+                setError(error);
                 setLoading(false);
             }
         };
@@ -23,5 +27,5 @@ export const useTeamPlayersApi = (playerId, season) => {
         fetchData();
     }, [playerId, season]);
 
-    return { players, loading };
+    return [players, loading, error];
 };

@@ -27,10 +27,7 @@ export const SeasonSelecter = ({ baseRoute, id, season }) => {
         const newSeason = event.target.value;
         setSelectedSeason(newSeason);
 
-        navigate(`${baseRoute}/${id}/season/${newSeason}`,{ replace: true });
-
-        // ページを再読み込み
-        window.location.reload();
+        navigate(`${baseRoute}/${id}/season/${newSeason}`);
     };
 
     return (
