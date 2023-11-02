@@ -2,7 +2,7 @@ import { GamesTitle } from "./GamesTitle";
 import { Loading } from "./Loading";
 import { formatDatePart } from "../../../../functions/Utils";
 import { formatDate } from "../../../../functions/Utils";
-import { Button } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useNavigate } from "react-router-dom";
 
@@ -101,13 +101,17 @@ export const Games = ({
             )}
             <div className="text-center mt-6">
                 {currentPage !== lastPage && (
-                    <Button
-                        variant="outlined"
+                    <LoadingButton
                         endIcon={<KeyboardArrowDownIcon />}
                         onClick={handlePaginateClick}
+                        loading={paginateLoading}
+                        style={{
+                            backgroundColor: "#5a67d8", // ボタンの背景色を紫に変更
+                            color: paginateLoading ? undefined : "white", // 文字色を白に変更
+                        }}
                     >
                         更に試合を表示する
-                    </Button>
+                    </LoadingButton>
                 )}
             </div>
         </div>
