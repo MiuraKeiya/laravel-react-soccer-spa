@@ -38,7 +38,7 @@ export const TeamInformations = ({ informations, loading }) => {
                                                         .code
                                                 }
                                             </p>
-                                            <p>国:</p>
+                                            <p>国/都市:</p>
                                             <p className="font-bold sm:w-[10rem] w-[8rem] truncate">
                                                 {
                                                     item.json_information.team

@@ -7,6 +7,8 @@ import { TeamInformations } from "./TeamInformations";
 import { Selecter } from "./Selecter";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
+import { findMaxSeason } from "../../../functions/Utils";
+import config from "../../../config";
 
 export const Team = () => {
     // パラメータを取得
@@ -40,6 +42,9 @@ export const Team = () => {
     // 順位一覧を取得
     const { standings, loading, error } = useStandingsApi(leagueId, season);
 
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
+
     const pageError = useErrors(teamError, paginateError, playersError, error);
 
     return (
@@ -66,6 +71,7 @@ export const Team = () => {
                         teamLoading={teamLoading}
                         standingsLoading={loading}
                         playersLoading={playersLoading}
+                        maxSeason={maxSeason}
                     />
                 </div>
             </div>

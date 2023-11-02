@@ -1,6 +1,8 @@
 import { SquadLoading } from "../Loading/SquadLoading";
+import PeopleIcon from "@mui/icons-material/People";
+import { useNavigate } from "react-router-dom";
 
-export const Squad = ({ squad, loading }) => {
+export const Squad = ({ squad, loading, maxSeason }) => {
     // ローディングを表示
     if (loading) {
         return (
@@ -10,12 +12,18 @@ export const Squad = ({ squad, loading }) => {
         );
     }
 
+    const navigate = useNavigate();
+
+    // 選手詳細ページへ遷移
+    const handleClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
+
     return (
         <div className="bg-[#1d2233] mt-2 rounded overflow-x-auto">
-            <div>
-                <h1 className="text-white font-bold text-[20px] pl-4">
-                    在籍選手
-                </h1>
+            <div className="text-white flex items-center pl-4 space-x-2 mt-2 mb-2">
+                <PeopleIcon />
+                <h1 className="font-bold text-[20px]">在籍選手</h1>
             </div>
             <div className="mt-1">
                 <div className="bg-[#111931] mb-2 mx-3 rounded">
@@ -39,8 +47,17 @@ export const Squad = ({ squad, loading }) => {
                             <tbody key={index}>
                                 {player.json_statistics.statistics[0].games
                                     .position === "Goalkeeper" && (
-                                    <tr className="text-white border-b border-black text-center h-16">
-                                        <td className="w-[42.375rem]">
+                                    <tr
+                                        className="text-white border-b border-black text-center h-16 hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                                        onClick={() =>
+                                            handleClick(
+                                                player.json_statistics.player
+                                                    .id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
+                                        <td className="w-[42.375rem] pl-2">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -98,8 +115,17 @@ export const Squad = ({ squad, loading }) => {
                             <tbody key={index}>
                                 {player.json_statistics.statistics[0].games
                                     .position === "Defender" && (
-                                    <tr className="text-white border-b border-black text-center h-16">
-                                        <td className="w-[42.375rem]">
+                                    <tr
+                                        className="text-white border-b border-black text-center h-16 hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                                        onClick={() =>
+                                            handleClick(
+                                                player.json_statistics.player
+                                                    .id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
+                                        <td className="w-[42.375rem] pl-2">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -157,8 +183,17 @@ export const Squad = ({ squad, loading }) => {
                             <tbody key={index}>
                                 {player.json_statistics.statistics[0].games
                                     .position === "Midfielder" && (
-                                    <tr className="text-white border-b border-black text-center h-16">
-                                        <td className="w-[42.375rem]">
+                                    <tr
+                                        className="text-white border-b border-black text-center h-16 hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                                        onClick={() =>
+                                            handleClick(
+                                                player.json_statistics.player
+                                                    .id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
+                                        <td className="w-[42.375rem] pl-2">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={
@@ -194,7 +229,7 @@ export const Squad = ({ squad, loading }) => {
                     </table>
                 </div>
             </div>
-            <div className="mt-3">
+            <div className="mt-3 mb-6">
                 <div className="bg-[#111931] mb-2 mx-3 rounded">
                     <h2 className="text-[#EEEEEE] font-bold text-[20px] mx-6 h-11 flex justify-center items-center">
                         アタッカー
@@ -216,8 +251,17 @@ export const Squad = ({ squad, loading }) => {
                             <tbody key={index}>
                                 {player.json_statistics.statistics[0].games
                                     .position === "Attacker" && (
-                                    <tr className="text-white border-b border-black text-center h-16">
-                                        <td className="w-[42.375rem]">
+                                    <tr
+                                        className="text-white border-b border-black text-center h-16 hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                                        onClick={() =>
+                                            handleClick(
+                                                player.json_statistics.player
+                                                    .id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
+                                        <td className="w-[42.375rem] pl-2">
                                             <div className="text-[20px] flex items-center">
                                                 <img
                                                     src={

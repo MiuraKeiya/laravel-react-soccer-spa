@@ -20,6 +20,7 @@ export const Selecter = ({
     teamLoading,
     standingsLoading,
     playersLoading,
+    maxSeason,
 }) => {
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
@@ -97,13 +98,18 @@ export const Selecter = ({
                 <Statistics informations={informations} loading={teamLoading} />
             )}
             {selectedTab === "players" && (
-                <Squad squad={squad} loading={playersLoading} />
+                <Squad
+                    squad={squad}
+                    loading={playersLoading}
+                    maxSeason={maxSeason}
+                />
             )}
             {selectedTab === "standings" && (
                 <StandingsSelecter
                     standings={standings}
                     teamIds={id}
                     loading={standingsLoading}
+                    maxSeason={maxSeason}
                 />
             )}
         </>
