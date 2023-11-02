@@ -1,5 +1,3 @@
-import { ScrollTopButton } from "../../molecules/ScrollTopButton";
-
 export const TeamTemplate = ({
     header,
     footer,
