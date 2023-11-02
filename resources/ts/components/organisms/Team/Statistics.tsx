@@ -1,7 +1,9 @@
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { StatisticsTable } from "./StatisticsTable";
-import { StatisticsLoading } from "./Loading/statisticsLoading";
+import { StatisticsLoading } from "./Loading/StatisticsLoading";
+import BarChartIcon from "@mui/icons-material/BarChart";
+
 export const Statistics = ({ informations, loading }) => {
     // ローディングを表示
     if (loading) {
@@ -14,7 +16,10 @@ export const Statistics = ({ informations, loading }) => {
 
     return (
         <div className="bg-[#1d2233] mt-2 rounded">
-            <h1 className="text-white font-bold text-[20px] pl-4">統計</h1>
+            <div className="text-white flex items-center pl-7 space-x-2 pt-2 pb-2">
+                <BarChartIcon />
+                <h1 className="font-bold text-[20px]">統計</h1>
+            </div>
             {informations.map((statistic, index) => (
                 <div
                     key={index}
