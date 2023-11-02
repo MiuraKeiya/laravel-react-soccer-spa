@@ -63,6 +63,9 @@ export const Team = () => {
                         id={id}
                         season={season}
                         paginateLoading={paginateLoading}
+                        teamLoading={teamLoading}
+                        standingsLoading={loading}
+                        playersLoading={playersLoading}
                     />
                 </div>
             </div>

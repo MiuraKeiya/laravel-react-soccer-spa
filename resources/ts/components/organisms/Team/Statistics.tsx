@@ -1,8 +1,17 @@
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { StatisticsTable } from "./StatisticsTable";
+import { StatisticsLoading } from "./Loading/statisticsLoading";
+export const Statistics = ({ informations, loading }) => {
+    // ローディングを表示
+    if (loading) {
+        return (
+            <div className="bg-[#1d2233] mt-2 flex justify-center flex-col items-center">
+                <StatisticsLoading />
+            </div>
+        );
+    }
 
-export const Statistics = ({ informations }) => {
     return (
         <div className="bg-[#1d2233] mt-2 rounded">
             <h1 className="text-white font-bold text-[20px] pl-4">統計</h1>

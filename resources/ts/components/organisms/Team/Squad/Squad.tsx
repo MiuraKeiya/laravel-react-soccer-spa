@@ -1,4 +1,15 @@
-export const Squad = ({ squad }) => {
+import { SquadLoading } from "../Loading/SquadLoading";
+
+export const Squad = ({ squad, loading }) => {
+    // ローディングを表示
+    if (loading) {
+        return (
+            <div className="bg-[#1d2233] mt-2 flex justify-center flex-col items-center">
+                <SquadLoading />
+            </div>
+        );
+    }
+
     return (
         <div className="bg-[#1d2233] mt-2 rounded overflow-x-auto">
             <div>

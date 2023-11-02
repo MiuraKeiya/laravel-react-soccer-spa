@@ -11,13 +11,17 @@ export const useTeamInformations = (teamId, season) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(
-                    `/api/teams/${teamId}/seasons/${season}`
-                );
-                console.log(response.data);
-                setInformations(response.data);
+                // 2秒の遅延を追加
+                setTimeout(async () => {
+                  const response = await axios.get(
+                      `/api/teams/${teamId}/seasons/${season}`
+                  );
+                  console.log(response.data);
+                  setInformations(response.data);
 
-                setLoading(false);
+                  setLoading(false);
+              }, 2000); // 2秒 (2000ミリ秒) の遅延
+
             } catch (error) {
                 console.error("Error getting informations:", error);
                 setError(error);
