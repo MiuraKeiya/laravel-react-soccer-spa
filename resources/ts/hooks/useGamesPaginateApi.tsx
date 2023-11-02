@@ -6,10 +6,20 @@ export const useGamesPaginateApi = (teamId, season) => {
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState([]);
     const [currentPage, setCurrentPage] = useState([]);
-    const [paginateLoading, setPaginateLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [currentSeason, setCurrentSeason] = useState(season);
+    const [currentTeamId, setCurrentTeamId] = useState(teamId);
 
     useEffect(() => {
-        setPaginateLoading(true);
+        if (season !== currentSeason || teamId !== currentTeamId) {
+            // シーズンまたはチームIDが変わった場合、gamesをリセット
+            setGames([]);
+            setCurrentSeason(season);
+            setCurrentTeamId(teamId);
+        }
+
+        setLoading(true);
 
         const fetchData = async () => {
             try {
@@ -26,15 +36,16 @@ export const useGamesPaginateApi = (teamId, season) => {
                 // 前回のデータと新しいデータを結合してセット
                 setGames((prevGames) => [...prevGames, ...newGames]);
 
-                setPaginateLoading(false);
+                setLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
-                setPaginateLoading(false);
+                setError(error);
+                setLoading(false);
             }
         };
 
         fetchData();
     }, [teamId, season, page]);
 
-    return { games, paginateLoading, setPage, lastPage, currentPage };
+    return [games, loading, setPage, lastPage, currentPage, error];
 };
