@@ -1,4 +1,4 @@
-import { Loading } from "./Loading";
+import { Loading } from "./Loading/Loading";
 
 export const TeamInformations = ({ informations, loading }) => {
     return (

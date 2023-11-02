@@ -7,15 +7,15 @@ export const useStandingsApi = (leagueId, season) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+        
         if (typeof leagueId !== "undefined" && typeof season !== "undefined") {
             const fetchData = async () => {
                 try {
-                    setLoading(true);
-
                     const response = await axios.get(
                         `/api/standings/leagues/${leagueId}/seasons/${season}`
                     );
-                    console.log("順位一覧API",response.data);
+                    console.log("順位一覧API", response.data);
 
                     setStandings(response.data);
                     setLoading(false);
