@@ -23,14 +23,17 @@ export const ScrollTopButton = () => {
     return (
         <>
             {showScrollToTop && (
-                <button
-                    onClick={() =>
-                        window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                    className="text-[#B0EE1B] bg-[#1d2233] rounded-full flex items-center justify-center h-11 w-11"
-                >
-                    <KeyboardArrowUpIcon style={{ fontSize: "2.5rem" }} />
-                </button>
+                <div className="flex flex-col items-center">
+                    <button
+                        onClick={() =>
+                            window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                        className="text-[#B0EE1B] bg-[#1f1f5f] rounded-full flex items-center justify-center h-11 w-11"
+                    >
+                        <KeyboardArrowUpIcon style={{ fontSize: "2.5rem" }} />
+                    </button>
+                    <p className="text-[#B0EE1B] text-[14px]">TOP</p>
+                </div>
             )}
         </>
     );

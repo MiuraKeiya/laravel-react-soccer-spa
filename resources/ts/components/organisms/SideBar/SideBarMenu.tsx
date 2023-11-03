@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { HeaderLogo } from "../../molecules/HeaderLogo";
 import { AddPlusIcon } from "../../atoms/AddIPlusIcon";
 import { FavoriteTeams } from "./FavoriteTeams";
-import { useAuth } from "../../../context/AuthContext";
 import { FavoriteLeagues } from "./FavoriteLeagues";
 import { StandingLeagues } from "./StandingLeagues";
 import { useGetFavoriteApi } from "../../../hooks/useGetFavoriteApi";
@@ -15,6 +14,7 @@ import { ModalPassword } from "../Modal/ModalPassword";
 import { useFavoriteApi } from "../../../hooks/useFavoriteApi";
 import { useErrors } from "../../../hooks/useErrors";
 import { Page } from "../../../Page";
+import { useGetAuthUserApi } from "../../../hooks/useGetAuthUserApi";
 import { ListItemIcon } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
@@ -68,8 +68,8 @@ export const SideBarMenu = ({
     // リーグ一覧
     const [leagues, leaguesLoading, leaguesError] = useLeagueAPI();
 
-    // 認証ユーザー取得
-    const auth = useAuth();
+    // 認証ユーザー情報
+    const [user, userLoading, userError] = useGetAuthUserApi();
 
     const [openFavoriteTeam, setOpenFavoriteTeam] = useState(true);
 
@@ -162,7 +162,8 @@ export const SideBarMenu = ({
         deleteTeamError,
         favoriteLeagueError,
         favoriteTeamError,
-        leaguesError
+        leaguesError,
+        userError
     );
 
     return (
@@ -403,7 +404,11 @@ export const SideBarMenu = ({
                 }}
             >
                 <div className="border-2 border-[#111931] bg-[#010A0F] h-[16rem] sm:h-[16rem] md:h-[16rem] lg:h-[16rem] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem]">
-                    <ModalAccount user={auth} close={handleCloseAccountModal} />
+                    <ModalAccount
+                        close={handleCloseAccountModal}
+                        user={user}
+                        loading={userLoading}
+                    />
                 </div>
             </Modal>
             {/* パスワード変更モーダル */}
@@ -443,7 +448,8 @@ export const SideBarMenu = ({
                 <div className="border-2 border-[#111931] bg-[#010A0F] w-[21rem] sm:w-[33rem] md:w-[34rem] lg:w-[34rem] flex justify-center items-center">
                     <ModalDeleteAccount
                         close={handleCloseAccountDeletionModal}
-                        user={auth}
+                        user={user}
+                        userLoading={userLoading}
                     />
                 </div>
             </Modal>
