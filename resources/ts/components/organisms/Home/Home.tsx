@@ -6,6 +6,7 @@ import { useDatePicker } from "../../../hooks/useDatePicker";
 import { findMaxSeason } from "../../../functions/Utils";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
+import { Helmet } from "react-helmet-async";
 
 export const Home = () => {
     const {
@@ -27,6 +28,9 @@ export const Home = () => {
 
     return (
         <Page error={pageError}>
+            <Helmet>
+                <title>サッカー欧州5大リーグ試合一覧</title>
+            </Helmet>
             <div>
                 <div className="mt-6">
                     <HomeInformations />

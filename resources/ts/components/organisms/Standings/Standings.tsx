@@ -7,6 +7,7 @@ import { useErrors } from "../../../hooks/useErrors";
 import { Page } from "../../../Page";
 import config from "../../../config";
 import { findMaxSeason } from "../../../functions/Utils";
+import { Helmet } from "react-helmet-async";
 
 export const Standings = () => {
     const { id, season } = useParams();
@@ -26,6 +27,17 @@ export const Standings = () => {
 
     return (
         <Page error={pageError}>
+            {loading ? (
+                <Helmet>
+                    <title>Football League</title>
+                </Helmet>
+            ) : (
+                <Helmet>
+                    <title>
+                        {`${standings?.league?.name} ${season}・順位表・得点王`}
+                    </title>
+                </Helmet>
+            )}
             <div>
                 <div className="mt-6">
                     <StandingsInformations
