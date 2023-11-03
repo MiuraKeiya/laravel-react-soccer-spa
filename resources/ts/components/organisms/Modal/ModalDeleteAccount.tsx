@@ -3,7 +3,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress, Button } from "@mui/material";
 
-export const ModalDeleteAccount = ({ close, user }) => {
+export const ModalDeleteAccount = ({ close, user, userLoading }) => {
     const auth = useAuth();
 
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ export const ModalDeleteAccount = ({ close, user }) => {
 
     return (
         <div className="mt-3 mb-5">
-            {loading ? (
+            {loading || userLoading ? (
                 <div className="h-[13rem] flex items-center">
                     <CircularProgress />
                 </div>
@@ -45,7 +45,7 @@ export const ModalDeleteAccount = ({ close, user }) => {
                             アカウント削除
                         </h1>
                         <span className="text-white">
-                            ユーザー名 : {user.user.user.name}
+                            ユーザー名 : {user.name}
                         </span>
                         <span className="text-[#C8CDCD] text-center">
                             このアカウントを削除してもよろしいですか？

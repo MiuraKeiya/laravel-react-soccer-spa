@@ -3,10 +3,10 @@ import IconButton from "@mui/material/IconButton";
 import { formatDateToCustomFormat } from "../../../functions/Utils";
 import { CircularProgress } from "@mui/material";
 
-export const ModalAccount = ({ user, close }) => {
+export const ModalAccount = ({ close, user, loading }) => {
     return (
         <>
-            {user.userLoading ? (
+            {loading ? (
                 <div className="flex justify-center items-center mt-24">
                     <CircularProgress />
                 </div>
@@ -30,18 +30,14 @@ export const ModalAccount = ({ user, close }) => {
                             <h2 className="text-[#C8CDCD] text-[16px]">
                                 ユーザー名 :
                             </h2>
-                            <span className="text-[18px]">
-                                {user.user.user.name}
-                            </span>
+                            <span className="text-[18px]">{user.name}</span>
                         </div>
                         <div className="border-b border-[#111931]"></div>
                         <div>
                             <h2 className="text-[#C8CDCD] text-[16px]">
                                 メールアドレス :
                             </h2>
-                            <span className="text-[18px]">
-                                {user.user.user.email}
-                            </span>
+                            <span className="text-[18px]">{user.email}</span>
                         </div>
                         <div className="border-b border-[#111931]"></div>
                         <div>
@@ -49,9 +45,7 @@ export const ModalAccount = ({ user, close }) => {
                                 アカウント作成日 :
                             </h2>
                             <span className="text-[18px]">
-                                {formatDateToCustomFormat(
-                                    user.user.user.created_at
-                                )}
+                                {formatDateToCustomFormat(user.created_at)}
                             </span>
                         </div>
                         <div className="border-b border-[#111931]"></div>

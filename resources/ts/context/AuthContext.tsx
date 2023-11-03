@@ -62,7 +62,7 @@ const useProvideAuth = () => {
     const [user, setUser] = useState<User | null>(null);
 
     // ローディングフラグ
-    const [userLoading, setUserLoading] = useState(true);
+    const [userLoading, setUserLoading] = useState(false);
 
     /**
      * 新規登録
@@ -160,12 +160,12 @@ const useProvideAuth = () => {
             throw error;
         }
     };
-    
+
     useEffect(() => {
+        setUserLoading(true);
+
         const fetchData = async () => {
             try {
-                setUserLoading(true);
-
                 const response = await axios.get("/api/user");
 
                 console.log(response.data);
