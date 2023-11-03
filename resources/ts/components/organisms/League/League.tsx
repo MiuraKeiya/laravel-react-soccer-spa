@@ -6,6 +6,7 @@ import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { useLeagueTeamsApi } from "../../../hooks/useLeagueTeamsApi";
 import { LeagueInformations } from "./LeagueInformations";
 import { Selecter } from "./Selecter";
+import { Helmet } from "react-helmet-async";
 
 export const League = () => {
     // パラメータを取得
@@ -28,6 +29,17 @@ export const League = () => {
 
     return (
         <div>
+            {latestGamesLoading ? (
+                <Helmet>
+                    <title>Football League</title>
+                </Helmet>
+            ) : (
+                <Helmet>
+                    <title>
+                        {`${latestGames[0]?.json_detail?.league.name} ${season}・リーグ詳細`}
+                    </title>
+                </Helmet>
+            )}
             <div className="mt-6">
                 <LeagueInformations
                     latestGames={latestGames}

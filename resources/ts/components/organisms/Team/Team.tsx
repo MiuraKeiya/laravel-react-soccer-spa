@@ -8,6 +8,7 @@ import { Selecter } from "./Selecter";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
 import { findMaxSeason } from "../../../functions/Utils";
+import { Helmet } from "react-helmet-async";
 import config from "../../../config";
 
 export const Team = () => {
@@ -49,6 +50,17 @@ export const Team = () => {
 
     return (
         <Page error={pageError}>
+            {teamLoading ? (
+                <Helmet>
+                    <title>Football League</title>
+                </Helmet>
+            ) : (
+                <Helmet>
+                    <title>
+                        {`${informations[0]?.json_information.team.name} ${season}・チーム詳細`}
+                    </title>
+                </Helmet>
+            )}
             <div>
                 <div className="mt-6">
                     <TeamInformations

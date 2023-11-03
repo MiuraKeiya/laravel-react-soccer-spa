@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Icon } from "../../atoms/Icon";
 import { CustomSnackbar } from "../../molecules/CustomSnackbar";
+import { Helmet } from "react-helmet-async";
 
 export const Top = () => {
     const navigate = useNavigate();
@@ -22,6 +23,9 @@ export const Top = () => {
             {snackbarMessage && (
                 <CustomSnackbar message={snackbarMessage} severity="success" />
             )}
+            <Helmet>
+                <title>Football League</title>
+            </Helmet>
             <div className="flex">
                 {/* 左側のコンテンツ */}
                 <div className="invisible lg:visible w-0 lg:w-1/2 h-screen bg-[#111931] flex items-center justify-center">

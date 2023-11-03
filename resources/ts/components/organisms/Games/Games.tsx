@@ -6,6 +6,7 @@ import { Selecter } from "./Selecter";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import config from "../../../config";
 import { findMaxSeason } from "../../../functions/Utils";
+import { Helmet } from "react-helmet-async";
 
 export const Games = () => {
     const { gameId, leagueId, season } = useParams();
@@ -30,6 +31,17 @@ export const Games = () => {
 
     return (
         <div>
+            {loading ? (
+                <Helmet>
+                    <title>Football League</title>
+                </Helmet>
+            ) : (
+                <Helmet>
+                    <title>
+                        {`${games[0]?.json_detail?.teams.home.name} - ${games[0]?.json_detail?.teams.away.name} ${season}・試合詳細`}
+                    </title>
+                </Helmet>
+            )}
             <div className="mt-6">
                 <GamesTitle
                     games={games}
