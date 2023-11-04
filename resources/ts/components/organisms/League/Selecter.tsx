@@ -42,10 +42,10 @@ export const Selecter = ({
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-14 flex items-center justify-center space-x-16">
+            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-14 flex items-center justify-center lg:space-x-16">
                 <Button
                     onClick={handleInformationsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "informations"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -55,7 +55,7 @@ export const Selecter = ({
                 </Button>
                 <Button
                     onClick={handleResultsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "results"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -65,7 +65,7 @@ export const Selecter = ({
                 </Button>
                 <Button
                     onClick={handleStandingsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "standings"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -75,7 +75,7 @@ export const Selecter = ({
                 </Button>
                 <Button
                     onClick={handleTeamsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "teams"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"

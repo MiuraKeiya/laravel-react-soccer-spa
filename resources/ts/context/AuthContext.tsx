@@ -62,7 +62,7 @@ const useProvideAuth = () => {
     const [user, setUser] = useState<User | null>(null);
 
     // ローディングフラグ
-    const [userLoading, setUserLoading] = useState(false);
+    const [userLoading, setUserLoading] = useState(true);
 
     /**
      * 新規登録
