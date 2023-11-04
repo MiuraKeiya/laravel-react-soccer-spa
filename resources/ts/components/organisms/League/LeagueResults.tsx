@@ -15,7 +15,7 @@ export const LeagueResults = ({
     };
 
     return (
-        <div>
+        <div className="overflow-x-auto">
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 mt-2 rounded">
                 <h1 className="ml-3">試合日程・結果</h1>
             </div>
@@ -26,28 +26,31 @@ export const LeagueResults = ({
                     <div key={index}>
                         <div className="flex justify-between mt-3">
                             <div className="flex space-x-1">
-                                <p className="text-[#EEEEEE] font-bold">
+                                <p className="text-[#EEEEEE] font-bold lg:text-[16px] text-[14px]">
+                                    第
+                                    {game.json_detail.league.round.match(/\d+/)}
+                                    節:{" "}
                                     {formatDatePart(
                                         game.json_detail.fixture.date
                                     )}
                                 </p>
-                                <p className="text-[#EEEEEE]">
+                                <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                     {formatDate(game.json_detail.fixture.date)}
                                 </p>
                             </div>
-                            <p className="text-[#EEEEEE]">
+                            <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                 {game.json_detail.fixture.status.long}
                             </p>
                         </div>
                         <div className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500">
-                            <div className="flex items-center w-52 justify-end space-x-6">
-                                <p className="text-white text-[15px]">
+                            <div className="flex items-center w-52 justify-end lg:space-x-6 space-x-2">
+                                <p className="text-white lg:text-[15px] text-[12px]">
                                     {game.json_detail.teams.home.name}
                                 </p>
                                 <img
                                     src={game.json_detail.teams.home.logo}
                                     alt="league"
-                                    className="h-10 w10"
+                                    className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
                             </div>
                             <div className="flex items-center space-x-1 mx-6">
@@ -64,13 +67,13 @@ export const LeagueResults = ({
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center w-52 space-x-6">
+                            <div className="flex items-center w-52 lg:space-x-6 space-x-2">
                                 <img
                                     src={game.json_detail.teams.away.logo}
                                     alt="league"
-                                    className="h-11 w-11"
+                                    className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
-                                <p className="text-white text-[15px]">
+                                <p className="text-white lg:text-[15px] text-[12px]">
                                     {game.json_detail.teams.away.name}
                                 </p>
                             </div>

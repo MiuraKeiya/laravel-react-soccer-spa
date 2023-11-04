@@ -13,14 +13,14 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
             </div>
             <div className="bg-[#1d2233] mt-[1px]">
                 {rankings[0].json_yellow_card?.response?.length > 0 ? (
-                    <table className="w-full">
-                        <thead className="bg-[#111931] text-[#C8CDCD] text-[15px]">
+                    <table className="w-full overflow-x-auto">
+                        <thead className="bg-[#111931] text-[#C8CDCD] lg:text-[15px] text-[13px]">
                             <tr>
                                 <th className="sm:w-7"></th>
                                 <th className="text-left">選手</th>
                                 <th className="text-left">チーム</th>
-                                <th>カード</th>
-                                <th>試合数</th>
+                                <th className="w-16 lg:w-[10rem]">カード</th>
+                                <th className="w-16 lg:w-[10rem]">試合数</th>
                             </tr>
                         </thead>
                         {rankings[0].json_yellow_card?.response?.map(
@@ -37,7 +37,7 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                                     className="w-8 h-8 rounded-full"
                                                 />
                                                 <Link
-                                                    className="text-[15px] font-bold text-white ml-1 hover:underline"
+                                                    className="lg:text-[15px] text-[13px] font-bold text-white ml-1 hover:underline"
                                                     to={`/player/${card.player.id}/season/${maxSeason}`}
                                                 >
                                                     {card.player.name}
@@ -54,7 +54,7 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                                     className="w-8 h-8"
                                                 />
                                                 <Link
-                                                    className="text-[15px] hover:underline"
+                                                    className="lg:text-[15px] text-[13px] hover:underline"
                                                     to={`/team/${card.statistics[0].team.id}/season/${maxSeason}`}
                                                 >
                                                     {
@@ -64,11 +64,11 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                                 </Link>
                                             </div>
                                         </td>
-                                        <td className="text-[15px] font-bold">
+                                        <td className="lg:text-[15px] text-[13px] font-bold">
                                             {card.statistics[0].cards.yellow ??
                                                 0}
                                         </td>
-                                        <td className="text-[15px]">
+                                        <td className="lg:text-[15px] text-[13px]">
                                             {card.statistics[0].games
                                                 .appearences ?? 0}
                                         </td>

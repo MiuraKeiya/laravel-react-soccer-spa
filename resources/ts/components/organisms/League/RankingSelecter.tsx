@@ -26,10 +26,10 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
 
     return (
         <>
-            <div className="bg-[#1d2233] rounded-t h-12 flex items-center space-x-8 mt-2">
+            <div className="bg-[#1d2233] rounded-t h-12 flex items-center lg:space-x-8 space-x-3 mt-2">
                 <Button
                     onClick={handleScorerClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ml-6 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ml-6 ${
                         selectedTab === "scorer"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -39,7 +39,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleAssistClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "assist"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -49,7 +49,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleYellowClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "yellow"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
@@ -59,7 +59,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleRedClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${
                         selectedTab === "red"
                             ? "bg-[#B0EE1B] text-black cursor-default"
                             : "bg-[#111931] text-[#C8CDCD] hover:bg-gray-700"
