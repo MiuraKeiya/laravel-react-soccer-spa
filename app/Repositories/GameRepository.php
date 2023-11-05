@@ -122,7 +122,7 @@ class GameRepository
 
     /**
      * ページネーションで特定リーグの試合を取得する
-     * 最新の試合を5試合ごとに取得する
+     * 最新の試合を20試合ごとに取得する
      * 
      * @param string $leagueId リーグID
      * @param string $season シーズン
@@ -137,7 +137,7 @@ class GameRepository
                 'season' => $season,
             ])
             ->distinct()
-            ->paginate(SoccerApiConst::GAMES_PER_PAGE);
+            ->paginate(SoccerApiConst::LEAGUE_GAMES_PER_PAGE);
         
         return $games;
     }
