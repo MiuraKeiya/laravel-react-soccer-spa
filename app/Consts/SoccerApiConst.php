@@ -14,4 +14,5 @@ class SoccerApiConst
 
     // 1ページあたりの試合数
     const GAMES_PER_PAGE = 5;
+    const LEAGUE_GAMES_PER_PAGE = 20;
 }
