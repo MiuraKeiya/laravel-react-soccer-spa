@@ -1,3 +1,4 @@
+import { TeamsLoading } from "./Loading/TeamsLoading";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import StadiumIcon from "@mui/icons-material/Stadium";

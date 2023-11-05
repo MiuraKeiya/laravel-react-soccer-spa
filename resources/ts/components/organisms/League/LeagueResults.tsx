@@ -1,6 +1,7 @@
+import { GamesLoading } from "./Loading/GamesLoading";
 import { formatDatePart } from "../../../functions/Utils";
 import { formatDate } from "../../../functions/Utils";
-import { Button } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const LeagueResults = ({
@@ -20,7 +21,7 @@ export const LeagueResults = ({
                 <h1 className="ml-3">試合日程・結果</h1>
             </div>
             {paginateLoading ? (
-                <div></div>
+                <GamesLoading />
             ) : (
                 pagenateGames.map((game, index) => (
                     <div key={index}>
@@ -83,13 +84,17 @@ export const LeagueResults = ({
             )}
             <div className="text-center mt-6">
                 {currentPage !== lastPage && (
-                    <Button
-                        variant="outlined"
+                    <LoadingButton
                         endIcon={<KeyboardArrowDownIcon />}
                         onClick={handlePaginateClick}
+                        loading={paginateLoading}
+                        style={{
+                            backgroundColor: "#5a67d8",
+                            color: paginateLoading ? undefined : "white",
+                        }}
                     >
                         更に試合を表示する
-                    </Button>
+                    </LoadingButton>
                 )}
             </div>
         </div>
