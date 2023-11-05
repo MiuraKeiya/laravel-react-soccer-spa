@@ -17,8 +17,15 @@ export const League = () => {
 
     const { standings, loading, error } = useStandingsApi(id, season);
 
-    const { pagenateGames, paginateLoading, setPage, lastPage, currentPage } =
-        useLeagueGamesPaginateApi(id, season);
+    // 試合一覧をページネーションで取得
+    const [
+        games,
+        paginateLoading,
+        setPage,
+        lastPage,
+        currentPage,
+        paginateError,
+    ] = useLeagueGamesPaginateApi(id, season);
 
     const [rankings, rankingsLoading, rankingsError] = useRankingsApi(
         id,
@@ -51,7 +58,7 @@ export const League = () => {
                     latestGamesLoading={latestGamesLoading}
                     latestGames={latestGames}
                     standings={standings}
-                    pagenateGames={pagenateGames}
+                    pagenateGames={games}
                     setPage={setPage}
                     lastPage={lastPage}
                     currentPage={currentPage}
