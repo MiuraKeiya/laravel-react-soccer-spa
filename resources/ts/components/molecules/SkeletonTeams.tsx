@@ -2,12 +2,98 @@ import { SkeletonAtom } from "../atoms/SkeletonAtom";
 
 export const SkeletonTeams = () => {
     return (
-        <SkeletonAtom
-            variant={"text"}
-            width={195}
-            height={182}
-            backgroundColor={"#4b5563"}
-            borderRadius={""}
-        />
+        <div className="mt-2">
+            <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 rounded">
+                <h1 className="ml-3">チーム一覧</h1>
+            </div>
+            <div className="bg-[#1d2233] mt-[1px">
+                <div className="flex flex-wrap justify-around mx-8">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={320}
+                        height={150}
+                        backgroundColor={"#4b5563"}
+                        borderRadius={""}
+                    />
+                </div>
+            </div>
+        </div>
     );
 };

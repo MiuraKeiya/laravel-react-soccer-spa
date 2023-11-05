@@ -3,7 +3,12 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import StadiumIcon from "@mui/icons-material/Stadium";
 
-export const Teams = ({ teams }) => {
+export const Teams = ({ teams, loading }) => {
+    // ローディングを表示
+    if (loading) {
+        return <TeamsLoading />;
+    }
+
     return (
         <div className="mt-2">
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 rounded">

@@ -32,7 +32,7 @@ export const League = () => {
         season
     );
 
-    const { teams } = useLeagueTeamsApi(id, season);
+    const [teams, teamsLoading, teamsError] = useLeagueTeamsApi(id, season);
 
     return (
         <div>
@@ -66,6 +66,7 @@ export const League = () => {
                     rankings={rankings}
                     teams={teams}
                     standingsLoading={loading}
+                    teamsLoading={teamsLoading}
                 />
             </div>
         </div>
