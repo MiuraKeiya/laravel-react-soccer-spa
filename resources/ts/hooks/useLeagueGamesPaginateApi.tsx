@@ -2,19 +2,31 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const useLeagueGamesPaginateApi = (leagueId, season) => {
-    const [pagenateGames, setPagenateGames] = useState([]);
+    const [games, setGames] = useState([]);
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState([]);
     const [currentPage, setCurrentPage] = useState([]);
-    const [paginateLoading, setPaginateLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [currentSeason, setCurrentSeason] = useState(season);
+    const [currentLeagueId, setCurrentLeagueId] = useState(leagueId);
 
     useEffect(() => {
+        if (season !== currentSeason || leagueId !== currentLeagueId) {
+            // シーズンまたはリーグIDが変わった場合、gamesをリセット
+            setGames([]);
+            setCurrentSeason(season);
+            setCurrentLeagueId(leagueId);
+        }
+
+        setLoading(true);
+
         const fetchData = async () => {
             try {
                 const response = await axios.get(
                     `/api/games/leagues/${leagueId}/seasons/${season}?page=${page}`
                 );
-                console.log(response.data);
+                console.log("ページネーション", response.data);
                 const newGames = response.data.data || [];
 
                 setLastPage(response.data.last_page);
@@ -22,17 +34,18 @@ export const useLeagueGamesPaginateApi = (leagueId, season) => {
                 setCurrentPage(response.data.current_page);
 
                 // 前回のデータと新しいデータを結合してセット
-                setPagenateGames((prevGames) => [...prevGames, ...newGames]);
+                setGames((prevGames) => [...prevGames, ...newGames]);
 
-                setPaginateLoading(false);
+                setLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
-                setPaginateLoading(false);
+                setError(error);
+                setLoading(false);
             }
         };
 
         fetchData();
     }, [leagueId, season, page]);
 
-    return { pagenateGames, paginateLoading, setPage, lastPage, currentPage };
+    return [games, loading, setPage, lastPage, currentPage, error];
 };
