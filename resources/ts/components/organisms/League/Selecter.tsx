@@ -19,6 +19,7 @@ export const Selecter = ({
     teams,
     latestGamesLoading,
     standingsLoading,
+    teamsLoading,
 }) => {
     const { id, season } = useParams();
 
@@ -108,7 +109,9 @@ export const Selecter = ({
                     rankings={rankings}
                 />
             )}
-            {selectedTab === "teams" && <Teams teams={teams} />}
+            {selectedTab === "teams" && (
+                <Teams teams={teams} loading={teamsLoading} />
+            )}
         </>
     );
 };
