@@ -130,13 +130,13 @@ class GameRepository
      */
     public function getLeagueGamesPagenate(string $leagueId, $season)
     {
-        // 特定チームの試合を取得する
+        // 特定リーグの試合を取得する
         $games = Game::select('json_detail')
             ->where([
                 'league_id' => $leagueId,
                 'season' => $season,
             ])
-            ->distinct()
+            ->groupBy('id')
             ->paginate(SoccerApiConst::LEAGUE_GAMES_PER_PAGE);
         
         return $games;
