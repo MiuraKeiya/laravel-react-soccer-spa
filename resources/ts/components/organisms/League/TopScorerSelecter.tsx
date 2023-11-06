@@ -4,6 +4,7 @@ import { Button } from "../../atoms/Button";
 import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 import { RankingSelecter } from "./RankingSelecter";
 import { SeasonSelecter } from "../../molecules/SeasonSelecter";
+import { SkeletonAtom } from "../../atoms/SkeletonAtom";
 
 export const TopScorerSelecter = ({
     standings,
@@ -13,6 +14,9 @@ export const TopScorerSelecter = ({
     maxSeason,
 }) => {
     const { id, season } = useParams();
+
+    // 複数のローディングフラグを結合して評価
+    const isAnyLoading = loading || rankingsLoading;
 
     const [selectedTab, setSelectedTab] = useState("standings");
 
@@ -49,11 +53,23 @@ export const TopScorerSelecter = ({
                         得点王
                     </Button>
                 </div>
-                <SeasonSelecter
-                    baseRoute={"/standings/league"}
-                    id={id}
-                    season={season}
-                />
+                {isAnyLoading ? (
+                    <div>
+                        <SkeletonAtom
+                            variant={"text"}
+                            width={90}
+                            height={65}
+                            backgroundColor={"#4b5563"}
+                            borderRadius={""}
+                        />
+                    </div>
+                ) : (
+                    <SeasonSelecter
+                        baseRoute={"/standings/league"}
+                        id={id}
+                        season={season}
+                    />
+                )}
             </div>
 
             {selectedTab === "standings" && (
