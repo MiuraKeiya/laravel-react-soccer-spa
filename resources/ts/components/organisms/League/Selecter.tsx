@@ -21,6 +21,7 @@ export const Selecter = ({
     latestGamesLoading,
     standingsLoading,
     teamsLoading,
+    maxSeason,
 }) => {
     const { id, season } = useParams();
 
@@ -116,6 +117,7 @@ export const Selecter = ({
                     standings={standings}
                     latestGamesLoading={latestGamesLoading}
                     standingsLoading={standingsLoading}
+                    maxSeason={maxSeason}
                 />
             )}
             {selectedTab === "results" && (
@@ -131,10 +133,15 @@ export const Selecter = ({
                 <LeagueTopScorerSelecter
                     standings={standings}
                     rankings={rankings}
+                    maxSeason={maxSeason}
                 />
             )}
             {selectedTab === "teams" && (
-                <Teams teams={teams} loading={teamsLoading} />
+                <Teams
+                    teams={teams}
+                    loading={teamsLoading}
+                    maxSeason={maxSeason}
+                />
             )}
         </>
     );
