@@ -1,9 +1,16 @@
 import { TeamsLoading } from "./Loading/TeamsLoading";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import StadiumIcon from "@mui/icons-material/Stadium";
 
-export const Teams = ({ teams, loading }) => {
+export const Teams = ({ teams, loading, maxSeason }) => {
+    const navigate = useNavigate();
+
+    const handleTeamsClick = (teamId, season) => {
+        navigate(`/team/${teamId}/season/${season}`);
+    };
+
     // ローディングを表示
     if (loading) {
         return <TeamsLoading />;
@@ -41,6 +48,12 @@ export const Teams = ({ teams, loading }) => {
                                     cursor: "pointer",
                                 },
                             }}
+                            onClick={() =>
+                                handleTeamsClick(
+                                    team.json_information.team.id,
+                                    maxSeason
+                                )
+                            }
                         >
                             <img
                                 src={team.json_information.team.logo}

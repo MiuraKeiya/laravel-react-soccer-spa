@@ -1,12 +1,19 @@
 import { formatDatePart } from "../../../functions/Utils";
 import { formatDate } from "../../../functions/Utils";
 import { LatestGamesLoading } from "./Loading/LatestGamesLoading";
+import { useNavigate } from "react-router-dom";
 
 export const LatestGames = ({ latestGames, latestGamesLoading }) => {
     // ローディングを表示
     if (latestGamesLoading) {
         return <LatestGamesLoading />;
     }
+
+    const navigate = useNavigate();
+
+    const handleGamesClick = (fixtureId, leagueId, season) => {
+        navigate(`/games/${fixtureId}/leagues/${leagueId}/seasons/${season}`);
+    };
 
     return (
         <div className="mt-2">
@@ -34,7 +41,16 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                 {game.json_detail.fixture.status.long}
                             </p>
                         </div>
-                        <div className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500">
+                        <div
+                            className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500"
+                            onClick={() =>
+                                handleGamesClick(
+                                    game.json_detail.fixture.id,
+                                    game.json_detail.league.id,
+                                    game.json_detail.league.season
+                                )
+                            }
+                        >
                             <div className="flex items-center w-52 justify-end lg:space-x-6 space-x-2">
                                 <p className="text-white lg:text-[15px] text-[12px]">
                                     {game.json_detail.teams.home.name}

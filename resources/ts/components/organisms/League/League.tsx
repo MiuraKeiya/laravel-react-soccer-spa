@@ -5,12 +5,17 @@ import { useLeagueGamesPaginateApi } from "../../../hooks/useLeagueGamesPaginate
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { useLeagueTeamsApi } from "../../../hooks/useLeagueTeamsApi";
 import { LeagueInformations } from "./LeagueInformations";
+import { findMaxSeason } from "../../../functions/Utils";
+import config from "../../../config";
 import { Selecter } from "./Selecter";
 import { Helmet } from "react-helmet-async";
 
 export const League = () => {
     // パラメータを取得
     const { id, season } = useParams();
+
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
 
     const [latestGames, latestGamesLoading, latestGamesError] =
         useLatestGamesApi(id, season);
@@ -67,6 +72,7 @@ export const League = () => {
                     teams={teams}
                     standingsLoading={loading}
                     teamsLoading={teamsLoading}
+                    maxSeason={maxSeason}
                 />
             </div>
         </div>
