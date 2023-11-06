@@ -12,13 +12,6 @@ export const useLeagueGamesPaginateApi = (leagueId, season) => {
     const [currentLeagueId, setCurrentLeagueId] = useState(leagueId);
 
     useEffect(() => {
-        if (season !== currentSeason || leagueId !== currentLeagueId) {
-            // シーズンまたはリーグIDが変わった場合、gamesをリセット
-            setGames([]);
-            setCurrentSeason(season);
-            setCurrentLeagueId(leagueId);
-        }
-
         setLoading(true);
 
         const fetchData = async () => {
@@ -44,8 +37,18 @@ export const useLeagueGamesPaginateApi = (leagueId, season) => {
             }
         };
 
-        fetchData();
-    }, [leagueId, season, page]);
+        // シーズンまたはリーグIDが変わった場合、gamesをリセット
+        if (season !== currentSeason || leagueId !== currentLeagueId) {
+            setGames([]);
+            setPage(1);
+            setCurrentPage([]);
+            setLastPage([]);
+            setCurrentSeason(season);
+            setCurrentLeagueId(leagueId);
+        } else {
+            fetchData();
+        }
+    }, [leagueId, season, page, currentSeason, currentLeagueId]);
 
     return [games, loading, setPage, lastPage, currentPage, error];
 };
