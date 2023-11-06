@@ -6,6 +6,7 @@ import { LeagueResults } from "./LeagueResults";
 import { Teams } from "./Teams";
 import { SeasonSelecter } from "../../molecules/SeasonSelecter";
 import { LeagueTopScorerSelecter } from "./LeagueTopScoreSelecter";
+import { SkeletonAtom } from "../../atoms/SkeletonAtom";
 
 export const Selecter = ({
     latestGames,
@@ -24,6 +25,13 @@ export const Selecter = ({
     const { id, season } = useParams();
 
     const [selectedTab, setSelectedTab] = useState("informations");
+
+    // 複数のローディングフラグを結合して評価
+    const isAnyLoading =
+        paginateLoading ||
+        latestGamesLoading ||
+        standingsLoading ||
+        teamsLoading;
 
     const handleInformationsClick = () => {
         setSelectedTab("informations");
@@ -84,7 +92,23 @@ export const Selecter = ({
                 >
                     チーム
                 </Button>
-                <SeasonSelecter baseRoute={"/league"} id={id} season={season} />
+                {isAnyLoading ? (
+                    <div>
+                        <SkeletonAtom
+                            variant={"text"}
+                            width={90}
+                            height={65}
+                            backgroundColor={"#4b5563"}
+                            borderRadius={""}
+                        />
+                    </div>
+                ) : (
+                    <SeasonSelecter
+                        baseRoute={"/league"}
+                        id={id}
+                        season={season}
+                    />
+                )}
             </div>
             {selectedTab === "informations" && (
                 <LeagueOverview

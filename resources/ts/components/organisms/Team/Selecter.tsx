@@ -5,6 +5,7 @@ import { Squad } from "./Squad/Squad";
 import { StandingsSelecter } from "./Standing/StandingsSelecter";
 import { Games } from "./Game/Games";
 import { SeasonSelecter } from "../../molecules/SeasonSelecter";
+import { SkeletonAtom } from "../../atoms/SkeletonAtom";
 
 export const Selecter = ({
     informations,
@@ -22,6 +23,10 @@ export const Selecter = ({
     playersLoading,
     maxSeason,
 }) => {
+    // 複数のローディングフラグを結合して評価
+    const isAnyLoading =
+        paginateLoading || teamLoading || standingsLoading || playersLoading;
+
     const [selectedTab, setSelectedTab] = useState("scheduleResults");
 
     const handleScheduleResultsClick = () => {
@@ -83,7 +88,23 @@ export const Selecter = ({
                 >
                     選手一覧
                 </Button>
-                <SeasonSelecter baseRoute={"/team"} id={id} season={season} />
+                {isAnyLoading ? (
+                    <div>
+                        <SkeletonAtom
+                            variant={"text"}
+                            width={90}
+                            height={65}
+                            backgroundColor={"#4b5563"}
+                            borderRadius={""}
+                        />
+                    </div>
+                ) : (
+                    <SeasonSelecter
+                        baseRoute={"/team"}
+                        id={id}
+                        season={season}
+                    />
+                )}
             </div>
             {selectedTab === "scheduleResults" && (
                 <Games
