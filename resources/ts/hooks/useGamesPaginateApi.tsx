@@ -12,13 +12,6 @@ export const useGamesPaginateApi = (teamId, season) => {
     const [currentTeamId, setCurrentTeamId] = useState(teamId);
 
     useEffect(() => {
-        if (season !== currentSeason || teamId !== currentTeamId) {
-            // シーズンまたはチームIDが変わった場合、gamesをリセット
-            setGames([]);
-            setCurrentSeason(season);
-            setCurrentTeamId(teamId);
-        }
-
         setLoading(true);
 
         const fetchData = async () => {
@@ -43,9 +36,19 @@ export const useGamesPaginateApi = (teamId, season) => {
                 setLoading(false);
             }
         };
-
-        fetchData();
-    }, [teamId, season, page]);
+        
+        if (season !== currentSeason || teamId !== currentTeamId) {
+            // シーズンまたはチームIDが変わった場合、gamesをリセット
+            setGames([]);
+            setPage(1);
+            setCurrentPage([]);
+            setLastPage([]);
+            setCurrentSeason(season);
+            setCurrentTeamId(teamId);
+        } else {
+            fetchData();
+        }
+    }, [teamId, season, page, currentSeason, currentTeamId]);
 
     return [games, loading, setPage, lastPage, currentPage, error];
 };
