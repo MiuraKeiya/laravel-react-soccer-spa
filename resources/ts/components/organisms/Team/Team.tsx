@@ -4,6 +4,7 @@ import { useTeamPlayersApi } from "../../../hooks/useTeamPlayersApi";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useGamesPaginateApi } from "../../../hooks/useGamesPaginateApi";
 import { TeamInformations } from "./TeamInformations";
+import { NoData } from "../NotFound/NoData";
 import { Selecter } from "./Selecter";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
@@ -61,32 +62,36 @@ export const Team = () => {
                     </title>
                 </Helmet>
             )}
-            <div>
-                <div className="mt-6">
-                    <TeamInformations
-                        informations={informations}
-                        loading={teamLoading}
-                    />
+            {!teamLoading && !informations.length ? (
+                <NoData season={season} name={"チーム"} id={id} url={"/team"} />
+            ) : (
+                <div>
+                    <div className="mt-6">
+                        <TeamInformations
+                            informations={informations}
+                            loading={teamLoading}
+                        />
+                    </div>
+                    <div className="mt-1 mb-6">
+                        <Selecter
+                            informations={informations}
+                            games={games}
+                            setPage={setPage}
+                            lastPage={lastPage}
+                            currentPage={currentPage}
+                            squad={players}
+                            standings={standings}
+                            id={id}
+                            season={season}
+                            paginateLoading={paginateLoading}
+                            teamLoading={teamLoading}
+                            standingsLoading={loading}
+                            playersLoading={playersLoading}
+                            maxSeason={maxSeason}
+                        />
+                    </div>
                 </div>
-                <div className="mt-1 mb-6">
-                    <Selecter
-                        informations={informations}
-                        games={games}
-                        setPage={setPage}
-                        lastPage={lastPage}
-                        currentPage={currentPage}
-                        squad={players}
-                        standings={standings}
-                        id={id}
-                        season={season}
-                        paginateLoading={paginateLoading}
-                        teamLoading={teamLoading}
-                        standingsLoading={loading}
-                        playersLoading={playersLoading}
-                        maxSeason={maxSeason}
-                    />
-                </div>
-            </div>
+            )}
         </Page>
     );
 };
