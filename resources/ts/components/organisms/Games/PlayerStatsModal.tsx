@@ -23,7 +23,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                         key={index}
                         className="flex items-center justify-between mx-1"
                     >
-                        <div className="flex items-center space-x-1 text-[12px] font-bold text-[#C8CDCD] uppercase">
+                        <div className="flex items-center space-x-1 text-[12px] font-bold text-[#EEEEEE] uppercase">
                             <img
                                 src={league.json_detail.league.flag}
                                 alt="League Photo"
@@ -42,7 +42,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                 {league.json_detail.league.name}
                             </span>
                         </div>
-                        <span className="text-[12px] font-bold text-[#C8CDCD]">
+                        <span className="text-[12px] font-bold text-[#EEEEEE]">
                             第{league.json_detail.league.round.match(/\d+/)}節
                         </span>
                     </div>
@@ -133,7 +133,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             概要
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -181,7 +181,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .conceded || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             パス
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -211,7 +211,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .key || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             攻撃
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -232,7 +232,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .on || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             タックル
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -262,7 +262,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .interceptions || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             デュエル
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -283,7 +283,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .won || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             ドリブル
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -313,7 +313,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .past || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             ファウル
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -334,7 +334,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .drawn || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             カード
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">
@@ -355,7 +355,7 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                     .red || 0}
                                             </span>
                                         </div>
-                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#C8CDCD] text-center mt-3 mb-1">
+                                        <div className="bg-[#111931] py-1 text-[12px] font-bold text-[#EEEEEE] text-center mt-3 mb-1">
                                             ペナルティーキック
                                         </div>
                                         <div className="flex items-center justify-between mx-3 text-[13px]">

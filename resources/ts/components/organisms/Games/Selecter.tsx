@@ -5,7 +5,14 @@ import { Progress } from "./Progress";
 import { TopPlayers } from "./TopPlayers";
 import { StandingsSelecter } from "../Team/Standing/StandingsSelecter";
 
-export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
+export const Selecter = ({
+    games,
+    standings,
+    teamIds,
+    loading,
+    maxSeason,
+    standingsLoading,
+}) => {
     const [selectedTab, setSelectedTab] = useState("stats");
 
     const handleStatsClick = () => {
@@ -82,6 +89,7 @@ export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
                     standings={standings}
                     teamIds={teamIds}
                     maxSeason={maxSeason}
+                    loading={standingsLoading}
                 />
             )}
         </>

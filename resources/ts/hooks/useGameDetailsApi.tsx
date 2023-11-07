@@ -3,9 +3,12 @@ import axios from "axios";
 
 export const useGameDetailsApi = (gameId) => {
     const [games, setGames] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+
         const GameDetails = async () => {
             try {
                 const response = await axios.get(`/api/games/${gameId}`);
@@ -14,6 +17,7 @@ export const useGameDetailsApi = (gameId) => {
                 setLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
+                setError(error);
                 setLoading(false);
             }
         };
@@ -21,5 +25,5 @@ export const useGameDetailsApi = (gameId) => {
         GameDetails();
     }, []);
 
-    return { games, loading };
+    return [games, loading, error];
 };
