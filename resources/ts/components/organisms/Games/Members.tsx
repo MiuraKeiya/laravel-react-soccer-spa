@@ -4,7 +4,7 @@ export const Members = ({ games }) => {
             <div className="bg-[#111931] py-1 flex justify-center text-[#EEEEEE] text-[18px] font-bold">
                 ラインナップ
             </div>
-            <div className="mt-1 flex space-x-10">
+            <div className="mt-2 flex sm:space-x-10 flex-col sm:flex-row mx-1 sm:mx-0 space-y-2 sm:space-y-0">
                 <div className="w-full">
                     <div className="bg-[#111931] py-8 flex justify-center border-l-4 border-red-500">
                         <img
@@ -15,7 +15,7 @@ export const Members = ({ games }) => {
                     </div>
                     <div className="bg-[#1d2233]">
                         <div className="h-16 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-red-500 pb-1">
                                 スターティングメンバー
                             </span>
                         </div>
@@ -33,7 +33,7 @@ export const Members = ({ games }) => {
                             )}
                         </div>
                         <div className="h-20 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-red-500 pb-1">
                                 ベンチメンバー
                             </span>
                         </div>
@@ -51,7 +51,7 @@ export const Members = ({ games }) => {
                             )}
                         </div>
                         <div className="h-20 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-red-500 pb-1">
                                 監督
                             </span>
                         </div>
@@ -78,7 +78,7 @@ export const Members = ({ games }) => {
                     </div>
                     <div className="bg-[#1d2233]">
                         <div className="h-16 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-blue-500 pb-1">
                                 スターティングメンバー
                             </span>
                         </div>
@@ -96,7 +96,7 @@ export const Members = ({ games }) => {
                             )}
                         </div>
                         <div className="h-20 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-blue-500 pb-1">
                                 ベンチメンバー
                             </span>
                         </div>
@@ -114,7 +114,7 @@ export const Members = ({ games }) => {
                             )}
                         </div>
                         <div className="h-20 flex items-center">
-                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5">
+                            <span className="text-[#EEEEEE] font-bold text-[18px] ml-5 border-b-2 border-blue-500 pb-1">
                                 監督
                             </span>
                         </div>

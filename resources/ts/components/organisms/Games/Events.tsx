@@ -35,7 +35,7 @@ export const Events = ({ games, maxSeason }) => {
                             {game.team.name ===
                                 games[0]?.json_detail.teams.home.name &&
                                 game.time.elapsed <= 45 && (
-                                    <div className="text-white flex items-center space-x-2 mb-5 text-[20px]">
+                                    <div className="text-white flex items-center space-x-2 mb-5 sm:text-[20px]">
                                         <span>{game.time.elapsed}'</span>
                                         <span>
                                             {game.type === "Goal" && (
@@ -80,7 +80,7 @@ export const Events = ({ games, maxSeason }) => {
                             {game.team.name ===
                                 games[0]?.json_detail.teams.away.name &&
                                 game.time.elapsed <= 45 && (
-                                    <div className="text-white flex items-center justify-end space-x-2 mb-5 text-[20px]">
+                                    <div className="text-white flex items-center justify-end space-x-2 mb-5 sm:text-[20px]">
                                         {game.assist.name && (
                                             <span>
                                                 (<a>{game.assist.name}</a>)
@@ -144,7 +144,7 @@ export const Events = ({ games, maxSeason }) => {
                             {game.team.name ===
                                 games[0]?.json_detail.teams.home.name &&
                                 game.time.elapsed > 45 && (
-                                    <div className="text-white flex items-center space-x-2 mb-5 text-[20px]">
+                                    <div className="text-white flex items-center space-x-2 mb-5 sm:text-[20px]">
                                         <div>{game.time.elapsed}'</div>
                                         <span>
                                             {game.type === "Goal" && (
@@ -191,7 +191,7 @@ export const Events = ({ games, maxSeason }) => {
                             {game.team.name ===
                                 games[0]?.json_detail.teams.away.name &&
                                 game.time.elapsed > 45 && (
-                                    <div className="text-white flex items-center justify-end space-x-2 mb-5 text-[20px]">
+                                    <div className="text-white flex items-center justify-end space-x-2 mb-5 sm:text-[20px]">
                                         <div>
                                             {game.assist.name && (
                                                 <span>
@@ -244,7 +244,7 @@ export const Events = ({ games, maxSeason }) => {
             </div>
             <div className="bg-[#1d2233]">
                 <div className="text-white mx-3 pt-2 pb-2">
-                    <div className="flex items-center justify-between pb-4 text-[18px]">
+                    <div className="flex items-center justify-between pb-4 sm:text-[18px]">
                         <div className="flex items-center space-x-1">
                             <span>
                                 <SportsIcon />
@@ -255,7 +255,7 @@ export const Events = ({ games, maxSeason }) => {
                             {games[0].json_detail?.fixture.referee}
                         </span>
                     </div>
-                    <div className="flex items-center justify-between text-[18px]">
+                    <div className="flex items-center justify-between sm:text-[18px]">
                         <div className="flex items-center space-x-1">
                             <span>
                                 <StadiumIcon />

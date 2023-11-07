@@ -48,15 +48,17 @@ export const TeamsStats = ({ games, loading }) => {
             {loading ? (
                 <StatsLoading />
             ) : (
-                flattenedHomeStatistics.map((homeStat, index) => (
-                    <div key={index}>
-                        <GaugeBar
-                            homeValue={homeStat.value}
-                            awayValue={flattenedAwayStatistics[index].value}
-                            type={homeStat.type}
-                        />
-                    </div>
-                ))
+                <div className="bg-[#1d2233] mt-1 rounded pb-2">
+                    {flattenedHomeStatistics.map((homeStat, index) => (
+                        <div key={index} className="pt-3 pb-6">
+                            <GaugeBar
+                                homeValue={homeStat.value}
+                                awayValue={flattenedAwayStatistics[index].value}
+                                type={homeStat.type}
+                            />
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );

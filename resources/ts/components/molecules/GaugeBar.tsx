@@ -22,7 +22,7 @@ export const GaugeBar = ({ homeValue, awayValue, type }) => {
     });
 
     return (
-        <div className="mt-5 mx-3">
+        <div className="sm:mx-5 mx-3">
             <div className="flex justify-between items-center my-2">
                 <span className="text-white text-[14px] font-bold">
                     {homeValue || 0}
@@ -32,7 +32,7 @@ export const GaugeBar = ({ homeValue, awayValue, type }) => {
                     {awayValue || 0}
                 </span>
             </div>
-            <div className="flex justify-center items-center mb-10">
+            <div className="flex justify-center items-center">
                 <div
                     ref={homeRef}
                     className="rotate-180 bg-[#C8CDCD] h-[10px] w-full rounded-r-lg overflow-hidden"

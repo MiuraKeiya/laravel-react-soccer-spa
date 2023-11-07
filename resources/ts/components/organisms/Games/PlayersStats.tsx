@@ -42,13 +42,13 @@ export const PlayersStats = ({ games, maxSeason }) => {
                 ※ 各行をクリックすると全てのスタッツを確認することができます。
             </p>
             {games[0].json_detail.players.map((players, index) => (
-                <div key={index}>
-                    <table className="w-full">
+                <div key={index} className="overflow-x-auto">
+                    <table className="sm:w-full w-[35rem] flex-none">
                         <thead>
                             <tr className="text-[14px] text-[#C8CDCD] bg-[#111931] h-8 cursor-default">
                                 <th>
                                     <span
-                                        className="flex items-center space-x-2 sm:w-[6rem] md:w-[9rem] lg:w-[11rem] sm:ml-1 hover:underline cursor-pointer"
+                                        className="flex items-center space-x-2 sm:ml-1 hover:underline cursor-pointer"
                                         onClick={() =>
                                             handleTeamClick(
                                                 players.team.id,
@@ -65,46 +65,46 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                     </span>
                                 </th>
                                 <Tooltip title="ポジション">
-                                    <th>P</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">P</th>
                                 </Tooltip>
                                 <Tooltip title="総評価">
-                                    <th>R</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">R</th>
                                 </Tooltip>
                                 <Tooltip title="出場時間">
-                                    <th>M</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">M</th>
                                 </Tooltip>
                                 <Tooltip title="得点">
-                                    <th>G</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">G</th>
                                 </Tooltip>
                                 <Tooltip title="アシスト">
-                                    <th>GA</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">GA</th>
                                 </Tooltip>
                                 <Tooltip title="失点">
-                                    <th>GC</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">GC</th>
                                 </Tooltip>
                                 <Tooltip title="セーブ数">
-                                    <th>GS</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">GS</th>
                                 </Tooltip>
                                 <Tooltip title="シュート数">
-                                    <th>TS</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">TS</th>
                                 </Tooltip>
                                 <Tooltip title="枠内シュート">
-                                    <th>SO</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">SO</th>
                                 </Tooltip>
                                 <Tooltip title="パス数">
-                                    <th>TP</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">TP</th>
                                 </Tooltip>
                                 <Tooltip title="キーパス">
-                                    <th>KP</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">KP</th>
                                 </Tooltip>
                                 <Tooltip title="パス成功">
-                                    <th>PA</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">PA</th>
                                 </Tooltip>
                                 <Tooltip title="イエローカード">
-                                    <th>YC</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">YC</th>
                                 </Tooltip>
                                 <Tooltip title="レッドカード">
-                                    <th>RC</th>
+                                    <th className="w-[2rem] sm:w-[3rem]">RC</th>
                                 </Tooltip>
                             </tr>
                         </thead>
@@ -119,7 +119,7 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                         handleOpenModal(player.player.id)
                                     }
                                 >
-                                    <td>
+                                    <td className="w-[35rem] sm:w-[25rem]">
                                         <span className="flex items-center space-x-2 sm:ml-2">
                                             <img
                                                 src={player.player.photo}
@@ -143,7 +143,7 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                         {player.statistics[0]?.games.position ||
                                             0}
                                     </td>
-                                    <td>
+                                    <td className="font-bold">
                                         {player.statistics[0]?.games.rating ||
                                             0}
                                     </td>
