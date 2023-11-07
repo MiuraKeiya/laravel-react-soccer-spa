@@ -26,10 +26,10 @@ export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-12 flex items-center justify-center space-x-14">
+            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-12 flex items-center justify-center sm:space-x-14 space-x-3">
                 <Button
                     onClick={handleStatsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`sm:text-[15px] text-[14px] font-bold rounded px-2 py-1 ${
                         selectedTab === "stats"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -39,7 +39,7 @@ export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleProgressClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`sm:text-[15px] text-[14px] font-bold rounded px-2 py-1 ${
                         selectedTab === "progress"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -49,7 +49,7 @@ export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleRatingClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`sm:text-[15px] text-[14px] font-bold rounded px-2 py-1 ${
                         selectedTab === "rating"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"
@@ -59,7 +59,7 @@ export const Selecter = ({ games, standings, teamIds, loading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleStandingsClick}
-                    style={`text-[15px] font-bold rounded px-2 py-1 ${
+                    style={`sm:text-[15px] text-[14px] font-bold rounded px-2 py-1 ${
                         selectedTab === "standings"
                             ? "text-[#B0EE1B] cursor-default border-b-2 border-[#B0EE1B]"
                             : "text-[#C8CDCD] hover:text-[#FFFFFF]"

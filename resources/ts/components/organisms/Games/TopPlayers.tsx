@@ -13,16 +13,16 @@ export const TopPlayers = ({ games, maxSeason }) => {
     console.log(topPlayers);
     return (
         <div className="mt-2">
-            <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-2 rounded">
+            <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-2 rounded-t">
                 <h1 className="ml-3">トッププレイヤー</h1>
             </div>
-            <div className="bg-[#1d2233]">
-                <div className="flex justify-center flex-col mx-6 space-y-5 mt-1">
+            <div className="bg-[#1d2233] overflow-x-auto">
+                <div className="flex justify-center flex-col mx-6 space-y-5 mt-1 flex-none">
                     {/** シュート */}
                     <table className="mt-3">
                         <thead>
                             <tr className="text-[15px] font-bold text-[#FFFFFF]">
-                                <th className="text-left text-[20px]">
+                                <th className="text-left sm:text-[20px]">
                                     シュート数
                                 </th>
                                 <th className="w-[5rem] sm:w-[6rem] md:w-[6rem] lg:w-[6rem]">
@@ -40,13 +40,13 @@ export const TopPlayers = ({ games, maxSeason }) => {
                             {topPlayers[0].map((player) => (
                                 <tr
                                     key={player.player.id}
-                                    className="text-[#FFFFFF] text-[20px] border-b border-[#111931]"
+                                    className="text-[#FFFFFF] sm:text-[20px] border-b border-[#111931]"
                                 >
                                     <td className="py-2 text-left">
                                         <div className="flex items-center">
                                             <img
                                                 src={player.teamLogo}
-                                                className="w-10 h-10 mr-2"
+                                                className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                             />
                                             <a
                                                 className="hover:underline cursor-pointer"
@@ -78,7 +78,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                     <table>
                         <thead>
                             <tr className="text-[15px] font-bold text-[#FFFFFF]">
-                                <th className="text-left text-[20px]">
+                                <th className="text-left sm:text-[20px]">
                                     パス数
                                 </th>
                                 <th className="w-[5rem] sm:w-[6rem] md:w-[6rem] lg:w-[6rem]"></th>
@@ -94,13 +94,13 @@ export const TopPlayers = ({ games, maxSeason }) => {
                             {topPlayers[1].map((player) => (
                                 <tr
                                     key={player.player.id}
-                                    className="text-[#FFFFFF] text-[20px] border-b border-[#111931]"
+                                    className="text-[#FFFFFF] sm:text-[20px] border-b border-[#111931]"
                                 >
                                     <td className="py-2 text-left">
                                         <div className="flex items-center">
                                             <img
                                                 src={player.teamLogo}
-                                                className="w-10 h-10 mr-2"
+                                                className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                             />
                                             <a
                                                 className="hover:underline cursor-pointer"
@@ -131,7 +131,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                     <table>
                         <thead>
                             <tr className="text-[15px] font-bold text-[#FFFFFF]">
-                                <th className="text-left text-[20px]">
+                                <th className="text-left sm:text-[20px]">
                                     ドリブル
                                 </th>
                                 <th className="w-[5rem] sm:w-[6rem] md:w-[6rem] lg:w-[6rem]"></th>
@@ -147,7 +147,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                             {topPlayers[2].map((player) => (
                                 <tr
                                     key={player.player.id}
-                                    className="text-[#FFFFFF] text-[20px] border-b border-[#111931]"
+                                    className="text-[#FFFFFF] sm:text-[20px] border-b border-[#111931]"
                                 >
                                     {player.statistics[0].dribbles.attempts !==
                                         null && (
@@ -156,7 +156,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                                 <div className="flex items-center">
                                                     <img
                                                         src={player.teamLogo}
-                                                        className="w-10 h-10 mr-2"
+                                                        className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a
                                                         className="hover:underline cursor-pointer"
@@ -191,7 +191,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                     <table>
                         <thead>
                             <tr className="text-[15px] font-bold text-[#FFFFFF]">
-                                <th className="text-left text-[20px]">
+                                <th className="text-left sm:text-[20px]">
                                     デュエル
                                 </th>
                                 <th className="w-[5rem] sm:w-[6rem] md:w-[6rem] lg:w-[6rem]"></th>
@@ -207,7 +207,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                             {topPlayers[3].map((player) => (
                                 <tr
                                     key={player.player.id}
-                                    className="text-[#FFFFFF] text-[20px] border-b border-[#111931]"
+                                    className="text-[#FFFFFF] sm:text-[20px] border-b border-[#111931]"
                                 >
                                     {player.statistics[0].duels.total !==
                                         null && (
@@ -216,7 +216,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                                 <div className="flex items-center">
                                                     <img
                                                         src={player.teamLogo}
-                                                        className="w-10 h-10 mr-2"
+                                                        className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a
                                                         className="hover:underline cursor-pointer"
@@ -251,7 +251,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                     <table>
                         <thead>
                             <tr className="text-[15px] font-bold text-[#FFFFFF]">
-                                <th className="text-left text-[20px]">
+                                <th className="text-left sm:text-[20px]">
                                     タックル
                                 </th>
                                 <th className="w-[5rem] sm:w-[6rem] md:w-[6rem] lg:w-[7rem]">
@@ -269,7 +269,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                             {topPlayers[4].map((player) => (
                                 <tr
                                     key={player.player.id}
-                                    className="text-[#FFFFFF] text-[20px] border-b border-[#111931]"
+                                    className="text-[#FFFFFF] sm:text-[20px] border-b border-[#111931]"
                                 >
                                     {player.statistics[0].tackles.total !==
                                         null && (
@@ -278,7 +278,7 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                                 <div className="flex items-center">
                                                     <img
                                                         src={player.teamLogo}
-                                                        className="w-10 h-10 mr-2"
+                                                        className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a
                                                         className="hover:underline cursor-pointer"

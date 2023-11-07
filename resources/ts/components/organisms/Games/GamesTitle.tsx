@@ -54,11 +54,11 @@ export const GamesTitle = ({ games, loading, maxSeason }) => {
                             </div>
                         </div>
                         <div className="flex items-center justify-center">
-                            <div className="flex flex-col items-center w-64">
+                            <div className="flex flex-col items-center sm:w-64 w-[6rem]">
                                 <img
                                     src={game.json_detail.teams.home.logo}
                                     alt="homeTeam"
-                                    className="w-24 h-24 cursor-pointer transition-transform hover:scale-110"
+                                    className="sm:w-24 sm:h-24 w-16 h-16 cursor-pointer transition-transform hover:scale-110"
                                     onClick={() =>
                                         handleTeamClick(
                                             game.json_detail.teams.home.id,
@@ -67,7 +67,7 @@ export const GamesTitle = ({ games, loading, maxSeason }) => {
                                     }
                                 />
                                 <span
-                                    className="text-white font-bold text-[20px] mt-1 hover:underline cursor-pointer"
+                                    className="text-white font-bold sm:text-[20px] text-[15px] mt-1 hover:underline cursor-pointer sm:w-64 w-[6rem] truncate text-center"
                                     onClick={() =>
                                         handleTeamClick(
                                             game.json_detail.teams.home.id,
@@ -78,13 +78,13 @@ export const GamesTitle = ({ games, loading, maxSeason }) => {
                                     {game.json_detail.teams.home.name}
                                 </span>
                             </div>
-                            <div className="text-white flex flex-col items-center mb-1">
+                            <div className="text-white flex flex-col items-center mb-1 mx-3">
                                 <span className="text-[#C8CDCD]">
                                     {formatAllDate(
                                         game.json_detail.fixture.date
                                     )}
                                 </span>
-                                <div className="text-[50px] font-custom">
+                                <div className="sm:text-[50px] text-[35px] font-custom">
                                     <span>
                                         {game.json_detail.score.fulltime.home}
                                     </span>
@@ -93,21 +93,21 @@ export const GamesTitle = ({ games, loading, maxSeason }) => {
                                         {game.json_detail.score.fulltime.away}
                                     </span>
                                 </div>
-                                <span className="font-bold">
+                                <span className="font-bold text-[13px] sm:text-[16px]">
                                     {game.json_detail.fixture.status.long}
                                 </span>
-                                <div className="flex items-center space-x-1 text-[#EEEEEE] mt-1">
+                                <div className="flex items-center space-x-1 text-[#EEEEEE] mt-1 sm:w-[12.5rem] w-[7rem] justify-center">
                                     <StadiumIcon />
-                                    <span>
+                                    <span className="truncate">
                                         {game.json_detail.fixture.venue.name}
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex flex-col items-center w-64">
+                            <div className="flex flex-col items-center sm:w-64 w-[6rem]">
                                 <img
                                     src={game.json_detail.teams.away.logo}
                                     alt="awayTeam"
-                                    className="w-24 h-24 cursor-pointer transition-transform hover:scale-110"
+                                    className="sm:w-24 sm:h-24 w-16 h-16 cursor-pointer transition-transform hover:scale-110"
                                     onClick={() =>
                                         handleTeamClick(
                                             game.json_detail.teams.away.id,
@@ -116,7 +116,7 @@ export const GamesTitle = ({ games, loading, maxSeason }) => {
                                     }
                                 />
                                 <span
-                                    className="text-white font-bold text-[20px] mt-1 hover:underline cursor-pointer"
+                                    className="text-white font-bold sm:text-[20px] text-[15px] mt-1 hover:underline cursor-pointer sm:w-64 w-[6rem] truncate text-center"
                                     onClick={() =>
                                         handleTeamClick(
                                             game.json_detail.teams.away.id,
