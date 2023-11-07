@@ -10,6 +10,7 @@ export const Page = ({ error, children }) => {
                 return <Unauthorized status={error.response?.status} />;
             case 429:
                 return <TooManyRequests error={error} />;
+            case 400:
             case 405:
             case 422:
             case 500:

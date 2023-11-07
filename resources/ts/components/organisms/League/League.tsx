@@ -5,6 +5,9 @@ import { useLeagueGamesPaginateApi } from "../../../hooks/useLeagueGamesPaginate
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { useLeagueTeamsApi } from "../../../hooks/useLeagueTeamsApi";
 import { LeagueInformations } from "./LeagueInformations";
+import { NoData } from "../NotFound/NoData";
+import { Page } from "../../../Page";
+import { useErrors } from "../../../hooks/useErrors";
 import { findMaxSeason } from "../../../functions/Utils";
 import config from "../../../config";
 import { Selecter } from "./Selecter";
@@ -39,42 +42,62 @@ export const League = () => {
 
     const [teams, teamsLoading, teamsError] = useLeagueTeamsApi(id, season);
 
+    const pageError = useErrors(
+        latestGamesError,
+        error,
+        rankingsError,
+        teamsError
+    );
+
     return (
-        <div>
-            {latestGamesLoading ? (
-                <Helmet>
-                    <title>Football League</title>
-                </Helmet>
-            ) : (
-                <Helmet>
-                    <title>
-                        {`${latestGames[0]?.json_detail?.league.name} ${season}・リーグ詳細`}
-                    </title>
-                </Helmet>
-            )}
-            <div className="mt-6">
-                <LeagueInformations
-                    latestGames={latestGames}
-                    loading={latestGamesLoading}
-                />
+        <Page error={pageError}>
+            <div>
+                {latestGamesLoading ? (
+                    <Helmet>
+                        <title>Football League</title>
+                    </Helmet>
+                ) : (
+                    <Helmet>
+                        <title>
+                            {`${latestGames[0]?.json_detail?.league.name} ${season}・リーグ詳細`}
+                        </title>
+                    </Helmet>
+                )}
+                {!latestGamesLoading && !latestGames.length ? (
+                    <NoData
+                        season={season}
+                        name={"リーグ"}
+                        id={id}
+                        url={"/league"}
+                    />
+                ) : (
+                    <>
+                        <div className="mt-6">
+                            <LeagueInformations
+                                latestGames={latestGames}
+                                loading={latestGamesLoading}
+                            />
+                        </div>
+                        <div className="mt-1 mb-6">
+                            <Selecter
+                                latestGamesLoading={latestGamesLoading}
+                                latestGames={latestGames}
+                                standings={standings}
+                                pagenateGames={games}
+                                setPage={setPage}
+                                lastPage={lastPage}
+                                currentPage={currentPage}
+                                paginateLoading={paginateLoading}
+                                rankings={rankings}
+                                teams={teams}
+                                standingsLoading={loading}
+                                teamsLoading={teamsLoading}
+                                maxSeason={maxSeason}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
-            <div className="mt-1 mb-6">
-                <Selecter
-                    latestGamesLoading={latestGamesLoading}
-                    latestGames={latestGames}
-                    standings={standings}
-                    pagenateGames={games}
-                    setPage={setPage}
-                    lastPage={lastPage}
-                    currentPage={currentPage}
-                    paginateLoading={paginateLoading}
-                    rankings={rankings}
-                    teams={teams}
-                    standingsLoading={loading}
-                    teamsLoading={teamsLoading}
-                    maxSeason={maxSeason}
-                />
-            </div>
-        </div>
+        </Page>
     );
 };
