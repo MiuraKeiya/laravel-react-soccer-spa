@@ -27,6 +27,16 @@ class TeamService
         // 指定したリーグを取得
         $league = $this->teamRepository->getStanding($leagueId, $season);
 
+        if ($league === null) {
+            // $league が null の場合、空の配列を返す
+            return [
+                'league' => [],
+                'all' => [],
+                'home' => [],
+                'away' => [],
+            ];
+        }
+
         // 全体での順位一覧
         $standings = $league->json_standings['response'][0]['league']['standings'][0];
 
