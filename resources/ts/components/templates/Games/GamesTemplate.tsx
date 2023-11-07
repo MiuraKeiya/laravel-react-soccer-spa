@@ -9,7 +9,7 @@ export const GamesTemplate = ({
         <div className="bg-black">
             <header>{header}</header>
             <aside>{sidebar}</aside>
-            <main className="container mx-auto">{children}</main>
+            <main className="min-h-screen container mx-auto">{children}</main>
             <footer>{footer}</footer>
             <div className="fixed right-[20px] bottom-[20px]">
                 {scrollTopButton}

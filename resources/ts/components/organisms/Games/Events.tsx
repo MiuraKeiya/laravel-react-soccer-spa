@@ -60,7 +60,7 @@ export const Events = ({ games, maxSeason }) => {
                                             )}
                                         </span>
                                         <span
-                                            className="font-bold hover:underline"
+                                            className="font-bold hover:underline cursor-pointer"
                                             onClick={() =>
                                                 handlePlayerClick(
                                                     game.player.id,
@@ -87,7 +87,7 @@ export const Events = ({ games, maxSeason }) => {
                                             </span>
                                         )}
                                         <span
-                                            className="font-bold hover:underline"
+                                            className="font-bold hover:underline cursor-pointer"
                                             onClick={() =>
                                                 handlePlayerClick(
                                                     game.player.id,
@@ -169,7 +169,7 @@ export const Events = ({ games, maxSeason }) => {
                                             )}
                                         </span>
                                         <span
-                                            className="font-bold hover:underline"
+                                            className="font-bold hover:underline cursor-pointer"
                                             onClick={() =>
                                                 handlePlayerClick(
                                                     game.player.id,
@@ -200,7 +200,7 @@ export const Events = ({ games, maxSeason }) => {
                                             )}
                                         </div>
                                         <span
-                                            className="font-bold hover:underline"
+                                            className="font-bold hover:underline cursor-pointer"
                                             onClick={() =>
                                                 handlePlayerClick(
                                                     game.player.id,
