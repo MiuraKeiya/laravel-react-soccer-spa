@@ -1,4 +1,16 @@
-export const Members = ({ games }) => {
+import { useNavigate } from "react-router-dom";
+
+export const Members = ({ games, maxSeason }) => {
+    const navigate = useNavigate();
+
+    const handleTeamClick = (teamId, maxSeason) => {
+        navigate(`/team/${teamId}/season/${maxSeason}`);
+    };
+
+    const handlePlayerClick = (playerId, maxSeason) => {
+        navigate(`/player/${playerId}/season/${maxSeason}`);
+    };
+
     return (
         <div>
             <div className="bg-[#111931] py-1 flex justify-center text-[#EEEEEE] text-[18px] font-bold">
@@ -10,7 +22,13 @@ export const Members = ({ games }) => {
                         <img
                             src={games[0].json_detail?.teams.home.logo}
                             alt="teamLogo"
-                            className="h-[4.375rem] w-[4.375rem]"
+                            className="h-[4.375rem] w-[4.375rem] cursor-pointer transition-transform hover:scale-110"
+                            onClick={() =>
+                                handleTeamClick(
+                                    games[0].json_detail.teams.home.id,
+                                    maxSeason
+                                )
+                            }
                         />
                     </div>
                     <div className="bg-[#1d2233]">
@@ -26,7 +44,17 @@ export const Members = ({ games }) => {
                                         key={index}
                                         className="text-white text-[18px] font-bold border-b border-[#111931] h-20 flex items-center justify-between mx-3"
                                     >
-                                        <span>{game.player.name}</span>
+                                        <span
+                                            className="cursor-pointer hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
+                                            {game.player.name}
+                                        </span>
                                         <span>{game.player.number}</span>
                                     </div>
                                 )
@@ -44,7 +72,17 @@ export const Members = ({ games }) => {
                                         key={index}
                                         className="text-white text-[18px] font-bold border-b border-[#111931] h-20 flex items-center justify-between mx-3"
                                     >
-                                        <span>{game.player.name}</span>
+                                        <span
+                                            className="cursor-pointer hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
+                                            {game.player.name}
+                                        </span>
                                         <span>{game.player.number}</span>
                                     </div>
                                 )
@@ -73,7 +111,13 @@ export const Members = ({ games }) => {
                         <img
                             src={games[0].json_detail?.teams.away.logo}
                             alt="teamLogo"
-                            className="h-[4.375rem] w-[4.375rem]"
+                            className="h-[4.375rem] w-[4.375rem] cursor-pointer transition-transform hover:scale-110"
+                            onClick={() =>
+                                handleTeamClick(
+                                    games[0].json_detail.teams.away.id,
+                                    maxSeason
+                                )
+                            }
                         />
                     </div>
                     <div className="bg-[#1d2233]">
@@ -89,7 +133,17 @@ export const Members = ({ games }) => {
                                         key={index}
                                         className="text-white text-[18px] font-bold border-b border-[#111931] h-20 flex items-center justify-between mx-3"
                                     >
-                                        <span>{game.player.name}</span>
+                                        <span
+                                            className="cursor-pointer hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
+                                            {game.player.name}
+                                        </span>
                                         <span>{game.player.number}</span>
                                     </div>
                                 )
@@ -107,7 +161,17 @@ export const Members = ({ games }) => {
                                         key={index}
                                         className="text-white text-[18px] font-bold border-b border-[#111931] h-20 flex items-center justify-between mx-3"
                                     >
-                                        <span>{game.player.name}</span>
+                                        <span
+                                            className="cursor-pointer hover:underline"
+                                            onClick={() =>
+                                                handlePlayerClick(
+                                                    game.player.id,
+                                                    maxSeason
+                                                )
+                                            }
+                                        >
+                                            {game.player.name}
+                                        </span>
                                         <span>{game.player.number}</span>
                                     </div>
                                 )

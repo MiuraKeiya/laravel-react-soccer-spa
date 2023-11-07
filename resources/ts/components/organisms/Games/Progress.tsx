@@ -41,7 +41,9 @@ export const Progress = ({ games, maxSeason }) => {
             {selectedTab === "events" && (
                 <Events games={games} maxSeason={maxSeason} />
             )}
-            {selectedTab === "members" && <Members games={games} />}
+            {selectedTab === "members" && (
+                <Members games={games} maxSeason={maxSeason} />
+            )}
         </>
     );
 };
