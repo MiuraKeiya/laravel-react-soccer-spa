@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import { usePlayerStatisticsApi } from "../../../hooks/usePlayerStatisticsApi";
 import { PlayerInformations } from "./PlayerInformations";
 import { PlayerStatistics } from "./PlayerStatistics";
+import { StatisticTitle } from "./StatisticTitle";
 import { Helmet } from "react-helmet-async";
 
 export const Player = () => {
     // パラメータを取得
     const { id, season } = useParams();
 
-    const { statistics, loading } = usePlayerStatisticsApi(id, season);
+    const { statistics, loading, error } = usePlayerStatisticsApi(id, season);
 
     return (
         <div>
@@ -24,10 +25,11 @@ export const Player = () => {
                 </Helmet>
             )}
             <div className="mt-6">
-                <PlayerInformations statistics={statistics} />
+                <PlayerInformations statistics={statistics} loading={loading} />
             </div>
             <div className="mt-1 mb-6">
-                <PlayerStatistics statistics={statistics} season={season} />
+                <StatisticTitle season={season} id={id} />
+                <PlayerStatistics statistics={statistics} loading={loading} />
             </div>
         </div>
     );
