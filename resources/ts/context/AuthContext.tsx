@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Loading } from "../components/molecules/Loading";
 import {
     useContext,
     createContext,
@@ -63,6 +64,9 @@ const useProvideAuth = () => {
 
     // ローディングフラグ
     const [userLoading, setUserLoading] = useState(true);
+
+    // エラーを保持
+    const [error, setError] = useState(null);
 
     /**
      * 新規登録
@@ -174,6 +178,7 @@ const useProvideAuth = () => {
                 setUserLoading(false);
             } catch (error) {
                 console.error("API call error:", error);
+                setError(error);
                 setUserLoading(false);
             }
         };
@@ -204,7 +209,7 @@ export const PrivateRoute = ({ component, redirect }: RouteProps) => {
 
     // user情報が取得されるまで待つ
     if (auth?.userLoading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     if (auth?.user === null) {
@@ -230,7 +235,7 @@ export const PublicRoute = ({ component, redirect }: RouteProps) => {
 
     // user情報が取得されるまで待つ
     if (auth?.userLoading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     if (auth?.user === null) {
