@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import { usePlayerStatisticsApi } from "../../../hooks/usePlayerStatisticsApi";
+import { InformationLoading } from "./Loading/InformationLoading";
 import { PlayerInformations } from "./PlayerInformations";
 import { PlayerStatistics } from "./PlayerStatistics";
+import { StatisticLoading } from "./Loading/StatisticLoading";
 import { StatisticTitle } from "./StatisticTitle";
 import { Helmet } from "react-helmet-async";
 
@@ -25,11 +27,19 @@ export const Player = () => {
                 </Helmet>
             )}
             <div className="mt-6">
-                <PlayerInformations statistics={statistics} loading={loading} />
+                {loading ? (
+                    <InformationLoading />
+                ) : (
+                    <PlayerInformations statistics={statistics} />
+                )}
             </div>
             <div className="mt-1 mb-6">
-                <StatisticTitle season={season} id={id} />
-                <PlayerStatistics statistics={statistics} loading={loading} />
+                <StatisticTitle season={season} id={id} loading={loading} />
+                {loading ? (
+                    <StatisticLoading />
+                ) : (
+                    <PlayerStatistics statistics={statistics} />
+                )}
             </div>
         </div>
     );

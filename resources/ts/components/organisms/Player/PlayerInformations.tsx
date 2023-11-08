@@ -1,4 +1,4 @@
-export const PlayerInformations = ({ statistics, loading }) => {
+export const PlayerInformations = ({ statistics }) => {
     return (
         <div className="bg-gradient-to-r from-[#1d2233] rounded-t sm:h-60 flex items-center justify-center py-3 sm:py-0">
             {statistics.map((player, index) => (

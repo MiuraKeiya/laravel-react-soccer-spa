@@ -1,6 +1,6 @@
 export const PlayerStatisticTable = ({ statistics }) => {
     return (
-        <div className="flex pb-3">
+        <div className="flex pb-6">
             <div className="pb-3 lg:pb-0 w-full mx-3">
                 <h1 className="text-[20px] text-white">総合</h1>
                 {statistics.map((team, index) => (
