@@ -3,6 +3,7 @@ import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { StandingsInformations } from "./StandingsInformations";
 import { TopScorerSelecter } from "../League/TopScorerSelecter";
+import { NoData } from "../NotFound/NoData";
 import { useErrors } from "../../../hooks/useErrors";
 import { Page } from "../../../Page";
 import config from "../../../config";
@@ -39,22 +40,33 @@ export const Standings = () => {
                 </Helmet>
             )}
             <div>
-                <div className="mt-6">
-                    <StandingsInformations
-                        standings={standings}
-                        loading={loading}
-                        season={maxSeason}
+                {!loading && !rankingsLoading && !rankings.length ? (
+                    <NoData
+                        season={season}
+                        name={"順位"}
+                        id={id}
+                        url={"/standings/league"}
                     />
-                </div>
-                <div className="mb-6">
-                    <TopScorerSelecter
-                        standings={standings}
-                        rankings={rankings}
-                        loading={loading}
-                        rankingsLoading={rankingsLoading}
-                        maxSeason={maxSeason}
-                    />
-                </div>
+                ) : (
+                    <>
+                        <div className="mt-6">
+                            <StandingsInformations
+                                standings={standings}
+                                loading={loading}
+                                season={maxSeason}
+                            />
+                        </div>
+                        <div className="mb-6">
+                            <TopScorerSelecter
+                                standings={standings}
+                                rankings={rankings}
+                                loading={loading}
+                                rankingsLoading={rankingsLoading}
+                                maxSeason={maxSeason}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
         </Page>
     );
