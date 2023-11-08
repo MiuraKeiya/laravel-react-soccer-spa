@@ -19,7 +19,7 @@ export const useLeagueAPI = () => {
 
                 setLoading(false);
             } catch (error) {
-                setError(error.response.status);
+                setError(error);
                 setLoading(false);
             }
         };
