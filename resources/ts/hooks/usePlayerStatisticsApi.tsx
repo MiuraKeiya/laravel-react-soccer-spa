@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const usePlayerStatisticsApi = (playerId, season) => {
     const [statistics, setStatistics] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
