@@ -9,6 +9,8 @@ import { GamesMessage } from "../../molecules/GamesMessage";
 import config from "../../../config";
 import { findMaxSeason } from "../../../functions/Utils";
 import { Helmet } from "react-helmet-async";
+import { GameHeaderLoading } from "./Loading/GameHeaderLoading";
+import { NoGameData } from "../NotFound/NoGameData";
 
 export const Games = () => {
     const { gameId, leagueId, season } = useParams();
@@ -49,11 +51,13 @@ export const Games = () => {
                     </Helmet>
                 )}
                 <div className="mt-6">
-                    <GamesTitle
-                        games={games}
-                        loading={gamesLoading}
-                        maxSeason={maxSeason}
-                    />
+                    {gamesLoading ? (
+                        <GameHeaderLoading />
+                    ) : games.length === 0 ? (
+                        <NoGameData />
+                    ) : (
+                        <GamesTitle games={games} maxSeason={maxSeason} />
+                    )}
                 </div>
                 <div className="mt-1 mb-6">
                     {hasEvents ? (
