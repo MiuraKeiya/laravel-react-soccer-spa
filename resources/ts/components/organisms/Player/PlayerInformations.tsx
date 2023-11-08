@@ -1,14 +1,14 @@
-export const PlayerInformations = ({ statistics }) => {
+export const PlayerInformations = ({ statistics, loading }) => {
     return (
-        <div className="bg-gradient-to-r from-[#1d2233] rounded-t h-60 flex items-center justify-center">
+        <div className="bg-gradient-to-r from-[#1d2233] rounded-t sm:h-60 flex items-center justify-center py-3 sm:py-0">
             {statistics.map((player, index) => (
                 <div key={index}>
-                    <div className="flex items-center space-x-3">
-                        <div className="flex flex-col space-y-2">
+                    <div className="flex items-center flex-col sm:flex-row space-x-6 space-y-1 sm:space-y-0">
+                        <div className="flex sm:flex-col items-center space-y-2 space-x-2 sm:space-x-0">
                             <img
                                 src={player.json_statistics.player.photo}
                                 alt="PlayerPhoto"
-                                className="rounded-full h-28 w-28"
+                                className="rounded-full sm:h-28 sm:w-28 h-[4rem] w-[4rem]"
                             />
                             <div className="flex space-x-2">
                                 <img
@@ -17,23 +17,23 @@ export const PlayerInformations = ({ statistics }) => {
                                             .team.logo
                                     }
                                     alt="TeamLogo"
-                                    className="h-14 w-14 transition-transform hover:scale-110 cursor-pointer"
+                                    className="sm:h-14 sm:w-14 h-[2rem] w-[2rem] transition-transform hover:scale-110 cursor-pointer"
                                 />
                                 <img
                                     src={
                                         player.json_statistics.statistics[0]
                                             .league.logo
                                     }
-                                    alt="TeamLogo"
-                                    className="h-14 w-14 transition-transform hover:scale-110 cursor-pointer"
+                                    alt="LeagueLogo"
+                                    className="sm:h-14 sm:w-14 h-[2rem] w-[2rem] transition-transform hover:scale-110 cursor-pointer bg-white rounded"
                                 />
                             </div>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-white font-bold text-[30px] mb-3">
+                            <span className="text-white font-bold sm:text-[30px] text-[22px] mb-3">
                                 {player.json_statistics.player.name}
                             </span>
-                            <div className="flex space-x-14">
+                            <div className="flex sm:space-x-14 space-x-2">
                                 <div className="flex flex-col space-y-3">
                                     <div className="text-white">
                                         <span>クラブ</span> :{" "}
