@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useStandingsApi = (leagueId, season) => {
     const [standings, setStandings] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
