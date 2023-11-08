@@ -2,7 +2,7 @@ import { PlayerStatisticTable } from "./PlayerStatisticTable";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-export const PlayerStatistics = ({ statistics, loading }) => {
+export const PlayerStatistics = ({ statistics }) => {
     return (
         <div className="mt-2">
             <div className="bg-[#1d2233] mt-[1px] rounded">
