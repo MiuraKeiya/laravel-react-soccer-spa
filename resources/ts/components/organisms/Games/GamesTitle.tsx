@@ -76,7 +76,7 @@ export const GamesTitle = ({ games, maxSeason }) => {
                             <span className="text-[#C8CDCD]">
                                 {formatAllDate(game.json_detail.fixture.date)}
                             </span>
-                            <div className="sm:text-[50px] text-[35px] font-custom">
+                            <div className="sm:text-[50px] text-[35px] font-custom space-x-2">
                                 <span>
                                     {game.json_detail.score.fulltime.home}
                                 </span>
