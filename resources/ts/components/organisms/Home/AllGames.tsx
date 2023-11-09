@@ -8,12 +8,19 @@ import { HomeLoading } from "./HomeLoading";
 export const AllGames = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
 
+    // 試合詳細ページへの遷移
     const handleGameClick = (gameId, leagueId, season) => {
         navigate(`/games/${gameId}/leagues/${leagueId}/seasons/${season}`);
     };
 
+    // 順位一覧ページへの遷移
     const handleStandingsClick = (leagueId, maxSeason) => {
         navigate(`/standings/league/${leagueId}/season/${maxSeason}`);
+    };
+
+    // リーグ詳細ページへの遷移
+    const handleLeagueClick = (leagueId, maxSeason) => {
+        navigate(`/league/${leagueId}/season/${maxSeason}`);
     };
     console.log(loading);
     return (
@@ -44,7 +51,16 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                         alt="league"
                                         className="h-5 w-5"
                                     />
-                                    <p className="uppercase text-[20px] font-bold text-[#C8CDCD]">
+                                    <p
+                                        className="uppercase text-[20px] font-bold text-[#C8CDCD] hover:underline cursor-pointer"
+                                        onClick={() =>
+                                            handleLeagueClick(
+                                                leagueGames[0].json_detail
+                                                    .league.id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
                                         {
                                             leagueGames[0].json_detail.league
                                                 .country
@@ -53,7 +69,7 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                     </p>
                                 </div>
                                 <a
-                                    className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
+                                    className="mr-3 text-[13px] text-[#EEEEEE] underline hover:no-underline cursor-pointer"
                                     onClick={() =>
                                         handleStandingsClick(
                                             leagueGames[0].json_detail.league

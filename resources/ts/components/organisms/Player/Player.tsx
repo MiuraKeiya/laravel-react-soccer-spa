@@ -6,12 +6,17 @@ import { PlayerInformations } from "./PlayerInformations";
 import { PlayerStatistics } from "./PlayerStatistics";
 import { StatisticLoading } from "./Loading/StatisticLoading";
 import { StatisticTitle } from "./StatisticTitle";
+import { findMaxSeason } from "../../../functions/Utils";
+import config from "../../../config";
 import { Page } from "../../../Page";
 import { Helmet } from "react-helmet-async";
 
 export const Player = () => {
     // パラメータを取得
     const { id, season } = useParams();
+
+    // 最大のシーズンを取得
+    const maxSeason = findMaxSeason(config);
 
     const { statistics, loading, error } = usePlayerStatisticsApi(id, season);
 
@@ -33,7 +38,10 @@ export const Player = () => {
                     {loading ? (
                         <InformationLoading />
                     ) : statistics.length > 0 ? (
-                        <PlayerInformations statistics={statistics} />
+                        <PlayerInformations
+                            statistics={statistics}
+                            maxSeason={maxSeason}
+                        />
                     ) : (
                         <NoData
                             season={season}

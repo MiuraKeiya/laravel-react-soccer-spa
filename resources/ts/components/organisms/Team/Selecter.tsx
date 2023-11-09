@@ -113,6 +113,7 @@ export const Selecter = ({
                     lastPage={lastPage}
                     currentPage={currentPage}
                     paginateLoading={paginateLoading}
+                    maxSeason={maxSeason}
                 />
             )}
             {selectedTab === "statistics" && (
