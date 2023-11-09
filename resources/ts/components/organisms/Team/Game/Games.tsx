@@ -12,6 +12,7 @@ export const Games = ({
     lastPage,
     currentPage,
     paginateLoading,
+    maxSeason,
 }) => {
     const navigate = useNavigate();
 
@@ -26,7 +27,11 @@ export const Games = ({
     return (
         <div>
             <div className="bg-[#111931] rounded-t mt-2">
-                <GamesTitle games={games} paginateLoading={paginateLoading} />
+                <GamesTitle
+                    games={games}
+                    paginateLoading={paginateLoading}
+                    maxSeason={maxSeason}
+                />
             </div>
             {paginateLoading ? (
                 <Loading />
