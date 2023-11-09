@@ -15,6 +15,7 @@ export const SearchResults = ({
     setFavoriteStatus,
     favorites,
     maxSeason,
+    close,
 }) => {
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
@@ -34,7 +35,7 @@ export const SearchResults = ({
                 id: result.json_information.team.id,
                 isFavorite: false,
             }));
-            
+
             setFavoriteStatus(initialFavoriteStates);
         } else if (!loading && favoriteStatus.length > 0) {
             // 既存のfavoriteStatusに追加する
@@ -57,7 +58,7 @@ export const SearchResults = ({
                         ),
                     }))
             );
-      
+
             setFavoriteStatus(updatedFavoriteStatus);
         }
     }, [favorites, results]);
@@ -66,6 +67,7 @@ export const SearchResults = ({
 
     const handleTeamClick = (id, season) => {
         navigate(`/team/${id}/season/${season}`);
+        close();
     };
 
     return (

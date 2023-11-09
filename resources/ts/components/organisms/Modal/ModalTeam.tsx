@@ -15,6 +15,7 @@ export const ModalTeam = ({
     setFavoriteStatus,
     handleFavoriteClick,
     maxSeason,
+    close,
 }) => {
     useEffect(() => {
         // 初回のレンダリング時だけお気に入りの初期状態を設定する
@@ -46,6 +47,7 @@ export const ModalTeam = ({
 
     const handleTeamClick = (id, season) => {
         navigate(`/team/${id}/season/${season}`);
+        close();
     };
 
     return (

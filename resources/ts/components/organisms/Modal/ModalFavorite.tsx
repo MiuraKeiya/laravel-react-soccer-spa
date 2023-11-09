@@ -171,6 +171,7 @@ export const ModalFavorite = ({ onClick }) => {
                                 setFavoriteStatus={setFavoriteTeamStatus}
                                 handleFavoriteClick={handleFavoriteTeamClick}
                                 maxSeason={maxSeason}
+                                close={onClick}
                             />
                         </div>
                     ) : (
@@ -187,6 +188,7 @@ export const ModalFavorite = ({ onClick }) => {
                                 favoriteStatus={favoriteStatus}
                                 handleFavoriteClick={handleFavoriteClick}
                                 maxSeason={maxSeason}
+                                close={onClick}
                             />
                             <h1 className="text-[#EEEEEE] text-[14px] font-bold mb-2 ml-2 mt-2">
                                 主なチーム
@@ -200,6 +202,7 @@ export const ModalFavorite = ({ onClick }) => {
                                 favoriteStatus={favoriteTeamStatus}
                                 handleFavoriteClick={handleFavoriteTeamClick}
                                 maxSeason={maxSeason}
+                                close={onClick}
                             />
                         </div>
                     )}

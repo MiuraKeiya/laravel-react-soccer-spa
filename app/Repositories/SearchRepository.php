@@ -19,7 +19,7 @@ class SearchRepository
         $latestSeason = Team::orderBy('season', 'desc')->value('season');
 
         // 指定されたクエリに一致するチームの情報を検索し、重複を排除して取得
-        $results = Team::where('name', 'like', '%' . $query . '%')
+        $results = Team::where('name', 'LIKE', $query . '%')
             ->where('season', $latestSeason)
             ->get('json_information');
 
