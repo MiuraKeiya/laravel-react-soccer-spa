@@ -79,12 +79,15 @@ export const ModalFavorite = ({ onClick }) => {
 
     const [favoriteTeamStatus, setFavoriteTeamStatus] = useState([]);
 
+    // idに対応するチームのお気に入りの状態を切り替える
     const handleFavoriteTeamClick = (id) => {
-        // idに対応するチームのお気に入りの状態を切り替える
+        // コピーを作成
         const newFavoriteStates = [...favoriteTeamStatus];
 
+        // idに対応するチームを探す
         const teamIndex = newFavoriteStates.findIndex((team) => team.id === id);
 
+        // お気に入りの状態を切り替える
         newFavoriteStates[teamIndex].isFavorite =
             !newFavoriteStates[teamIndex].isFavorite;
 

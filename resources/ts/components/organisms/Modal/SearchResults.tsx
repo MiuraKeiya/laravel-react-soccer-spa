@@ -34,9 +34,9 @@ export const SearchResults = ({
                 id: result.json_information.team.id,
                 isFavorite: false,
             }));
-
+            
             setFavoriteStatus(initialFavoriteStates);
-        } else if (!loading && favorites.length > 0) {
+        } else if (!loading && favoriteStatus.length > 0) {
             // 既存のfavoriteStatusに追加する
             const updatedFavoriteStatus = favoriteStatus.concat(
                 results
@@ -57,7 +57,7 @@ export const SearchResults = ({
                         ),
                     }))
             );
-
+      
             setFavoriteStatus(updatedFavoriteStatus);
         }
     }, [favorites, results]);
