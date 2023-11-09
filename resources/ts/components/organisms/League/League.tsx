@@ -46,7 +46,8 @@ export const League = () => {
         latestGamesError,
         error,
         rankingsError,
-        teamsError
+        teamsError,
+        paginateError
     );
 
     return (
@@ -93,6 +94,8 @@ export const League = () => {
                                 standingsLoading={loading}
                                 teamsLoading={teamsLoading}
                                 maxSeason={maxSeason}
+                                rankingsLoading={rankingsLoading}
+                                loading={loading}
                             />
                         </div>
                     </>

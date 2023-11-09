@@ -22,6 +22,8 @@ export const Selecter = ({
     standingsLoading,
     teamsLoading,
     maxSeason,
+    rankingsLoading,
+    loading,
 }) => {
     const { id, season } = useParams();
 
@@ -134,6 +136,8 @@ export const Selecter = ({
                     standings={standings}
                     rankings={rankings}
                     maxSeason={maxSeason}
+                    rankingsLoading={rankingsLoading}
+                    loading={loading}
                 />
             )}
             {selectedTab === "teams" && (
