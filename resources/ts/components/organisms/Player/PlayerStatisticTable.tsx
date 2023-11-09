@@ -14,7 +14,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0]
-                                          .substitutes.bench
+                                          .substitutes.bench || 0
                                     : 0}
                             </span>
                         </div>
@@ -50,7 +50,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].cards
-                                          .yellow
+                                          .yellow || 0
                                     : 0}
                             </span>
                         </div>
@@ -62,7 +62,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].cards
-                                          .red
+                                          .red || 0
                                     : 0}
                             </span>
                         </div>
@@ -74,7 +74,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].cards
-                                          .yellowred
+                                          .yellowred || 0
                                     : 0}
                             </span>
                         </div>
@@ -86,7 +86,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].tackles
-                                          .total
+                                          .total || 0
                                     : 0}
                             </span>
                         </div>
@@ -98,7 +98,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].tackles
-                                          .blocks
+                                          .blocks || 0
                                     : 0}
                             </span>
                         </div>
@@ -110,7 +110,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].tackles
-                                          .interceptions
+                                          .interceptions || 0
                                     : 0}
                             </span>
                         </div>
@@ -122,7 +122,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].fouls
-                                          .committed
+                                          .committed || 0
                                     : 0}
                             </span>
                         </div>
@@ -134,7 +134,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].fouls
-                                          .drawn
+                                          .drawn || 0
                                     : 0}
                             </span>
                         </div>
@@ -146,7 +146,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].duels
-                                          .total
+                                          .total || 0
                                     : 0}
                             </span>
                         </div>
@@ -156,7 +156,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].duels
-                                          .won
+                                          .won || 0
                                     : 0}
                             </span>
                         </div>
@@ -166,7 +166,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].goals
-                                          .saves
+                                          .saves || 0
                                     : 0}
                             </span>
                         </div>
@@ -176,7 +176,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].goals
-                                          .conceded
+                                          .conceded || 0
                                     : 0}
                             </span>
                         </div>
@@ -196,7 +196,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].goals
-                                          .total
+                                          .total || 0
                                     : 0}
                             </span>
                         </div>
@@ -220,7 +220,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].shots
-                                          .total
+                                          .total || 0
                                     : 0}
                             </span>
                         </div>
@@ -242,7 +242,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0].passes
-                                          .total
+                                          .total || 0
                                     : 0}
                             </span>
                         </div>
@@ -278,7 +278,7 @@ export const PlayerStatisticTable = ({ statistics }) => {
                                 {team.json_statistics.statistics[0].games
                                     .appearences !== null
                                     ? team.json_statistics.statistics[0]
-                                          .dribbles.attempts
+                                          .dribbles.attempts || 0
                                     : 0}
                             </span>
                         </div>

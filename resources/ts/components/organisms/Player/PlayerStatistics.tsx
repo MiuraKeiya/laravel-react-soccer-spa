@@ -43,7 +43,7 @@ export const PlayerStatistics = ({ statistics }) => {
                                     {team.json_statistics.statistics[0].games
                                         .appearences !== null
                                         ? team.json_statistics.statistics[0]
-                                              .games.appearences
+                                              .games.appearences || 0
                                         : 0}
                                 </span>
                             </Paper>
@@ -91,7 +91,7 @@ export const PlayerStatistics = ({ statistics }) => {
                                     {team.json_statistics.statistics[0].games
                                         .appearences !== null
                                         ? team.json_statistics.statistics[0]
-                                              .goals.total
+                                              .goals.total || 0
                                         : 0}
                                 </span>
                             </Paper>
