@@ -30,7 +30,10 @@ export const SkeletonSquad = () => {
                             {Array(5)
                                 .fill(null)
                                 .map((_, index) => (
-                                    <tr className="text-white border-b border-black h-16">
+                                    <tr
+                                        className="text-white border-b border-black h-16"
+                                        key={index}
+                                    >
                                         <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center space-x-2">
                                                 <SkeletonAtom
@@ -110,7 +113,10 @@ export const SkeletonSquad = () => {
                             {Array(5)
                                 .fill(null)
                                 .map((_, index) => (
-                                    <tr className="text-white border-b border-black h-16">
+                                    <tr
+                                        className="text-white border-b border-black h-16"
+                                        key={index}
+                                    >
                                         <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center space-x-2">
                                                 <SkeletonAtom
@@ -190,7 +196,10 @@ export const SkeletonSquad = () => {
                             {Array(5)
                                 .fill(null)
                                 .map((_, index) => (
-                                    <tr className="text-white border-b border-black h-16">
+                                    <tr
+                                        className="text-white border-b border-black h-16"
+                                        key={index}
+                                    >
                                         <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center space-x-2">
                                                 <SkeletonAtom
@@ -270,7 +279,10 @@ export const SkeletonSquad = () => {
                             {Array(5)
                                 .fill(null)
                                 .map((_, index) => (
-                                    <tr className="text-white border-b border-black h-16">
+                                    <tr
+                                        className="text-white border-b border-black h-16"
+                                        key={index}
+                                    >
                                         <td className="w-[42.375rem]">
                                             <div className="text-[20px] flex items-center space-x-2">
                                                 <SkeletonAtom
