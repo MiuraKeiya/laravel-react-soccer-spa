@@ -1,5 +1,6 @@
 import { useGameDetailsApi } from "../../../hooks/useGameDetailsApi";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
+import { GameStatusHeader } from "./GameStatusHeader";
 import { useParams } from "react-router-dom";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
@@ -39,6 +40,11 @@ export const Games = () => {
     return (
         <Page error={pageError}>
             <div>
+                <GameStatusHeader
+                    games={games}
+                    loading={gamesLoading}
+                    maxSeason={maxSeason}
+                />
                 {gamesLoading ? (
                     <Helmet>
                         <title>Football League</title>
