@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Formations } from "./Formations";
 
 export const Members = ({ games, maxSeason }) => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const Members = ({ games, maxSeason }) => {
             <div className="bg-[#111931] py-1 flex justify-center text-[#EEEEEE] text-[18px] font-bold">
                 ラインナップ
             </div>
+            <Formations games={games} />
             <div className="mt-2 flex sm:space-x-10 flex-col sm:flex-row mx-1 sm:mx-0 space-y-2 sm:space-y-0">
                 <div className="w-full">
                     <div className="bg-[#111931] py-8 flex justify-center border-l-4 border-red-500">
