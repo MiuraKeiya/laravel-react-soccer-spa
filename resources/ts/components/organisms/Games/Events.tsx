@@ -251,7 +251,7 @@ export const Events = ({ games, maxSeason }) => {
                             </span>
                             <span>レフェリー :</span>
                         </div>
-                        <span className="font-bold">
+                        <span className="font-bold w-[10rem] sm:w-[30rem] text-right truncate">
                             {games[0].json_detail?.fixture.referee}
                         </span>
                     </div>
@@ -262,7 +262,7 @@ export const Events = ({ games, maxSeason }) => {
                             </span>
                             <span>スタジアム :</span>
                         </div>
-                        <span className="font-bold">
+                        <span className="font-bold w-[10rem] sm:w-[30rem] text-right truncate">
                             {games[0].json_detail?.fixture.venue.name} (
                             {games[0].json_detail?.fixture.venue.city})
                         </span>

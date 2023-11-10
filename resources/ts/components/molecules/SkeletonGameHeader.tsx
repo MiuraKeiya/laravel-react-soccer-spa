@@ -2,7 +2,7 @@ import { SkeletonAtom } from "../atoms/SkeletonAtom";
 
 export const SkeletonGameHeader = () => {
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center bg-gradient-to-r from-[#1d2233] rounded-t h-60">
             <div className="mb-1">
                 <SkeletonAtom
                     variant={"text"}
