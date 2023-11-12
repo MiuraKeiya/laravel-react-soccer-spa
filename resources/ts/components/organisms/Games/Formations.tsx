@@ -3,16 +3,18 @@ import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColo
 import { getPlayerRatingsByTeam } from "../../../functions/FieldUtils/getPlayerRatingsByTeam";
 import { createPlayerElementsForLineup } from "../../../functions/FieldUtils/createPlayerElementsForLineup";
 
-export const Formations = ({ games }) => {
+export const Formations = ({ games, season }) => {
     const homePlayerElements = createPlayerElementsForLineup(
         games[0].json_detail.lineups[0],
         true,
-        games
+        games,
+        season
     );
     const awayPlayerElements = createPlayerElementsForLineup(
         games[0].json_detail.lineups[1],
         false,
-        games
+        games,
+        season
     );
 
     // 選手の評価を取得

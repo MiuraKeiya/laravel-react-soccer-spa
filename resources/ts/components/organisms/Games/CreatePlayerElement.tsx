@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
 import ReactCardFlip from "react-card-flip";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
@@ -18,9 +19,16 @@ export const CreatePlayerElement = (
     teamColor,
     numberColor,
     teamColorForGK,
-    numberColorForGK
+    numberColorForGK,
+    season
 ) => {
     const [isFlipped, setIsFlipped] = useState(false);
+
+    // 選手詳細ページへの遷移
+    const navigate = useNavigate();
+    const handlePlayerClick = (id, season) => {
+        navigate(`/player/${id}/season/${season}`);
+    };
 
     const handleMouseEnter = () => {
         setIsFlipped(true);
@@ -67,6 +75,7 @@ export const CreatePlayerElement = (
                     className="rounded-full lg:h-[3.5rem] lg:w-[3.5rem] lg:text-[25px] md:h-[2.5rem] md:w-[2.5rem] md:text-[21px] h-6 w-6 cursor-pointer"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handlePlayerClick(player.player.id, season)}
                 />
             </ReactCardFlip>
             <div className="relative">
