@@ -3,7 +3,12 @@ import { getRatingByPlayerId } from "./getRatingByPlayerId";
 import { getPlayerIdsByEvent } from "./getPlayerIdsByEvent";
 import { CreatePlayerElement } from "../../components/organisms/Games/CreatePlayerElement";
 
-export const createPlayerElementsForLineup = (lineup, isHome, games) => {
+export const createPlayerElementsForLineup = (
+    lineup,
+    isHome,
+    games,
+    season
+) => {
     const formation = lineup.formation;
     const teamColors = lineup.team.colors;
 
@@ -55,7 +60,8 @@ export const createPlayerElementsForLineup = (lineup, isHome, games) => {
             teamColor,
             numberColor,
             teamforGKColor,
-            numberforGKColor
+            numberforGKColor,
+            season
         );
     });
 
