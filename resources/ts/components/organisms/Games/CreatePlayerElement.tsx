@@ -88,8 +88,8 @@ export const CreatePlayerElement = (
                     <p>{rating}</p>
                 </div>
                 {shouldShowGoalIcon && (
-                    <div className="w-[1.5rem] h-[1.5rem] hidden lg:flex text-white bg-black rounded-lg border absolute right-[4.6rem] bottom-5 justify-center items-center">
-                        <SportsSoccerIcon />
+                    <div className="w-[1.5rem] h-[1.5rem] hidden lg:flex bg-black rounded-lg border absolute right-[4.6rem] bottom-5 justify-center items-center">
+                        <SportsSoccerIcon style={{ color: "#32CD32" }} />
                     </div>
                 )}
                 {shouldShowYellowCardIcon && !shouldShowRedCardIcon && (
@@ -98,8 +98,8 @@ export const CreatePlayerElement = (
                     </div>
                 )}
                 {shouldShowSubstIcon && (
-                    <div className="w-[1.5rem] h-[1.5rem] hidden lg:flex text-white bg-black rounded-lg border items-center justify-center absolute right-[4.6rem] bottom-[3.2rem]">
-                        <LoopIcon />
+                    <div className="w-[1.5rem] h-[1.5rem] hidden lg:flex bg-black rounded-lg border items-center justify-center absolute right-[4.6rem] bottom-[3.2rem]">
+                        <LoopIcon style={{ color: "#7B68EE" }} />
                     </div>
                 )}
                 {shouldShowRedCardIcon && (

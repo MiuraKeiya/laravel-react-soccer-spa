@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useModal } from "react-hooks-use-modal";
 import { PlayerStatsModal } from "./PlayerStatsModal";
+import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
 
 export const PlayersStats = ({ games, maxSeason }) => {
     // モーダルに渡すId
@@ -144,8 +145,15 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                             0}
                                     </td>
                                     <td className="font-bold">
-                                        {player.statistics[0]?.games.rating ||
-                                            0}
+                                        <div
+                                            className={`rounded-md ${getRatingColorClass(
+                                                player.statistics[0]?.games
+                                                    .rating || 0
+                                            )}`}
+                                        >
+                                            {player.statistics[0]?.games
+                                                .rating || 0}
+                                        </div>
                                     </td>
                                     <td>
                                         {player.statistics[0]?.games.minutes ||

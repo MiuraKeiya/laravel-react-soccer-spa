@@ -14,7 +14,7 @@ export const GamesTitle = ({ games, maxSeason }) => {
     };
 
     return (
-        <div className="bg-gradient-to-r from-[#1d2233] rounded-t h-60 flex justify-center items-center">
+        <div className="bg-gradient-to-tr from-[#1d2233] rounded-t h-60 flex justify-center items-center">
             {games.map((game, index) => (
                 <div
                     key={index}
