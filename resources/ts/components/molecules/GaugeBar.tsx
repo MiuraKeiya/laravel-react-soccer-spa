@@ -11,6 +11,16 @@ export const GaugeBar = ({ homeValue, awayValue, type }) => {
     const showHomeGauge = homeNumericValue !== 0;
     const showAwayGauge = awayNumericValue !== 0;
 
+    // バーの色を決定
+    const homeBarColor =
+        homeNumericValue < awayNumericValue
+            ? "rgba(231, 59, 59, 0.3)"
+            : "#E73B3B";
+    const awayBarColor =
+        homeNumericValue > awayNumericValue
+            ? "rgba(70, 194, 82, 0.3)"
+            : "#46C252";
+
     const [homeRef, homeInView] = useInView({
         triggerOnce: true,
         threshold: 0.2,
@@ -35,27 +45,33 @@ export const GaugeBar = ({ homeValue, awayValue, type }) => {
             <div className="flex justify-center items-center">
                 <div
                     ref={homeRef}
-                    className="rotate-180 bg-[#C8CDCD] h-[10px] w-full rounded-r-lg overflow-hidden"
+                    className="rotate-180 bg-[#060707] h-[10px] w-full rounded-r-lg overflow-hidden"
                 >
                     {showHomeGauge && (
                         <div
-                            className={`rounded-r-lg bg-[#2e42f7] h-full ${
+                            className={`rounded-r-lg h-full ${
                                 homeInView ? "animate-flow-left" : ""
                             }`}
-                            style={{ width: `${homePercentage}%` }}
+                            style={{
+                                width: `${homePercentage}%`,
+                                background: homeBarColor,
+                            }}
                         ></div>
                     )}
                 </div>
                 <div
                     ref={awayRef}
-                    className="bg-[#C8CDCD] h-[10px] w-full rounded-r-lg overflow-hidden"
+                    className="bg-[#060707] h-[10px] w-full rounded-r-lg overflow-hidden"
                 >
                     {showAwayGauge && (
                         <div
-                            className={`rounded-r-lg bg-[#2ffb2c] h-full ${
+                            className={`rounded-r-lg h-full ${
                                 awayInView ? "animate-flow-left" : ""
                             }`}
-                            style={{ width: `${awayPercentage}%` }}
+                            style={{
+                                width: `${awayPercentage}%`,
+                                background: awayBarColor,
+                            }}
                         ></div>
                     )}
                 </div>

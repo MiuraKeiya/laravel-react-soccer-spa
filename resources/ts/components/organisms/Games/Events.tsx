@@ -39,10 +39,14 @@ export const Events = ({ games, maxSeason }) => {
                                         <span>{game.time.elapsed}'</span>
                                         <span>
                                             {game.type === "Goal" && (
-                                                <SportsSoccerIcon />
+                                                <SportsSoccerIcon
+                                                    style={{ color: "#32CD32" }}
+                                                />
                                             )}
                                             {game.type === "subst" && (
-                                                <LoopIcon />
+                                                <LoopIcon
+                                                    style={{ color: "#7B68EE" }}
+                                                />
                                             )}
                                             {game.type === "Card" &&
                                                 game.detail ===
@@ -99,10 +103,14 @@ export const Events = ({ games, maxSeason }) => {
                                         </span>
                                         <span>
                                             {game.type === "Goal" && (
-                                                <SportsSoccerIcon />
+                                                <SportsSoccerIcon
+                                                    style={{ color: "#32CD32" }}
+                                                />
                                             )}
                                             {game.type === "subst" && (
-                                                <LoopIcon />
+                                                <LoopIcon
+                                                    style={{ color: "#7B68EE" }}
+                                                />
                                             )}
                                             {game.type === "Card" &&
                                                 game.detail ===
@@ -119,7 +127,9 @@ export const Events = ({ games, maxSeason }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <span>{game.time.elapsed}'</span>
+                                        <span>
+                                            {game.time.elapsed}'
+                                        </span>
                                     </div>
                                 )}
                         </div>
@@ -145,13 +155,19 @@ export const Events = ({ games, maxSeason }) => {
                                 games[0]?.json_detail.teams.home.name &&
                                 game.time.elapsed > 45 && (
                                     <div className="text-white flex items-center space-x-2 mb-5 sm:text-[20px]">
-                                        <div>{game.time.elapsed}'</div>
+                                        <div>
+                                            {game.time.elapsed}'
+                                        </div>
                                         <span>
                                             {game.type === "Goal" && (
-                                                <SportsSoccerIcon />
+                                                <SportsSoccerIcon
+                                                    style={{ color: "#32CD32" }}
+                                                />
                                             )}
                                             {game.type === "subst" && (
-                                                <LoopIcon />
+                                                <LoopIcon
+                                                    style={{ color: "#7B68EE" }}
+                                                />
                                             )}
                                             {game.type === "Card" &&
                                                 game.detail ===
@@ -212,10 +228,14 @@ export const Events = ({ games, maxSeason }) => {
                                         </span>
                                         <span>
                                             {game.type === "Goal" && (
-                                                <SportsSoccerIcon />
+                                                <SportsSoccerIcon
+                                                    style={{ color: "#32CD32" }}
+                                                />
                                             )}
                                             {game.type === "subst" && (
-                                                <LoopIcon />
+                                                <LoopIcon
+                                                    style={{ color: "#7B68EE" }}
+                                                />
                                             )}
                                             {game.type === "Card" &&
                                                 game.detail ===
@@ -232,7 +252,9 @@ export const Events = ({ games, maxSeason }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <div>{game.time.elapsed}'</div>
+                                        <div>
+                                            {game.time.elapsed}'
+                                        </div>
                                     </div>
                                 )}
                         </div>

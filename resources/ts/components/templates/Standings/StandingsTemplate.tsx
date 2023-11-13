@@ -6,7 +6,7 @@ export const StandingsTemplate = ({
     scrollTopButton,
 }) => {
     return (
-        <div className="bg-black">
+        <div className="bg-[#10161c]">
             <header>{header}</header>
             <aside>{sidebar}</aside>
             <main className="min-h-screen container mx-auto">{children}</main>
