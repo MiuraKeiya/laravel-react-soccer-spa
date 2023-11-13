@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useErrors = (...errors) => {
+export const useErrors = (...errors: any[]): any => {
     const [error, setError] = useState(null);
 
     useEffect(() => {

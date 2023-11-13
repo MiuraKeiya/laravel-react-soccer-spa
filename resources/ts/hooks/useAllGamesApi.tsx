@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { LeagueProps } from "./types/apiTypes";
 
-export const useAllGamesApi = (leagueId, season) => {
+export const useAllGamesApi = ({ leagueId, season }: LeagueProps) => {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
 
