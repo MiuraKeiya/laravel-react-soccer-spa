@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { UseGamesDateApiResult } from "./types/apiTypes";
 /**
  * 試合が行われる日付を全て取得する
  *
  * @returns
  */
-export const useGamesDateApi = () => {
+export const useGamesDateApi = (): UseGamesDateApiResult => {
     const [gamesDate, setGamesDate] = useState([]);
 
     const [gamesDateloading, setGamesDateLoading] = useState(true);
@@ -23,7 +23,7 @@ export const useGamesDateApi = () => {
                 setGamesDate(response.data);
 
                 setGamesDateLoading(false);
-            } catch (error) {
+            } catch (error: any) {
                 console.error("API call error:", error);
                 setGamesDateError(error);
 

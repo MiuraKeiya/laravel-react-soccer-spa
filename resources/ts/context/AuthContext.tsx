@@ -1,50 +1,16 @@
 import axios from "axios";
 import { Loading } from "../components/molecules/Loading";
-import {
-    useContext,
-    createContext,
-    useState,
-    ReactNode,
-    useEffect,
-} from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    email_verified_at: string | null;
-    two_factor_recovery_codes: string | null;
-    two_factor_secret: string | null;
-    created_at: string;
-    updated_at: string | null;
-}
-interface LoginData {
-    email: string;
-    password: string;
-}
-interface RegisterData {
-    email: string;
-    password: string;
-    password_confirmation: string;
-}
-interface authProps {
-    user: User | null;
-    register: (registerData: RegisterData) => Promise<void>;
-    signin: (loginData: LoginData) => Promise<void>;
-    signout: () => Promise<void>;
-}
-interface Props {
-    children: ReactNode;
-}
-interface RouteProps {
-    children: ReactNode;
-    path: string;
-    exact?: boolean;
-}
-interface From {
-    from: Location;
-}
+import {
+    User,
+    LoginData,
+    RegisterData,
+    authProps,
+    Props,
+    RouteProps,
+    PasswordUpdateData,
+} from "./types/authTypes";
 
 const authContext = createContext<authProps | null>(null);
 
@@ -66,7 +32,7 @@ const useProvideAuth = () => {
     const [userLoading, setUserLoading] = useState(true);
 
     // エラーを保持
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
 
     /**
      * 新規登録
@@ -142,7 +108,7 @@ const useProvideAuth = () => {
      * パスワードの更新
      *
      */
-    const passwordUpdate = async (password) => {
+    const passwordUpdate = async (password: PasswordUpdateData) => {
         try {
             await axios.put("/api/user/password", password);
         } catch (error) {
@@ -176,7 +142,7 @@ const useProvideAuth = () => {
                 setUser(response.data);
 
                 setUserLoading(false);
-            } catch (error) {
+            } catch (error: any) {
                 console.error("API call error:", error);
                 setError(error);
                 setUserLoading(false);

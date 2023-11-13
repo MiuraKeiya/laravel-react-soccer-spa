@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from "react";
+import { SidebarContextType, SidebarProviderProps } from "./types/sidebarTypes";
 
-const SidebarContext = createContext([]);
+const SidebarContext = createContext<SidebarContextType | null>(null);
 
 export const useSidebarContext = () => useContext(SidebarContext);
 
-export const SidebarProvider = ({ children }) => {
+export const SidebarProvider = ({ children }: SidebarProviderProps) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const [openFavoriteModal, setOpenFavoriteModal] = useState(false);
@@ -24,7 +25,7 @@ export const SidebarProvider = ({ children }) => {
         setOpenFavoriteModal(false);
     };
 
-    const value = {
+    const value: SidebarContextType = {
         isSidebarOpen,
         toggleSidebar,
         handleOpenFavoriteModal,

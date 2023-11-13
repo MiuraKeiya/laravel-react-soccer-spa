@@ -1,8 +1,14 @@
+import { ReactNode } from "react";
 import { Error } from "./components/organisms/Error/Error";
 import { Unauthorized } from "./components/organisms/Error/Unauthorized";
 import { TooManyRequests } from "./components/organisms/Error/TooManyRequests";
 
-export const Page = ({ error, children }) => {
+type PageProps = {
+    error: any;
+    children: ReactNode;
+};
+
+export const Page = ({ error, children }: PageProps) => {
     // エラーがあれば対応するコンポーネントを表示する
     if (error) {
         switch (error.response?.status) {
