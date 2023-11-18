@@ -22,7 +22,7 @@ export const Player = () => {
 
     return (
         <Page error={error}>
-            <div>
+            <div className="mx-2 sm:mx-0">
                 {loading ? (
                     <Helmet>
                         <title>Football League</title>

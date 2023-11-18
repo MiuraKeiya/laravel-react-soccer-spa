@@ -11,9 +11,9 @@ export const Assist = ({ rankings, rankingsLoading, maxSeason }) => {
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 text-center">
                 アシストランキング
             </div>
-            <div className="bg-[#1d2233] mt-[1px]">
+            <div className="bg-[#1d2233] mt-[1px] overflow-x-auto">
                 {rankings[0].json_assist?.response?.length > 0 ? (
-                    <table className="w-full overflow-x-auto">
+                    <table className="sm:w-full flex-none w-[40rem]">
                         <thead className="bg-[#111931] text-[#C8CDCD] lg:text-[15px] text-[12px]">
                             <tr>
                                 <th className="sm:w-[3rem] w-[2rem]"></th>

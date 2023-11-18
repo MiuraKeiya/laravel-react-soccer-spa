@@ -10,7 +10,7 @@ export const StandingsHome = ({ standings, teamIds, maxSeason, loading }) => {
 
     return (
         <div className="bg-[#1d2233] overflow-x-auto">
-            <table className="w-full">
+            <table className="sm:w-full w-[50rem]">
                 <thead className="bg-[#111931] text-[#C8CDCD] text-[12px] font-bold">
                     <tr>
                         <th className="w-11"></th>
