@@ -29,7 +29,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
             <div className="bg-[#1d2233] rounded-t h-12 flex items-center lg:space-x-8 space-x-3 mt-2">
                 <Button
                     onClick={handleScorerClick}
-                    style={`lg:text-[15px] text-[13px] font-bold rounded-lg px-2 py-1 ml-6 ${
+                    style={`sm:text-[15px] text-[12px] font-bold rounded-lg px-2 py-1 ml-6 ${
                         selectedTab === "scorer"
                             ? "bg-[#7A84FF] text-[#7A84FF] cursor-default bg-opacity-20 border border-[#7A84FF] transition-all duration-300"
                             : "bg-[#10161c] text-[#C8CDCD] hover:bg-[#7A84FF] border border-black hover:bg-opacity-20 hover:border hover:border-[#1d2233] transition-all duration-300"
@@ -39,7 +39,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleAssistClick}
-                    style={`lg:text-[15px] text-[13px] font-bold rounded-lg px-2 py-1 ${
+                    style={`sm:text-[15px] text-[12px] font-bold rounded-lg px-2 py-1 ${
                         selectedTab === "assist"
                             ? "bg-[#7A84FF] text-[#7A84FF] cursor-default bg-opacity-20 border border-[#7A84FF] transition-all duration-300"
                             : "bg-[#10161c] text-[#C8CDCD] hover:bg-[#7A84FF] border border-black hover:bg-opacity-20 hover:border hover:border-[#1d2233] transition-all duration-300"
@@ -49,7 +49,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleYellowClick}
-                    style={`lg:text-[15px] text-[13px] font-bold rounded-lg px-2 py-1 ${
+                    style={`sm:text-[15px] text-[12px] font-bold rounded-lg px-2 py-1 ${
                         selectedTab === "yellow"
                             ? "bg-[#7A84FF] text-[#7A84FF] cursor-default bg-opacity-20 border border-[#7A84FF] transition-all duration-300"
                             : "bg-[#10161c] text-[#C8CDCD] hover:bg-[#7A84FF] border border-black hover:bg-opacity-20 hover:border hover:border-[#1d2233] transition-all duration-300"
@@ -59,7 +59,7 @@ export const RankingSelecter = ({ rankings, rankingsLoading, maxSeason }) => {
                 </Button>
                 <Button
                     onClick={handleRedClick}
-                    style={`lg:text-[15px] text-[13px] font-bold rounded-lg px-2 py-1 ${
+                    style={`sm:text-[15px] text-[12px] font-bold rounded-lg px-2 py-1 ${
                         selectedTab === "red"
                             ? "bg-[#7A84FF] text-[#7A84FF] cursor-default bg-opacity-20 border border-[#7A84FF] transition-all duration-300"
                             : "bg-[#10161c] text-[#C8CDCD] hover:bg-[#7A84FF] border border-black hover:bg-opacity-20 hover:border hover:border-[#1d2233] transition-all duration-300"

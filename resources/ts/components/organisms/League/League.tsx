@@ -52,7 +52,7 @@ export const League = () => {
 
     return (
         <Page error={pageError}>
-            <div>
+            <div className="mx-2 sm:mx-0">
                 {latestGamesLoading ? (
                     <Helmet>
                         <title>Football League</title>

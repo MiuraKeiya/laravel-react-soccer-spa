@@ -39,7 +39,7 @@ export const Standings = () => {
                     </title>
                 </Helmet>
             )}
-            <div>
+            <div className="mx-2 sm:mx-0">
                 {!loading && !rankingsLoading && !rankings.length ? (
                     <NoData
                         season={season}

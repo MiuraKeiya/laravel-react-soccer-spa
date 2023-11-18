@@ -77,8 +77,8 @@ export const Games = ({
                                 )
                             }
                         >
-                            <div className="flex items-center w-52 justify-end lg:space-x-6 space-x-2">
-                                <p className="text-white lg:text-[15px] text-[12px]">
+                            <div className="flex items-center sm:w-52 w-[7rem] justify-end lg:space-x-6 space-x-2">
+                                <p className="text-white lg:text-[15px] text-[12px] truncate">
                                     {game.json_detail.teams.home.name}
                                 </p>
                                 <img
@@ -101,13 +101,13 @@ export const Games = ({
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center w-52 lg:space-x-6 space-x-2">
+                            <div className="flex items-center sm:w-52 w-[7rem] lg:space-x-6 space-x-2">
                                 <img
                                     src={game.json_detail.teams.away.logo}
                                     alt="league"
                                     className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
-                                <p className="text-white lg:text-[15px] text-[12px]">
+                                <p className="text-white lg:text-[15px] text-[12px] truncate">
                                     {game.json_detail.teams.away.name}
                                 </p>
                             </div>

@@ -7,13 +7,16 @@ export const TeamInformations = ({ informations, loading }) => {
                 <Loading />
             ) : (
                 informations.map((item, index) => (
-                    <div key={index} className="flex justify-center">
+                    <div
+                        key={index}
+                        className="flex justify-center mx-2 sm:mx-0"
+                    >
                         <div className="flex items-center lg:justify-center space-x-6 my-5">
-                            <div className="border rounded-xl bg-black">
+                            <div className="border-2 border-[#3e4145] rounded-xl bg-black">
                                 <img
                                     src={item.json_information.team.logo}
                                     alt="team"
-                                    className="lg:h-24 lg:w-24 h-[5rem]"
+                                    className="sm:h-24 sm:w-24 h-[4rem] w-[4rem]"
                                 />
                             </div>
                             <div className="text-[#EEEEEE] flex items-center space-x-11">
@@ -24,7 +27,7 @@ export const TeamInformations = ({ informations, loading }) => {
                                     <div className="flex items-center lg:space-x-16 pt-3">
                                         <div>
                                             <p>創立年:</p>
-                                            <p className="font-bold">
+                                            <p className="font-bold text-[13px] sm:text-[15px]">
                                                 {
                                                     item.json_information.team
                                                         .founded
@@ -32,14 +35,14 @@ export const TeamInformations = ({ informations, loading }) => {
                                                 年
                                             </p>
                                             <p>略称:</p>
-                                            <p className="font-bold">
+                                            <p className="font-bold text-[13px] sm:text-[15px]">
                                                 {
                                                     item.json_information.team
                                                         .code
                                                 }
                                             </p>
                                             <p>国/都市:</p>
-                                            <p className="font-bold sm:w-[10rem] w-[8rem] truncate">
+                                            <p className="font-bold sm:w-[10rem] w-[8rem] truncate text-[13px] sm:text-[15px]">
                                                 {
                                                     item.json_information.team
                                                         .country
@@ -53,21 +56,21 @@ export const TeamInformations = ({ informations, loading }) => {
                                         </div>
                                         <div>
                                             <p>スタジアム:</p>
-                                            <p className="font-bold">
+                                            <p className="font-bold text-[13px] sm:text-[15px] sm:w-[14rem] w-[8rem] truncate">
                                                 {
                                                     item.json_information.venue
                                                         .name
                                                 }
                                             </p>
                                             <p>グラウンド表面:</p>
-                                            <p className="font-bold">
+                                            <p className="font-bold text-[13px] sm:text-[15px]">
                                                 {
                                                     item.json_information.venue
                                                         .surface
                                                 }
                                             </p>
                                             <p>収容人数:</p>
-                                            <p className="font-bold">
+                                            <p className="font-bold text-[13px] sm:text-[15px]">
                                                 {
                                                     item.json_information.venue
                                                         .capacity
