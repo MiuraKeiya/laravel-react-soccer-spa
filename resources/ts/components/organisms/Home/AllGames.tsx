@@ -24,7 +24,7 @@ export const AllGames = ({ games, loading, maxSeason }) => {
     };
     console.log(loading);
     return (
-        <div className="bg-[#1d2233]">
+        <div className="bg-[#1d2233] rounded-lg shadow-md shadow-[#121313]">
             {Object.keys(games).length === 0 && !loading ? (
                 <div className="flex justify-center items-center h-[20rem] mt-2">
                     <Message style={"text-[18px] text-[#C8CDCD]"}>
@@ -84,7 +84,7 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                             {leagueGames.map((game, gameIndex) => (
                                 <div
                                     key={gameIndex}
-                                    className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
+                                    className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-300 h-[4rem]"
                                     onClick={() =>
                                         handleGameClick(
                                             game.json_detail.fixture.id,

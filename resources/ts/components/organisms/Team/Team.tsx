@@ -65,7 +65,7 @@ export const Team = () => {
             {!teamLoading && !informations.length ? (
                 <NoData season={season} name={"チーム"} id={id} url={"/team"} />
             ) : (
-                <div>
+                <div className="mx-2 sm:mx-0">
                     <div className="mt-6">
                         <TeamInformations
                             informations={informations}

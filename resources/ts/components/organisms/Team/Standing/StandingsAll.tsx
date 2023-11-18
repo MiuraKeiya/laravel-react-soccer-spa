@@ -42,46 +42,46 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                             >
                                 <td>
                                     <div
-                                        className={`mx-2 rounded ${
+                                        className={`mx-2 rounded font-semibold ${
                                             standing.description ===
                                             "Promotion - Champions League (Group Stage: )"
-                                                ? "bg-[#81319c]"
+                                                ? "bg-[#81319c] text-black"
                                                 : standing.description ===
                                                   "Promotion - Europa League (Group Stage: )"
-                                                ? "bg-[#276e8d]"
+                                                ? "bg-[#276e8d] text-black"
                                                 : standing.description ===
                                                   "Promotion - Europa Conference League (Qualification: )"
-                                                ? "bg-[#787822]"
+                                                ? "bg-[#787822] text-black"
                                                 : standing.description ===
                                                   "Relegation - Championship"
-                                                ? "bg-[#a62b1b]"
+                                                ? "bg-[#a62b1b] text-black"
                                                 : standing.description ===
                                                   "Promotion - Champions League (Qualification: )"
-                                                ? "bg-blue-600"
+                                                ? "bg-blue-600 text-black"
                                                 : standing.description ===
                                                   "Relegation - Ligue 2"
-                                                ? "bg-[#a62b1b]"
+                                                ? "bg-[#a62b1b] text-black"
                                                 : standing.description ===
                                                   "Promotion - Europa Conference League (Group Stage: )"
-                                                ? "bg-green-600"
+                                                ? "bg-green-600 text-black"
                                                 : standing.description ===
                                                   "Bundesliga (Relegation)"
-                                                ? "bg-gray-500"
+                                                ? "bg-gray-500 text-black"
                                                 : standing.description ===
                                                   "Relegation - 2. Bundesliga"
-                                                ? "bg-[#a62b1b]"
+                                                ? "bg-[#a62b1b] text-black"
                                                 : standing.description ===
                                                   "Serie A (Additional match: )"
-                                                ? "bg-gray-500"
+                                                ? "bg-gray-500 text-black"
                                                 : standing.description ===
                                                   "Relegation - Serie B"
-                                                ? "bg-[#a62b1b]"
+                                                ? "bg-[#a62b1b] text-black"
                                                 : standing.description ===
                                                   "Relegation - LaLiga2"
-                                                ? "bg-[#a62b1b]"
+                                                ? "bg-[#a62b1b] text-black"
                                                 : standing.description ===
                                                   "Ligue 1 (Promotion - Play Offs: )"
-                                                ? "bg-gray-500"
+                                                ? "bg-gray-500 text-black"
                                                 : ""
                                         }`}
                                     >
@@ -95,7 +95,7 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                                             className="lg:w-8 lg:h-8 h-[23px]"
                                         />
                                         <Link
-                                            className="lg:text-[16px] text-[14px] ml-1 hover:underline font-bold pr-5 lg:pr-0"
+                                            className="lg:text-[16px] text-[14px] ml-1 hover:underline font-bold pr-5 lg:pr-0 truncate"
                                             to={`/team/${standing.team.id}/season/${maxSeason}`}
                                         >
                                             {standing.team.name}
@@ -143,15 +143,15 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                                                         className="flex items-center justify-center h-5 w-5 sm:mx-[1px]"
                                                     >
                                                         <span
-                                                            className={`text-white h-full w-full flex items-center justify-center ${
+                                                            className={`text-black font-semibold h-full w-full flex items-center justify-center ${
                                                                 char === "W"
-                                                                    ? "bg-[#00A83F]"
+                                                                    ? "bg-[#44C486]"
                                                                     : char ===
                                                                       "D"
-                                                                    ? "bg-[#F3A000]"
+                                                                    ? "bg-[#9198AC]"
                                                                     : char ===
                                                                       "L"
-                                                                    ? "bg-[#DC0000]"
+                                                                    ? "bg-[#E66F5D]"
                                                                     : ""
                                                             }`}
                                                         >

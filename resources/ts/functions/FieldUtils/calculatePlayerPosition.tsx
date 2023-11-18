@@ -181,26 +181,72 @@ export const calculatePlayerPosition = (formation, isHome, grid) => {
             "5:2": { x: 40, y: 26 }, // FW!
             "5:1": { x: 40, y: 63 }, // 左W!
         },
+        "4-4-1-1": {
+            "1:1": { x: 4.5, y: 45.5 }, // GK
+            "2:4": { x: 12, y: 77 }, // 右サイドバック
+            "2:3": { x: 12, y: 60 }, // 右DF
+            "2:2": { x: 12, y: 16 }, // 左DF
+            "2:1": { x: 12, y: 33 }, // 左サイドバック
+            "3:4": { x: 33, y: 77 }, // 右MF!
+            "3:3": { x: 26, y: 62 }, // MF!
+            "3:2": { x: 26, y: 31 }, // 左MF!
+            "3:1": { x: 33, y: 16 }, // 右W
+            "4:1": { x: 30, y: 45.5 }, // FW!
+            "5:1": { x: 40, y: 45.5 }, // 左W!
+        },
+        "3-5-2": {
+            "1:1": { x: 4.5, y: 45.5 }, // GK
+            "2:3": { x: 14, y: 70 }, // 右サイドバック
+            "2:2": { x: 14, y: 45.5 }, // 右DF
+            "2:1": { x: 14, y: 19 }, // 左DF
+            "3:5": { x: 23, y: 45.5 }, // 左サイドバック
+            "3:4": { x: 31, y: 76 }, // 右MF!
+            "3:3": { x: 31, y: 55 }, // MF!
+            "3:2": { x: 31, y: 35 }, // 左MF!
+            "3:1": { x: 31, y: 12.5 }, // 右W
+            "4:2": { x: 40, y: 26 }, // FW!
+            "4:1": { x: 40, y: 63 }, // 左W!
+        },
+        "4-5-1": {
+            "1:1": { x: 4.5, y: 45.5 }, // GK
+            "2:4": { x: 12, y: 75 }, // 右サイドバック
+            "2:3": { x: 12, y: 58 }, // 右DF
+            "2:2": { x: 12, y: 31 }, // 左DF
+            "2:1": { x: 12, y: 14 }, // 左サイドバック
+            "3:5": { x: 26, y: 75 }, // 右MF!
+            "3:4": { x: 26, y: 31 }, // MF!
+            "3:3": { x: 26, y: 45.5 }, // 左MF!
+            "3:2": { x: 26, y: 60 }, // 右W
+            "3:1": { x: 26, y: 14 }, // FW!
+            "4:1": { x: 40, y: 45.5 }, // 左W!
+        },
+        "4-1-3-2": {
+            "1:1": { x: 4.5, y: 45.5 }, // GK!
+            "2:4": { x: 14, y: 76 }, // 右サイドバック!
+            "2:3": { x: 14, y: 60 }, // 右DF!
+            "2:2": { x: 14, y: 32 }, // 左DF!
+            "2:1": { x: 14, y: 13 }, // 左サイドバック!
+            "3:1": { x: 21, y: 45.5 }, // 右MF!
+            "4:3": { x: 30, y: 76 }, // 左MF!
+            "4:2": { x: 34, y: 45.5 }, // 左W!
+            "4:1": { x: 30, y: 13 }, // センターMF!
+            "5:1": { x: 40, y: 29 }, // 右W!
+            "5:2": { x: 40, y: 60 }, // FW
+        },
     };
+
+    if (formation === null || grid === null || !basePositions[formation]) {
+        return { x: null, y: null };
+    }
 
     // 選手がhomeの場合、x座標はそのまま、awayの場合はフィールド幅から引く
     const playerX = isHome
-        ? basePositions[formation]
-            ? basePositions[formation][grid].x
-            : basePositions["4-2-3-1"][grid].x
-        : fieldWidth -
-          (basePositions[formation]
-              ? basePositions[formation][grid].x
-              : basePositions["4-2-3-1"][grid].x);
+        ? basePositions[formation][grid].x
+        : fieldWidth - basePositions[formation][grid].x;
 
     const playerY = isHome
-        ? basePositions[formation]
-            ? basePositions[formation][grid].y
-            : basePositions["4-2-3-1"][grid].y
-        : fieldHeight -
-          (basePositions[formation]
-              ? basePositions[formation][grid].y
-              : basePositions["4-2-3-1"][grid].y);
+        ? basePositions[formation][grid].y
+        : fieldHeight - basePositions[formation][grid].y;
 
     // レスポンシブ対応: フィールドサイズに合わせて位置を調整
     const responsiveX = (playerX / 100) * fieldWidth;

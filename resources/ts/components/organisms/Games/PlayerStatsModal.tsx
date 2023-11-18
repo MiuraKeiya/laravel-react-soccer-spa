@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
 
 export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
     const navigate = useNavigate();
@@ -43,7 +44,18 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                             </span>
                         </div>
                         <span className="text-[12px] font-bold text-[#EEEEEE]">
-                            第{league.json_detail.league.round.match(/\d+/)}節
+                            {league.json_detail.league.round ===
+                            "Relegation Round"
+                                ? "降格戦"
+                                : league.json_detail.league.round ===
+                                  "Relegation Decider"
+                                ? "追加試合"
+                                : league.json_detail.league.round &&
+                                  league.json_detail.league.round.match(/\d+/)
+                                ? `第${league.json_detail.league.round.match(
+                                      /\d+/
+                                  )}節`
+                                : league.json_detail.league.round}
                         </span>
                     </div>
                 ))}
@@ -125,7 +137,12 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                 </div>
                                                 <div>
                                                     <span>総評価: </span>
-                                                    <span className="font-bold text-[#B0EE1B]">
+                                                    <span
+                                                        className={`font-bold text-white ${getRatingColorClass(
+                                                            player.statistics[0]
+                                                                .games.rating
+                                                        )} py-[5px] px-[5px] rounded-lg`}
+                                                    >
                                                         {player.statistics[0]
                                                             .games.rating ||
                                                             "評価なし"}

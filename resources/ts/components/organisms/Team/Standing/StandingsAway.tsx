@@ -46,7 +46,7 @@ export const StandingsAway = ({ standings, teamIds, maxSeason, loading }) => {
                                             className="lg:w-8 lg:h-8 h-[23px]"
                                         />
                                         <Link
-                                            className="lg:text-[16px] text-[14px] ml-1 hover:underline font-bold"
+                                            className="lg:text-[16px] text-[14px] ml-1 hover:underline font-bold truncate"
                                             to={`/team/${standing.team.id}/season/${maxSeason}`}
                                         >
                                             {standing.team.name}

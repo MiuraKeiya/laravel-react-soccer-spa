@@ -25,14 +25,28 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                 <div className="flex justify-between mt-3">
                                     <div className="flex space-x-1">
                                         <p className="text-[#EEEEEE] font-bold lg:text-[16px] text-[14px]">
-                                            第
-                                            {game.json_detail.league.round.match(
-                                                /\d+/
-                                            )}
-                                            節:{" "}
-                                            {formatDatePart(
-                                                game.json_detail.fixture.date
-                                            )}
+                                            {game.json_detail.league.round ===
+                                            "Relegation Round"
+                                                ? "降格戦"
+                                                : game.json_detail.league
+                                                      .round ===
+                                                  "Relegation Decider"
+                                                ? "追加試合"
+                                                : game.json_detail.league
+                                                      .round &&
+                                                  game.json_detail.league.round.match(
+                                                      /\d+/
+                                                  )
+                                                ? `第${game.json_detail.league.round.match(
+                                                      /\d+/
+                                                  )}節`
+                                                : game.json_detail.league.round}
+                                            <span className="ml-1">
+                                                {formatDatePart(
+                                                    game.json_detail.fixture
+                                                        .date
+                                                )}
+                                            </span>
                                         </p>
                                         <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                             {formatDate(
