@@ -97,7 +97,7 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                     {notStartedGames[leagueName].map((game, gameIndex) => (
                         <div
                             key={gameIndex}
-                            className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-500 h-[4rem]"
+                            className="flex items-center justify-between border-b border-[#111931] text-[16px] hover:bg-[#3d4e81] cursor-pointer transition duration-300 h-[4rem]"
                             onClick={() =>
                                 handleGameClick(
                                     game.json_detail.fixture.id,

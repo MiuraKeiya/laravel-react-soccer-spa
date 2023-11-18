@@ -46,6 +46,10 @@ export const CreatePlayerElement = (
     const shouldShowRedCardIcon = redcard && redcard.includes(player.player.id);
     const shouldShowVarIcon = varIds && varIds.includes(player.player.id);
 
+    if (x === null || y === null) {
+        return <div key={key}></div>;
+    }
+
     return (
         <div
             key={key}

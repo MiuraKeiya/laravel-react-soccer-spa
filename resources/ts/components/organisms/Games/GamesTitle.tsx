@@ -43,7 +43,18 @@ export const GamesTitle = ({ games, maxSeason }) => {
                             </div>
                             <div className="p-1">-</div>
                             <span className="text-[#EEEEEE]">
-                                第{game.json_detail.league.round.match(/\d+/)}節
+                                {game.json_detail.league.round ===
+                                "Relegation Round"
+                                    ? "降格戦"
+                                    : game.json_detail.league.round ===
+                                      "Relegation Decider"
+                                    ? "追加試合"
+                                    : game.json_detail.league.round &&
+                                      game.json_detail.league.round.match(/\d+/)
+                                    ? `第${game.json_detail.league.round.match(
+                                          /\d+/
+                                      )}節`
+                                    : game.json_detail.league.round}
                             </span>
                         </div>
                     </div>

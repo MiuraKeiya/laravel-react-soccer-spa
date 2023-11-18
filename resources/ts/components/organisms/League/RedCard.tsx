@@ -16,11 +16,11 @@ export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
                     <table className="w-full overflow-x-auto">
                         <thead className="bg-[#111931] text-[#C8CDCD] lg:text-[15px] text-[13px]">
                             <tr>
-                                <th className="sm:w-7"></th>
+                                <th className="sm:w-[3rem] w-[2rem]"></th>
                                 <th className="text-left">選手</th>
                                 <th className="text-left">チーム</th>
-                                <th className="w-16 lg:w-[10rem]">カード</th>
-                                <th className="w-16 lg:w-[10rem]">試合数</th>
+                                <th className="w-16 sm:w-[10rem]">カード</th>
+                                <th className="w-16 sm:w-[10rem]">試合数</th>
                             </tr>
                         </thead>
                         {rankings[0].json_red_card?.response?.map(
@@ -30,21 +30,21 @@ export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                         <td className="text-[15px] font-bold">
                                             {index + 1}
                                         </td>
-                                        <td>
+                                        <td className="sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
                                                     src={red.player.photo}
                                                     className="w-8 h-8 rounded-full"
                                                 />
                                                 <Link
-                                                    className="lg:text-[15px] text-[13px] font-bold text-white ml-1 hover:underline"
+                                                    className="lg:text-[15px] text-[13px] font-bold text-white ml-1 hover:underline truncate"
                                                     to={`/player/${red.player.id}/season/${maxSeason}`}
                                                 >
                                                     {red.player.name}
                                                 </Link>
                                             </div>
                                         </td>
-                                        <td className="text-[13px]">
+                                        <td className="text-[13px] sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
                                                     src={
@@ -54,7 +54,7 @@ export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                                     className="w-8 h-8"
                                                 />
                                                 <Link
-                                                    className="lg:text-[15px] text-[13px] hover:underline"
+                                                    className="lg:text-[15px] text-[13px] hover:underline truncate"
                                                     to={`/team/${red.statistics[0].team.id}/season/${maxSeason}`}
                                                 >
                                                     {

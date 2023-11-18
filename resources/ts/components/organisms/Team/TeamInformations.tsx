@@ -77,11 +77,6 @@ export const TeamInformations = ({ informations, loading }) => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <img
-                                    src={item.json_information.venue.image}
-                                    alt="team"
-                                    className="h-32 w-56 lg:visible invisible"
-                                /> */}
                             </div>
                         </div>
                     </div>

@@ -54,6 +54,7 @@ export const Standings = () => {
                                 standings={standings}
                                 loading={loading}
                                 season={maxSeason}
+                                id={id}
                             />
                         </div>
                         <div className="mb-6">

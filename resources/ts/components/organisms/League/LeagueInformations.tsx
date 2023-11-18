@@ -20,10 +20,10 @@ export const LeagueInformations = ({ latestGames, loading }) => {
 
     return (
         <div className={`bg-gradient-to-tr ${gradientColor} rounded-t`}>
-            <div className="flex items-center justify-center space-x-1 sm:space-x-5 py-6">
+            <div className="flex items-center justify-center space-x-3 sm:space-x-5 py-6">
                 <img
                     src={latestGames[0]?.json_detail?.league.logo}
-                    className="h-24 w-24 rounded bg-white"
+                    className="sm:h-24 sm:w-24 h-16 w-16 rounded bg-white"
                 />
                 <div>
                     <span className="text-white font-bold text-[30px] uppercase">
