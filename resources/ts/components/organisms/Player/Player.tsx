@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { NoData } from "../NotFound/NoData";
+import { Title } from "./Title";
 import { usePlayerStatisticsApi } from "../../../hooks/usePlayerStatisticsApi";
 import { InformationLoading } from "./Loading/InformationLoading";
 import { PlayerInformations } from "./PlayerInformations";
@@ -34,7 +35,12 @@ export const Player = () => {
                         </title>
                     </Helmet>
                 )}
-                <div className="mt-6">
+                <Title
+                    statistics={statistics}
+                    loading={loading}
+                    season={maxSeason}
+                />
+                <div>
                     {loading ? (
                         <InformationLoading />
                     ) : statistics.length > 0 ? (

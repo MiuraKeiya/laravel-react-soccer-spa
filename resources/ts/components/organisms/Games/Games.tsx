@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
 import { GamesTitle } from "./GamesTitle";
+import { Title } from "./Title";
 import { Selecter } from "./Selecter";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import config from "../../../config";
@@ -39,7 +40,12 @@ export const Games = () => {
 
     return (
         <Page error={pageError}>
-            <div>
+            <div className="mx-2 sm:mx-0">
+                <Title
+                    games={games}
+                    loading={gamesLoading}
+                    season={maxSeason}
+                />
                 <GameStatusHeader
                     games={games}
                     loading={gamesLoading}
@@ -56,7 +62,7 @@ export const Games = () => {
                         </title>
                     </Helmet>
                 )}
-                <div className="mt-6">
+                <div>
                     {gamesLoading ? (
                         <GameHeaderLoading />
                     ) : games.length === 0 ? (

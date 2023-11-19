@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { Title } from "./Title";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { StandingsInformations } from "./StandingsInformations";
@@ -49,7 +50,12 @@ export const Standings = () => {
                     />
                 ) : (
                     <>
-                        <div className="mt-6">
+                        <Title
+                            standings={standings}
+                            loading={loading}
+                            season={maxSeason}
+                        />
+                        <div>
                             <StandingsInformations
                                 standings={standings}
                                 loading={loading}

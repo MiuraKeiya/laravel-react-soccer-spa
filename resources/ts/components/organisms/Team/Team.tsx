@@ -6,6 +6,7 @@ import { useGamesPaginateApi } from "../../../hooks/useGamesPaginateApi";
 import { TeamInformations } from "./TeamInformations";
 import { NoData } from "../NotFound/NoData";
 import { Selecter } from "./Selecter";
+import { Title } from "./Title";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
 import { findMaxSeason } from "../../../functions/Utils";
@@ -66,7 +67,12 @@ export const Team = () => {
                 <NoData season={season} name={"チーム"} id={id} url={"/team"} />
             ) : (
                 <div className="mx-2 sm:mx-0">
-                    <div className="mt-6">
+                    <Title
+                        teams={informations}
+                        loading={teamLoading}
+                        season={maxSeason}
+                    />
+                    <div>
                         <TeamInformations
                             informations={informations}
                             loading={teamLoading}

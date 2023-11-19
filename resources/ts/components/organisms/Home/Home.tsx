@@ -13,6 +13,7 @@ import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
 import { Helmet } from "react-helmet-async";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 export const Home = () => {
     const {
@@ -42,7 +43,11 @@ export const Home = () => {
             <Helmet>
                 <title>サッカー欧州5大リーグ試合一覧</title>
             </Helmet>
-            <div className="flex space-x-5 mt-6 mx-2">
+            <div className="text-gray-500 my-[4px] text-[12px] font-bold sm:mx-0 mx-2 flex items-center">
+                試合のスコアと今日のスケジュール
+                <ArrowRightIcon />
+            </div>
+            <div className="flex space-x-5 sm:mx-0 mx-2">
                 <div className="w-full">
                     <div>
                         <HomeInformations />
