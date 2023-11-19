@@ -11,7 +11,7 @@ export const NoGameData = () => {
     };
 
     return (
-        <div className="text-[#C8CDCD] font-semibold flex justify-center items-center mt-12 bg-[#1d2233] rounded-md">
+        <div className="text-[#C8CDCD] font-semibold flex justify-center items-center bg-[#1d2233] rounded-md">
             <div className="my-8">
                 <div className="flex items-center">
                     <p>試合データが存在しません。</p>

@@ -5,6 +5,7 @@ import { useLeagueGamesPaginateApi } from "../../../hooks/useLeagueGamesPaginate
 import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import { useLeagueTeamsApi } from "../../../hooks/useLeagueTeamsApi";
 import { LeagueInformations } from "./LeagueInformations";
+import { Title } from "./Title";
 import { NoData } from "../NotFound/NoData";
 import { Page } from "../../../Page";
 import { useErrors } from "../../../hooks/useErrors";
@@ -73,7 +74,11 @@ export const League = () => {
                     />
                 ) : (
                     <>
-                        <div className="mt-6">
+                        <Title
+                            leagues={latestGames}
+                            loading={latestGamesLoading}
+                        />
+                        <div>
                             <LeagueInformations
                                 latestGames={latestGames}
                                 loading={latestGamesLoading}
