@@ -5,7 +5,6 @@ export const Loading = () => {
         <div className="bg-[#111931] flex justify-center min-h-screen">
             <div className="flex flex-col items-center space-y-3 mt-[8rem]">
                 <CircularProgress color="secondary" />
-                <p className="text-white">ローディング...</p>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useTeamInformations = (teamId, season) => {
     const [informations, setInformations] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {

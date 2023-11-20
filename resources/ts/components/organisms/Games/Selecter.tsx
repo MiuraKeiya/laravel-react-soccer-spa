@@ -84,14 +84,28 @@ export const Selecter = ({
             {selectedTab === "rating" && (
                 <TopPlayers games={games} maxSeason={maxSeason} />
             )}
-            {selectedTab === "standings" && (
-                <StandingsSelecter
-                    standings={standings}
-                    teamIds={teamIds}
-                    maxSeason={maxSeason}
-                    loading={standingsLoading}
-                />
-            )}
+            {selectedTab === "standings" &&
+                (standings.all.length > 0 ? (
+                    <StandingsSelecter
+                        standings={standings}
+                        teamIds={teamIds}
+                        maxSeason={maxSeason}
+                        loading={standingsLoading}
+                    />
+                ) : (
+                    <div className="bg-[#1d2233] py-4 px-4 mt-3 rounded-lg">
+                        <div className="bg-[#10161c] rounded-lg">
+                            <div className="px-3 py-3">
+                                <p className="text-[#EEEEEE]">
+                                    順位データが存在しません。
+                                </p>
+                                <p className="text-[#EEEEEE]">
+                                    URLにタイプミスがないかご確認ください。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
         </>
     );
 };
