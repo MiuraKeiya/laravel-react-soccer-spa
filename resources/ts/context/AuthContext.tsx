@@ -155,6 +155,7 @@ const useProvideAuth = () => {
     return {
         user,
         userLoading,
+        error,
         register,
         signin,
         signout,

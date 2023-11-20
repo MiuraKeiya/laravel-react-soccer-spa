@@ -2,81 +2,76 @@ import { SkeletonAtom } from "../atoms/SkeletonAtom";
 
 export const SkeletonTeam = () => {
     return (
-        <div className="flex justify-center">
-            <div className="flex items-center space-x-5 my-5">
-                <div className="mr-11">
-                    <SkeletonAtom
-                        variant={"text"}
-                        width={120}
-                        height={190}
-                        backgroundColor={"#4b5563"}
-                        borderRadius={""}
-                    />
-                </div>
-                <div className="flex items-center">
+        <div className="flex justify-center mx-2 sm:mx-0">
+            <div className="flex items-center lg:justify-center space-x-6 my-6 sm:mr-[10rem]">
+                <SkeletonAtom
+                    variant={"text"}
+                    width={100}
+                    height={150}
+                    backgroundColor={"#4b5563"}
+                    borderRadius={""}
+                />
+                <div className="text-[#EEEEEE] flex items-center space-x-11">
                     <div>
                         <SkeletonAtom
                             variant={"text"}
                             width={200}
-                            height={60}
+                            height={40}
                             backgroundColor={"#4b5563"}
                             borderRadius={""}
                         />
-                        <div className="flex items-center mx-5 pt-2">
+                        <div className="flex items-center space-x-16 lg:space-x-[7rem] pt-3">
                             <div>
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={20}
+                                    width={60}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
+
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={10}
+                                    width={60}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
+
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={20}
+                                    width={60}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
+                            </div>
+                            <div>
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={10}
+                                    width={70}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
+
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={20}
+                                    width={70}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
+
                                 <SkeletonAtom
                                     variant={"text"}
-                                    width={160}
-                                    height={10}
+                                    width={70}
+                                    height={40}
                                     backgroundColor={"#4b5563"}
                                     borderRadius={""}
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className="ml-11">
-                        <SkeletonAtom
-                            variant={"text"}
-                            width={120}
-                            height={190}
-                            backgroundColor={"#4b5563"}
-                            borderRadius={""}
-                        />
                     </div>
                 </div>
             </div>
