@@ -9,7 +9,7 @@ export const Title = ({ games, loading, season }) => {
                 <TitleLoading />
             ) : games.length > 0 ? (
                 <div className="text-gray-500 my-[4px] text-[12px] font-bold flex items-center">
-                    <Link to="/" className="text-[#7A84FF]">
+                    <Link to="/home" className="text-[#7A84FF]">
                         ホーム
                     </Link>
                     <ArrowRightIcon />

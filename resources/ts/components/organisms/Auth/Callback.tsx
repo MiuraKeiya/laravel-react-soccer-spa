@@ -35,13 +35,15 @@ export const Callback = () => {
             {error ? (
                 <div>
                     <CustomSnackbar message={error} severity="error" />
-                    <Button
-                        variant="outlined"
-                        startIcon={<ArrowBackIosIcon />}
-                        onClick={() => goTo("/login")}
-                    >
-                        ログイン画面へ戻る
-                    </Button>
+                    <div className="mt-10">
+                        <Button
+                            variant="outlined"
+                            startIcon={<ArrowBackIosIcon />}
+                            onClick={() => goTo("/login")}
+                        >
+                            ログイン画面へ戻る
+                        </Button>
+                    </div>
                 </div>
             ) : (
                 <>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress, Button } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export const ModalDeleteAccount = ({ close, user, userLoading }) => {
     const auth = useAuth();
@@ -50,6 +51,10 @@ export const ModalDeleteAccount = ({ close, user, userLoading }) => {
                         <span className="text-[#C8CDCD] text-center">
                             このアカウントを削除してもよろしいですか？
                         </span>
+                        <div className="text-[#C8CDCD] flex items-center space-x-1">
+                            <InfoOutlinedIcon />
+                            <p>同じメールアドレスでは再度登録はできなくなります</p>
+                        </div>
                     </div>
                     <div className="flex flex-col space-y-4 mt-3 items-center">
                         <Button
