@@ -40,7 +40,7 @@ export const Team = () => {
     );
 
     // チーム情報からリーグIDを取得
-    const leagueId = informations[0]?.json_statistics.league.id;
+    const leagueId = informations[0]?.json_statistics?.league?.id;
 
     // 順位一覧を取得
     const { standings, loading, error } = useStandingsApi(leagueId, season);
@@ -63,7 +63,8 @@ export const Team = () => {
                     </title>
                 </Helmet>
             )}
-            {!teamLoading && !informations.length ? (
+            {(!teamLoading && !informations.length) ||
+            (!teamLoading && !informations[0]?.json_statistics?.league?.id) ? (
                 <NoData season={season} name={"チーム"} id={id} url={"/team"} />
             ) : (
                 <div className="mx-2 sm:mx-0">

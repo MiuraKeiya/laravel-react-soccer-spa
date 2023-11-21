@@ -19,7 +19,7 @@ export const EmailVerification = () => {
 
     const [error, setError] = useState("");
 
-    const onSubmit = (data) => {
+    const onSubmit = () => {
         setLoading(true);
         axios.get("/sanctum/csrf-cookie").then(() => {
             sendEmail()
@@ -79,9 +79,9 @@ export const EmailVerification = () => {
                 <Button
                     variant="outlined"
                     startIcon={<ArrowBackIosIcon />}
-                    onClick={() => goTo("/")}
+                    onClick={() => goTo("/home")}
                 >
-                    トップへ戻る
+                    ホームへ
                 </Button>
             </div>
         </div>

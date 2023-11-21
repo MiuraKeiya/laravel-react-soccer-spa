@@ -5,6 +5,7 @@ import config from "../../../config";
 import { findMaxSeason } from "../../../functions/Utils";
 import Drawer from "@mui/material/Drawer";
 import Modal from "@mui/material/Modal";
+
 export const SideBar = () => {
     // サイドバーとお気に入りモーダルの開閉状態を管理
     const {
