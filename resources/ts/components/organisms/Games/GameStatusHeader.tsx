@@ -34,15 +34,33 @@ export const GameStatusHeader = ({ games, loading, maxSeason }) => {
                     />
                     <div className="flex flex-col items-center space-y-2 mt-3">
                         <div className="font-custom text-[#EEEEEE] text-[32px] font-bold flex items-center space-x-2 h-[1rem]">
-                            <p>
+                            <p
+                                className={`${
+                                    games[0]?.json_detail?.teams?.home
+                                        ?.winner === false ||
+                                    games[0]?.json_detail?.teams?.home
+                                        ?.winner === null
+                                        ? "text-[#EEEEEE] text-opacity-60"
+                                        : "text-[#EEEEEE]"
+                                }`}
+                            >
                                 {games[0]?.json_detail?.score?.fulltime?.home}
                             </p>
-                            <p>-</p>
-                            <p>
+                            <p className="text-opacity-60 text-[#EEEEEE]">-</p>
+                            <p
+                                className={`${
+                                    games[0]?.json_detail?.teams?.away
+                                        ?.winner === false ||
+                                    games[0]?.json_detail?.teams?.away
+                                        ?.winner === null
+                                        ? "text-[#EEEEEE] text-opacity-60"
+                                        : "text-[#EEEEEE]"
+                                }`}
+                            >
                                 {games[0]?.json_detail?.score?.fulltime?.away}
                             </p>
                         </div>
-                        <span className="font-bold text-[13px] sm:text-[14px] text-[#EEEEEE]">
+                        <span className="font-bold text-[13px] sm:text-[14px] text-[#EEEEEE] text-opacity-60">
                             {games[0]?.json_detail?.fixture?.status?.long}
                         </span>
                     </div>

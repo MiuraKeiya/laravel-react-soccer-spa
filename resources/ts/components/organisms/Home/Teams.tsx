@@ -73,7 +73,7 @@ export const Teams = ({ teams, loading, season }) => {
                     {teams.length > 1 && (
                         <div className="flex items-center justify-center pb-2">
                             <button
-                                className="text-[#7d40b3] font-semibold text-[14px] hover:underline cursor-pointer flex items-center"
+                                className="text-[#7A84FF] font-semibold text-[14px] hover:underline cursor-pointer flex items-center"
                                 onClick={handleToggleTeamsClick}
                             >
                                 <p>{showAllTeams ? "閉じる" : "全て表示"}</p>

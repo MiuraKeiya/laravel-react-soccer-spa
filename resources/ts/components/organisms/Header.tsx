@@ -94,7 +94,9 @@ export const Header = () => {
                                 },
                             }}
                         >
-                            <span className="text-white">ログアウト</span>
+                            <span className="text-[#EEEEEE] font-semibold">
+                                ログアウト
+                            </span>
                         </Button>
                     </Toolbar>
                 </AppBar>

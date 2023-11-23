@@ -82,7 +82,7 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                             </p>
                         </div>
                         <a
-                            className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
+                            className="mr-3 text-[13px] text-[#7A84FF] underline hover:no-underline cursor-pointer"
                             onClick={() =>
                                 handleStandingsClick(
                                     notStartedGames[leagueName][0].json_detail
@@ -106,9 +106,16 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                                 )
                             }
                         >
-                            <div className="flex items-center space-x-2 ml-2">
-                                <div>
-                                    {formatDate(game.json_detail.fixture.date)}
+                            <div className="flex items-center space-x-2 sm:space-x-3 ml-2">
+                                <div className="flex flex-col items-center">
+                                    <div>
+                                        {formatDate(
+                                            game.json_detail.fixture.date
+                                        )}
+                                    </div>
+                                    <span className="text-[#EEEEEE] text-opacity-40">
+                                        {game.json_detail.fixture.status.short}
+                                    </span>
                                 </div>
                                 <div>
                                     <div className="flex items-center space-x-2">
@@ -119,7 +126,7 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                                             alt="team"
                                             className="h-5 w-5"
                                         />
-                                        <div>
+                                        <div className="font-semibold truncate sm:w-full w-[9rem]">
                                             {game.json_detail.teams.home.name}
                                         </div>
                                     </div>
@@ -131,7 +138,7 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                                             alt="team"
                                             className="h-5 w-5"
                                         />
-                                        <div>
+                                        <div className="font-semibold truncate sm:w-full w-[9rem]">
                                             {game.json_detail.teams.away.name}
                                         </div>
                                     </div>

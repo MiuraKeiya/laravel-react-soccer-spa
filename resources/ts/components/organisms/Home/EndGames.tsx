@@ -5,6 +5,7 @@ import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import { ToolTip } from "../../atoms/ToolTip";
 import SportsIcon from "@mui/icons-material/Sports";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const EndGames = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
@@ -81,18 +82,23 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                 : {leagueName}
                             </p>
                         </div>
-                        <a
-                            className="mr-3 text-[13px] text-[#C8CDCD] underline hover:no-underline cursor-pointer"
-                            onClick={() =>
-                                handleStandingsClick(
-                                    matchFinishedGames[leagueName][0]
-                                        .json_detail.league.id,
-                                    maxSeason
-                                )
-                            }
-                        >
-                            順位表
-                        </a>
+                        <div className="flex">
+                            <p className="text-[#46C252] text-[12px] hidden sm:inline">
+                                FootballLeague ratings
+                            </p>
+                            <a
+                                className="mr-3 text-[13px] text-[#7A84FF] underline hover:no-underline cursor-pointer pl-0 sm:pl-6"
+                                onClick={() =>
+                                    handleStandingsClick(
+                                        matchFinishedGames[leagueName][0]
+                                            .json_detail.league.id,
+                                        maxSeason
+                                    )
+                                }
+                            >
+                                順位表
+                            </a>
+                        </div>
                     </div>
                     {matchFinishedGames[leagueName].map((game, gameIndex) => (
                         <div
@@ -106,9 +112,16 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                 )
                             }
                         >
-                            <div className="flex items-center space-x-2 ml-2">
-                                <div>
-                                    {formatDate(game.json_detail.fixture.date)}
+                            <div className="flex items-center space-x-2 sm:space-x-3 ml-2">
+                                <div className="flex flex-col items-center">
+                                    <div>
+                                        {formatDate(
+                                            game.json_detail.fixture.date
+                                        )}
+                                    </div>
+                                    <span className="text-[#EEEEEE] text-opacity-40">
+                                        {game.json_detail.fixture.status.short}
+                                    </span>
                                 </div>
                                 <div>
                                     <div className="flex items-center space-x-2">
@@ -119,7 +132,14 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                             alt="team"
                                             className="h-5 w-5"
                                         />
-                                        <div>
+                                        <div
+                                            className={`${
+                                                game.json_detail.teams.home
+                                                    .winner === false
+                                                    ? "text-[#EEEEEE] text-opacity-40"
+                                                    : "text-[#EEEEEE]"
+                                            } font-semibold truncate sm:w-full w-[9rem]`}
+                                        >
                                             {game.json_detail.teams.home.name}
                                         </div>
                                     </div>
@@ -131,22 +151,49 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                             alt="team"
                                             className="h-5 w-5"
                                         />
-                                        <div>
+                                        <div
+                                            className={`${
+                                                game.json_detail.teams.away
+                                                    .winner === false
+                                                    ? "text-[#EEEEEE] text-opacity-40"
+                                                    : "text-[#EEEEEE]"
+                                            } font-semibold truncate sm:w-full w-[9rem]`}
+                                        >
                                             {game.json_detail.teams.away.name}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-5 mr-3">
+                                {game.json_detail.fixture.status.short ==
+                                    "FT" && (
+                                    <div className="hidden sm:inline">
+                                        <BarChartIcon className="text-[#46C252]" />
+                                    </div>
+                                )}
                                 <div>
-                                    <div>
+                                    <div
+                                        className={`${
+                                            game.json_detail.teams.home
+                                                .winner === false
+                                                ? "text-[#EEEEEE] text-opacity-40"
+                                                : "text-[#EEEEEE]"
+                                        }`}
+                                    >
                                         {game.json_detail.score.fulltime
                                             .home !== null
                                             ? game.json_detail.score.fulltime
                                                   .home
                                             : "-"}
                                     </div>
-                                    <div>
+                                    <div
+                                        className={`${
+                                            game.json_detail.teams.away
+                                                .winner === false
+                                                ? "text-[#EEEEEE] text-opacity-40"
+                                                : "text-[#EEEEEE]"
+                                        }`}
+                                    >
                                         {game.json_detail.score.fulltime
                                             .away !== null
                                             ? game.json_detail.score.fulltime

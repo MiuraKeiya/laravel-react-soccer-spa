@@ -4,6 +4,7 @@ import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { Message } from "../../atoms/Message";
 import { ToolTip } from "../../atoms/ToolTip";
 import { HomeLoading } from "./HomeLoading";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const AllGames = ({ games, loading, maxSeason }) => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ export const AllGames = ({ games, loading, maxSeason }) => {
     const handleLeagueClick = (leagueId, maxSeason) => {
         navigate(`/league/${leagueId}/season/${maxSeason}`);
     };
-    console.log(loading);
+
     return (
         <div className="bg-[#1d2233] rounded-lg shadow-md shadow-[#121313]">
             {Object.keys(games).length === 0 && !loading ? (
@@ -68,18 +69,23 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                         : {leagueName}
                                     </p>
                                 </div>
-                                <a
-                                    className="mr-3 text-[13px] text-[#EEEEEE] underline hover:no-underline cursor-pointer"
-                                    onClick={() =>
-                                        handleStandingsClick(
-                                            leagueGames[0].json_detail.league
-                                                .id,
-                                            maxSeason
-                                        )
-                                    }
-                                >
-                                    順位表
-                                </a>
+                                <div className="flex">
+                                    <p className="text-[#46C252] text-[12px] hidden sm:inline">
+                                        FootballLeague ratings
+                                    </p>
+                                    <a
+                                        className="mr-3 text-[13px] text-[#7A84FF] underline hover:no-underline cursor-pointer pl-0 sm:pl-6"
+                                        onClick={() =>
+                                            handleStandingsClick(
+                                                leagueGames[0].json_detail
+                                                    .league.id,
+                                                maxSeason
+                                            )
+                                        }
+                                    >
+                                        順位表
+                                    </a>
+                                </div>
                             </div>
                             {leagueGames.map((game, gameIndex) => (
                                 <div
@@ -93,11 +99,20 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                         )
                                     }
                                 >
-                                    <div className="flex items-center space-x-2 ml-2">
-                                        <div>
-                                            {formatDate(
-                                                game.json_detail.fixture.date
-                                            )}
+                                    <div className="flex items-center space-x-2 sm:space-x-3 ml-2">
+                                        <div className="flex flex-col items-center">
+                                            <div>
+                                                {formatDate(
+                                                    game.json_detail.fixture
+                                                        .date
+                                                )}
+                                            </div>
+                                            <span className="text-[#EEEEEE] text-opacity-40">
+                                                {
+                                                    game.json_detail.fixture
+                                                        .status.short
+                                                }
+                                            </span>
                                         </div>
                                         <div>
                                             <div className="flex items-center space-x-2">
@@ -109,7 +124,15 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                                     alt="team"
                                                     className="h-5 w-5"
                                                 />
-                                                <div>
+                                                <div
+                                                    className={`${
+                                                        game.json_detail.teams
+                                                            .home.winner ===
+                                                        false
+                                                            ? "text-[#EEEEEE] text-opacity-40"
+                                                            : "text-[#EEEEEE]"
+                                                    } font-semibold truncate sm:w-full w-[9rem]`}
+                                                >
                                                     {
                                                         game.json_detail.teams
                                                             .home.name
@@ -125,7 +148,15 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                                     alt="team"
                                                     className="h-5 w-5"
                                                 />
-                                                <div>
+                                                <div
+                                                    className={`${
+                                                        game.json_detail.teams
+                                                            .away.winner ===
+                                                        false
+                                                            ? "text-[#EEEEEE] text-opacity-40"
+                                                            : "text-[#EEEEEE]"
+                                                    } font-semibold truncate sm:w-full w-[9rem]`}
+                                                >
                                                     {
                                                         game.json_detail.teams
                                                             .away.name
@@ -135,15 +166,35 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                         </div>
                                     </div>
                                     <div className="flex items-center space-x-5 mr-3">
+                                        {game.json_detail.fixture.status
+                                            .short == "FT" && (
+                                            <div className="hidden sm:inline">
+                                                <BarChartIcon className="text-[#46C252]" />
+                                            </div>
+                                        )}
                                         <div>
-                                            <div>
+                                            <div
+                                                className={`${
+                                                    game.json_detail.teams.home
+                                                        .winner === false
+                                                        ? "text-[#EEEEEE] text-opacity-40"
+                                                        : "text-[#EEEEEE]"
+                                                }`}
+                                            >
                                                 {game.json_detail.score.fulltime
                                                     .home !== null
                                                     ? game.json_detail.score
                                                           .fulltime.home
                                                     : "-"}
                                             </div>
-                                            <div>
+                                            <div
+                                                className={`${
+                                                    game.json_detail.teams.away
+                                                        .winner === false
+                                                        ? "text-[#EEEEEE] text-opacity-40"
+                                                        : "text-[#EEEEEE]"
+                                                }`}
+                                            >
                                                 {game.json_detail.score.fulltime
                                                     .away !== null
                                                     ? game.json_detail.score

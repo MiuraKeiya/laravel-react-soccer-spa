@@ -260,7 +260,7 @@ export const LatestGame = ({ season }) => {
                         </div>
                         <div className="mt-2 flex justify-end">
                             <p
-                                className="text-[#7d40b3] font-semibold text-[14px] hover:underline cursor-pointer"
+                                className="text-[#7A84FF] font-semibold text-[14px] hover:underline cursor-pointer"
                                 onClick={() =>
                                     handleClick(selectedLeague, season)
                                 }
