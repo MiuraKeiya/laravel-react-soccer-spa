@@ -69,7 +69,14 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                     }
                                 >
                                     <div className="flex items-center sm:w-52 w-[7rem] justify-end lg:space-x-6 space-x-2">
-                                        <p className="text-white lg:text-[15px] text-[12px] truncate">
+                                        <p
+                                            className={`${
+                                                game.json_detail.teams.home
+                                                    .winner === false
+                                                    ? "text-white text-opacity-40"
+                                                    : "text-white"
+                                            } lg:text-[15px] text-[12px] truncate font-semibold`}
+                                        >
                                             {game.json_detail.teams.home.name}
                                         </p>
                                         <img
@@ -82,13 +89,27 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                     </div>
                                     <div className="flex items-center space-x-1 mx-6">
                                         <div className="w-11 h-12 bg-[#111931] text-center">
-                                            <p className="text-[#EEEEEE] font-bold text-[30px]">
+                                            <p
+                                                className={`${
+                                                    game.json_detail.teams.home
+                                                        .winner === false
+                                                        ? "text-[#EEEEEE] text-opacity-40"
+                                                        : "text-[#EEEEEE]"
+                                                } font-bold text-[30px]`}
+                                            >
                                                 {game.json_detail.score.fulltime
                                                     .home ?? "-"}
                                             </p>
                                         </div>
                                         <div className="w-11 h-12 bg-[#111931] text-center">
-                                            <p className="text-[#EEEEEE] font-bold text-[30px]">
+                                            <p
+                                                className={`${
+                                                    game.json_detail.teams.away
+                                                        .winner === false
+                                                        ? "text-[#EEEEEE] text-opacity-40"
+                                                        : "text-[#EEEEEE]"
+                                                } font-bold text-[30px]`}
+                                            >
                                                 {game.json_detail.score.fulltime
                                                     .away ?? "-"}
                                             </p>
@@ -102,7 +123,14 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                             alt="league"
                                             className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                         />
-                                        <p className="text-white lg:text-[15px] text-[12px] truncate">
+                                        <p
+                                            className={`${
+                                                game.json_detail.teams.away
+                                                    .winner === false
+                                                    ? "text-white text-opacity-40"
+                                                    : "text-white"
+                                            } lg:text-[15px] text-[12px] truncate font-semibold`}
+                                        >
                                             {game.json_detail.teams.away.name}
                                         </p>
                                     </div>

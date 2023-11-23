@@ -76,7 +76,8 @@ export const Top = () => {
                         </div>
                         <div className="lg:invisible">
                             <span className="text-[#B0EE1B]">
-                                &copy; 2023 Football League
+                                &copy; {new Date().getFullYear()} Football
+                                League
                             </span>
                         </div>
                     </div>

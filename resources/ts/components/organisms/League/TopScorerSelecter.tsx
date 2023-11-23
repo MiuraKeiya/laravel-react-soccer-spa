@@ -54,7 +54,7 @@ export const TopScorerSelecter = ({
                     </Button>
                 </div>
                 {isAnyLoading ? (
-                    <div>
+                    <div className="mr-6">
                         <SkeletonAtom
                             variant={"text"}
                             width={90}

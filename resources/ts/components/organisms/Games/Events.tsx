@@ -76,7 +76,11 @@ export const Events = ({ games, maxSeason }) => {
                                         </span>
                                         {game.assist.name && (
                                             <span>
-                                                (<a>{game.assist.name}</a>)
+                                                (
+                                                <a className="text-white text-opacity-40">
+                                                    {game.assist.name}
+                                                </a>
+                                                )
                                             </span>
                                         )}
                                     </div>
@@ -87,7 +91,11 @@ export const Events = ({ games, maxSeason }) => {
                                     <div className="text-white flex items-center justify-end space-x-2 mb-5 sm:text-[20px]">
                                         {game.assist.name && (
                                             <span>
-                                                (<a>{game.assist.name}</a>)
+                                                (
+                                                <a className="text-white text-opacity-40">
+                                                    {game.assist.name}
+                                                </a>
+                                                )
                                             </span>
                                         )}
                                         <span
@@ -127,9 +135,7 @@ export const Events = ({ games, maxSeason }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <span>
-                                            {game.time.elapsed}'
-                                        </span>
+                                        <span>{game.time.elapsed}'</span>
                                     </div>
                                 )}
                         </div>
@@ -155,9 +161,7 @@ export const Events = ({ games, maxSeason }) => {
                                 games[0]?.json_detail.teams.home.name &&
                                 game.time.elapsed > 45 && (
                                     <div className="text-white flex items-center space-x-2 mb-5 sm:text-[20px]">
-                                        <div>
-                                            {game.time.elapsed}'
-                                        </div>
+                                        <div>{game.time.elapsed}'</div>
                                         <span>
                                             {game.type === "Goal" && (
                                                 <SportsSoccerIcon
@@ -198,7 +202,11 @@ export const Events = ({ games, maxSeason }) => {
                                         <div>
                                             {game.assist.name && (
                                                 <span>
-                                                    (<a>{game.assist.name}</a>)
+                                                    (
+                                                    <a className="text-white text-opacity-40">
+                                                        {game.assist.name}
+                                                    </a>
+                                                    )
                                                 </span>
                                             )}
                                         </div>
@@ -211,7 +219,11 @@ export const Events = ({ games, maxSeason }) => {
                                         <div>
                                             {game.assist.name && (
                                                 <span>
-                                                    (<a>{game.assist.name}</a>)
+                                                    (
+                                                    <a className="text-white text-opacity-40">
+                                                        {game.assist.name}
+                                                    </a>
+                                                    )
                                                 </span>
                                             )}
                                         </div>
@@ -252,9 +264,7 @@ export const Events = ({ games, maxSeason }) => {
                                                 </div>
                                             )}
                                         </span>
-                                        <div>
-                                            {game.time.elapsed}'
-                                        </div>
+                                        <div>{game.time.elapsed}'</div>
                                     </div>
                                 )}
                         </div>

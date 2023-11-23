@@ -14,7 +14,7 @@ export const PlayerInformations = ({ statistics, maxSeason }) => {
     };
 
     return (
-        <div className="bg-gradient-to-r from-[#1d2233] rounded-t sm:h-60 flex items-center justify-center py-3 sm:py-0">
+        <div className="bg-gradient-to-br from-[#1d2233] rounded-t sm:h-60 flex items-center justify-center py-3 sm:py-0">
             {statistics.map((player, index) => (
                 <div key={index}>
                     <div className="flex items-center flex-col sm:flex-row space-x-6 space-y-1 sm:space-y-0">

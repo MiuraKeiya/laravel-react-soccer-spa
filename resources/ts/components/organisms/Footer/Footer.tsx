@@ -57,7 +57,7 @@ export const Footer = () => {
                             </p>
                             <p className="text-[#EEEEEE]">
                                 <span className="font-bold">URL:</span>{" "}
-                                ここにURLが入る
+                                {import.meta.env.VITE_APP_URL}
                             </p>
                             <p className="text-[#bebcbc] text-[14px] lg:pt-6 pt-3">
                                 当サイトを利用したことにより発生した、
@@ -86,7 +86,7 @@ export const Footer = () => {
             </div>
             <div className="bg-[#B0EE1B] h-14 flex items-center justify-center">
                 <span className="text-brack font-semibold">
-                    &copy; 2023 Football League
+                    &copy; {new Date().getFullYear()} Football League
                 </span>
             </div>
         </>

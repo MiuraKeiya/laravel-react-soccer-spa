@@ -54,7 +54,7 @@ export const Selecter = ({
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#1d2233] rounded-b h-14 flex items-center justify-center lg:space-x-16">
+            <div className="bg-gradient-to-br from-[#1d2233] rounded-b h-14 flex items-center justify-center lg:space-x-16">
                 <Button
                     onClick={handleInformationsClick}
                     style={`lg:text-[15px] text-[13px] font-bold rounded px-2 py-1 ${

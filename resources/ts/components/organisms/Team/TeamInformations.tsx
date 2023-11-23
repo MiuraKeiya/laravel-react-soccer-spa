@@ -2,7 +2,7 @@ import { Loading } from "./Loading/Loading";
 
 export const TeamInformations = ({ informations, loading }) => {
     return (
-        <div className="bg-gradient-to-r from-[#1d2233] rounded-t">
+        <div className="bg-gradient-to-tr from-[#1d2233] rounded-t">
             {loading ? (
                 <Loading />
             ) : (

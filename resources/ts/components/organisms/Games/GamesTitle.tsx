@@ -88,15 +88,35 @@ export const GamesTitle = ({ games, maxSeason }) => {
                                 {formatAllDate(game.json_detail.fixture.date)}
                             </span>
                             <div className="sm:text-[50px] text-[35px] font-custom space-x-2">
-                                <span>
+                                <span
+                                    className={`${
+                                        game.json_detail.teams.home.winner ===
+                                            false ||
+                                        game.json_detail.teams.home.winner ===
+                                            null
+                                            ? "text-white text-opacity-40"
+                                            : "text-white"
+                                    }`}
+                                >
                                     {game.json_detail.score.fulltime.home}
                                 </span>
-                                <span>-</span>
-                                <span>
+                                <span className="text-white text-opacity-40">
+                                    -
+                                </span>
+                                <span
+                                    className={`${
+                                        game.json_detail.teams.away.winner ===
+                                            false ||
+                                        game.json_detail.teams.away.winner ===
+                                            null
+                                            ? "text-white text-opacity-40"
+                                            : "text-white"
+                                    }`}
+                                >
                                     {game.json_detail.score.fulltime.away}
                                 </span>
                             </div>
-                            <span className="font-bold text-[13px] sm:text-[16px]">
+                            <span className="font-bold text-[13px] sm:text-[16px] text-white text-opacity-40">
                                 {game.json_detail.fixture.status.long}
                             </span>
                             <div className="flex items-center space-x-1 text-[#EEEEEE] mt-1 sm:w-[12.5rem] w-[7rem] justify-center">

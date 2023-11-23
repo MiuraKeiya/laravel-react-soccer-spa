@@ -12,7 +12,7 @@ export const SkeletonGameHeader = () => {
                     borderRadius={""}
                 />
             </div>
-            <div className="flex items-center justify-center lg:space-x-10">
+            <div className="flex items-center justify-center md:space-x-[8rem]">
                 <SkeletonAtom
                     variant={"circular"}
                     width={140}
