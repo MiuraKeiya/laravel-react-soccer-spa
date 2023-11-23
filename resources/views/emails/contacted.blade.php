@@ -7,4 +7,4 @@
 {!! nl2br($params['message']) !!}<br><br>
 
 <strong>Football League</strong><br>
-ここにURLが入る
+{{ config('api.url') }}
