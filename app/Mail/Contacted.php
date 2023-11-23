@@ -31,12 +31,11 @@ class Contacted extends Mailable
      */
     public function envelope()
     {
-        // あとでenvに設定する
         // 送信元のアドレスと名前を指定
-        $from = new Address('from@example.com', 'お問い合わせフォーム');
+        $from = new Address($this->params['email'], 'お問い合わせフォーム');
 
         // 送信先のアドレスと名前を指定
-        $to = [new Address('admin@example.com', '管理者')];
+        $to = [new Address(config('api.from_email'), '管理者')];
 
         return new Envelope(
             from: $from,
