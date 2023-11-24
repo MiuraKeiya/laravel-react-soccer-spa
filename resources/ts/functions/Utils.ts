@@ -246,3 +246,34 @@ export const leagueLule = (leagueId) => {
             return "";
     }
 };
+
+// 各試合ごとにイベントを検索し、条件に合致する選手を取得する関数
+export const getPlayersWithRedCard = (data) => {
+    const teamRedCardCounts = {};
+
+    for (const league in data) {
+        const leagueMatches = data[league];
+
+        for (const match of leagueMatches) {
+            const matchEvents = match.json_detail.events;
+
+            for (const event of matchEvents) {
+                if (event.type === "Card" && event.detail === "Red Card") {
+                    const teamId = event.team.id;
+
+                    // チームごとのレッドカード数を追跡
+                    teamRedCardCounts[teamId] =
+                        (teamRedCardCounts[teamId] || 0) + 1;
+                }
+            }
+        }
+    }
+
+    // チームごとのレッドカード数を元にプレイヤー情報を構築
+    const redCardPlayers = Object.keys(teamRedCardCounts).map((teamId) => ({
+        teamId: parseFloat(teamId),
+        redCardCount: teamRedCardCounts[teamId],
+    }));
+
+    return redCardPlayers;
+};
