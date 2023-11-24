@@ -2,6 +2,7 @@ import { formatDatePart } from "../../../functions/Utils";
 import { formatDate } from "../../../functions/Utils";
 import { LatestGamesLoading } from "./Loading/LatestGamesLoading";
 import { useNavigate } from "react-router-dom";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const LatestGames = ({ latestGames, latestGamesLoading }) => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                         {latestGames.map((game, index) => (
                             <div key={index} className="text-white">
                                 <div className="flex justify-between mt-3">
-                                    <div className="flex space-x-1">
+                                    <div className="flex space-x-1 items-center">
                                         <p className="text-[#EEEEEE] font-bold lg:text-[16px] text-[14px]">
                                             {game.json_detail.league.round ===
                                             "Relegation Round"
@@ -53,10 +54,24 @@ export const LatestGames = ({ latestGames, latestGamesLoading }) => {
                                                 game.json_detail.fixture.date
                                             )}
                                         </p>
+                                        <p className="text-[#46C252] text-[12px] hidden sm:inline pl-2">
+                                            FootballLeague ratings
+                                        </p>
                                     </div>
-                                    <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
-                                        {game.json_detail.fixture.status.long}
-                                    </p>
+                                    <div className="flex items-center space-x-2">
+                                        {game.json_detail.fixture.status
+                                            .short == "FT" && (
+                                            <div className="hidden sm:inline">
+                                                <BarChartIcon className="text-[#46C252]" />
+                                            </div>
+                                        )}
+                                        <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
+                                            {
+                                                game.json_detail.fixture.status
+                                                    .long
+                                            }
+                                        </p>
+                                    </div>
                                 </div>
                                 <div
                                     className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500"

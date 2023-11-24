@@ -4,6 +4,7 @@ import { formatDatePart } from "../../../../functions/Utils";
 import { formatDate } from "../../../../functions/Utils";
 import LoadingButton from "@mui/lab/LoadingButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import { useNavigate } from "react-router-dom";
 
 export const Games = ({
@@ -39,7 +40,7 @@ export const Games = ({
                 games.map((game, index) => (
                     <div key={index}>
                         <div className="flex justify-between mt-3">
-                            <div className="flex space-x-1">
+                            <div className="flex space-x-1 items-center">
                                 <p className="text-[#EEEEEE] font-bold lg:text-[16px] text-[14px]">
                                     {game.json_detail.league.round ===
                                     "Relegation Round"
@@ -62,10 +63,21 @@ export const Games = ({
                                 <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
                                     {formatDate(game.json_detail.fixture.date)}
                                 </p>
+                                <p className="text-[#46C252] text-[12px] hidden sm:inline pl-2">
+                                    FootballLeague ratings
+                                </p>
                             </div>
-                            <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
-                                {game.json_detail.fixture.status.long}
-                            </p>
+                            <div className="flex items-center space-x-2">
+                                {game.json_detail.fixture.status.short ==
+                                    "FT" && (
+                                    <div className="hidden sm:inline">
+                                        <BarChartIcon className="text-[#46C252]" />
+                                    </div>
+                                )}
+                                <p className="text-[#EEEEEE] lg:text-[16px] text-[14px]">
+                                    {game.json_detail.fixture.status.long}
+                                </p>
+                            </div>
                         </div>
                         <div
                             className="flex bg-[#1d2233] mt-1 justify-center h-[3.25rem] hover:bg-[#3d4e81] cursor-pointer transition duration-500"

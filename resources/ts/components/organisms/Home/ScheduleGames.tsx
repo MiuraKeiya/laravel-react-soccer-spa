@@ -114,7 +114,11 @@ export const ScheduleGames = ({ games, loading, maxSeason }) => {
                                         )}
                                     </div>
                                     <span className="text-[#EEEEEE] text-opacity-40">
-                                        {game.json_detail.fixture.status.short}
+                                        {game.json_detail.fixture.status
+                                            .short !== null
+                                            ? game.json_detail.fixture.status
+                                                  .short
+                                            : "-"}
                                     </span>
                                 </div>
                                 <div>
