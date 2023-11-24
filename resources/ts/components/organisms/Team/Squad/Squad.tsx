@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PositionPieCharts } from "./PositionPieCharts";
 import PeopleIcon from "@mui/icons-material/People";
 import { useNavigate } from "react-router-dom";
 import { getRatingColorClass } from "../../../../functions/FieldUtils/getRatingColorClass";
@@ -43,9 +44,19 @@ export const Squad = ({ squad, loading, maxSeason }) => {
 
     // squadをポジションごとにソート
     const sortedSquad = squad.sort((a, b) => {
-        const positionA = a.json_statistics.statistics[0].games.position;
-        const positionB = b.json_statistics.statistics[0].games.position;
+        const positionA = a.json_statistics.statistics[0]?.games.position;
+        const positionB = b.json_statistics.statistics[0]?.games.position;
 
+        // nullの場合は後ろにソートされるようにする
+        if (positionA === null && positionB === null) {
+            return 0;
+        } else if (positionA === null) {
+            return 1;
+        } else if (positionB === null) {
+            return -1;
+        }
+
+        // それ以外の場合は通常のソートを行う
         return positionPriority[positionA] - positionPriority[positionB];
     });
 
@@ -98,98 +109,115 @@ export const Squad = ({ squad, loading, maxSeason }) => {
                     {loading ? (
                         <ListLoading />
                     ) : (
-                        <table
-                            style={{
-                                backgroundColor: "rgba(14, 17, 21, 0.4)",
-                                border: "1px solid rgba(255, 255, 255, 0.15)",
-                            }}
-                            className="w-full"
-                        >
-                            <thead>
-                                <tr>
-                                    <th
-                                        style={{
-                                            border: "1px solid rgba(255, 255, 255, 0.15)",
-                                            padding: "10px",
-                                        }}
-                                        className="text-left"
-                                    >
-                                        <div className="ml-2">選手</div>
-                                    </th>
-                                    <th
-                                        style={{
-                                            border: "1px solid rgba(255, 255, 255, 0.15)",
-                                            padding: "10px",
-                                        }}
-                                    >
-                                        ポジション
-                                    </th>
-                                    <th
-                                        style={{
-                                            border: "1px solid rgba(255, 255, 255, 0.15)",
-                                            padding: "10px",
-                                        }}
-                                    >
-                                        年齢
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {sortedSquad.map((player, index) => (
-                                    <tr key={index}>
-                                        <td
+                        <>
+                            <div className="mx-3 flex sm:items-center sm:space-x-3 sm:flex-row flex-col">
+                                <h1 className="font-semibold">
+                                    ポジション統計
+                                </h1>
+                                <div className="flex items-center space-x-2 text-[12px] bg-[#10161c] rounded-lg py-2 px-2 w-[24.7rem] sm:mt-0 mt-2">
+                                    <InfoOutlinedIcon />
+                                    <p>
+                                        チーム全体の人数に対する各ポジションの割合を示しています。
+                                    </p>
+                                </div>
+                            </div>
+                            <PositionPieCharts squad={squad} />
+                            <table
+                                style={{
+                                    backgroundColor: "rgba(14, 17, 21, 0.4)",
+                                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                                }}
+                                className="w-full"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th
                                             style={{
                                                 border: "1px solid rgba(255, 255, 255, 0.15)",
-                                                padding: "8px",
+                                                padding: "10px",
                                             }}
-                                            className="hover:bg-slate-800 cursor-pointer transition duration-300 sm:w-[40rem] w-[10rem]"
-                                            onClick={() =>
-                                                handleClick(
-                                                    player.json_statistics
-                                                        .player.id,
-                                                    maxSeason
-                                                )
-                                            }
+                                            className="text-left"
                                         >
-                                            <div className="ml-2 truncate">
-                                                {
-                                                    player.json_statistics
-                                                        .player.name
+                                            <div className="ml-2">選手</div>
+                                        </th>
+                                        <th
+                                            style={{
+                                                border: "1px solid rgba(255, 255, 255, 0.15)",
+                                                padding: "10px",
+                                            }}
+                                        >
+                                            ポジション
+                                        </th>
+                                        <th
+                                            style={{
+                                                border: "1px solid rgba(255, 255, 255, 0.15)",
+                                                padding: "10px",
+                                            }}
+                                        >
+                                            年齢
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {sortedSquad.map((player, index) => (
+                                        <tr key={index}>
+                                            <td
+                                                style={{
+                                                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                                                    padding: "8px",
+                                                }}
+                                                className="hover:bg-slate-800 cursor-pointer transition duration-300 sm:w-[40rem] w-[10rem]"
+                                                onClick={() =>
+                                                    handleClick(
+                                                        player.json_statistics
+                                                            .player.id,
+                                                        maxSeason
+                                                    )
                                                 }
-                                            </div>
-                                        </td>
-                                        <td
-                                            className={`${
-                                                positionColors[
+                                            >
+                                                <div className="ml-2 truncate">
+                                                    {
+                                                        player.json_statistics
+                                                            .player.name
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td
+                                                className={`${
+                                                    positionColors[
+                                                        player.json_statistics
+                                                            .statistics[0].games
+                                                            .position
+                                                    ]
+                                                } p-2 text-center`}
+                                                style={{
+                                                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                                                    padding: "8px",
+                                                }}
+                                            >
+                                                {
                                                     player.json_statistics
                                                         .statistics[0].games
                                                         .position
-                                                ]
-                                            } p-2 text-center`}
-                                            style={{
-                                                border: "1px solid rgba(255, 255, 255, 0.15)",
-                                                padding: "8px",
-                                            }}
-                                        >
-                                            {
-                                                player.json_statistics
-                                                    .statistics[0].games
-                                                    .position
-                                            }
-                                        </td>
-                                        <td
-                                            style={{
-                                                border: "1px solid rgba(255, 255, 255, 0.15)",
-                                                padding: "8px",
-                                            }}
-                                            className="text-center"
-                                        >
-                                            {player.json_statistics.player.age}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                }
+                                            </td>
+                                            <td
+                                                style={{
+                                                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                                                    padding: "8px",
+                                                }}
+                                                className="text-center"
+                                            >
+                                                {
+                                                    player.json_statistics
+                                                        .player.age
+                                                }
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </>
                     )}
                 </div>
             )}

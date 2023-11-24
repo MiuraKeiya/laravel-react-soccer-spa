@@ -2,7 +2,7 @@ import { SkeletonAtom } from "../atoms/SkeletonAtom";
 
 export const SkeletonTeam = () => {
     return (
-        <div className="flex justify-center mx-2 sm:mx-0">
+        <div className="flex justify-center mx-2 sm:mx-0 sm:h-[14.8rem]">
             <div className="flex items-center lg:justify-center space-x-6 my-6 sm:mr-[10rem]">
                 <SkeletonAtom
                     variant={"text"}
