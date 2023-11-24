@@ -4,6 +4,7 @@ import { HomeLoading } from "./HomeLoading";
 import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import { ToolTip } from "../../atoms/ToolTip";
+import { getPlayersWithRedCard } from "../../../functions/Utils";
 import SportsIcon from "@mui/icons-material/Sports";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
@@ -27,6 +28,9 @@ export const EndGames = ({ games, loading, maxSeason }) => {
     const handleStandingsClick = (leagueId, maxSeason) => {
         navigate(`/standings/league/${leagueId}/season/${maxSeason}`);
     };
+
+    // 選手データの取得
+    const playersWithRedCard = getPlayersWithRedCard(games);
 
     // ローディング
     if (loading) {
@@ -142,9 +146,37 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                                     .winner === false
                                                     ? "text-[#EEEEEE] text-opacity-40"
                                                     : "text-[#EEEEEE]"
-                                            } font-semibold truncate sm:w-full w-[9rem]`}
+                                            } font-semibold truncate sm:w-full w-[9rem] flex items-center`}
                                         >
-                                            {game.json_detail.teams.home.name}
+                                            <p className="truncate">
+                                                {
+                                                    game.json_detail.teams.home
+                                                        .name
+                                                }
+                                            </p>
+                                            {playersWithRedCard.map(
+                                                (team, index) => (
+                                                    <div key={index}>
+                                                        {team.teamId ===
+                                                            game.json_detail
+                                                                .teams.home
+                                                                .id && (
+                                                            <div className="flex items-center">
+                                                                <div className="border rounded h-4 w-3 bg-red-600 ml-2"></div>
+                                                                {team.redCardCount >=
+                                                                    2 && (
+                                                                    <p className="text-[#EEEEEE] text-opacity-40 text-[15px] ml-[3px]">
+                                                                        &#x2613;
+                                                                        {
+                                                                            team.redCardCount
+                                                                        }
+                                                                    </p>
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex items-center space-x-2">
@@ -161,9 +193,37 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                                     .winner === false
                                                     ? "text-[#EEEEEE] text-opacity-40"
                                                     : "text-[#EEEEEE]"
-                                            } font-semibold truncate sm:w-full w-[9rem]`}
+                                            } font-semibold truncate sm:w-full w-[9rem] flex items-center`}
                                         >
-                                            {game.json_detail.teams.away.name}
+                                            <p className="truncate">
+                                                {
+                                                    game.json_detail.teams.away
+                                                        .name
+                                                }
+                                            </p>
+                                            {playersWithRedCard.map(
+                                                (team, index) => (
+                                                    <div key={index}>
+                                                        {team.teamId ===
+                                                            game.json_detail
+                                                                .teams.away
+                                                                .id && (
+                                                            <div className="flex items-center">
+                                                                <div className="border rounded h-4 w-3 bg-red-600 ml-2"></div>
+                                                                {team.redCardCount >=
+                                                                    2 && (
+                                                                    <p className="text-[#EEEEEE] text-opacity-40 text-[15px] ml-[3px]">
+                                                                        &#x2613;
+                                                                        {
+                                                                            team.redCardCount
+                                                                        }
+                                                                    </p>
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )
+                                            )}
                                         </div>
                                     </div>
                                 </div>

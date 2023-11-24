@@ -4,6 +4,7 @@ import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { Message } from "../../atoms/Message";
 import { ToolTip } from "../../atoms/ToolTip";
 import { HomeLoading } from "./HomeLoading";
+import { getPlayersWithRedCard } from "../../../functions/Utils";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const AllGames = ({ games, loading, maxSeason }) => {
@@ -23,6 +24,9 @@ export const AllGames = ({ games, loading, maxSeason }) => {
     const handleLeagueClick = (leagueId, maxSeason) => {
         navigate(`/league/${leagueId}/season/${maxSeason}`);
     };
+
+    // 選手データの取得
+    const playersWithRedCard = getPlayersWithRedCard(games);
 
     return (
         <div className="bg-[#1d2233] rounded-lg shadow-md shadow-[#121313]">
@@ -132,12 +136,39 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                                         false
                                                             ? "text-[#EEEEEE] text-opacity-40"
                                                             : "text-[#EEEEEE]"
-                                                    } font-semibold truncate sm:w-full w-[9rem]`}
+                                                    } font-semibold sm:w-full w-[9rem] flex items-center`}
                                                 >
-                                                    {
-                                                        game.json_detail.teams
-                                                            .home.name
-                                                    }
+                                                    <p className="truncate">
+                                                        {
+                                                            game.json_detail
+                                                                .teams.home.name
+                                                        }
+                                                    </p>
+                                                    {playersWithRedCard.map(
+                                                        (team, index) => (
+                                                            <div key={index}>
+                                                                {team.teamId ===
+                                                                    game
+                                                                        .json_detail
+                                                                        .teams
+                                                                        .home
+                                                                        .id && (
+                                                                    <div className="flex items-center">
+                                                                        <div className="border rounded h-4 w-3 bg-red-600 ml-2"></div>
+                                                                        {team.redCardCount >=
+                                                                            2 && (
+                                                                            <p className="text-[#EEEEEE] text-opacity-40 text-[15px] ml-[3px]">
+                                                                                &#x2613;
+                                                                                {
+                                                                                    team.redCardCount
+                                                                                }
+                                                                            </p>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )
+                                                    )}
                                                 </div>
                                             </div>
                                             <div className="flex items-center space-x-2">
@@ -156,12 +187,39 @@ export const AllGames = ({ games, loading, maxSeason }) => {
                                                         false
                                                             ? "text-[#EEEEEE] text-opacity-40"
                                                             : "text-[#EEEEEE]"
-                                                    } font-semibold truncate sm:w-full w-[9rem]`}
+                                                    } font-semibold sm:w-full w-[9rem] flex items-center`}
                                                 >
-                                                    {
-                                                        game.json_detail.teams
-                                                            .away.name
-                                                    }
+                                                    <p className="truncate">
+                                                        {
+                                                            game.json_detail
+                                                                .teams.away.name
+                                                        }
+                                                    </p>
+                                                    {playersWithRedCard.map(
+                                                        (team, index) => (
+                                                            <div key={index}>
+                                                                {team.teamId ===
+                                                                    game
+                                                                        .json_detail
+                                                                        .teams
+                                                                        .away
+                                                                        .id && (
+                                                                    <div className="flex items-center">
+                                                                        <div className="border rounded h-4 w-3 bg-red-600 ml-2"></div>
+                                                                        {team.redCardCount >=
+                                                                            2 && (
+                                                                            <p className="text-[#EEEEEE] text-opacity-40 text-[15px] ml-[3px]">
+                                                                                &#x2613;
+                                                                                {
+                                                                                    team.redCardCount
+                                                                                }
+                                                                            </p>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
