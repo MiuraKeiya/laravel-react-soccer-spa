@@ -69,11 +69,16 @@ class PlayersSeeder extends Seeder
 
                     // 保存するチームのidであるteam_idがteamsテーブルに存在するかどうかを調べる
                     $teamExists = Team::where('id', $player['statistics'][0]['team']['id'])
-                    ->where('season', $season)
-                    ->exists();
+                        ->where('season', $season)
+                        ->exists();
+
+                    // シーズンとapi_player_idの組み合わせが既に存在するか確認
+                    $existingPlayer = Player::where('api_player_id', $player['player']['id'])
+                        ->where('season', $season)
+                        ->exists();
 
                     // teamsテーブルに保存するチームIdが存在した場合に保存する
-                    if ($teamExists) {
+                    if ($teamExists && !$existingPlayer) {
                         Player::create([
                             'api_player_id' => $player['player']['id'],
                             'name' => $player['player']['name'],
