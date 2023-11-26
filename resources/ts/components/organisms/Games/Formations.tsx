@@ -31,7 +31,7 @@ export const Formations = ({ games, season }) => {
             style={{ position: "relative", width: "100%" }}
         >
             <img
-                src="/images/soccer_field.png"
+                src="/images/field.png"
                 alt="Soccer Field"
                 className="h-full w-full"
             />
