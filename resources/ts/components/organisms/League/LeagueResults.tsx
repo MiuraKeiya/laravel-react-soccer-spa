@@ -2,6 +2,7 @@ import { ResultLoading } from "./Loading/ResultLoading";
 import { formatDatePart } from "../../../functions/Utils";
 import { formatDate } from "../../../functions/Utils";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 import LoadingButton from "@mui/lab/LoadingButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -95,7 +96,11 @@ export const LeagueResults = ({
                                     {game.json_detail.teams.home.name}
                                 </p>
                                 <img
-                                    src={game.json_detail.teams.home.logo}
+                                    src={imageUrl(
+                                        "teams",
+                                        game.json_detail.teams.home.id,
+                                        "png"
+                                    )}
                                     alt="league"
                                     className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
@@ -130,7 +135,11 @@ export const LeagueResults = ({
                             </div>
                             <div className="flex items-center sm:w-52 w-[7rem] lg:space-x-6 space-x-2">
                                 <img
-                                    src={game.json_detail.teams.away.logo}
+                                    src={imageUrl(
+                                        "teams",
+                                        game.json_detail.teams.away.id,
+                                        "png"
+                                    )}
                                     alt="league"
                                     className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />

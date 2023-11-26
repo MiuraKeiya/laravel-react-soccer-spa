@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useModal } from "react-hooks-use-modal";
 import { PlayerStatsModal } from "./PlayerStatsModal";
 import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
+import { imageUrl } from "../../../functions/Utils";
 
 export const PlayersStats = ({ games, maxSeason }) => {
     // モーダルに渡すId
@@ -58,7 +59,11 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                         }
                                     >
                                         <img
-                                            src={players.team.logo}
+                                            src={imageUrl(
+                                                "teams",
+                                                players.team.id,
+                                                "png"
+                                            )}
                                             alt="TeamLogo"
                                             className="h-6 w-6 rounded-full"
                                         />
@@ -123,7 +128,19 @@ export const PlayersStats = ({ games, maxSeason }) => {
                                     <td className="w-[35rem] sm:w-[25rem]">
                                         <span className="flex items-center space-x-2 sm:ml-2">
                                             <img
-                                                src={player.player.photo}
+                                                src={imageUrl(
+                                                    "players",
+                                                    player.player.id,
+                                                    "png"
+                                                )}
+                                                onError={(e) => {
+                                                    // 代替の画像のURLを設定
+                                                    e.target.src = imageUrl(
+                                                        "players",
+                                                        "error",
+                                                        "png"
+                                                    );
+                                                }}
                                                 alt="Player Photo"
                                                 className="h-11 w-11 rounded-full"
                                             />

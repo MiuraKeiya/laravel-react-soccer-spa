@@ -6,6 +6,7 @@ import { getRatingColorClass } from "../../../../functions/FieldUtils/getRatingC
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { BoxLoading } from "../Loading/BoxLoading";
 import { ListLoading } from "../Loading/ListLoading";
+import { imageUrl } from "../../../../functions/Utils";
 
 export const Squad = ({ squad, loading, maxSeason }) => {
     const navigate = useNavigate();
@@ -265,12 +266,14 @@ export const Squad = ({ squad, loading, maxSeason }) => {
                                                     <div className="flex flex-col items-center space-y-5">
                                                         <div className="relative">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "players",
                                                                     player
                                                                         .json_statistics
                                                                         .player
-                                                                        .photo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-[4.5rem] h-[4.5rem] rounded-full"
                                                             />
                                                             <div
@@ -375,12 +378,14 @@ export const Squad = ({ squad, loading, maxSeason }) => {
                                                     <div className="flex flex-col items-center space-y-5">
                                                         <div className="relative">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "players",
                                                                     player
                                                                         .json_statistics
                                                                         .player
-                                                                        .photo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-[4.5rem] h-[4.5rem] rounded-full"
                                                             />
                                                             <div
@@ -484,12 +489,14 @@ export const Squad = ({ squad, loading, maxSeason }) => {
                                                     <div className="flex flex-col items-center space-y-5">
                                                         <div className="relative">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "players",
                                                                     player
                                                                         .json_statistics
                                                                         .player
-                                                                        .photo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-[4.5rem] h-[4.5rem] rounded-full"
                                                             />
                                                             <div
@@ -594,12 +601,14 @@ export const Squad = ({ squad, loading, maxSeason }) => {
                                                     <div className="flex flex-col items-center space-y-5">
                                                         <div className="relative">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "players",
                                                                     player
                                                                         .json_statistics
                                                                         .player
-                                                                        .photo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-[4.5rem] h-[4.5rem] rounded-full"
                                                             />
                                                             <div

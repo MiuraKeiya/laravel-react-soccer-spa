@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TeamsLoading } from "./Loading/TeamsLoading";
+import { imageUrl } from "../../../functions/Utils";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -59,7 +60,11 @@ export const Teams = ({ teams, loading, season }) => {
                                         }
                                     >
                                         <img
-                                            src={team.teamLogo}
+                                            src={imageUrl(
+                                                "teams",
+                                                team.id,
+                                                "png"
+                                            )}
                                             alt={team.teamName}
                                             className="h-[2rem] w-[2rem]"
                                         />

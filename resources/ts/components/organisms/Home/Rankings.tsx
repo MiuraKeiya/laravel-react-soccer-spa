@@ -5,6 +5,7 @@ import { useRankingsApi } from "../../../hooks/useRankingsApi";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Page } from "../../../Page";
+import { imageUrl } from "../../../functions/Utils";
 
 export const Rankings = ({ season }) => {
     // 選択されたリーグIDを保持するステート
@@ -95,11 +96,13 @@ export const Rankings = ({ season }) => {
                                                     <td className="">
                                                         <div className="flex items-center space-x-2">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "players",
                                                                     scorer
                                                                         .player
-                                                                        .photo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-8 h-8 rounded-full"
                                                             />
                                                         </div>
@@ -110,12 +113,14 @@ export const Rankings = ({ season }) => {
                                                         </p>
                                                         <div className="flex items-center space-x-1">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "teams",
                                                                     scorer
                                                                         .statistics[0]
                                                                         .team
-                                                                        .logo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="w-5 h-5"
                                                             />
                                                             <p className="text-[#C8CDCD] text-[12px]">

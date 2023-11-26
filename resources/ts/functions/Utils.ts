@@ -58,7 +58,7 @@ export const SortTopPlayers = (games) => {
         team.players.map((player) => ({
             ...player,
             teamName: team.team.name,
-            teamLogo: team.team.logo,
+            teamId: team.team.id,
         }))
     );
 
@@ -276,4 +276,10 @@ export const getPlayersWithRedCard = (data) => {
     }));
 
     return redCardPlayers;
+};
+
+// S3のURLを生成する
+export const imageUrl = (category, id, extension) => {
+    const baseUrl = import.meta.env.VITE_APP_S3_BASE_URL;
+    return `${baseUrl}/${category}/${id}.${extension}`;
 };

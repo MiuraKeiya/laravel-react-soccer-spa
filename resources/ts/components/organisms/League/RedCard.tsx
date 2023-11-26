@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { RankingsLoading } from "../Standings/RankingsLoading";
+import { imageUrl } from "../../../functions/Utils";
 
 export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
     if (rankingsLoading) {
@@ -33,7 +34,11 @@ export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                         <td className="sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
-                                                    src={red.player.photo}
+                                                    src={imageUrl(
+                                                        "players",
+                                                        red.player.id,
+                                                        "png"
+                                                    )}
                                                     className="w-8 h-8 rounded-full"
                                                 />
                                                 <Link
@@ -47,10 +52,12 @@ export const RedCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                         <td className="text-[13px] sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
-                                                    src={
+                                                    src={imageUrl(
+                                                        "teams",
                                                         red.statistics[0].team
-                                                            .logo
-                                                    }
+                                                            .id,
+                                                        "png"
+                                                    )}
                                                     className="w-8 h-8"
                                                 />
                                                 <Link

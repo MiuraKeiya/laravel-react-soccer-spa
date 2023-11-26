@@ -6,6 +6,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../../functions/Utils";
 
 export const Games = ({
     games,
@@ -101,8 +102,12 @@ export const Games = ({
                                     {game.json_detail.teams.home.name}
                                 </p>
                                 <img
-                                    src={game.json_detail.teams.home.logo}
-                                    alt="league"
+                                    src={imageUrl(
+                                        "teams",
+                                        game.json_detail.teams.home.id,
+                                        "png"
+                                    )}
+                                    alt="team"
                                     className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
                             </div>
@@ -136,8 +141,12 @@ export const Games = ({
                             </div>
                             <div className="flex items-center sm:w-52 w-[7rem] lg:space-x-6 space-x-2">
                                 <img
-                                    src={game.json_detail.teams.away.logo}
-                                    alt="league"
+                                    src={imageUrl(
+                                        "teams",
+                                        game.json_detail.teams.away.id,
+                                        "png"
+                                    )}
+                                    alt="team"
                                     className="lg:h-[40px] lg:w-[40px] h-7 w-7"
                                 />
                                 <p

@@ -4,6 +4,7 @@ import { StandingLoading } from "./Loading/StandingLoading";
 import { useStandingsApi } from "../../../hooks/useStandingsApi";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Page } from "../../../Page";
+import { imageUrl } from "../../../functions/Utils";
 
 export const LatestGame = ({ season }) => {
     // 選択されたリーグIDを保持するステート
@@ -166,11 +167,13 @@ export const LatestGame = ({ season }) => {
                                                     <td>
                                                         <div className="flex items-center space-x-2">
                                                             <img
-                                                                src={
+                                                                src={imageUrl(
+                                                                    "teams",
                                                                     standing
                                                                         .team
-                                                                        .logo
-                                                                }
+                                                                        .id,
+                                                                    "png"
+                                                                )}
                                                                 className="lg:w-7 lg:h-7"
                                                             />
                                                             <p className="text-[#EEEEEE] w-[8rem] truncate text-left text-[15px]">

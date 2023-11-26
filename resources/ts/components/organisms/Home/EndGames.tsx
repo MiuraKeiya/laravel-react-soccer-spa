@@ -5,6 +5,7 @@ import { FaCircleQuestionIcon } from "../../atoms/FaCircleQuestionIcon";
 import { GamesMessage } from "../../molecules/GamesMessage";
 import { ToolTip } from "../../atoms/ToolTip";
 import { getPlayersWithRedCard } from "../../../functions/Utils";
+import { imageUrl } from "../../../functions/Utils";
 import SportsIcon from "@mui/icons-material/Sports";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
@@ -71,10 +72,12 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                     <div className="flex items-center justify-between bg-[#111931] h-8">
                         <div className="flex items-center space-x-2 ml-2">
                             <img
-                                src={
+                                src={imageUrl(
+                                    "country",
                                     matchFinishedGames[leagueName][0]
-                                        .json_detail.league.flag
-                                }
+                                        .json_detail.league.id,
+                                    "svg"
+                                )}
                                 alt="league"
                                 className="h-5 w-5"
                             />
@@ -134,9 +137,11 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                 <div>
                                     <div className="flex items-center space-x-2">
                                         <img
-                                            src={
-                                                game.json_detail.teams.home.logo
-                                            }
+                                            src={imageUrl(
+                                                "teams",
+                                                game.json_detail.teams.home.id,
+                                                "png"
+                                            )}
                                             alt="team"
                                             className="h-5 w-5"
                                         />
@@ -181,9 +186,11 @@ export const EndGames = ({ games, loading, maxSeason }) => {
                                     </div>
                                     <div className="flex items-center space-x-2">
                                         <img
-                                            src={
-                                                game.json_detail.teams.away.logo
-                                            }
+                                            src={imageUrl(
+                                                "teams",
+                                                game.json_detail.teams.away.id,
+                                                "png"
+                                            )}
                                             alt="team"
                                             className="h-5 w-5"
                                         />

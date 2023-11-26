@@ -1,4 +1,5 @@
 import { Loading } from "./Loading/Loading";
+import { imageUrl } from "../../../functions/Utils";
 
 export const TeamInformations = ({ informations, loading }) => {
     return (
@@ -14,7 +15,11 @@ export const TeamInformations = ({ informations, loading }) => {
                         <div className="flex items-center lg:justify-center space-x-6 my-5">
                             <div className="border-2 border-[#3e4145] rounded-xl bg-black">
                                 <img
-                                    src={item.json_information.team.logo}
+                                    src={imageUrl(
+                                        "teams",
+                                        item.json_information.team.id,
+                                        "png"
+                                    )}
                                     alt="team"
                                     className="sm:h-24 sm:w-24 h-[4rem] w-[4rem]"
                                 />

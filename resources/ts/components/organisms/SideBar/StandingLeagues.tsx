@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { IconButton } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import { imageUrl } from "../../../functions/Utils";
 
 export const StandingLeagues = ({
     leagues,
@@ -32,11 +33,13 @@ export const StandingLeagues = ({
                     >
                         <div className="flex items-center space-x-1">
                             <img
-                                src={`https://media-3.api-sports.io/football/leagues/${league.id}.png`}
+                                src={imageUrl("leagues", league.id, "png")}
                                 alt="LeagueLogo"
                                 className="h-5 w-5 bg-white border border-white rounded-md"
                             />
-                            <span className="my-1">{league.name}</span>
+                            <span className="text-white text-opacity-80 my-1 font-semibold text-[15px]">
+                                {league.name}
+                            </span>
                         </div>
                         <Tooltip
                             title={"順位表を見る！"}
@@ -45,7 +48,7 @@ export const StandingLeagues = ({
                         >
                             <IconButton
                                 sx={{
-                                    color: "#FFFFFF",
+                                    color: "#7A84FF",
                                 }}
                             >
                                 <KeyboardDoubleArrowRightIcon />

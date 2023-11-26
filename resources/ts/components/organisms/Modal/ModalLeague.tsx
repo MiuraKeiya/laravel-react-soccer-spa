@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Loading } from "./Loading";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -62,7 +63,7 @@ export const ModalLeague = ({
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
-                                src={`https://media-3.api-sports.io/football/leagues/${league.id}.png`}
+                                src={imageUrl("leagues", league.id, "png")}
                                 alt="league"
                                 className="h-10 w-10 border border-white rounded-lg bg-white"
                             />

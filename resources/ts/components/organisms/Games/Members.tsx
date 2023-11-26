@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Formations } from "./Formations";
+import { imageUrl } from "../../../functions/Utils";
 
 export const Members = ({ games, maxSeason }) => {
     const navigate = useNavigate();
@@ -27,7 +28,11 @@ export const Members = ({ games, maxSeason }) => {
                         className="bg-[#111931] py-8 flex justify-center border-l-4"
                     >
                         <img
-                            src={games[0].json_detail?.teams.home.logo}
+                            src={imageUrl(
+                                "teams",
+                                games[0].json_detail.teams.home.id,
+                                "png"
+                            )}
                             alt="teamLogo"
                             className="h-[4.375rem] w-[4.375rem] cursor-pointer transition-transform hover:scale-110"
                             onClick={() =>
@@ -142,7 +147,11 @@ export const Members = ({ games, maxSeason }) => {
                         className="bg-[#111931] py-8 flex justify-center border-l-4"
                     >
                         <img
-                            src={games[0].json_detail?.teams.away.logo}
+                            src={imageUrl(
+                                "teams",
+                                games[0].json_detail.teams.away.id,
+                                "png"
+                            )}
                             alt="teamLogo"
                             className="h-[4.375rem] w-[4.375rem] cursor-pointer transition-transform hover:scale-110"
                             onClick={() =>

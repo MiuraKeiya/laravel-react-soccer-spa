@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { LoadingTitle } from "./LoadingTitle";
+import { imageUrl } from "../../../../functions/Utils";
 
 export const GamesTitle = ({ games, paginateLoading, maxSeason }) => {
     const navigate = useNavigate();
@@ -15,23 +16,29 @@ export const GamesTitle = ({ games, paginateLoading, maxSeason }) => {
                 <LoadingTitle />
             ) : (
                 <>
-                    <img
-                        src={games[0] && games[0]?.json_detail?.league?.logo}
-                        alt="league"
-                        className="lg:h-10 lg:w-10 h-8 w-8 bg-white rounded"
-                    />
                     {games[0] && (
-                        <p
-                            className="text-[20px] font-bold uppercase hover:underline cursor-pointer"
-                            onClick={() =>
-                                handleLeagueClick(
+                        <>
+                            <img
+                                src={imageUrl(
+                                    "leagues",
                                     games[0]?.json_detail?.league?.id,
-                                    maxSeason
-                                )
-                            }
-                        >
-                            {games[0]?.json_detail?.league?.name}
-                        </p>
+                                    "png"
+                                )}
+                                alt="league"
+                                className="lg:h-10 lg:w-10 h-8 w-8 bg-white rounded"
+                            />
+                            <p
+                                className="text-[20px] font-bold uppercase hover:underline cursor-pointer"
+                                onClick={() =>
+                                    handleLeagueClick(
+                                        games[0]?.json_detail?.league?.id,
+                                        maxSeason
+                                    )
+                                }
+                            >
+                                {games[0]?.json_detail?.league?.name}
+                            </p>
+                        </>
                     )}
                 </>
             )}

@@ -1,4 +1,5 @@
 import { LeagueInformationsLoading } from "./Loading/LeagueInformationsLoading";
+import { imageUrl } from "../../../functions/Utils";
 
 export const LeagueInformations = ({ latestGames, loading }) => {
     if (loading) {
@@ -22,7 +23,11 @@ export const LeagueInformations = ({ latestGames, loading }) => {
         <div className={`bg-gradient-to-tr ${gradientColor} rounded-t`}>
             <div className="flex items-center justify-center space-x-3 sm:space-x-5 py-6">
                 <img
-                    src={latestGames[0]?.json_detail?.league.logo}
+                    src={imageUrl(
+                        "leagues",
+                        latestGames[0]?.json_detail?.league.id,
+                        "png"
+                    )}
                     className="sm:h-24 sm:w-24 h-16 w-16 rounded bg-white"
                 />
                 <div>
@@ -31,7 +36,11 @@ export const LeagueInformations = ({ latestGames, loading }) => {
                     </span>
                     <div className="flex items-center space-x-2">
                         <img
-                            src={latestGames[0]?.json_detail?.league.flag}
+                            src={imageUrl(
+                                "country",
+                                latestGames[0]?.json_detail?.league.id,
+                                "svg"
+                            )}
                             className="h-5"
                         />
                         <span className="text-[#EEEEEE] font-bold text-[20px] uppercase">
