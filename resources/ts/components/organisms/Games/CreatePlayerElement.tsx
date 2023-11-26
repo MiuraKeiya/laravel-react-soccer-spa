@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
+import { imageUrl } from "../../../functions/Utils";
 import ReactCardFlip from "react-card-flip";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import LoopIcon from "@mui/icons-material/Loop";
@@ -75,7 +76,11 @@ export const CreatePlayerElement = (
                     {player.player.number}
                 </div>
                 <img
-                    src={`https://media-3.api-sports.io/football/players/${player.player.id}.png`}
+                    src={imageUrl("players", player.player.id, "png")}
+                    onError={(e) => {
+                        // 代替の画像のURLを設定
+                        e.target.src = imageUrl("players", "error", "png");
+                    }}
                     className="rounded-full lg:h-[3.5rem] lg:w-[3.5rem] lg:text-[25px] md:h-[2.5rem] md:w-[2.5rem] md:text-[21px] h-6 w-6 cursor-pointer"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}

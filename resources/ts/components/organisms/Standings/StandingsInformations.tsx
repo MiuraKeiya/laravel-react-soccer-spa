@@ -1,5 +1,6 @@
 import { SkeletonStandingsLeague } from "../../molecules/SkeletonStandingsLeague";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 
 export const StandingsInformations = ({ standings, loading, season, id }) => {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const StandingsInformations = ({ standings, loading, season, id }) => {
             ) : (
                 <div className="flex items-center space-x-3 ml-6">
                     <img
-                        src={standings.league?.logo}
+                        src={imageUrl("leagues", standings.league?.id, "png")}
                         className="sm:h-[4rem] sm:w-[4rem] h-12 w-12 bg-white rounded"
                     />
                     <button

@@ -2,6 +2,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip from "@mui/material/Tooltip";
 import { StandingsLoading } from "../../Standings/StandingsLoading";
 import { Link } from "react-router-dom";
+import { imageUrl } from "../../../../functions/Utils";
 
 export const StandingsAway = ({ standings, teamIds, maxSeason, loading }) => {
     if (loading) {
@@ -42,7 +43,11 @@ export const StandingsAway = ({ standings, teamIds, maxSeason, loading }) => {
                                 <td>
                                     <div className="flex items-center space-x-2">
                                         <img
-                                            src={standing.team.logo}
+                                            src={imageUrl(
+                                                "teams",
+                                                standing.team.id,
+                                                "png"
+                                            )}
                                             className="lg:w-8 lg:h-8 h-[23px]"
                                         />
                                         <Link

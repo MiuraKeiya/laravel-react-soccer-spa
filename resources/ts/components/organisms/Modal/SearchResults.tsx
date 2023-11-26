@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchLoading } from "./SearchLoading";
 import { SearchError } from "./SearchError";
+import { imageUrl } from "../../../functions/Utils";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -90,7 +91,11 @@ export const SearchResults = ({
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
-                                src={result.json_information.team.logo}
+                                src={imageUrl(
+                                    "teams",
+                                    result.json_information.team.id,
+                                    "png"
+                                )}
                                 alt="teamLogo"
                                 className="h-10 w-10 border border-white rounded-lg bg-white"
                             />

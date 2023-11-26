@@ -1,6 +1,7 @@
 import { useScroll } from "../../../hooks/useScroll";
 import { useNavigate } from "react-router-dom";
 import { GameStatusHeaderLoading } from "./Loading/GameStatusHeaderLoading";
+import { imageUrl } from "../../../functions/Utils";
 
 export const GameStatusHeader = ({ games, loading, maxSeason }) => {
     const visible = useScroll();
@@ -22,7 +23,11 @@ export const GameStatusHeader = ({ games, loading, maxSeason }) => {
             ) : (
                 <div className="flex sm:space-x-[9rem] space-x-[3rem] items-center">
                     <img
-                        src={games[0]?.json_detail?.teams?.home?.logo}
+                        src={imageUrl(
+                            "teams",
+                            games[0]?.json_detail?.teams?.home?.id,
+                            "png"
+                        )}
                         alt="homeTeam"
                         className="w-12 h-12 cursor-pointer transition-transform hover:scale-110"
                         onClick={() =>
@@ -65,7 +70,11 @@ export const GameStatusHeader = ({ games, loading, maxSeason }) => {
                         </span>
                     </div>
                     <img
-                        src={games[0]?.json_detail?.teams?.away?.logo}
+                        src={imageUrl(
+                            "teams",
+                            games[0]?.json_detail?.teams?.away?.id,
+                            "png"
+                        )}
                         alt="homeTeam"
                         className="w-12 h-12 cursor-pointer transition-transform hover:scale-110"
                         onClick={() =>

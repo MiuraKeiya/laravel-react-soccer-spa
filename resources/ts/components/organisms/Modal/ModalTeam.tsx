@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useLeadingTeamApi } from "../../../hooks/useLeadingTeamApi";
+import { useEffect } from "react";
 import { Loading } from "./Loading";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -63,7 +63,7 @@ export const ModalTeam = ({
                     >
                         <div className="flex items-center space-x-2 my-3 ml-2">
                             <img
-                                src={team.teamLogo}
+                                src={imageUrl("teams", team.id, "png")}
                                 alt="teamLogo"
                                 className="h-10 w-10 border border-white rounded-lg bg-white"
                             />

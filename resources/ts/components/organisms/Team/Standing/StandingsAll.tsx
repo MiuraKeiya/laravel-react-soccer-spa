@@ -4,6 +4,7 @@ import { StandingsLoading } from "../../Standings/StandingsLoading";
 import { StandingsDetails } from "../../Standings/StandingsDetails";
 import { LeagueLule } from "../../Standings/LeagueLule";
 import { Link } from "react-router-dom";
+import { imageUrl } from "../../../../functions/Utils";
 
 export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
     if (loading) {
@@ -91,7 +92,11 @@ export const StandingsAll = ({ standings, teamIds, maxSeason, loading }) => {
                                 <td>
                                     <div className="flex items-center space-x-2">
                                         <img
-                                            src={standing.team.logo}
+                                            src={imageUrl(
+                                                "teams",
+                                                standing.team.id,
+                                                "png"
+                                            )}
                                             className="lg:w-8 lg:h-8 h-[23px]"
                                         />
                                         <Link

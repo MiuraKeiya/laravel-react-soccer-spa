@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { getRatingColorClass } from "../../../functions/FieldUtils/getRatingColorClass";
+import { imageUrl } from "../../../functions/Utils";
 
 export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
     const navigate = useNavigate();
@@ -26,8 +27,12 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                     >
                         <div className="flex items-center space-x-1 text-[12px] font-bold text-[#EEEEEE] uppercase">
                             <img
-                                src={league.json_detail.league.flag}
-                                alt="League Photo"
+                                src={imageUrl(
+                                    "country",
+                                    league.json_detail.league.id,
+                                    "svg"
+                                )}
+                                alt="country"
                                 className="h-5 w-5"
                             />
                             <span
@@ -70,8 +75,20 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                         <div className="flex items-center space-x-4 ml-3">
                                             <div>
                                                 <img
-                                                    src={player.player.photo}
-                                                    alt="League Photo"
+                                                    src={imageUrl(
+                                                        "players",
+                                                        player.player.id,
+                                                        "png"
+                                                    )}
+                                                    onError={(e) => {
+                                                        // 代替の画像のURLを設定
+                                                        e.target.src = imageUrl(
+                                                            "players",
+                                                            "error",
+                                                            "png"
+                                                        );
+                                                    }}
+                                                    alt="player"
                                                     className="h-16 w-16 rounded-lg hover:border hover:border-[#B0EE1B] cursor-pointer"
                                                     onClick={() =>
                                                         handlePlayerClick(
@@ -95,8 +112,12 @@ export const PlayerStatsModal = ({ playerId, games, maxSeason }) => {
                                                         {players.team.name}
                                                     </span>
                                                     <img
-                                                        src={players.team.logo}
-                                                        alt="League Photo"
+                                                        src={imageUrl(
+                                                            "teams",
+                                                            players.team.id,
+                                                            "png"
+                                                        )}
+                                                        alt="team"
                                                         className="h-6 w-6 transition-transform hover:scale-110 cursor-pointer"
                                                         onClick={() =>
                                                             handleTeamClick(

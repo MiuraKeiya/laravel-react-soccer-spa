@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { SortTopPlayers } from "../../../functions/Utils";
+import { imageUrl } from "../../../functions/Utils";
 
 export const TopPlayers = ({ games, maxSeason }) => {
     const topPlayers = SortTopPlayers(games);
@@ -45,7 +46,11 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                     <td className="py-2 text-left">
                                         <div className="flex items-center">
                                             <img
-                                                src={player.teamLogo}
+                                                src={imageUrl(
+                                                    "teams",
+                                                    player.teamId,
+                                                    "png"
+                                                )}
                                                 className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                             />
                                             <a
@@ -99,7 +104,11 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                     <td className="py-2 text-left">
                                         <div className="flex items-center">
                                             <img
-                                                src={player.teamLogo}
+                                                src={imageUrl(
+                                                    "teams",
+                                                    player.teamId,
+                                                    "png"
+                                                )}
                                                 className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                             />
                                             <a
@@ -155,7 +164,11 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                             <td className="py-2 text-left">
                                                 <div className="flex items-center">
                                                     <img
-                                                        src={player.teamLogo}
+                                                        src={imageUrl(
+                                                            "teams",
+                                                            player.teamId,
+                                                            "png"
+                                                        )}
                                                         className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a
@@ -215,7 +228,11 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                             <td className="py-2 text-left">
                                                 <div className="flex items-center">
                                                     <img
-                                                        src={player.teamLogo}
+                                                        src={imageUrl(
+                                                            "teams",
+                                                            player.teamId,
+                                                            "png"
+                                                        )}
                                                         className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a
@@ -277,7 +294,11 @@ export const TopPlayers = ({ games, maxSeason }) => {
                                             <td className="py-2 text-left">
                                                 <div className="flex items-center">
                                                     <img
-                                                        src={player.teamLogo}
+                                                        src={imageUrl(
+                                                            "teams",
+                                                            player.teamId,
+                                                            "png"
+                                                        )}
                                                         className="sm:w-10 sm:h-10 w-7 h-7 mr-2"
                                                     />
                                                     <a

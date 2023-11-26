@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { RankingsLoading } from "../Standings/RankingsLoading";
+import { imageUrl } from "../../../functions/Utils";
 
 export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
     if (rankingsLoading) {
@@ -33,7 +34,11 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                         <td className="sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
-                                                    src={card.player.photo}
+                                                    src={imageUrl(
+                                                        "players",
+                                                        card.player.id,
+                                                        "png"
+                                                    )}
                                                     className="w-8 h-8 rounded-full"
                                                 />
                                                 <Link
@@ -47,10 +52,12 @@ export const YellowCard = ({ rankings, rankingsLoading, maxSeason }) => {
                                         <td className="text-[13px] sm:w-[30rem] w-[7rem]">
                                             <div className="flex items-center space-x-2">
                                                 <img
-                                                    src={
+                                                    src={imageUrl(
+                                                        "teams",
                                                         card.statistics[0].team
-                                                            .logo
-                                                    }
+                                                            .id,
+                                                        "png"
+                                                    )}
                                                     className="w-8 h-8"
                                                 />
                                                 <Link

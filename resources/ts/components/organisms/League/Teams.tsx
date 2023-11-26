@@ -1,5 +1,6 @@
 import { TeamsLoading } from "./Loading/TeamsLoading";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import StadiumIcon from "@mui/icons-material/Stadium";
@@ -56,7 +57,11 @@ export const Teams = ({ teams, loading, maxSeason }) => {
                             }
                         >
                             <img
-                                src={team.json_information.team.logo}
+                                src={imageUrl(
+                                    "teams",
+                                    team.json_information.team.id,
+                                    "png"
+                                )}
                                 className="h-16 w-16 ml-4"
                             />
                             <div className="ml-2">

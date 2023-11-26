@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { formatAllDate } from "../../../functions/Utils";
+import { imageUrl } from "../../../functions/Utils";
 import StadiumIcon from "@mui/icons-material/Stadium";
 
 export const GamesTitle = ({ games, maxSeason }) => {
@@ -23,7 +24,11 @@ export const GamesTitle = ({ games, maxSeason }) => {
                     <div className="mb-1">
                         <div className="flex items-center text-[#EEEEEE] font-semibold">
                             <img
-                                src={game.json_detail.league.flag}
+                                src={imageUrl(
+                                    "country",
+                                    game.json_detail.league.id,
+                                    "svg"
+                                )}
                                 className="w-5 h-5 m-1"
                             />
                             <div className="uppercase">
@@ -61,7 +66,11 @@ export const GamesTitle = ({ games, maxSeason }) => {
                     <div className="flex items-center justify-center">
                         <div className="flex flex-col items-center sm:w-64 w-[6rem]">
                             <img
-                                src={game.json_detail.teams.home.logo}
+                                src={imageUrl(
+                                    "teams",
+                                    game.json_detail.teams.home.id,
+                                    "png"
+                                )}
                                 alt="homeTeam"
                                 className="sm:w-24 sm:h-24 w-16 h-16 cursor-pointer transition-transform hover:scale-110"
                                 onClick={() =>
@@ -128,7 +137,11 @@ export const GamesTitle = ({ games, maxSeason }) => {
                         </div>
                         <div className="flex flex-col items-center sm:w-64 w-[6rem]">
                             <img
-                                src={game.json_detail.teams.away.logo}
+                                src={imageUrl(
+                                    "teams",
+                                    game.json_detail.teams.away.id,
+                                    "png"
+                                )}
                                 alt="awayTeam"
                                 className="sm:w-24 sm:h-24 w-16 h-16 cursor-pointer transition-transform hover:scale-110"
                                 onClick={() =>

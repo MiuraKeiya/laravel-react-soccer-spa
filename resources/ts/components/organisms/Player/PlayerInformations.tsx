@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../functions/Utils";
 
 export const PlayerInformations = ({ statistics, maxSeason }) => {
     const navigate = useNavigate();
@@ -20,16 +21,30 @@ export const PlayerInformations = ({ statistics, maxSeason }) => {
                     <div className="flex items-center flex-col sm:flex-row space-x-6 space-y-1 sm:space-y-0">
                         <div className="flex sm:flex-col items-center space-y-2 space-x-2 sm:space-x-0">
                             <img
-                                src={player.json_statistics.player.photo}
+                                src={imageUrl(
+                                    "players",
+                                    player.json_statistics.player.id,
+                                    "png"
+                                )}
+                                onError={(e) => {
+                                    // 代替の画像のURLを設定
+                                    e.target.src = imageUrl(
+                                        "players",
+                                        "error",
+                                        "png"
+                                    );
+                                }}
                                 alt="PlayerPhoto"
                                 className="rounded-full sm:h-28 sm:w-28 h-[4rem] w-[4rem]"
                             />
                             <div className="flex space-x-2">
                                 <img
-                                    src={
+                                    src={imageUrl(
+                                        "teams",
                                         player.json_statistics.statistics[0]
-                                            .team.logo
-                                    }
+                                            .team.id,
+                                        "png"
+                                    )}
                                     alt="TeamLogo"
                                     className="sm:h-14 sm:w-14 h-[2rem] w-[2rem] transition-transform hover:scale-110 cursor-pointer"
                                     onClick={() =>
@@ -41,10 +56,12 @@ export const PlayerInformations = ({ statistics, maxSeason }) => {
                                     }
                                 />
                                 <img
-                                    src={
+                                    src={imageUrl(
+                                        "leagues",
                                         player.json_statistics.statistics[0]
-                                            .league.logo
-                                    }
+                                            .league.id,
+                                        "png"
+                                    )}
                                     alt="LeagueLogo"
                                     className="sm:h-14 sm:w-14 h-[2rem] w-[2rem] transition-transform hover:scale-110 cursor-pointer bg-white rounded"
                                     onClick={() =>
