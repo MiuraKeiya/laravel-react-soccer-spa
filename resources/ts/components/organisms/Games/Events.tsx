@@ -10,6 +10,7 @@ export const Events = ({ games, maxSeason }) => {
     const handlePlayerClick = (playerId, maxSeason) => {
         navigate(`/player/${playerId}/season/${maxSeason}`);
     };
+
     return (
         <div>
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-1 text-center">

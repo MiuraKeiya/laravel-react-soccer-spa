@@ -1,5 +1,6 @@
 import { GaugeBar } from "../../molecules/GaugeBar";
 import { StatsLoading } from "./Loading/StatsLoading";
+import { AllGaugeBar } from "../../molecules/AllGaugeBar";
 
 export const TeamsStats = ({ games, loading }) => {
     const translations = {
@@ -49,6 +50,13 @@ export const TeamsStats = ({ games, loading }) => {
                 <StatsLoading />
             ) : (
                 <div className="bg-[#1d2233] mt-1 rounded pb-2">
+                    {games.map((game, index) => (
+                        <div key={index}>
+                            <AllGaugeBar
+                                statistics={game.json_detail.statistics}
+                            />
+                        </div>
+                    ))}
                     {flattenedHomeStatistics.map((homeStat, index) => (
                         <div key={index} className="pt-3 pb-6">
                             <GaugeBar

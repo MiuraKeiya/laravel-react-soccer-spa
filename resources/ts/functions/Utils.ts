@@ -283,3 +283,39 @@ export const imageUrl = (category, id, extension) => {
     const baseUrl = import.meta.env.VITE_APP_S3_BASE_URL;
     return `${baseUrl}/${category}/${id}.${extension}`;
 };
+
+export const compareTeams = (data) => {
+    const homeTeam = data[0];
+    const awayTeam = data[1];
+
+    const homeValues = homeTeam.statistics.map((stat) =>
+        stat.value !== null ? parseFloat(stat.value) : 0
+    );
+    const awayValues = awayTeam.statistics.map((stat) =>
+        stat.value !== null ? parseFloat(stat.value) : 0
+    );
+
+    let homeStatus = 0;
+    let awayStatus = 0;
+
+    homeValues.forEach((homeValue, index) => {
+        const awayValue = awayValues[index];
+
+        if (homeValue > awayValue) {
+            homeStatus += 1;
+        } else if (awayValue > homeValue) {
+            awayStatus += 1;
+        }
+        // Draw: do nothing
+    });
+
+    // Normalize status percentages to ensure the total is 100%
+    const total = homeStatus + awayStatus;
+    const homePercentage = Math.floor((homeStatus / total) * 100);
+    const awayPercentage = Math.floor((awayStatus / total) * 100);
+
+    return {
+        homeTeam: homePercentage.toFixed(0) + "%",
+        awayTeam: awayPercentage.toFixed(0) + "%",
+    };
+};
