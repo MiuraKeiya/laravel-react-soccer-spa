@@ -56,7 +56,7 @@ export const Top = () => {
                             <h1 className="text-4xl font-bold lg:text-[#111931] mb-8 text-white">
                                 欧州5大リーグのサッカー情報をご覧いただけるサイトへようこそ
                             </h1>
-                            <p className="text-lg lg:text-[#111931] text-center mb-8 text-white">
+                            <p className="text-lg lg:text-[#111931] text-center mb-8 text-white font-semibold">
                                 このサイトでは、試合結果や選手、チーム、リーグ情報を簡単に閲覧できます。お気に入りのチームとリーグを保存して、最新情報を追跡しましょう。
                             </p>
                             <div className="flex space-x-8">
