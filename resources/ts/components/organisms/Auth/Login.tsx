@@ -363,6 +363,12 @@ export const Login = () => {
                                 &copy; {new Date().getFullYear()} Football
                                 League
                             </span>
+                            <Link
+                                to="/tos"
+                                className="text-white text-opacity-80 text-sm font-semibold ml-2 hover:text-opacity-50"
+                            >
+                                利用規約
+                            </Link>
                         </div>
                     </div>
                 </div>

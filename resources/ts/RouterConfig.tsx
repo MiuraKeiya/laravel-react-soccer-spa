@@ -18,6 +18,7 @@ import { PasswordSentPage } from "./pages/Auth/PasswordSentPage";
 import { EmailVerificationPage } from "./pages/Auth/EmailVerificationPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CallbackPage } from "./pages/Auth/CallbackPage";
+import { TermsOfServicePage } from "./pages/TermsOfServicePage";
 import { PrivateRoute, PublicRoute } from "./context/AuthContext";
 
 export const RouterConfig = createBrowserRouter(
@@ -134,6 +135,7 @@ export const RouterConfig = createBrowserRouter(
                     />
                 }
             />
+            <Route path="/tos" element={<TermsOfServicePage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Route>
     )

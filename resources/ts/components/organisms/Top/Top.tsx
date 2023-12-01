@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Icon } from "../../atoms/Icon";
 import { CustomSnackbar } from "../../molecules/CustomSnackbar";
 import { Helmet } from "react-helmet-async";
@@ -8,19 +8,9 @@ import { TooManyRequests } from "../Error/TooManyRequests";
 export const Top = () => {
     const auth = useAuth();
 
-    const navigate = useNavigate();
-
     const location = useLocation();
 
     const snackbarMessage = location.state?.message;
-
-    const handleLogin = () => {
-        navigate("/login");
-    };
-
-    const handleRegister = () => {
-        navigate("/register");
-    };
 
     return (
         <>
@@ -60,18 +50,18 @@ export const Top = () => {
                                 このサイトでは、試合結果や選手、チーム、リーグ情報を簡単に閲覧できます。お気に入りのチームとリーグを保存して、最新情報を追跡しましょう。
                             </p>
                             <div className="flex space-x-8">
-                                <button
-                                    className="lg:bg-[#111931] bg-[#B0EE1B] text-black py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-white hover:bg-[#292969] hover:text-white lg:hover:text-white shadow-lg"
-                                    onClick={handleLogin}
+                                <Link
+                                    className="lg:bg-[#111931] bg-[#B0EE1B] text-black py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-white hover:bg-[#292969] hover:text-white lg:hover:text-white shadow-lg flex items-center"
+                                    to="/login"
                                 >
                                     ログイン
-                                </button>
-                                <button
-                                    className="lg:bg-[#B0EE1B] lg:border-2 lg:border-[#111931] border-2 border-[#B0EE1B] bg-[#111931] text-[#B0EE1B] py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-[#111931] lg:hover:text-white shadow-lg"
-                                    onClick={handleRegister}
+                                </Link>
+                                <Link
+                                    className="flex items-center lg:bg-[#B0EE1B] lg:border-2 lg:border-[#111931] border-2 border-[#B0EE1B] bg-[#111931] text-[#B0EE1B] py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-[#111931] lg:hover:text-white shadow-lg"
+                                    to="/register"
                                 >
                                     新規登録
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="lg:invisible">
@@ -79,6 +69,12 @@ export const Top = () => {
                                 &copy; {new Date().getFullYear()} Football
                                 League
                             </span>
+                            <Link
+                                to="/tos"
+                                className="text-white text-opacity-80 text-sm font-semibold ml-2 hover:text-opacity-50"
+                            >
+                                利用規約
+                            </Link>
                         </div>
                     </div>
                 </div>

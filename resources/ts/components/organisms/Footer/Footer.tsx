@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Icon } from "../../atoms/Icon";
 import { Form } from "./Form";
@@ -66,12 +67,21 @@ export const Footer = () => {
                                 <br />
                                 一切の責任と義務を負いかねますのでご了承下さい。
                                 <br />
-                                サイト内に使用されている情報や画像等の著作権は
+                                使用されているテキストや画像等の著作権は
                                 <br />
                                 各権利所有者に帰属します。
+                                <br />
+                                詳細は [
+                                <Link
+                                    to="/tos"
+                                    className="text-white text-opacity-80 font-semibold hover:text-opacity-50"
+                                >
+                                    利用規約
+                                </Link>
+                                ]をご覧ください。
                             </p>
                             <button
-                                className="text-[#7A84FF] underline cursor-pointer"
+                                className="text-[#7A84FF] underline cursor-pointer mt-1"
                                 onClick={handleToggle}
                             >
                                 閉じる
