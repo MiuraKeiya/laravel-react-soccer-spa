@@ -21,7 +21,6 @@ class Team extends Model
         'season',
         'json_information',
         'json_statistics',
-        'json_transfer',
     ];
 
     /**
@@ -32,7 +31,6 @@ class Team extends Model
     protected $casts = [
         'json_information' => 'json',
         'json_statistics' => 'json',
-        'json_transfer' => 'json',
     ];
 
     /** 
