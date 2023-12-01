@@ -61,13 +61,13 @@ export const Top = () => {
                             </p>
                             <div className="flex space-x-8">
                                 <button
-                                    className="lg:bg-[#111931] bg-[#B0EE1B] text-black py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-white hover:bg-[#292969] hover:text-white lg:hover:text-white"
+                                    className="lg:bg-[#111931] bg-[#B0EE1B] text-black py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-white hover:bg-[#292969] hover:text-white lg:hover:text-white shadow-lg"
                                     onClick={handleLogin}
                                 >
                                     ログイン
                                 </button>
                                 <button
-                                    className="lg:bg-[#111931] bg-[#B0EE1B] text-black py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] hover:bg-[#292969] font-semibold lg:text-white hover:text-white lg:hover:text-white"
+                                    className="lg:bg-[#B0EE1B] lg:border-2 lg:border-[#111931] border-2 border-[#B0EE1B] bg-[#111931] text-[#B0EE1B] py-2 px-6 rounded-full lg:hover:bg-[#0D0D17] font-semibold lg:text-[#111931] lg:hover:text-white shadow-lg"
                                     onClick={handleRegister}
                                 >
                                     新規登録
