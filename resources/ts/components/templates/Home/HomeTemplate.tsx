@@ -1,16 +1,19 @@
-import { Header } from "../../atoms/header/Header";
-import { Footer } from "../../atoms/footer/Footer";
-
-export const HomeTemplate = ({ children }) => {
+export const HomeTemplate = ({
+    header,
+    footer,
+    sidebar,
+    children,
+    scrollTopButton,
+}) => {
     return (
-        <div>
-            <header>
-                <Header />
-            </header>
-            <main>{children}</main>
-            <footer>
-                <Footer />
-            </footer>
+        <div className="bg-[#10161c]">
+            <header>{header}</header>
+            <aside>{sidebar}</aside>
+            <main className="min-h-screen container mx-auto">{children}</main>
+            <footer>{footer}</footer>
+            <div className="fixed right-[20px] bottom-[20px]">
+                {scrollTopButton}
+            </div>
         </div>
     );
 };

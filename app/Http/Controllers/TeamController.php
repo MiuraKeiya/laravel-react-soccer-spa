@@ -44,7 +44,7 @@ class TeamController extends Controller
     public function addFavoriteTeam(Request $request): JsonResponse
     {
         try {
-            $this->teamService->addFavoriteTeam($request->teamId);
+            $this->teamService->addFavoriteTeam($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '保存に失敗しました'], 400);
         }
@@ -61,7 +61,7 @@ class TeamController extends Controller
     public function deleteFavoriteTeam(Request $request): JsonResponse
     {
         try {
-            $this->teamService->deleteFavoriteTeam($request->teamId);
+            $this->teamService->deleteFavoriteTeam($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '削除に失敗しました'], 400);
         }
@@ -114,6 +114,23 @@ class TeamController extends Controller
     {
         try {
             $response = $this->teamService->getLeagueTeams($leagueId, $season);
+        } catch (Exception $error) {
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
+
+    /**
+     * 咋シーズンのリーグで一位のチーム情報を取得する
+     * 全てのリーグから取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCurrentSeasonChampions(): JsonResponse
+    {
+        try {
+            $response = $this->teamService->getCurrentSeasonChampions();
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }

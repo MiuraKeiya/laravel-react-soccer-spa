@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToProvider']);
+
+Route::post('/login/google/callback', [GoogleLoginController::class, 'handleProviderCallback']);
 
 Route::middleware('auth:sanctum')->group(function(){
     // 試合日程・結果一覧を取得
@@ -81,4 +87,19 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // アカウントの削除
     Route::delete('/user', [UserController::class, 'destroy']);
+
+    // 全てのリーグを取得
+    Route::get('/leagues', [LeagueController::class, 'getLeagues']);
+
+    // 今シーズンのリーグの一位のチームを取得
+    Route::get('/standings/teams', [TeamController::class, 'getCurrentSeasonChampions']);
+
+    // 直近の5試合を取得
+    Route::get('latest_games/leagues/{leagueId}/seasons/{season}', [GameController::class, 'getLatestGames']);
+
+    // ページネーションで特定リーグの試合を取得
+    Route::get('/games/leagues/{leagueId}/seasons/{season}', [GameController::class, 'getLeagueGamesPagenate']);
+
+    // お問い合わせメール送信
+    Route::post('/send-email', [ContactController::class, 'send']);
 });

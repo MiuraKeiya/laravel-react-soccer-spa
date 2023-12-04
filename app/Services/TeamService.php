@@ -15,21 +15,44 @@ class TeamService
     }
 
     /**
-     * 指定したリーグの順位一覧を取得する
-     * 全体、ホーム、アウェイにおける順位をそれぞれ取得する
+     * 指定したリーグの順位一覧とリーグ情報を取得する
+     * 全体、ホーム、アウェイにおける順位とリーグ情報をそれぞれ取得する
      *
      * @param string $season シーズン
      * @param string $leagueId リーグID
-     * @return array 全体、ホーム、アウェイにおける順位一覧
+     * @return array 全体、ホーム、アウェイにおける順位一覧とリーグ情報
      */
     public function getStandings(string $leagueId, $season): array
     {
         // 指定したリーグを取得
         $league = $this->teamRepository->getStanding($leagueId, $season);
 
+        if ($league === null) {
+            // $league が null の場合、空の配列を返す
+            return [
+                'league' => [],
+                'all' => [],
+                'home' => [],
+                'away' => [],
+            ];
+        }
+
         // 全体での順位一覧
         $standings = $league->json_standings['response'][0]['league']['standings'][0];
 
+        // リーグ情報を取得
+        $leagueInformation = $league->json_standings['response'][0]['league'];
+
+        // リーグの必要な情報だけを取得
+        $selectedLeagueInformation = array(
+            'id' => $leagueInformation['id'],
+            'flag' => $leagueInformation['flag'],
+            'logo' => $leagueInformation['logo'],
+            'name' => $leagueInformation['name'],
+            'season' => $leagueInformation['season'],
+            'country' => $leagueInformation['country']
+        );
+        
         // ホームでの順位一覧
         $homeStandings =  collect($standings)->sortByDesc(function ($datas) {
             // 勝点
@@ -37,7 +60,7 @@ class TeamService
             // 得失点差
             $goalDiff = $datas['home']['goals']['for'] - $datas['home']['goals']['against'];
             return [$points, -$goalDiff];
-        });
+        })->values();
 
         // アウェイでの順位一覧
         $awayStandings = collect($standings)->sortByDesc(function ($datas) {
@@ -46,9 +69,10 @@ class TeamService
             // 得失点差
             $goalDiff = $datas['away']['goals']['for'] - $datas['away']['goals']['against'];
             return [$points, -$goalDiff];
-        });
+        })->values();
 
         return [
+            'league' => $selectedLeagueInformation,
             'all' => $standings,
             'home' => $homeStandings,
             'away' => $awayStandings,
@@ -115,5 +139,52 @@ class TeamService
     public function getLeagueTeams($leagueId, $season)
     {
         return $this->teamRepository->getLeagueTeams($leagueId, $season);
+    }
+
+    /**
+     * 咋シーズンのリーグで一位のチームを取得する
+     * 順位一覧から一位のチームを抽出する
+     * 
+     * 
+     */
+    public function getCurrentSeasonChampions()
+    {
+        // configファイルからシーズンのリストを取得
+        $seasons = config('api.seasons');
+
+        // シーズンリストから昨シーズンを取得
+        $sortedSeasons = array_values($seasons);
+        rsort($sortedSeasons);
+        $lastSeason = $sortedSeasons[1];
+
+        // 咋シーズンの全てのリーグ順位一覧を取得
+        $standings = $this->teamRepository->getCurrentSeasonChampions($lastSeason);
+        
+        // コレクションに変換
+        $collection = collect($standings);
+
+        $rank_1_teams = [];
+
+        $collection->each(function ($standing) use (&$rank_1_teams) {
+            $standings = $standing['json_standings']['response'][0]['league']['standings']; 
+
+            // rankが1のチーム情報を抽出
+            foreach ($standings as $team) {
+                foreach ($team as $a) {
+                    if ($a['rank'] == 1) {
+                        $rank_1_teams[] = [
+                            'id' => $a['team']['id'],
+                            'teamName' => $a['team']['name'],
+                            'teamLogo' => $a['team']['logo'],
+                            'league' => $standing['json_standings']['response'][0]['league']['name'],
+                            'country' => $standing['json_standings']['response'][0]['league']['country'],
+                        ];
+                    }
+                }
+            }
+        });
+
+        // rank 1 のチーム情報の配列
+        return $rank_1_teams;
     }
 }

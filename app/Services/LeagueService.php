@@ -44,4 +44,14 @@ class LeagueService
     {
         return $this->leagueRepository->getFavoriteLeague();
     }
+
+    /**
+     * 全てのリーグを取得する
+     * リーグ名とリーグIDを取得する
+     * 
+     */
+    public function getLeagues()
+    {
+        return $this->leagueRepository->getLeagues();
+    }
 }

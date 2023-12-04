@@ -15,4 +15,14 @@ return [
         '2022' => env('SEASON_2022'),
         '2023' => env('SEASON_2023'),
     ],
+
+    /**
+     * メール
+     */
+    'from_email' =>env('MAIL_USERNAME'),
+
+    /**
+     * url
+     */
+    'url' => env('APP_URL'),
 ];

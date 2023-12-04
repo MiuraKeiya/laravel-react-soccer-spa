@@ -1,0 +1,260 @@
+import { SkeletonAtom } from "../atoms/SkeletonAtom";
+
+export const SkeletonHome = () => {
+    return (
+        <>
+            <div className="bg-[#111931] mt-2 flex justify-between">
+                <div className="flex space-x-1 ml-2">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={30}
+                        height={40}
+                        backgroundColor={"#1d2233"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={150}
+                        height={40}
+                        backgroundColor={"#1d2233"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <div className="mr-2">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={45}
+                        height={40}
+                        backgroundColor={"#1d2233"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+            <div className="flex justify-between mr-2">
+                <div className="ml-2 flex space-x-1 items-center">
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={50}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                    <SkeletonAtom
+                        variant={"text"}
+                        width={100}
+                        height={60}
+                        backgroundColor={"#111931"}
+                        borderRadius={"7px"}
+                    />
+                </div>
+                <SkeletonAtom
+                    variant={"text"}
+                    width={50}
+                    height={60}
+                    backgroundColor={"#111931"}
+                    borderRadius={"7px"}
+                />
+            </div>
+        </>
+    );
+};

@@ -25,7 +25,7 @@ class LeagueController extends Controller
     public function addFavoriteLeague(Request $request): JsonResponse
     {
         try {
-            $this->leagueService->addFavoriteLeague($request->leagueId);
+            $this->leagueService->addFavoriteLeague($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '保存に失敗しました'], 400);
         }
@@ -42,7 +42,7 @@ class LeagueController extends Controller
     public function deleteFavoriteLeague(Request $request): JsonResponse
     {
         try {
-            $this->leagueService->deleteFavoriteLeague($request->leagueId);
+            $this->leagueService->deleteFavoriteLeague($request->id);
         } catch (Exception $error) {
             return response()->json(['message' => '削除に失敗しました'], 400);
         }
@@ -59,6 +59,24 @@ class LeagueController extends Controller
     {
         try {
             $response = $this->leagueService->getFavoriteLeague();
+        } catch (Exception $error) {
+          logger($error);
+            return response()->json(['message' => '取得に失敗しました'], 400);
+        }
+
+        return response()->json($response, 200);
+    }
+
+    /**
+     * 全てのリーグを取得する
+     * リーグ名とリーグIDを取得する
+     * 
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function getLeagues(): JsonResponse
+    {
+        try {
+            $response = $this->leagueService->getLeagues();
         } catch (Exception $error) {
             return response()->json(['message' => '取得に失敗しました'], 400);
         }

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Artisan;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +16,28 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('batch:leagues')
+            ->onSuccess(function () {
+                Artisan::call('batch:teams');
+            })
+            ->onSuccess(function () {
+                Artisan::call('batch:teams-information');
+            })
+            ->onSuccess(function () {
+                Artisan::call('batch:teams-statistics');
+            })
+            ->onSuccess(function () {
+                Artisan::call('batch:players');
+            })
+            ->onSuccess(function () {
+                Artisan::call('batch:ranking-leagues');
+            })
+            ->onSuccess(function () {
+                Artisan::call('batch:games');
+            })
+            ->onFailure(function () {
+                exit;
+            });
     }
 
     /**

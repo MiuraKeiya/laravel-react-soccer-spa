@@ -93,4 +93,52 @@ class GameRepository
 
         return $matches;
     }
+
+    /**
+     * 特定のリーグの直近5試合を取得する
+     * 今日の日付からみて過去5試合を取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * @param string $date 今日の日付(例: 2023-09-15)
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getLatestGames(string $leagueId, $date, $season): Collection
+    {
+        // 試合を取得
+        $games = Game::select('json_detail')
+            ->where([
+                'league_id' => $leagueId,
+                'season' => $season,
+            ])
+            ->where('date', '<', $date)  // 指定日付よりも前の試合を取得
+            ->orderBy('date', 'desc')  // 日付を降順にソート
+            ->get()
+            ->unique('json_detail')
+            ->take(5);  // 直近5試合を取得
+
+        return $games;
+    }
+
+    /**
+     * ページネーションで特定リーグの試合を取得する
+     * 最新の試合を20試合ごとに取得する
+     * 
+     * @param string $leagueId リーグID
+     * @param string $season シーズン
+     * 
+     */
+    public function getLeagueGamesPagenate(string $leagueId, $season)
+    {
+        // 特定リーグの試合を取得する
+        $games = Game::select('json_detail')
+            ->where([
+                'league_id' => $leagueId,
+                'season' => $season,
+            ])
+            ->groupBy('id')
+            ->paginate(SoccerApiConst::LEAGUE_GAMES_PER_PAGE);
+        
+        return $games;
+    }
 }

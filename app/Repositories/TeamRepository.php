@@ -85,7 +85,7 @@ class TeamRepository
     }
 
     /**
-     * チームの情報、統計、移籍情報を取得する
+     * チームの情報、統計を取得する
      * チームIDとシーズンに基づく
      * 
      * @param string $teamId チームのID
@@ -95,7 +95,7 @@ class TeamRepository
     public function getTeamInfo(string $teamId, $season): Collection
     {
         // チーム情報、統計、移籍情報を取得する
-        $teamInfo = Team::select('json_information', 'json_statistics', 'json_transfer')
+        $teamInfo = Team::select('json_information', 'json_statistics')
         ->where([
             'id' => $teamId,
             'season' => $season,
@@ -120,5 +120,21 @@ class TeamRepository
         ->get();
 
         return $teams;
+    }
+
+    /**
+     * 特定シーズンの全てのリーグの順位一覧を取得する
+     * 
+     * @param string $season シーズン　例:2023
+     * 
+     */
+    public function getCurrentSeasonChampions(string $season)
+    {
+        // 全てのリーグの順位一覧を取得する
+        $standings = RankingByLeague::select('json_standings')
+            ->where('season', $season)
+            ->get();
+
+        return $standings;
     }
 }

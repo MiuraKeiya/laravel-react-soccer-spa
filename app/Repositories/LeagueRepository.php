@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\FavoriteLeague;
+use App\Models\League;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,14 +48,29 @@ class LeagueRepository
     /**
      * お気に入り保存しているリーグを取得する
      * 
-     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りリーグのID
+     * @return \Illuminate\Support\Collection ユーザーが保存しているお気に入りリーグのID、name
      */
     public function getFavoriteLeague()
     {
         // 現在認証しているユーザーのIDを取得
         $id = Auth::id(); 
 
-        // ユーザーが保存しているリーグのIDを取得する
-        return FavoriteLeague::where('user_id', $id)->pluck('league_id');
+        // ユーザーが保存しているお気に入りリーグのIDとLeaguesテーブルのidとnameを取得する
+        $favoriteLeagues = FavoriteLeague::where('user_id', $id)
+              ->with('league:id,name') // Leaguesモデルからidとnameだけを取得する
+              ->get(['league_id']);
+        
+        return $favoriteLeagues;
+    }
+
+    /**
+     * 全てのリーグを取得する
+     * リーグ名とリーグIDを取得する
+     * 
+     */
+    public function getLeagues()
+    {
+        $leagues = League::select('id', 'name')->get();
+        return $leagues;
     }
 }
