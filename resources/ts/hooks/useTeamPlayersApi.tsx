@@ -14,11 +14,10 @@ export const useTeamPlayersApi = (playerId, season) => {
                 const response = await axios.get(
                     `/api/players/team/${playerId}/season/${season}`
                 );
-                console.log(response.data);
+
                 setPlayers(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("Error getting players:", error);
                 setError(error);
                 setLoading(false);
             }

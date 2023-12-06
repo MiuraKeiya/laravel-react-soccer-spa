@@ -12,7 +12,7 @@
 
     </head>
 
-    <body class="antialiased">
+    <body class="antialiased" style="background-color:#10161c">
         <div id="app"></div>
     </body>
 </html>

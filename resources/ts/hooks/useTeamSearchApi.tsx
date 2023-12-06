@@ -22,8 +22,6 @@ export const useTeamSearchApi = (searchQuery) => {
                     setLoading(false);
                 }
             } catch (error) {
-                console.error("検索エラー:", error);
-
                 setError(error);
             }
         };

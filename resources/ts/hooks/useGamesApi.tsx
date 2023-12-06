@@ -24,12 +24,10 @@ export const useGamesApi = (date: string) => {
         const GamesData = async () => {
             try {
                 const response = await axios.get(`/api/games/dates/${date}`);
-                console.log("試合API", response.data);
                 setGames(groupGamesByLeague(response.data));
                 
                 setGamesLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
                 setGamesError(error);
                 setGamesLoading(false);
             }

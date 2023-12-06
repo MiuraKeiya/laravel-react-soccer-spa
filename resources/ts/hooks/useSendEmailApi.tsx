@@ -15,7 +15,6 @@ export const useSendEmailApi = () => {
         try {
             await axios.post("/api/send-email", data);
         } catch (error) {
-            console.error("Error send email:", error);
             setError(error);
             throw error;
         } finally {

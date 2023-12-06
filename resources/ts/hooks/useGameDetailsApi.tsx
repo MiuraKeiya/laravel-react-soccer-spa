@@ -12,11 +12,9 @@ export const useGameDetailsApi = (gameId) => {
         const GameDetails = async () => {
             try {
                 const response = await axios.get(`/api/games/${gameId}`);
-                console.log(response.data);
                 setGames(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
                 setError(error);
                 setLoading(false);
             }

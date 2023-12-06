@@ -47,7 +47,7 @@ export const ResetPassword = () => {
         setLoading(true);
         // 取得したtokenを追加
         data.token = token;
-        console.log(data);
+
         axios.get("/sanctum/csrf-cookie").then(() => {
             passwordReset(data)
                 .then(() => {

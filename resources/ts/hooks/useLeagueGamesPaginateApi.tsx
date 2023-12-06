@@ -19,7 +19,7 @@ export const useLeagueGamesPaginateApi = (leagueId, season) => {
                 const response = await axios.get(
                     `/api/games/leagues/${leagueId}/seasons/${season}?page=${page}`
                 );
-                console.log("ページネーション", response.data);
+
                 const newGames = response.data.data || [];
 
                 setLastPage(response.data.last_page);
@@ -31,7 +31,6 @@ export const useLeagueGamesPaginateApi = (leagueId, season) => {
 
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
                 setError(error);
                 setLoading(false);
             }
