@@ -12,11 +12,9 @@ export const useGetAuthUserApi = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("/api/user");
-                console.log("ユーザーAPI", response.data);
                 setUser(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("Error getting user:", error);
                 setError(error);
                 setLoading(false);
             }

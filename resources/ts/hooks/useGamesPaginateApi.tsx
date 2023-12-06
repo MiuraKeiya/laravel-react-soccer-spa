@@ -19,7 +19,6 @@ export const useGamesPaginateApi = (teamId, season) => {
                 const response = await axios.get(
                     `/api/games/team/${teamId}/season/${season}?page=${page}`
                 );
-                console.log(response.data);
                 const newGames = response.data.data || [];
 
                 setLastPage(response.data.last_page);
@@ -31,7 +30,6 @@ export const useGamesPaginateApi = (teamId, season) => {
 
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
                 setError(error);
                 setLoading(false);
             }

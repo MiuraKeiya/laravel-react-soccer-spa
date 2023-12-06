@@ -24,7 +24,6 @@ export const useGamesDateApi = (): UseGamesDateApiResult => {
 
                 setGamesDateLoading(false);
             } catch (error: any) {
-                console.error("API call error:", error);
                 setGamesDateError(error);
 
                 setGamesDateLoading(false);

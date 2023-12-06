@@ -14,13 +14,10 @@ export const useRankingsApi = (leagueId, season) => {
                 const response = await axios.get(
                     `/api/players/rankings/leagues/${leagueId}/seasons/${season}`
                 );
-                console.log("ランキングAPI", response.data);
 
                 setRankings(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
-
                 setError(error);
                 setLoading(false);
             }

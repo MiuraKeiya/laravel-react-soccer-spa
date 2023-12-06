@@ -46,7 +46,6 @@ const useProvideAuth = () => {
             const res = await axios.post("/api/register", registerData);
             setUser(res.data);
         } catch (error) {
-            console.error("Registration error:", error);
             throw error;
         }
     };
@@ -61,10 +60,9 @@ const useProvideAuth = () => {
     const signin = async (loginData: LoginData) => {
         try {
             const res = await axios.post("/api/login", loginData);
-            console.log(res.data);
+
             setUser(res.data);
         } catch (error) {
-            console.error("login error:", error);
             throw error;
         }
     };
@@ -80,7 +78,6 @@ const useProvideAuth = () => {
             await axios.post("/api/logout", {});
             setUser(null);
         } catch (error) {
-            console.error("logout error:", error);
             throw error;
         }
     };
@@ -96,10 +93,9 @@ const useProvideAuth = () => {
                 `/api/login/google/callback${token}`,
                 {}
             );
-            console.log(res.data);
+
             setUser(res.data);
         } catch (error) {
-            console.error("signinWithGoogle error:", error);
             throw error;
         }
     };
@@ -112,7 +108,6 @@ const useProvideAuth = () => {
         try {
             await axios.put("/api/user/password", password);
         } catch (error) {
-            console.error("passwordUpdate error:", error);
             throw error;
         }
     };
@@ -126,7 +121,6 @@ const useProvideAuth = () => {
             await axios.delete("/api/user");
             setUser(null);
         } catch (error) {
-            console.error("deleteUser error:", error);
             throw error;
         }
     };
@@ -138,12 +132,10 @@ const useProvideAuth = () => {
             try {
                 const response = await axios.get("/api/user");
 
-                console.log(response.data);
                 setUser(response.data);
 
                 setUserLoading(false);
             } catch (error: any) {
-                console.error("API call error:", error);
                 setError(error);
                 setUserLoading(false);
             }

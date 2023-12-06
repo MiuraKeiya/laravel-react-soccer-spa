@@ -15,13 +15,10 @@ export const useStandingsApi = (leagueId, season) => {
                     const response = await axios.get(
                         `/api/standings/leagues/${leagueId}/seasons/${season}`
                     );
-                    console.log("順位一覧API", response.data);
 
                     setStandings(response.data);
                     setLoading(false);
                 } catch (error) {
-                    console.error("Error getting standings:", error);
-
                     setError(error);
                     setLoading(false);
                 }

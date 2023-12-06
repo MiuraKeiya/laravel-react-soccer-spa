@@ -13,7 +13,6 @@ export const Teams = ({ teams, loading, season }) => {
     const handleToggleTeamsClick = () => {
         setShowAllTeams(!showAllTeams);
     };
-    console.log(teams);
 
     const gradientColors = {
         "Premier League": "from-[#330066]",

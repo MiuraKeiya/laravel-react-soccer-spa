@@ -10,7 +10,6 @@ export const useForgotPasswordApi = () => {
 
             // POSTリクエストを送信
             const response = await axios.post("/api/forgot-password", email);
-            console.log(response.data);
         } catch (error) {
             throw error;
         }
@@ -20,7 +19,6 @@ export const useForgotPasswordApi = () => {
         try {
             // POSTリクエストを送信
             const response = await axios.post("/api/reset-password", token);
-            console.log(response.data);
         } catch (error) {
             throw error;
         }

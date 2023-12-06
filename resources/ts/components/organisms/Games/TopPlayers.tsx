@@ -11,7 +11,6 @@ export const TopPlayers = ({ games, maxSeason }) => {
         navigate(`/player/${playerId}/season/${maxSeason}`);
     };
 
-    console.log(topPlayers);
     return (
         <div className="mt-2">
             <div className="bg-[#111931] text-[#EEEEEE] text-[18px] font-bold py-2 rounded-t">

@@ -12,8 +12,6 @@ export const useFavoriteApi = (apiPath) => {
                 id,
             });
         } catch (error) {
-            console.error("Error adding favorite:", error);
-
             setError(error);
         }
     };
@@ -25,8 +23,6 @@ export const useFavoriteApi = (apiPath) => {
                 data: { id },
             });
         } catch (error) {
-            console.error("Error deleting favorite:", error);
-
             setError(error);
         }
     };

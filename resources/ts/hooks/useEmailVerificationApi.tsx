@@ -6,7 +6,6 @@ export const useEmailVerificationApi = () => {
             const response = await axios.post(
                 "/api/email/verification-notification"
             );
-            console.log(response.data);
         } catch (error) {
             throw error;
         }

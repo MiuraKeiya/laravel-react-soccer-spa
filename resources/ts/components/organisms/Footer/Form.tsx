@@ -33,7 +33,6 @@ export const Form = () => {
     const onSubmit = (data) => {
         sendEmail(data)
             .then(() => {
-                console.log("メール送信成功");
 
                 handleOpen();
 

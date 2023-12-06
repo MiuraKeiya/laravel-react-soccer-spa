@@ -20,8 +20,6 @@ export const useLeadingTeamApi = () => {
                 setLeadingTeam(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
-
                 setError(error);
                 setLoading(false);
             }

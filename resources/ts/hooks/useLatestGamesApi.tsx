@@ -14,13 +14,11 @@ export const useLatestGamesApi = (leagueId, season) => {
                 const response = await axios.get(
                     `/api/latest_games/leagues/${leagueId}/seasons/${season}`
                 );
-                console.log(response.data);
+
 
                 setGames(response.data);
                 setLoading(false);
             } catch (error) {
-                console.error("API call error:", error);
-
                 setError(error);
                 setLoading(false);
             }

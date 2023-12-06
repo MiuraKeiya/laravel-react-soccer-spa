@@ -12,15 +12,13 @@ export const useGetFavoriteApi = (apiPath) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/favorites/${apiPath}`);
-                console.log(`お気に入り${apiPath}`, response.data);
+
                 setFavorites(response.data);
 
                 setFavorites(response.data);
 
                 setLoading(false);
             } catch (error) {
-                console.error("Error getting favorites:", error);
-
                 setoError(error);
 
                 setLoading(false);

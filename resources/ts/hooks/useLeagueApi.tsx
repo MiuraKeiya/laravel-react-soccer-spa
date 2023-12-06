@@ -13,8 +13,6 @@ export const useLeagueAPI = () => {
             try {
                 const response = await axios.get("/api/leagues");
 
-                console.log("リーグ一覧API", response.data);
-
                 setLeagues(response.data);
 
                 setLoading(false);
