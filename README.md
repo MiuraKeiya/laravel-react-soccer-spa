@@ -1,66 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Football League ⚽️👑
+本サービスは、欧州5大リーグのサッカーの試合結果やチーム情報などを閲覧することができるWebサイトです。
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ただ情報を閲覧できるだけではなく、お気に入りのチームやリーグを追加することもできます。
 
-## About Laravel
+## 主要な使用技術
+**フロントエンド**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [TypeScript](https://www.typescriptlang.org/) (5.1.6)
+- [React](https://react.dev/) (18.2.0)
+- [React Router Dom](https://reactrouter.com/en/main) (6.14.1)
+- [Axios](https://github.com/axios/axios) (1.1.2)
+- [React Hook Form](https://react-hook-form.com/) (7.45.4)
+- [React Tooltip](https://github.com/ReactTooltip/react-tooltip) (5.18.0)
+- [React Card Flip](https://www.npmjs.com/package/react-card-flip) (1.2.0)
+- [Tailwind CSS](https://tailwindcss.com/) (3.3.2)
+- [Material-UI](https://mui.com/) (5.14.6)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**バックエンド**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [PHP](https://www.php.net/manual/ja/index.php)(8.0.2)
+- [Laravel](https://laravel.com/)(9.19)
+- [Laravel Sanctum](https://readouble.com/laravel/8.x/ja/sanctum.html)(3.0)
+- [Laravel Fortify](https://readouble.com/laravel/8.x/ja/fortify.html)(1.17)
+- [Socialite](https://readouble.com/laravel/8.x/ja/socialite.html)(5.9)
+- [Guzzle](https://readouble.com/laravel/9.x/ja/http-client.html)(7.2)
 
-## Learning Laravel
+## 画面
+**ログイン画面**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![スクリーンショット 2024-01-09 19.18.40.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/8f4995e6-029b-0d79-ca36-88883ebe2f94.png)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**入力時バリデーション**
 
-## Laravel Sponsors
+![スクリーンショット 2024-01-09 20.09.16.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/903c10fe-9321-5e50-4979-c06bb8c91804.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+---
 
-### Premium Partners
+**新規登録画面**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![スクリーンショット 2024-01-09 19.50.43.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/50230bdf-3fcd-c878-034b-161e94b2dd16.png)
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**登録後の認証確認通知**
 
-## Code of Conduct
+![スクリーンショット 2024-01-09 20.10.16.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/a839098c-6906-ce3a-6305-87c85cb5b53a.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+**ホーム画面**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![スクリーンショット 2024-01-09 19.22.34.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/580d132c-f7d8-9789-37ce-cf2c35efc194.png)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**試合詳細画面**
+
+試合の統計情報をゲージバーを使用して視覚的にわかりやすくしました。
+![statistics.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/18de94f5-6201-2e72-af5b-0a85b733c419.gif)
+
+
+各チームのフォーメーションを見やすく表示し、カーソルを合わせると選手の写真を確認することができます。
+![formations.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/884be91b-c4d7-3acc-c5a8-15e320eb6c86.gif)
+
+
+---
+
+**順位表画面**
+
+![スクリーンショット 2024-01-09 19.28.20.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/da3cc4db-debd-e27e-778a-1ef34d39cfbf.png)
+
+---
+
+**お気に入り追加**
+
+検索時にスケルトンローディングを実装しユーザーの待ち時間を直感的に短くしています。
+![favorites.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/b9998a42-d1d8-eba5-1e29-3f76b0536dac.gif)
+
+---
+
+**お気に入りはサイドバーから確認可能**
+
+![スクリーンショット 2024-01-09 19.42.25.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/e6474019-ec58-b1fa-3b07-84a1451db417.png)
+
+---
+
+**チーム詳細画面**
+
+![スクリーンショット 2024-01-09 19.44.00.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/9edca9a8-692c-92b0-9abb-5a3c21218cea.png)
+
+---
+
+**リーグ詳細画面**
+
+![スクリーンショット 2024-01-09 19.45.53.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/13c1666f-2d91-fc4b-51b2-c11c2b931620.png)
+
+---
+
+**選手詳細画面**
+
+![スクリーンショット 2024-01-09 19.48.47.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2851087/e63a3c2d-6af8-a1cc-3b72-046bc23873a2.png)
+
+---
