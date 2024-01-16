@@ -43,6 +43,9 @@ LambdaはRDSと通信が必要なので同じプライベートサブネット�
 
 バッチのログはCloudWatch Logsで収集しているので、今後はLambda,SNSなどを使用してSlackへの通知なども実装してみたい
 
+## ER図
+![image](https://github.com/MiuraKeiya/laravel-react-soccer-spa/assets/122216142/5f4257bf-7a3f-487b-9e8e-38d132ee7d08)
+
 ## 画面
 **ログイン画面**
 
