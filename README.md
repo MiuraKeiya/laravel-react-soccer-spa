@@ -26,6 +26,9 @@
 - [Guzzle](https://readouble.com/laravel/9.x/ja/http-client.html)(7.2)
 
 ## インフラ構成図
+色々と調べた上で最もベーシックな構成にしました。
+本来冗長化することが望ましいがコスト面を考慮して最低限のリソースに抑えています。(RDS高すぎた)
+
 ![image](https://github.com/MiuraKeiya/laravel-react-soccer-spa/assets/122216142/b6abafbc-5f77-4e18-a232-90eef03e9229)
 
 ## 画面
