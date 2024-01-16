@@ -25,6 +25,9 @@
 - [Socialite](https://readouble.com/laravel/8.x/ja/socialite.html)(5.9)
 - [Guzzle](https://readouble.com/laravel/9.x/ja/http-client.html)(7.2)
 
+## インフラ構成図
+![image](https://github.com/MiuraKeiya/laravel-react-soccer-spa/assets/122216142/b6abafbc-5f77-4e18-a232-90eef03e9229)
+
 ## 画面
 **ログイン画面**
 
